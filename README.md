@@ -5,12 +5,12 @@
 
 Project name: god.codegen
 
-## eGovFrame Common Component
-
 .project
 
 ```xml
 <nature>egovframework.dev.imp.ide.natures.egovnature</nature>
 ```
+
+## Add eGovFrame Common Component > 공통 > 공통
 
 docs
