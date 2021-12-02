@@ -45,6 +45,7 @@ class GodDatabaseMetaData_getTables {
 
 				while (tables.next()) {
 					log.debug("i={}", i);
+
 					log.debug("TABLE_CAT={}", tables.getString("TABLE_CAT"));
 					log.debug("TABLE_SCHEM={}", tables.getString("TABLE_SCHEM"));
 					log.debug("TABLE_NAME={}", tables.getString("TABLE_NAME"));
@@ -55,6 +56,7 @@ class GodDatabaseMetaData_getTables {
 					log.debug("TYPE_NAME={}", tables.getString("TYPE_NAME"));
 					log.debug("SELF_REFERENCING_COL_NAME={}", tables.getString("SELF_REFERENCING_COL_NAME"));
 					log.debug("REF_GENERATION={}", tables.getString("REF_GENERATION"));
+
 					log.debug("");
 
 					i++;
