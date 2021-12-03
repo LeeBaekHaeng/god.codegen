@@ -1,6 +1,7 @@
 package god.java.sql;
 
 import java.sql.Connection;
+import java.sql.DatabaseMetaData;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 
@@ -9,7 +10,7 @@ import org.junit.jupiter.api.Test;
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
-class GodDriverManager_getConnection {
+class DatabaseMetaData_getDatabaseProductName_Test {
 
 	@Test
 	void test() {
@@ -26,10 +27,13 @@ class GodDriverManager_getConnection {
 
 		) {
 
-			log.debug("con={}", con);
-			log.debug("getCatalog={}", con.getCatalog());
-			log.debug("getSchema={}", con.getSchema());
-			log.debug("getTypeMap={}", con.getTypeMap());
+			DatabaseMetaData metaData = con.getMetaData();
+
+			log.debug("getDatabaseProductName={}", metaData.getDatabaseProductName());
+			log.debug("getDatabaseProductName={}", metaData.getDatabaseProductVersion());
+
+			log.debug("getDatabaseProductName={}", metaData.getDriverName());
+			log.debug("getDatabaseProductName={}", metaData.getDriverVersion());
 
 		} catch (SQLException e) {
 			log.error("getConnection SQLException");

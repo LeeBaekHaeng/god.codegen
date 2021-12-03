@@ -11,7 +11,7 @@ import org.junit.jupiter.api.Test;
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
-class GodDatabaseMetaData_getPrimaryKeys {
+class DatabaseMetaData_getPrimaryKeys_Test {
 
 	@Test
 	void test() {
