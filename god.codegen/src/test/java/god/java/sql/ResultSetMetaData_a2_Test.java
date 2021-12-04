@@ -15,45 +15,43 @@ class ResultSetMetaData_a2_Test {
 
 	@Test
 	void test() {
-		try (
-
-				Connection con = GodDriverManager_a1.getConnection();
-
-		) {
+		try (Connection con = GodDriverManager_a1.getConnection();) {
 
 			DatabaseMetaData dmd = con.getMetaData();
 
-			try (
+			try (ResultSet tables = dmd.getTables(null, null, null, null);) {
 
-					ResultSet tables = dmd.getTables(null, null, null, null);
-//					ResultSet rs = dmd.getColumns(null, null, null, null);
+				if (tables.next()) {
+					String tableName = tables.getString("TABLE_NAME");
 
-			) {
+					try (
+//
+//							ResultSet rs = tables;
+//							ResultSet rs = dmd.getColumns(null, null, tableName, null);
+							ResultSet rs = dmd.getPrimaryKeys(null, null, tableName);
 
-				tables.next();
+					) {
 
-				try (ResultSet rs = dmd.getPrimaryKeys(null, null, tables.getString("TABLE_NAME"))) {
+						ResultSetMetaData rsmd = rs.getMetaData();
+						int columnCount = rsmd.getColumnCount();
+						StringBuffer sb = new StringBuffer();
 
-					ResultSetMetaData rsmd = rs.getMetaData();
-					int columnCount = rsmd.getColumnCount();
-					StringBuffer sb = new StringBuffer();
-
-					for (int column = 1; column < columnCount; column++) {
-						GodResultSetMetaDataDto dto = getGodResultSetMetaDataDto(rsmd, column);
+						for (int column = 1; column < columnCount; column++) {
+							GodResultSetMetaDataDto dto = getGodResultSetMetaDataDto(rsmd, column);
 //						debug(sb, dto);
 //						vo(sb, dto);
-						builder(sb, dto);
+							builder(sb, dto);
+						}
+
+						System.out.println(sb);
+
 					}
-
-					System.out.println(sb);
-
 				}
 
 			}
 
 		} catch (SQLException e) {
 			log.error("SQLException");
-			e.printStackTrace();
 		}
 	}
 

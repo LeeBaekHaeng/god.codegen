@@ -1,6 +1,13 @@
 # god.codegen
 코드생성
 
+## egovframe-development
+
+- 단위테스트 https://github.com/LeeBaekHaeng/egovframe-development/tree/master/egovframework.dev.imp.templates
+- 소스 https://github.com/LeeBaekHaeng/egovframe-development/tree/master/egovframework.dev.imp.codegen.template
+- eGovFrameTemplates https://github.com/LeeBaekHaeng/egovframe-development/tree/master/egovframework.dev.imp.codegen.template.templates
+- Velocity Context에 값 삽입 https://github.com/LeeBaekHaeng/egovframe-development/blob/master/egovframework.dev.imp.codegen.template/src/egovframework/dev/imp/codegen/template/wizards/CodeGenTableWizardPage.java
+
 ## New eGovFrame Web Project
 
 새로운 eGovFrame 웹 프로젝트
