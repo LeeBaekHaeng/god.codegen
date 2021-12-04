@@ -39,6 +39,9 @@ public class GodDatabaseMetaData {
 
 					godDatabaseMetaDataDto.setGodColumnDtos(getGodColumnDtos(dmd, catalog, schemaPattern, tableName));
 
+					godDatabaseMetaDataDto
+							.setGodPrimaryKeyDtos(getGodPrimaryKeyDtos(dmd, catalog, schemaPattern, tableName));
+
 					godDatabaseMetaDataDtos.add(godDatabaseMetaDataDto);
 				}
 
@@ -143,6 +146,39 @@ public class GodDatabaseMetaData {
 		}
 
 		return godColumnDtos;
+	}
+
+	private List<GodPrimaryKeyDto> getGodPrimaryKeyDtos(DatabaseMetaData dmd, String catalog, String schemaPattern,
+			String tableName) throws SQLException {
+		List<GodPrimaryKeyDto> godPrimaryKeyDtos = new ArrayList<>();
+
+		try (
+
+				ResultSet primaryKeys = dmd.getPrimaryKeys(catalog, schemaPattern, tableName);
+
+		) {
+
+			while (primaryKeys.next()) {
+				GodPrimaryKeyDto godPrimaryKeyDto = GodPrimaryKeyDto.builder()
+
+						.tableCat(primaryKeys.getString("TABLE_CAT"))
+
+						.tableSchem(primaryKeys.getString("TABLE_SCHEM"))
+
+						.tableName(primaryKeys.getString("TABLE_NAME"))
+
+						.columnName(primaryKeys.getString("COLUMN_NAME"))
+
+						.keySeq(primaryKeys.getInt("KEY_SEQ"))
+
+						.build();
+
+				godPrimaryKeyDtos.add(godPrimaryKeyDto);
+			}
+
+		}
+
+		return godPrimaryKeyDtos;
 	}
 
 }

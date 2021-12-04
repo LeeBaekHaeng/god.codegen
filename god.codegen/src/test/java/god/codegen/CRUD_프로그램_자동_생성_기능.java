@@ -10,6 +10,7 @@ import god.java.sql.GodColumnDto;
 import god.java.sql.GodDatabaseMetaData;
 import god.java.sql.GodDatabaseMetaDataDto;
 import god.java.sql.GodDriverManager_a1;
+import god.java.sql.GodPrimaryKeyDto;
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
@@ -40,11 +41,17 @@ class CRUD_프로그램_자동_생성_기능 {
 				log.debug("getTableName={}", godDatabaseMetaDataDto.getGodTableDto().getTableName());
 				log.debug("getTableType={}", godDatabaseMetaDataDto.getGodTableDto().getTableType());
 				log.debug("getRemarks={}", godDatabaseMetaDataDto.getGodTableDto().getRemarks());
-				log.debug("");
 
+				log.debug("");
 				for (GodColumnDto column : godDatabaseMetaDataDto.getGodColumnDtos()) {
 					log.debug("getColumnName={}", column.getColumnName());
 					log.debug("getRemarks={}", column.getRemarks());
+				}
+
+				log.debug("");
+				for (GodPrimaryKeyDto primaryKey : godDatabaseMetaDataDto.getGodPrimaryKeyDtos()) {
+					log.debug("getColumnName={}", primaryKey.getColumnName());
+					log.debug("getKeySeq={}", primaryKey.getKeySeq());
 				}
 
 				log.debug("");

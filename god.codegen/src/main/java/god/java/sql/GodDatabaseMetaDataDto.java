@@ -13,4 +13,6 @@ public class GodDatabaseMetaDataDto {
 
 	private List<GodColumnDto> godColumnDtos;
 
+	private List<GodPrimaryKeyDto> godPrimaryKeyDtos;
+
 }
