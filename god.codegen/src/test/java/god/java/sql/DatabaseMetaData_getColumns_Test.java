@@ -36,6 +36,7 @@ class DatabaseMetaData_getColumns_Test {
 			String catalog = null;
 			String schemaPattern = null;
 			String tableNamePattern = "%";
+			tableNamePattern = "comtcadministcode";
 			String columnNamePattern = null;
 
 			try (

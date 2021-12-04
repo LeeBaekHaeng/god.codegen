@@ -47,6 +47,12 @@ public class CrudCodeGen {
 
 		context.put("model", dataModel);
 
+		context.put("author", dataModel.getAuthor());
+		context.put("createDate", dataModel.getCreateDate());
+
+		context.put("voPackage", dataModel.getVoPackage());
+		context.put("mapperPackage", dataModel.getMapperPackage());
+
 		Template template = null;
 
 		try {
