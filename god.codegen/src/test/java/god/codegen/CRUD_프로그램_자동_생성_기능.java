@@ -1,4 +1,4 @@
-package god.java.sql;
+package god.codegen;
 
 import java.sql.Connection;
 import java.sql.SQLException;
@@ -6,6 +6,10 @@ import java.util.List;
 
 import org.junit.jupiter.api.Test;
 
+import god.java.sql.GodColumnDto;
+import god.java.sql.GodDatabaseMetaData;
+import god.java.sql.GodDatabaseMetaDataDto;
+import god.java.sql.GodDriverManager_a1;
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
