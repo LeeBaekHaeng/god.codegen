@@ -9,7 +9,7 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 public class GodDriverManager_a1 {
 
-	public static Connection getConnectionMySQL() {
+	public static Connection getConnection() {
 //		log.debug("getConnectionMySQL");
 
 //		String url = "jdbc:log4jdbc:mysql://127.0.0.1:3306/com";
@@ -26,7 +26,7 @@ public class GodDriverManager_a1 {
 
 			return con;
 		} catch (SQLException e) {
-			log.error("getConnectionMySQL SQLException");
+			log.error("getConnection SQLException");
 			return null;
 		}
 	}

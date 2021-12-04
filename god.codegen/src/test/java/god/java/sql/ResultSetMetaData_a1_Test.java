@@ -19,7 +19,7 @@ class ResultSetMetaData_a1_Test {
 
 		try (
 
-				Connection con = GodDriverManager_a1.getConnectionMySQL();
+				Connection con = GodDriverManager_a1.getConnection();
 
 		) {
 
@@ -27,8 +27,8 @@ class ResultSetMetaData_a1_Test {
 
 			try (
 
-					ResultSet rs = dmd.getTables(null, null, null, null);
-//					ResultSet rs = dmd.getColumns(catalog, schemaPattern, tableNamePattern, columnNamePattern);
+//					ResultSet rs = dmd.getTables(null, null, null, null);
+					ResultSet rs = dmd.getColumns(null, null, null, null);
 
 			) {
 
