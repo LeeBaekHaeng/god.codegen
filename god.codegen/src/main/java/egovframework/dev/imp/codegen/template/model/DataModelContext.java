@@ -161,6 +161,14 @@ public class DataModelContext {
 
 	private String mapperPackage;
 
+	private String daoPackage;
+
+	private String servicePackage;
+
+	private String implPackage;
+
+	private String controllerPackage;
+
 	public String getAuthor() {
 		return author;
 	}
@@ -201,6 +209,41 @@ public class DataModelContext {
 	public void setMapperPackage(String mapperPackage) {
 //		this.mapperPackage = mapperPackage;
 		this.mapperPackage = this.prefixPackage + "." + mapperPackage + "." + PACKAGE_SERVICE_IMPL;
+	}
+
+	public String getDaoPackage() {
+		return daoPackage;
+	}
+
+	public void setDaoPackage(String daoPackage) {
+//		this.daoPackage = daoPackage;
+		this.daoPackage = this.prefixPackage + "." + daoPackage + "." + PACKAGE_SERVICE_IMPL;
+	}
+
+	public String getServicePackage() {
+		return servicePackage;
+	}
+
+	public void setServicePackage(String servicePackage) {
+//		this.servicePackage = servicePackage;
+		this.servicePackage = this.prefixPackage + "." + servicePackage + "." + PACKAGE_SERVICE;
+	}
+
+	public String getImplPackage() {
+		return implPackage;
+	}
+
+	public void setImplPackage(String implPackage) {
+		this.implPackage = this.prefixPackage + "." + implPackage + "." + PACKAGE_SERVICE_IMPL;
+	}
+
+	public String getControllerPackage() {
+		return controllerPackage;
+	}
+
+	public void setControllerPackage(String controllerPackage) {
+//		this.controllerPackage = controllerPackage;
+		this.controllerPackage = this.prefixPackage + "." + controllerPackage + "." + PACKAGE_WEB;
 	}
 
 }

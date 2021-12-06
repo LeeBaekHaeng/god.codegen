@@ -11,19 +11,21 @@ import org.apache.velocity.exception.ParseErrorException;
 import org.springframework.beans.MethodInvocationException;
 import org.springframework.social.ResourceNotFoundException;
 
+import egovframework.dev.imp.codegen.template.model.CrudModel;
 import egovframework.dev.imp.codegen.template.model.DataModelContext;
 
 public class CrudCodeGen {
-	public String generate(DataModelContext dataModel, String templateFile) throws Exception {
+	public String generate(DataModelContext dataModel, CrudModel crudModel, String templateFile) throws Exception {
 		StringWriter sw = new StringWriter();
-		generate(dataModel, templateFile, sw);
+		generate(dataModel, crudModel, templateFile, sw);
 
 		System.out.println(sw.toString());
 
 		return sw.toString();
 	}
 
-	private void generate(DataModelContext dataModel, String templateFile, Writer writer) throws Exception {
+	private void generate(DataModelContext dataModel, CrudModel crudModel, String templateFile, Writer writer)
+			throws Exception {
 		String templateEncoding = "UTF-8";
 
 		Properties p = new Properties();
@@ -47,11 +49,15 @@ public class CrudCodeGen {
 
 		context.put("model", dataModel);
 
-		context.put("author", dataModel.getAuthor());
-		context.put("createDate", dataModel.getCreateDate());
+		context.put("author", crudModel.getAuthor());
+		context.put("createDate", crudModel.getCreateDate());
 
-		context.put("voPackage", dataModel.getVoPackage());
-		context.put("mapperPackage", dataModel.getMapperPackage());
+		context.put("voPackage", crudModel.getVoPackage());
+		context.put("mapperPackage", crudModel.getMapperPackage());
+		context.put("daoPackage", crudModel.getDaoPackage());
+		context.put("servicePackage", crudModel.getServicePackage());
+		context.put("implPackage", crudModel.getImplPackage());
+		context.put("controllerPackage", crudModel.getControllerPackage());
 
 		Template template = null;
 

@@ -9,6 +9,7 @@ import java.util.List;
 import org.junit.jupiter.api.Test;
 
 import egovframework.dev.imp.codegen.template.model.Attribute;
+import egovframework.dev.imp.codegen.template.model.CrudModel;
 import egovframework.dev.imp.codegen.template.model.DataModelContext;
 import egovframework.dev.imp.codegen.template.model.Entity;
 import egovframework.rte.fdl.string.EgovDateUtil;
@@ -21,7 +22,7 @@ import lombok.extern.slf4j.Slf4j;
 import operation.CrudCodeGen;
 
 @Slf4j
-class CRUD_프로그램_자동_생성_기능2 {
+class CRUD_프로그램_자동_생성_기능3 {
 
 	List<GodDatabaseMetaDataDto> godDatabaseMetaDataDtos;
 
@@ -70,6 +71,7 @@ class CRUD_프로그램_자동_생성_기능2 {
 
 	private CrudCodeGen crudCodeGen;
 	private DataModelContext dataModel;
+	private CrudModel crudModel;
 
 	@Test
 	public void setUp() throws Exception {
@@ -80,22 +82,34 @@ class CRUD_프로그램_자동_생성_기능2 {
 		for (GodDatabaseMetaDataDto godDatabaseMetaDataDto : godDatabaseMetaDataDtos) {
 			dataModel = new DataModelContext();
 
-//			dataModel.setPackageName("pkg");
-			dataModel.setAuthor("이백행");
-//			dataModel.setTeam("갓소프트");
-			dataModel.setCreateDate(EgovDateUtil.toString(new Date(), null, null));
-
 			dataModel.setVender(DataModelContext.VENDER_MySql); // HSQLDB, Oracle, MySql
 
 			Entity entity = new Entity(godDatabaseMetaDataDto.getGodTableDto().getTableName());
 
-			dataModel.setPrefixPackage("god.test");
-			dataModel.setVoPackage(entity.getLcName());
-			dataModel.setMapperPackage(entity.getLcName());
-			dataModel.setDaoPackage(entity.getLcName());
-			dataModel.setServicePackage(entity.getLcName());
-			dataModel.setImplPackage(entity.getLcName());
-			dataModel.setControllerPackage(entity.getLcName());
+			crudModel = CrudModel.builder()
+
+					.rootPackage("god.test")
+
+					.entity(entity)
+
+					//
+
+					.author("이백행")
+
+					.createDate(EgovDateUtil.toString(new Date(), null, null))
+
+					// DataAccess
+					.checkDataAccess(true)
+
+					.sqlMapFolder("")
+
+					.mapperFolder("")
+
+					.daoPackage(entity.getLcName())
+
+					.mapperPackage("")
+
+					.build();
 
 			dataModel.setEntity(entity);
 
@@ -128,38 +142,38 @@ class CRUD_프로그램_자동_생성_기능2 {
 	}
 
 	public void generate() throws Exception {
-//		String templateFile = "eGovFrameTemplates/crud/resource/pkg/EgovSample_Sample2_SQL.vm";
-//		String result = crudCodeGen.generate(dataModel, templateFile);
-//
-//		templateFile = "eGovFrameTemplates/crud/resource/pkg/EgovSample_Sample2_MAPPER.vm";
-//		result = crudCodeGen.generate(dataModel, templateFile);
-//
-//		templateFile = "eGovFrameTemplates/crud/java/pkg/service/Sample2VO.vm";
-//		result = crudCodeGen.generate(dataModel, templateFile);
-//
-//		templateFile = "eGovFrameTemplates/crud/java/pkg/service/Sample2DefaultVO.vm";
-//		result = crudCodeGen.generate(dataModel, templateFile);
-//
-//		templateFile = "eGovFrameTemplates/crud/java/pkg/service/impl/Sample2DAO.vm";
-//		result = crudCodeGen.generate(dataModel, templateFile);
-//
-//		templateFile = "eGovFrameTemplates/crud/java/pkg/service/impl/Sample2Mapper.vm";
-//		result = crudCodeGen.generate(dataModel, templateFile);
-//
-//		templateFile = "eGovFrameTemplates/crud/java/pkg/service/EgovSample2Service.vm";
-//		result = crudCodeGen.generate(dataModel, templateFile);
-//
-//		templateFile = "eGovFrameTemplates/crud/java/pkg/service/impl/EgovSample2ServiceImpl.vm";
-//		result = crudCodeGen.generate(dataModel, templateFile);
-//
-//		templateFile = "eGovFrameTemplates/crud/java/pkg/web/EgovSample2Controller.vm";
-//		result = crudCodeGen.generate(dataModel, templateFile);
-//
-//		templateFile = "eGovFrameTemplates/crud/jsp/pkg/egovSample2List.vm";
-//		result = crudCodeGen.generate(dataModel, templateFile);
-//
-//		templateFile = "eGovFrameTemplates/crud/jsp/pkg/egovSample2Register.vm";
-//		result = crudCodeGen.generate(dataModel, templateFile);
+		String templateFile = "eGovFrameTemplates/crud/resource/pkg/EgovSample_Sample2_SQL.vm";
+		String result = crudCodeGen.generate(dataModel, crudModel, templateFile);
+
+		templateFile = "eGovFrameTemplates/crud/resource/pkg/EgovSample_Sample2_MAPPER.vm";
+		result = crudCodeGen.generate(dataModel, crudModel, templateFile);
+
+		templateFile = "eGovFrameTemplates/crud/java/pkg/service/Sample2VO.vm";
+		result = crudCodeGen.generate(dataModel, crudModel, templateFile);
+
+		templateFile = "eGovFrameTemplates/crud/java/pkg/service/Sample2DefaultVO.vm";
+		result = crudCodeGen.generate(dataModel, crudModel, templateFile);
+
+		templateFile = "eGovFrameTemplates/crud/java/pkg/service/impl/Sample2DAO.vm";
+		result = crudCodeGen.generate(dataModel, crudModel, templateFile);
+
+		templateFile = "eGovFrameTemplates/crud/java/pkg/service/impl/Sample2Mapper.vm";
+		result = crudCodeGen.generate(dataModel, crudModel, templateFile);
+
+		templateFile = "eGovFrameTemplates/crud/java/pkg/service/EgovSample2Service.vm";
+		result = crudCodeGen.generate(dataModel, crudModel, templateFile);
+
+		templateFile = "eGovFrameTemplates/crud/java/pkg/service/impl/EgovSample2ServiceImpl.vm";
+		result = crudCodeGen.generate(dataModel, crudModel, templateFile);
+
+		templateFile = "eGovFrameTemplates/crud/java/pkg/web/EgovSample2Controller.vm";
+		result = crudCodeGen.generate(dataModel, crudModel, templateFile);
+
+		templateFile = "eGovFrameTemplates/crud/jsp/pkg/egovSample2List.vm";
+		result = crudCodeGen.generate(dataModel, crudModel, templateFile);
+
+		templateFile = "eGovFrameTemplates/crud/jsp/pkg/egovSample2Register.vm";
+		result = crudCodeGen.generate(dataModel, crudModel, templateFile);
 	}
 
 }
