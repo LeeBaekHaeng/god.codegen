@@ -101,7 +101,8 @@ public class Attribute extends DbModelElement {
 		if ("CHAR".equals(javaType) || "VARCHAR".equals(javaType)) {
 			javaType = "String";
 		} else if ("DATETIME".equals(javaType)) {
-			javaType = "LocalDateTime";
+//			javaType = "LocalDateTime";
+			javaType = "String";
 		} else if ("DECIMAL".equals(javaType)) {
 			javaType = "int";
 		}

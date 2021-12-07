@@ -28,6 +28,18 @@ public class CrudModel {
 	private String controllerPackage;
 	private String jspFolder;
 
+	//
+
+	private String rootFolder;
+
+	private String srcMainJavaFolder;
+	private String srcMainResourcesFolder;
+	private String srcTestJavaFolder;
+	private String srcTestResourcesFolder;
+
+	private String defaultVOFolder;
+	private String voFolder;
+
 	@Builder
 	public CrudModel(String rootPackage, Entity entity,
 
@@ -61,6 +73,24 @@ public class CrudModel {
 		this.checkWeb = checkWeb;
 		this.controllerPackage = getControllerPackage(entity.getLcName());
 		this.jspFolder = jspFolder;
+
+		//
+
+		this.rootFolder = ".";
+
+		this.srcMainJavaFolder = "/src/main/java";
+		this.srcMainResourcesFolder = "/src/main/resources/";
+		this.srcTestJavaFolder = "/src/test/java/";
+		this.srcTestResourcesFolder = "/src/test/resources/";
+
+		this.defaultVOFolder = this.rootFolder + this.srcMainJavaFolder + "/" + this.voPackage.replaceAll("\\.", "/")
+				+ "/" + entity.getPcName() + "DefaultVO.java";
+
+		this.voFolder = this.rootFolder + this.srcMainJavaFolder + "/" + this.voPackage.replaceAll("\\.", "/") + "/"
+				+ entity.getPcName() + "VO.java";
+
+//		this.mapperFolder = this.rootFolder + this.srcMainResourcesFolder + "/" + this.daoPackage.replaceAll("\\.", "/")
+//				+ "/" + entity.getPcName() + "VO.java"; // TODO mapperFolder
 	}
 
 	private String getImplPackage(String implPackage) {
