@@ -89,8 +89,9 @@ public class CrudModel {
 		this.voFolder = this.rootFolder + this.srcMainJavaFolder + "/" + this.voPackage.replaceAll("\\.", "/") + "/"
 				+ entity.getPcName() + "VO.java";
 
-//		this.mapperFolder = this.rootFolder + this.srcMainResourcesFolder + "/" + this.daoPackage.replaceAll("\\.", "/")
-//				+ "/" + entity.getPcName() + "VO.java"; // TODO mapperFolder
+		this.mapperFolder = this.rootFolder + this.srcMainResourcesFolder + "/"
+				+ rootPackage.replaceAll("\\.", ".mapper\\.").replaceAll("\\.", "/") + "/" + entity.getLcName() + "/"
+				+ entity.getPcName() + "_SQL_maria.xml";
 	}
 
 	private String getImplPackage(String implPackage) {

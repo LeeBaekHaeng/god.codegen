@@ -160,8 +160,9 @@ class CRUD_프로그램_자동_생성_기능3 {
 //		templateFile = "eGovFrameTemplates/crud/resource/pkg/EgovSample_Sample2_SQL.vm";
 //		result = crudCodeGen.generate(dataModel, crudModel, templateFile);
 
-//		templateFile = "eGovFrameTemplates/crud/resource/pkg/EgovSample_Sample2_MAPPER.vm";
-//		result = crudCodeGen.generate(dataModel, crudModel, templateFile);
+		templateFile = "eGovFrameTemplates/crud/resource/pkg/EgovSample_Sample2_MAPPER.vm";
+		result = crudCodeGen.generate(dataModel, crudModel, templateFile);
+		writeStringToFile(new File(crudModel.getMapperFolder()), result);
 
 //		templateFile = "eGovFrameTemplates/crud/java/pkg/service/impl/Sample2DAO.vm";
 //		result = crudCodeGen.generate(dataModel, crudModel, templateFile);
