@@ -39,6 +39,7 @@ public class CrudModel {
 
 	private String defaultVOFolder;
 	private String voFolder;
+	private String mapperClassFolder;
 
 	@Builder
 	public CrudModel(String rootPackage, Entity entity,
@@ -92,6 +93,9 @@ public class CrudModel {
 		this.mapperFolder = this.rootFolder + this.srcMainResourcesFolder + "/"
 				+ rootPackage.replaceAll("\\.", ".mapper\\.").replaceAll("\\.", "/") + "/" + entity.getLcName() + "/"
 				+ entity.getPcName() + "_SQL_maria.xml";
+
+		this.mapperClassFolder = this.rootFolder + this.srcMainJavaFolder + "/"
+				+ this.mapperPackage.replaceAll("\\.", "/") + "/" + entity.getPcName() + "Mapper.java";
 	}
 
 	private String getImplPackage(String implPackage) {
