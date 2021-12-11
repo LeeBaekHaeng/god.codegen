@@ -7,6 +7,7 @@ import lombok.Getter;
 public class CrudModel {
 
 	private String rootPackage;
+	private String rootPackage2;
 
 	//
 
@@ -84,6 +85,7 @@ public class CrudModel {
 		//
 
 //		this.rootFolder = ".";
+		this.rootFolder = rootFolder;
 
 		this.srcMainJavaFolder = "/src/main/java";
 		this.srcMainResourcesFolder = "/src/main/resources";
@@ -99,7 +101,7 @@ public class CrudModel {
 
 		this.mapperFolder = this.rootFolder + this.srcMainResourcesFolder + "/"
 				+ rootPackage.replaceAll("\\.", ".mapper\\.").replaceAll("\\.", "/") + "/" + entity.getLcName() + "/"
-				+ entity.getPcName() + "_SQL_maria.xml";
+				+ entity.getPcName() + "_SQL_mysql.xml";
 
 		this.mapperJavaFolder = this.rootFolder + this.srcMainJavaFolder + "/"
 				+ this.mapperPackage.replaceAll("\\.", "/") + "/" + entity.getPcName() + "Mapper.java";
@@ -117,6 +119,8 @@ public class CrudModel {
 				+ this.rootPackage.replaceAll("\\.", "/");
 		this.listFolder = this.jspFolder + "/" + entity.getLcName() + "/" + entity.getPcName() + "List.jsp";
 		this.registerFolder = this.jspFolder + "/" + entity.getLcName() + "/" + entity.getPcName() + "Register.jsp";
+
+		this.rootPackage2 = rootPackage.replaceAll("\\.", "/");
 	}
 
 	private String getImplPackage(String implPackage) {

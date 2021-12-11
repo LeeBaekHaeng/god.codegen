@@ -32,8 +32,8 @@
 #set($updateViewPath="/${model.entity.ccName}/update${model.entity.pcName}View.do")
 #set($deletePath="/${model.entity.ccName}/delete${model.entity.pcName}.do")
 ##
-#set($listView="/${model.entity.ccName}/${model.entity.pcName}List")
-#set($registerView="/${model.entity.ccName}/${model.entity.pcName}Register")
+#set($listView="${rootPackage2}/${model.entity.ccName}/${model.entity.pcName}List")
+#set($registerView="${rootPackage2}/${model.entity.ccName}/${model.entity.pcName}Register")
 ##
 ##
 package ${controllerPackage};

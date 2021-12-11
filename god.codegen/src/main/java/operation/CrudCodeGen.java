@@ -59,6 +59,8 @@ public class CrudCodeGen {
 		context.put("implPackage", crudModel.getImplPackage());
 		context.put("controllerPackage", crudModel.getControllerPackage());
 
+		context.put("rootPackage2", crudModel.getRootPackage2());
+
 		Template template = null;
 
 		try {

@@ -1,0 +1,194 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="god.test.comtcadministcoderecptnlog.service.impl.ComtcadministcoderecptnlogMapper">
+	
+
+	<resultMap id="comtcadministcoderecptnlog" type="god.test.comtcadministcoderecptnlog.service.ComtcadministcoderecptnlogVO">
+		<result property="occrrncDe" column="OCCRRNC_DE" />
+		<result property="administZoneSe" column="ADMINIST_ZONE_SE" />
+		<result property="administZoneCode" column="ADMINIST_ZONE_CODE" />
+		<result property="opertSn" column="OPERT_SN" />
+		<result property="changeSeCode" column="CHANGE_SE_CODE" />
+		<result property="processSe" column="PROCESS_SE" />
+		<result property="administZoneNm" column="ADMINIST_ZONE_NM" />
+		<result property="lowestAdministZoneNm" column="LOWEST_ADMINIST_ZONE_NM" />
+		<result property="ctprvnCode" column="CTPRVN_CODE" />
+		<result property="signguCode" column="SIGNGU_CODE" />
+		<result property="emdCode" column="EMD_CODE" />
+		<result property="liCode" column="LI_CODE" />
+		<result property="creatDe" column="CREAT_DE" />
+		<result property="ablDe" column="ABL_DE" />
+		<result property="ablEnnc" column="ABL_ENNC" />
+		<result property="frstRegisterId" column="FRST_REGISTER_ID" />
+		<result property="frstRegistPnttm" column="FRST_REGIST_PNTTM" />
+		<result property="lastUpdusrId" column="LAST_UPDUSR_ID" />
+		<result property="lastUpdtPnttm" column="LAST_UPDT_PNTTM" />
+	</resultMap>
+	
+	<insert id="insertComtcadministcoderecptnlog">
+		<![CDATA[
+			INSERT INTO comtcadministcoderecptnlog 
+				( OCCRRNC_DE
+				  , ADMINIST_ZONE_SE
+				  , ADMINIST_ZONE_CODE
+				  , OPERT_SN
+				  , CHANGE_SE_CODE
+				  , PROCESS_SE
+				  , ADMINIST_ZONE_NM
+				  , LOWEST_ADMINIST_ZONE_NM
+				  , CTPRVN_CODE
+				  , SIGNGU_CODE
+				  , EMD_CODE
+				  , LI_CODE
+				  , CREAT_DE
+				  , ABL_DE
+				  , ABL_ENNC
+				  , FRST_REGISTER_ID
+				  , FRST_REGIST_PNTTM
+				  , LAST_UPDUSR_ID
+				  , LAST_UPDT_PNTTM )
+			VALUES ( #{occrrncDe}
+				  , #{administZoneSe}
+				  , #{administZoneCode}
+				  , #{opertSn}
+				  , #{changeSeCode}
+				  , #{processSe}
+				  , #{administZoneNm}
+				  , #{lowestAdministZoneNm}
+				  , #{ctprvnCode}
+				  , #{signguCode}
+				  , #{emdCode}
+				  , #{liCode}
+				  , #{creatDe}
+				  , #{ablDe}
+				  , #{ablEnnc}
+				  , #{frstRegisterId}
+				  , #{frstRegistPnttm}
+				  , #{lastUpdusrId}
+				  , #{lastUpdtPnttm} )
+		]]>
+	</insert>
+	
+	<update id="updateComtcadministcoderecptnlog">
+		<![CDATA[
+			UPDATE comtcadministcoderecptnlog
+			SET OCCRRNC_DE=#{occrrncDe}
+				, ADMINIST_ZONE_SE=#{administZoneSe}
+				, ADMINIST_ZONE_CODE=#{administZoneCode}
+				, OPERT_SN=#{opertSn}
+				, CHANGE_SE_CODE=#{changeSeCode}
+				, PROCESS_SE=#{processSe}
+				, ADMINIST_ZONE_NM=#{administZoneNm}
+				, LOWEST_ADMINIST_ZONE_NM=#{lowestAdministZoneNm}
+				, CTPRVN_CODE=#{ctprvnCode}
+				, SIGNGU_CODE=#{signguCode}
+				, EMD_CODE=#{emdCode}
+				, LI_CODE=#{liCode}
+				, CREAT_DE=#{creatDe}
+				, ABL_DE=#{ablDe}
+				, ABL_ENNC=#{ablEnnc}
+				, FRST_REGISTER_ID=#{frstRegisterId}
+				, FRST_REGIST_PNTTM=#{frstRegistPnttm}
+				, LAST_UPDUSR_ID=#{lastUpdusrId}
+				, LAST_UPDT_PNTTM=#{lastUpdtPnttm}
+						WHERE OCCRRNC_DE=#{occrrncDe}
+								AND ADMINIST_ZONE_SE=#{administZoneSe}
+								AND ADMINIST_ZONE_CODE=#{administZoneCode}
+								AND OPERT_SN=#{opertSn}
+				]]>
+	</update>
+	
+	<delete id="deleteComtcadministcoderecptnlog">
+		<![CDATA[
+			DELETE FROM comtcadministcoderecptnlog 
+						WHERE OCCRRNC_DE=#{occrrncDe}
+								AND ADMINIST_ZONE_SE=#{administZoneSe}
+								AND ADMINIST_ZONE_CODE=#{administZoneCode}
+								AND OPERT_SN=#{opertSn}
+				]]>
+	</delete>
+	
+	<select id="selectComtcadministcoderecptnlog" resultMap="comtcadministcoderecptnlog">
+		<![CDATA[
+			SELECT
+				OCCRRNC_DE
+				, ADMINIST_ZONE_SE
+				, ADMINIST_ZONE_CODE
+				, OPERT_SN
+				, CHANGE_SE_CODE
+				, PROCESS_SE
+				, ADMINIST_ZONE_NM
+				, LOWEST_ADMINIST_ZONE_NM
+				, CTPRVN_CODE
+				, SIGNGU_CODE
+				, EMD_CODE
+				, LI_CODE
+				, CREAT_DE
+				, ABL_DE
+				, ABL_ENNC
+				, FRST_REGISTER_ID
+				, FRST_REGIST_PNTTM
+				, LAST_UPDUSR_ID
+				, LAST_UPDT_PNTTM
+			FROM comtcadministcoderecptnlog
+						WHERE OCCRRNC_DE=#{occrrncDe}
+								AND ADMINIST_ZONE_SE=#{administZoneSe}
+								AND ADMINIST_ZONE_CODE=#{administZoneCode}
+								AND OPERT_SN=#{opertSn}
+				]]>
+	</select>
+	
+	<select id="selectComtcadministcoderecptnlogList" parameterType="god.test.comtcadministcoderecptnlog.service.ComtcadministcoderecptnlogVO" resultType="egovMap">
+			SELECT
+								OCCRRNC_DE
+								, ADMINIST_ZONE_SE
+								, ADMINIST_ZONE_CODE
+								, OPERT_SN
+								, CHANGE_SE_CODE
+								, PROCESS_SE
+								, ADMINIST_ZONE_NM
+								, LOWEST_ADMINIST_ZONE_NM
+								, CTPRVN_CODE
+								, SIGNGU_CODE
+								, EMD_CODE
+								, LI_CODE
+								, CREAT_DE
+								, ABL_DE
+								, ABL_ENNC
+								, FRST_REGISTER_ID
+								, FRST_REGIST_PNTTM
+								, LAST_UPDUSR_ID
+								, LAST_UPDT_PNTTM
+					FROM comtcadministcoderecptnlog
+			WHERE 1=1
+			<if test="searchKeyword != null and searchKeyword != ''">
+				<if test="searchCondition == 0">AND
+					OCCRRNC_DE = #{searchKeyword}
+				</if>
+				<if test="searchCondition == 1">AND
+					ADMINIST_ZONE_SE LIKE CONCAT('%',#{searchKeyword},'%')
+				</if>
+			</if>
+				ORDER BY 
+						OCCRRNC_DE DESC
+							, ADMINIST_ZONE_SE DESC
+							, ADMINIST_ZONE_CODE DESC
+							, OPERT_SN DESC
+					limit #{recordCountPerPage} offset #{firstIndex}	
+	</select>	
+	<select id="selectComtcadministcoderecptnlogListTotCnt" parameterType="god.test.comtcadministcoderecptnlog.service.ComtcadministcoderecptnlogVO" resultType="int">
+			SELECT COUNT(*) totcnt
+			FROM comtcadministcoderecptnlog
+			WHERE 1=1
+			<if test="searchKeyword != null and searchKeyword != ''">
+				<if test="searchCondition == 0">AND
+					OCCRRNC_DE = #{searchKeyword}
+				</if>
+				<if test="searchCondition == 1">AND
+					ADMINIST_ZONE_SE LIKE CONCAT('%',#{searchKeyword},'%')
+				</if>
+			</if>			
+	</select>
+
+</mapper>
