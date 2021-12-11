@@ -80,7 +80,7 @@ public class ${serviceImplClassName} extends EgovAbstractServiceImpl implements
     private static final Logger LOGGER = LoggerFactory.getLogger(${serviceImplClassName}.class);
 
     @Resource(name="${mapperName}")
-    private ${mapperClassName} ${daoInstanceName};
+    private ${mapperClassName} ${mapperInstanceName};
     
     //@Resource(name="${daoName}")
     //private ${daoClassName} ${daoInstanceName};
@@ -104,7 +104,7 @@ public class ${serviceImplClassName} extends EgovAbstractServiceImpl implements
     	//vo.setId(id);
     	LOGGER.debug(vo.toString());
     	
-    	${daoInstanceName}.${insertMethodName}(vo);
+    	${mapperInstanceName}.${insertMethodName}(vo);
     	//TODO 해당 테이블 정보에 맞게 수정    	
         return null;
     }
@@ -116,7 +116,7 @@ public class ${serviceImplClassName} extends EgovAbstractServiceImpl implements
 	 * @exception Exception
 	 */
     public void ${updateMethodName}(${voClassName} vo) throws Exception {
-        ${daoInstanceName}.${updateMethodName}(vo);
+        ${mapperInstanceName}.${updateMethodName}(vo);
     }
 
     /**
@@ -126,7 +126,7 @@ public class ${serviceImplClassName} extends EgovAbstractServiceImpl implements
 	 * @exception Exception
 	 */
     public void ${deleteMethodName}(${voClassName} vo) throws Exception {
-        ${daoInstanceName}.${deleteMethodName}(vo);
+        ${mapperInstanceName}.${deleteMethodName}(vo);
     }
 
     /**
@@ -136,7 +136,7 @@ public class ${serviceImplClassName} extends EgovAbstractServiceImpl implements
 	 * @exception Exception
 	 */
     public ${voClassName} ${selectMethodName}(${voClassName} vo) throws Exception {
-        ${voClassName} resultVO = ${daoInstanceName}.${selectMethodName}(vo);
+        ${voClassName} resultVO = ${mapperInstanceName}.${selectMethodName}(vo);
         if (resultVO == null)
             throw processException("info.nodata.msg");
         return resultVO;
@@ -149,7 +149,7 @@ public class ${serviceImplClassName} extends EgovAbstractServiceImpl implements
 	 * @exception Exception
 	 */
     public List<?> ${selectListMethodName}(${defaultVoClassName} searchVO) throws Exception {
-        return ${daoInstanceName}.${selectListMethodName}(searchVO);
+        return ${mapperInstanceName}.${selectListMethodName}(searchVO);
     }
 
     /**
@@ -159,7 +159,7 @@ public class ${serviceImplClassName} extends EgovAbstractServiceImpl implements
 	 * @exception
 	 */
     public int ${selectListTotCntMethodName}(${defaultVoClassName} searchVO) {
-		return ${daoInstanceName}.${selectListTotCntMethodName}(searchVO);
+		return ${mapperInstanceName}.${selectListTotCntMethodName}(searchVO);
 	}
     
 }
