@@ -6,8 +6,14 @@
 - https://github.com/eGovFramework/egovframe-development
 	- egovframework.dev.imp.codegen.template
 		- https://github.com/eGovFramework/egovframe-development/tree/master/egovframework.dev.imp.codegen.template
+			- https://github.com/eGovFramework/egovframe-development/blob/master/egovframework.dev.imp.codegen.template/src/egovframework/dev/imp/codegen/template/model/Attribute.java
+			- https://github.com/eGovFramework/egovframe-development/blob/master/egovframework.dev.imp.codegen.template/src/egovframework/dev/imp/codegen/template/model/DataModelContext.java
+			- https://github.com/eGovFramework/egovframe-development/blob/master/egovframework.dev.imp.codegen.template/src/egovframework/dev/imp/codegen/template/model/DbModelElement.java
+			- https://github.com/eGovFramework/egovframe-development/blob/master/egovframework.dev.imp.codegen.template/src/egovframework/dev/imp/codegen/template/model/Entity.java
+			- https://github.com/eGovFramework/egovframe-development/blob/master/egovframework.dev.imp.codegen.template/src/egovframework/dev/imp/codegen/template/util/NamingUtils.java
 	- egovframework.dev.imp.codegen.template.templates
 		- https://github.com/eGovFramework/egovframe-development/tree/master/egovframework.dev.imp.codegen.template.templates
+			- https://github.com/eGovFramework/egovframe-development/tree/master/egovframework.dev.imp.codegen.template.templates/eGovFrameTemplates/crud
 	- egovframework.dev.imp.templates
 		- https://github.com/eGovFramework/egovframe-development/tree/master/egovframework.dev.imp.templates
 
