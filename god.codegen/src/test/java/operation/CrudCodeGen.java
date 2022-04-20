@@ -14,26 +14,27 @@ import org.apache.velocity.exception.ResourceNotFoundException;
 import egovframework.dev.imp.codegen.template.model.DataModelContext;
 
 public class CrudCodeGen {
-	public String generate(DataModelContext dataModel, String templateFile) throws Exception{
+	public String generate(DataModelContext dataModel, String templateFile) throws Exception {
 		StringWriter sw = new StringWriter();
 		generate(dataModel, templateFile, sw);
-		
-		System.out.println(sw.toString());
-		
-		return sw.toString();		
-	}
-	
-	private void generate(DataModelContext dataModel, String templateFile, Writer writer) throws Exception{
-		String templateEncoding = "UTF-8";
-		
-        Properties p = new Properties() ;
-        p.setProperty("resource.loader", "class");  
-        p.setProperty("class.resource.loader.class","org.apache.velocity.runtime.resource.loader.ClasspathResourceLoader");  
-         
-        p.setProperty("file.resource.loader.cache", "false");
-        p.setProperty("file.resource.loader.modificationCheckInterval", "0");
 
-        Velocity.init(p);        
+//		System.out.println(sw.toString());
+
+		return sw.toString();
+	}
+
+	private void generate(DataModelContext dataModel, String templateFile, Writer writer) throws Exception {
+		String templateEncoding = "UTF-8";
+
+		Properties p = new Properties();
+		p.setProperty("resource.loader", "class");
+		p.setProperty("class.resource.loader.class",
+				"org.apache.velocity.runtime.resource.loader.ClasspathResourceLoader");
+
+		p.setProperty("file.resource.loader.cache", "false");
+		p.setProperty("file.resource.loader.modificationCheckInterval", "0");
+
+		Velocity.init(p);
 
 		VelocityContext context = new VelocityContext();
 
@@ -41,37 +42,33 @@ public class CrudCodeGen {
 //		context.put("entity", dataModel.getEntity());
 //		context.put("attributes", dataModel.getAttributes());
 //		context.put("primaryKeys", dataModel.getPrimaryKeys());
-//		context.put("createDate", dataModel.getCreateDate());
-//		context.put("author", dataModel.getAuthor());
+		context.put("createDate", dataModel.getCreateDate());
+		context.put("author", dataModel.getAuthor());
 
 		context.put("model", dataModel);
-		
-		
+		context.put("daoPackage", dataModel.getEgovPackage().getDaoPackage());
+		context.put("mapperPackage", dataModel.getEgovPackage().getMapperPackage());
+		context.put("voPackage", dataModel.getEgovPackage().getVoPackage());
+		context.put("servicePackage", dataModel.getEgovPackage().getServicePackage());
+		context.put("implPackage", dataModel.getEgovPackage().getImplPackage());
+		context.put("controllerPackage", dataModel.getEgovPackage().getControllerPackage());
+
 		Template template = null;
 
-		try
-		{
+		try {
 			template = Velocity.getTemplate(templateFile, templateEncoding);
-		}
-		catch( ResourceNotFoundException rnfe )
-		{
+		} catch (ResourceNotFoundException rnfe) {
 			rnfe.printStackTrace();
-		}
-		catch( ParseErrorException pee )
-		{
+		} catch (ParseErrorException pee) {
 			// syntax error: problem parsing the template
-		}
-		catch( MethodInvocationException mie )
-		{
+		} catch (MethodInvocationException mie) {
 			// something invoked in the template
 			// threw an exception
+		} catch (Exception e) {
 		}
-		catch( Exception e )
-		{}
 
-		template.merge( context, writer );
-				
-		
+		template.merge(context, writer);
+
 	}
-	
+
 }
