@@ -7,28 +7,33 @@
 	<!-- set global properties for this build -->
 	<property name="egovframework.dev.imp.codegen.template.src" location="../../egovframework.dev.imp.codegen.template" />
 	<property name="egovframework.dev.imp.codegen.template.templates.src" location="../../egovframework.dev.imp.codegen.template.templates" />
-	<property name="src.test.java" location="../src/test/java" />
-	<property name="src.test.resources" location="../src/test/resources" />
-	<property name="dist" location="dist" />
+	<property name="egovframework.dev.imp.templates.src" location="../../egovframework.dev.imp.templates" />
+
+	<property name="god.codegen.src" location=".." />
+	<property name="god.codegen.src.test.java" location="${god.codegen.src}/src/test/java" />
+	<property name="god.codegen.src.test.resources" location="${god.codegen.src}/src/test/resources" />
 
 	<target name="copy" description="copy">
 
-		<copy file="${egovframework.dev.imp.codegen.template.src}/src/egovframework/dev/imp/codegen/template/model/Attribute.java" tofile="${src.test.java}/egovframework/dev/imp/codegen/template/model/Attribute.java" />
-		<copy file="${egovframework.dev.imp.codegen.template.src}/src/egovframework/dev/imp/codegen/template/model/DataModelContext.java" tofile="${src.test.java}/egovframework/dev/imp/codegen/template/model/DataModelContext.java" />
-		<copy file="${egovframework.dev.imp.codegen.template.src}/src/egovframework/dev/imp/codegen/template/model/DbModelElement.java" tofile="${src.test.java}/egovframework/dev/imp/codegen/template/model/DbModelElement.java" />
-		<copy file="${egovframework.dev.imp.codegen.template.src}/src/egovframework/dev/imp/codegen/template/model/Entity.java" tofile="${src.test.java}/egovframework/dev/imp/codegen/template/model/Entity.java" />
+		<copy file="${egovframework.dev.imp.codegen.template.src}/src/egovframework/dev/imp/codegen/template/model/Attribute.java" tofile="${god.codegen.src.test.java}/egovframework/dev/imp/codegen/template/model/Attribute.java" />
+		<copy file="${egovframework.dev.imp.codegen.template.src}/src/egovframework/dev/imp/codegen/template/model/DataModelContext.java" tofile="${god.codegen.src.test.java}/egovframework/dev/imp/codegen/template/model/DataModelContext.java" />
+		<copy file="${egovframework.dev.imp.codegen.template.src}/src/egovframework/dev/imp/codegen/template/model/DbModelElement.java" tofile="${god.codegen.src.test.java}/egovframework/dev/imp/codegen/template/model/DbModelElement.java" />
+		<copy file="${egovframework.dev.imp.codegen.template.src}/src/egovframework/dev/imp/codegen/template/model/Entity.java" tofile="${god.codegen.src.test.java}/egovframework/dev/imp/codegen/template/model/Entity.java" />
 
-		<copy file="${egovframework.dev.imp.codegen.template.src}/src/egovframework/dev/imp/codegen/template/util/NamingUtils.java" tofile="${src.test.java}/egovframework/dev/imp/codegen/template/util/NamingUtils.java" />
+		<copy file="${egovframework.dev.imp.codegen.template.src}/src/egovframework/dev/imp/codegen/template/util/NamingUtils.java" tofile="${god.codegen.src.test.java}/egovframework/dev/imp/codegen/template/util/NamingUtils.java" />
 
-		<copy todir="${src.test.resources}/eGovFrameTemplates/crud">
+		<copy todir="${god.codegen.src.test.resources}/eGovFrameTemplates/crud">
 			<fileset dir="${egovframework.dev.imp.codegen.template.templates.src}/eGovFrameTemplates/crud" />
 		</copy>
-		<copy todir="${src.test.resources}/eGovFrameTemplates/crud2">
+		<copy todir="${god.codegen.src.test.resources}/eGovFrameTemplates/crud2">
 			<fileset dir="${egovframework.dev.imp.codegen.template.templates.src}/eGovFrameTemplates/crud" />
 		</copy>
-		<copy todir="${src.test.resources}/eGovFrameTemplates/crud3">
+		<copy todir="${god.codegen.src.test.resources}/eGovFrameTemplates/crud3">
 			<fileset dir="${egovframework.dev.imp.codegen.template.templates.src}/eGovFrameTemplates/crud" />
 		</copy>
+
+		<copy file="${egovframework.dev.imp.templates.src}/src/main/java/operation/CrudCodeGen.java" tofile="${god.codegen.src.test.java}/operation/CrudCodeGen.java" />
+		<copy file="${egovframework.dev.imp.templates.src}/src/test/java/test/CrudCodeGenTest.java" tofile="${god.codegen.src.test.java}/test/CrudCodeGenTest.java" />
 
 	</target>
 
