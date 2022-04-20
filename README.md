@@ -1,6 +1,16 @@
 # god.codegen
 코드생성
 
+## egovframe-development 4.0.0
+
+- https://github.com/eGovFramework/egovframe-development
+	- egovframework.dev.imp.codegen.template
+		- https://github.com/eGovFramework/egovframe-development/tree/master/egovframework.dev.imp.codegen.template
+	- egovframework.dev.imp.codegen.template.templates
+		- https://github.com/eGovFramework/egovframe-development/tree/master/egovframework.dev.imp.codegen.template.templates
+	- egovframework.dev.imp.templates
+		- https://github.com/eGovFramework/egovframe-development/tree/master/egovframework.dev.imp.templates
+
 ## egovframe-development
 
 - 단위테스트 https://github.com/LeeBaekHaeng/egovframe-development/tree/master/egovframework.dev.imp.templates
