@@ -37,7 +37,9 @@ package egovframework.dev.imp.codegen.template.model;
  */
 public class EgovPackage {
 
-	public EgovPackage(String name) {
+	public EgovPackage(String name1, String name2, String name3) {
+		String name = name1 + "."+name2 +"."+ name3;
+
 		String service = ".service";
 		String serviceImpl = ".service.impl";
 		String web = ".web";

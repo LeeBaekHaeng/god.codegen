@@ -37,48 +37,75 @@ package egovframework.dev.imp.codegen.template.model;
  */
 public class Folder {
 
-	public Folder(String name, String pcName) {
+	public Folder(String egovPackageName1, String egovPackageName2, String egovPackageName3, String entityPcName) {
+		String smj = (egovPackageName1 + "." + egovPackageName2 + "." + egovPackageName3).replaceAll("\\.", "/");
+		String smr = (egovPackageName1.replaceFirst("\\.", ".mapper.") + "." + egovPackageName2 + "."
+				+ egovPackageName3).replaceAll("\\.", "/") + "/";
+
 		String srcMainJava = "src/main/java/";
 		String srcMainResources = "src/main/resources/";
+		String srcMainWebapp = "src/main/webapp/";
 
-		String service = ".service";
-		String serviceImpl = ".service.impl";
-		String web = ".web";
+		String service = srcMainJava + smj + "/service/";
+		String serviceImpl = srcMainJava + smj + "/service/impl/";
+		String web = srcMainJava + smj + "/web/";
 
-//		mapperFolder = srcMainJava + name.replaceAll("\\.", "/") + serviceImpl.replaceAll("\\.", "/");
-		serviceFolder = srcMainJava + name.replaceAll("\\.", "/") + service.replaceAll("\\.", "/");
-		implFolder = srcMainJava + name.replaceAll("\\.", "/") + serviceImpl.replaceAll("\\.", "/");
-		controllerFolder = srcMainJava + name.replaceAll("\\.", "/") + web.replaceAll("\\.", "/");
+		// DataAccess
+		sqlMapFolder = srcMainResources + smr + entityPcName + "_sqlMap_SQL_mysql.xml"; // TODO 이백행 mysql
+		mapperFolder = srcMainResources + smr + entityPcName + "_SQL_mysql.xml"; // TODO 이백행 mysql
+		daoPackageFolder = serviceImpl + entityPcName + "DAO.java";
+		mapperPackageFolder = serviceImpl + entityPcName + "Mapper.java";
+		voPackageFolder = service + entityPcName + "VO.java";
 
-		defaultVOFolder = serviceFolder + "/" + pcName + "DefaultVO.java";
-		voFolder = serviceFolder + "/" + pcName + "VO.java";
-		daoFolder = implFolder + "/" + pcName + "DAO.java";
-		serviceFolder = serviceFolder + "/" + pcName + "Service.java";
+		// Service
+		servicePackageFolder = service + entityPcName + "Service.java";
+		implPackageFolder = serviceImpl + entityPcName + "ServiceImpl.java";
+
+		// Web
+		controllerPackageFolder = web + entityPcName + "Controller.java";
+		jspFolder = srcMainWebapp + "WEB-INF/jsp/";
+
+		defaultVOFolder = service + entityPcName + "DefaultVO.java";
+
+		jspListFolder = jspFolder + smj + "/" + entityPcName + "List.jsp";
+		jspListFolder2 = smj + "/" + entityPcName + "List";
+		jspRegistFolder = jspFolder + smj + "/" + entityPcName + "Regist.jsp";
+		jspRegistFolder2 =  smj + "/" + entityPcName + "Regist";
 	}
 
-	private String daoFolder;
+	// DataAccess
+	private String sqlMapFolder;
 	private String mapperFolder;
-	private String serviceFolder;
-	private String implFolder;
-	private String controllerFolder;
+
+	private String daoPackageFolder;
+	private String mapperPackageFolder;
+	private String voPackageFolder;
+
+	// Service
+	private String servicePackageFolder;
+	private String implPackageFolder;
+
+	// Web
+	private String controllerPackageFolder;
+	private String jspFolder;
 
 	private String defaultVOFolder;
-	private String voFolder;
 
-	public String getDaoFolder() {
-		return daoFolder;
+	private String jspListFolder;
+	private String jspListFolder2;
+	private String jspRegistFolder;
+	private String jspRegistFolder2;
+//	private String jspDetailFolder;
+//	private String jspUpdtFolder;
+//	private String jspPopupFolder;
+//	private String jspSearchFolder;
+
+	public String getSqlMapFolder() {
+		return sqlMapFolder;
 	}
 
-	public void setDaoFolder(String daoFolder) {
-		this.daoFolder = daoFolder;
-	}
-
-	public String getVoFolder() {
-		return voFolder;
-	}
-
-	public void setVoFolder(String voFolder) {
-		this.voFolder = voFolder;
+	public void setSqlMapFolder(String sqlMapFolder) {
+		this.sqlMapFolder = sqlMapFolder;
 	}
 
 	public String getMapperFolder() {
@@ -89,28 +116,60 @@ public class Folder {
 		this.mapperFolder = mapperFolder;
 	}
 
-	public String getServiceFolder() {
-		return serviceFolder;
+	public String getDaoPackageFolder() {
+		return daoPackageFolder;
 	}
 
-	public void setServiceFolder(String serviceFolder) {
-		this.serviceFolder = serviceFolder;
+	public void setDaoPackageFolder(String daoPackageFolder) {
+		this.daoPackageFolder = daoPackageFolder;
 	}
 
-	public String getImplFolder() {
-		return implFolder;
+	public String getMapperPackageFolder() {
+		return mapperPackageFolder;
 	}
 
-	public void setImplFolder(String implFolder) {
-		this.implFolder = implFolder;
+	public void setMapperPackageFolder(String mapperPackageFolder) {
+		this.mapperPackageFolder = mapperPackageFolder;
 	}
 
-	public String getControllerFolder() {
-		return controllerFolder;
+	public String getVoPackageFolder() {
+		return voPackageFolder;
 	}
 
-	public void setControllerFolder(String controllerFolder) {
-		this.controllerFolder = controllerFolder;
+	public void setVoPackageFolder(String voPackageFolder) {
+		this.voPackageFolder = voPackageFolder;
+	}
+
+	public String getServicePackageFolder() {
+		return servicePackageFolder;
+	}
+
+	public void setServicePackageFolder(String servicePackageFolder) {
+		this.servicePackageFolder = servicePackageFolder;
+	}
+
+	public String getImplPackageFolder() {
+		return implPackageFolder;
+	}
+
+	public void setImplPackageFolder(String implPackageFolder) {
+		this.implPackageFolder = implPackageFolder;
+	}
+
+	public String getControllerPackageFolder() {
+		return controllerPackageFolder;
+	}
+
+	public void setControllerPackageFolder(String controllerPackageFolder) {
+		this.controllerPackageFolder = controllerPackageFolder;
+	}
+
+	public String getJspFolder() {
+		return jspFolder;
+	}
+
+	public void setJspFolder(String jspFolder) {
+		this.jspFolder = jspFolder;
 	}
 
 	public String getDefaultVOFolder() {
@@ -119,6 +178,38 @@ public class Folder {
 
 	public void setDefaultVOFolder(String defaultVOFolder) {
 		this.defaultVOFolder = defaultVOFolder;
+	}
+
+	public String getJspListFolder() {
+		return jspListFolder;
+	}
+
+	public void setJspListFolder(String jspListFolder) {
+		this.jspListFolder = jspListFolder;
+	}
+
+	public String getJspRegistFolder() {
+		return jspRegistFolder;
+	}
+
+	public void setJspRegistFolder(String jspRegistFolder) {
+		this.jspRegistFolder = jspRegistFolder;
+	}
+
+	public String getJspListFolder2() {
+		return jspListFolder2;
+	}
+
+	public void setJspListFolder2(String jspListFolder2) {
+		this.jspListFolder2 = jspListFolder2;
+	}
+
+	public String getJspRegistFolder2() {
+		return jspRegistFolder2;
+	}
+
+	public void setJspRegistFolder2(String jspRegistFolder2) {
+		this.jspRegistFolder2 = jspRegistFolder2;
 	}
 
 }

@@ -6,7 +6,7 @@ package egovframework.com.codegen.sample2.service;
  * @Modification Information
  *
  * @author 코드생성팀 이백행
- * @since 2022-04-21 07:25:20
+ * @since 2022-04-24
  * @version 1.0
  * @see
  *  

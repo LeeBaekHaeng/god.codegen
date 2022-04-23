@@ -30,7 +30,8 @@ import java.util.List;
 
 import org.springframework.stereotype.Repository;
 
-import egovframework.rte.psl.dataaccess.EgovAbstractDAO;
+##import egovframework.rte.psl.dataaccess.EgovAbstractDAO;
+import org.egovframe.rte.psl.dataaccess.EgovAbstractDAO;
 import ${voPackage}.${voClassName};
 import ${voPackage}.${defaultVoClassName};
 
@@ -47,7 +48,7 @@ import ${voPackage}.${defaultVoClassName};
  *  Copyright (C)  All right reserved.
  */
 
-@Repository("${daoName}")
+##@Repository("${daoName}")
 public class ${daoClassName} extends EgovAbstractDAO {
 
 	/**
