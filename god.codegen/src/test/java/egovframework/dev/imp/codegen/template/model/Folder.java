@@ -41,6 +41,8 @@ public class Folder {
 		String smj = (egovPackageName1 + "." + egovPackageName2 + "." + egovPackageName3).replaceAll("\\.", "/");
 		String smr = (egovPackageName1.replaceFirst("\\.", ".mapper.") + "." + egovPackageName2 + "."
 				+ egovPackageName3).replaceAll("\\.", "/") + "/";
+		String sqlmap = (egovPackageName1.replaceFirst("\\.", ".sqlmap.") + "." + egovPackageName2 + "."
+				+ egovPackageName3).replaceAll("\\.", "/") + "/";
 
 		String srcMainJava = "src/main/java/";
 		String srcMainResources = "src/main/resources/";
@@ -51,7 +53,8 @@ public class Folder {
 		String web = srcMainJava + smj + "/web/";
 
 		// DataAccess
-		sqlMapFolder = srcMainResources + smr + entityPcName + "_sqlMap_SQL_mysql.xml"; // TODO 이백행 mysql
+		// TODO 이백행 mysql
+		sqlMapFolder = srcMainResources + sqlmap + entityPcName + "_SQL_mysql.xml";
 		mapperFolder = srcMainResources + smr + entityPcName + "_SQL_mysql.xml"; // TODO 이백행 mysql
 		daoPackageFolder = serviceImpl + entityPcName + "DAO.java";
 		mapperPackageFolder = serviceImpl + entityPcName + "Mapper.java";
@@ -70,7 +73,7 @@ public class Folder {
 		jspListFolder = jspFolder + smj + "/" + entityPcName + "List.jsp";
 		jspListFolder2 = smj + "/" + entityPcName + "List";
 		jspRegistFolder = jspFolder + smj + "/" + entityPcName + "Regist.jsp";
-		jspRegistFolder2 =  smj + "/" + entityPcName + "Regist";
+		jspRegistFolder2 = smj + "/" + entityPcName + "Regist";
 	}
 
 	// DataAccess
