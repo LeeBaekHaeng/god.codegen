@@ -37,8 +37,8 @@ public class Sample2ServiceImpl extends EgovAbstractServiceImpl implements
 
     @Resource(name="sample2Mapper")
     private Sample2Mapper sample2DAO;
-        
-    //@Resource(name="sample2DAO")
+    
+    //@Resource
     //private Sample2DAO sample2DAO;
     
     /** ID Generation */

@@ -1,21 +1,26 @@
-package egovframework.com.codegen.sample2.service;
+##
+#set($voPackage="${voPackage}")
+#set($defaultVoClassName="${model.entity.pcName}DefaultVO")
+##
+##
+package $voPackage;
 
 import java.io.Serializable;
 import org.apache.commons.lang3.builder.ToStringBuilder;
 
 /**
- * @Class Name : Sample2DefaultVO.java
- * @Description : Sample2 Default VO class
+ * @Class Name : ${defaultVoClassName}.java
+ * @Description : ${model.entity.pcName} Default VO class
  * @Modification Information
  *
- * @author 코드생성팀 이백행
- * @since 2022-04-24
+ * @author ${author}
+ * @since ${createDate}
  * @version 1.0
  * @see
  *  
  *  Copyright (C)  All right reserved.
  */
-public class Sample2DefaultVO implements Serializable {
+public class ${defaultVoClassName} implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 	

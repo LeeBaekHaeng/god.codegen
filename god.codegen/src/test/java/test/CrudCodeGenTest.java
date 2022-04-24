@@ -22,7 +22,8 @@ public class CrudCodeGenTest {
 	private DataModelContext dataModel;
 
 //	String eGovFrameTemplates = "eGovFrameTemplates/crud/";
-	String eGovFrameTemplates = "eGovFrameTemplates/crud2/";
+//	String eGovFrameTemplates = "eGovFrameTemplates/crud2/";
+	String eGovFrameTemplates = "eGovFrameTemplates/crud-com/";
 
 	@Before
 	public void setUp() throws Exception {

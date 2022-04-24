@@ -21,7 +21,7 @@ import egovframework.com.codegen.sample2.service.Sample2DefaultVO;
  *  Copyright (C)  All right reserved.
  */
 
-@Repository("sample2DAO")
+@Repository
 public class Sample2DAO extends EgovCom2AbstractDAO {
 
 	/**
