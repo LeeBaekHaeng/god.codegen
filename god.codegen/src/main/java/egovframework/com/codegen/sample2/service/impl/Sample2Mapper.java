@@ -20,7 +20,7 @@ import org.egovframe.rte.psl.dataaccess.mapper.Mapper;
  *  Copyright (C)  All right reserved.
  */
 
-@Mapper
+@Mapper("sample2Mapper")
 public interface Sample2Mapper {
 
 	/**

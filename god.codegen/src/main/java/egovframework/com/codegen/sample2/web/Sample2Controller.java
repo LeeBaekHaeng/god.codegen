@@ -47,7 +47,7 @@ public class Sample2Controller {
     /**
 	 * SAMPLE2 목록을 조회한다. (pageing)
 	 * @param searchVO - 조회할 정보가 담긴 Sample2DefaultVO
-	 * @return "egovframework/com/codegen/sample2/Sample2List"
+	 * @return "/sample2/Sample2List"
 	 * @exception Exception
 	 */
     @RequestMapping(value="/sample2/Sample2List.do")
@@ -76,7 +76,7 @@ public class Sample2Controller {
 		paginationInfo.setTotalRecordCount(totCnt);
         model.addAttribute("paginationInfo", paginationInfo);
         
-        return "egovframework/com/codegen/sample2/Sample2List";
+        return "/sample2/Sample2List";
     } 
     
     @RequestMapping("/sample2/addSample2View.do")
@@ -84,7 +84,7 @@ public class Sample2Controller {
             @ModelAttribute("searchVO") Sample2DefaultVO searchVO, Model model)
             throws Exception {
         model.addAttribute("sample2VO", new Sample2VO());
-        return "egovframework/com/codegen/sample2/Sample2Regist";
+        return "/sample2/Sample2Register";
     }
     
     @RequestMapping("/sample2/addSample2.do")
@@ -106,7 +106,7 @@ public class Sample2Controller {
         sample2VO.setId(id);
         // 변수명은 CoC 에 따라 sample2VO
         model.addAttribute(selectSample2(sample2VO, searchVO));
-        return "egovframework/com/codegen/sample2/Sample2Regist";
+        return "/sample2/Sample2Register";
     }
 
     @RequestMapping("/sample2/selectSample2.do")
