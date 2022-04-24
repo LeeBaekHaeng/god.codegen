@@ -63,7 +63,7 @@
 	</select>
 	
 	<select id="sample2DAO.selectSample2List_D" parameterClass="sample2SerarchVO" resultClass="egovMap">
-			SELECT
+			SELECT /* sample2DAO.selectSample2List_D */
 								ID
 								, NAME
 								, DESCRIPTION

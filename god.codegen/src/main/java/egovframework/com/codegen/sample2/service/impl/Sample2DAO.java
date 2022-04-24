@@ -4,7 +4,7 @@ import java.util.List;
 
 import org.springframework.stereotype.Repository;
 
-import egovframework.com.cmm.service.impl.EgovCom2AbstractDAO;
+import egovframework.com.cmm.service.impl.EgovComAbstractDAO;
 import egovframework.com.codegen.sample2.service.Sample2VO;
 import egovframework.com.codegen.sample2.service.Sample2DefaultVO;
 
@@ -22,7 +22,7 @@ import egovframework.com.codegen.sample2.service.Sample2DefaultVO;
  */
 
 @Repository("sample2DAO")
-public class Sample2DAO extends EgovCom2AbstractDAO {
+public class Sample2DAO extends EgovComAbstractDAO {
 
 	/**
 	 * SAMPLE2을 등록한다.
