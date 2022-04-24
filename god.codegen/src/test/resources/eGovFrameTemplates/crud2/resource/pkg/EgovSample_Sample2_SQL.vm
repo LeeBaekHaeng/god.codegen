@@ -30,7 +30,8 @@
 <sqlMap namespace="$namespace">
 	
 ## --------------------------------------------------------------------------------------------------------
-	<typeAlias  alias="egovMap" type="egovframework.rte.psl.dataaccess.util.EgovMap"/>
+##	<typeAlias  alias="egovMap" type="egovframework.rte.psl.dataaccess.util.EgovMap"/>
+	<typeAlias  alias="egovMap" type="org.egovframe.rte.psl.dataaccess.util.EgovMap"/>
 	<typeAlias  alias="${searchVOAlias}" type="${voPackage}.${defaultVoClassName}"/>
 	
 ## --------------------------------------------------------------------------------------------------------
