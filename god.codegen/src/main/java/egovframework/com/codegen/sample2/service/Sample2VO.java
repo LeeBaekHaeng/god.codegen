@@ -9,11 +9,11 @@ package egovframework.com.codegen.sample2.service;
  * @since 2022-04-24
  * @version 1.0
  * @see
- * 
- *      Copyright (C) All right reserved.
+ *  
+ *  Copyright (C)  All right reserved.
  */
 @SuppressWarnings("serial")
-public class Sample2VO extends Sample2DefaultVO {
+public class Sample2VO extends Sample2DefaultVO{
 
 	/** ID */
 	private String id;

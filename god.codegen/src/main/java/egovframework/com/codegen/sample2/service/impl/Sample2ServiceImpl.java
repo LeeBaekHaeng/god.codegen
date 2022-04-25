@@ -35,11 +35,11 @@ public class Sample2ServiceImpl extends EgovAbstractServiceImpl implements
         
     private static final Logger LOGGER = LoggerFactory.getLogger(Sample2ServiceImpl.class);
 
-    @Resource(name="sample2Mapper")
-    private Sample2Mapper sample2DAO;
+//    @Resource(name="sample2Mapper")
+//    private Sample2Mapper sample2DAO;
     
-    //@Resource
-    //private Sample2DAO sample2DAO;
+    @Resource
+    private Sample2DAO sample2DAO;
     
     /** ID Generation */
     //@Resource(name="{egovSample2IdGnrService}")    
