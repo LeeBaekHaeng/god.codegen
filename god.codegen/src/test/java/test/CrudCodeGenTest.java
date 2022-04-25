@@ -96,11 +96,11 @@ public class CrudCodeGenTest {
 		pathname = dataModel.getFolder().getDefaultVOFolder();
 		writeStringToFile(pathname, result);
 
-//		templateFile = eGovFrameTemplates + "java/pkg/service/Sample2VO.vm";
-//		result = crudCodeGen.generate(dataModel, templateFile);
-//		pathname = dataModel.getFolder().getVoPackageFolder();
-//		writeStringToFile(pathname, result);
-//
+		templateFile = eGovFrameTemplates + "java/pkg/service/Sample2VO.vm";
+		result = crudCodeGen.generate(dataModel, templateFile);
+		pathname = dataModel.getFolder().getVoPackageFolder();
+		writeStringToFile(pathname, result);
+
 //		templateFile = eGovFrameTemplates + "resource/pkg/EgovSample_Sample2_SQL.vm";
 //		result = crudCodeGen.generate(dataModel, templateFile);
 //		pathname = dataModel.getFolder().getSqlMapFolder();
