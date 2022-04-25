@@ -61,7 +61,7 @@ function fn_egov_save() {
 </head>
 <body>
 
-<form:form modelAttribute="sample2VO" name="detailForm" id="detailForm" >
+<form:form commandName="sample2VO" name="detailForm" id="detailForm" modelAttribute="sample2VO">
 <div id="content_pop">
 	<!-- 타이틀 -->
 	<div id="title">

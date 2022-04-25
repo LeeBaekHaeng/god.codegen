@@ -5,8 +5,8 @@ import java.util.List;
 import org.springframework.stereotype.Repository;
 
 import egovframework.com.cmm.service.impl.EgovComAbstractDAO;
-import egovframework.com.codegen.sample2.service.Sample2VO;
 import egovframework.com.codegen.sample2.service.Sample2DefaultVO;
+import egovframework.com.codegen.sample2.service.Sample2VO;
 
 /**
  * @Class Name : Sample2DAO.java
@@ -21,7 +21,7 @@ import egovframework.com.codegen.sample2.service.Sample2DefaultVO;
  *  Copyright (C)  All right reserved.
  */
 
-@Repository("sample2DAO")
+@Repository
 public class Sample2DAO extends EgovComAbstractDAO {
 
 	/**

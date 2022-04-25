@@ -1,7 +1,8 @@
 package egovframework.com.codegen.sample2.service;
 
-import java.io.Serializable;
-import org.apache.commons.lang3.builder.ToStringBuilder;
+import java.util.List;
+
+import egovframework.com.cmm.ComDefaultVO;
 
 /**
  * @Class Name : Sample2DefaultVO.java
@@ -15,112 +16,72 @@ import org.apache.commons.lang3.builder.ToStringBuilder;
  *  
  *  Copyright (C)  All right reserved.
  */
-public class Sample2DefaultVO implements Serializable {
+@SuppressWarnings("serial")
+public class Sample2DefaultVO extends ComDefaultVO {
 
-	private static final long serialVersionUID = 1L;
-	
-	/** 검색조건 */
-    private String searchCondition = "";
-    
-    /** 검색Keyword */
-    private String searchKeyword = "";
-    
-    /** 검색사용여부 */
-    private String searchUseYn = "";
-    
-    /** 현재페이지 */
-    private int pageIndex = 1;
-    
-    /** 페이지갯수 */
-    private int pageUnit = 10;
-    
-    /** 페이지사이즈 */
-    private int pageSize = 10;
+	/** ID */
+	private List<String> ids;
 
-    /** firstIndex */
-    private int firstIndex = 1;
+	/** NAME */
+	private List<String> names;
 
-    /** lastIndex */
-    private int lastIndex = 1;
+	/** DESCRIPTION */
+	private List<String> descriptions;
 
-    /** recordCountPerPage */
-    private int recordCountPerPage = 10;
-    
-        
-	public int getFirstIndex() {
-		return firstIndex;
+	/** USE_YN */
+	private List<String> useYns;
+
+	/** REG_USER */
+	private List<String> regUsers;
+
+	/** ID 값읽기 */
+	public List<String> getIds() {
+		return this.ids;
 	}
 
-	public void setFirstIndex(int firstIndex) {
-		this.firstIndex = firstIndex;
+	/** ID 값설정 */
+	public void setIds(List<String> ids) {
+		this.ids = ids;
 	}
 
-	public int getLastIndex() {
-		return lastIndex;
+	/** NAME 값읽기 */
+	public List<String> getNames() {
+		return this.names;
 	}
 
-	public void setLastIndex(int lastIndex) {
-		this.lastIndex = lastIndex;
+	/** NAME 값설정 */
+	public void setNames(List<String> names) {
+		this.names = names;
 	}
 
-	public int getRecordCountPerPage() {
-		return recordCountPerPage;
+	/** DESCRIPTION 값읽기 */
+	public List<String> getDescriptions() {
+		return this.descriptions;
 	}
 
-	public void setRecordCountPerPage(int recordCountPerPage) {
-		this.recordCountPerPage = recordCountPerPage;
+	/** DESCRIPTION 값설정 */
+	public void setDescriptions(List<String> descriptions) {
+		this.descriptions = descriptions;
 	}
 
-	public String getSearchCondition() {
-        return searchCondition;
-    }
+	/** USE_YN 값읽기 */
+	public List<String> getUseYns() {
+		return this.useYns;
+	}
 
-    public void setSearchCondition(String searchCondition) {
-        this.searchCondition = searchCondition;
-    }
+	/** USE_YN 값설정 */
+	public void setUseYns(List<String> useYns) {
+		this.useYns = useYns;
+	}
 
-    public String getSearchKeyword() {
-        return searchKeyword;
-    }
+	/** REG_USER 값읽기 */
+	public List<String> getRegUsers() {
+		return this.regUsers;
+	}
 
-    public void setSearchKeyword(String searchKeyword) {
-        this.searchKeyword = searchKeyword;
-    }
-
-    public String getSearchUseYn() {
-        return searchUseYn;
-    }
-
-    public void setSearchUseYn(String searchUseYn) {
-        this.searchUseYn = searchUseYn;
-    }
-
-    public int getPageIndex() {
-        return pageIndex;
-    }
-
-    public void setPageIndex(int pageIndex) {
-        this.pageIndex = pageIndex;
-    }
-
-    public int getPageUnit() {
-        return pageUnit;
-    }
-
-    public void setPageUnit(int pageUnit) {
-        this.pageUnit = pageUnit;
-    }
-
-    public int getPageSize() {
-        return pageSize;
-    }
-
-    public void setPageSize(int pageSize) {
-        this.pageSize = pageSize;
-    }
-
-    public String toString() {
-        return ToStringBuilder.reflectionToString(this);
-    }
+	/** REG_USER 값설정 */
+	public void setRegUsers(List<String> regUsers) {
+		this.regUsers = regUsers;
+	}
 
 }

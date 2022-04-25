@@ -61,7 +61,7 @@
 	</select>
 	
 	<select id="selectSample2List" parameterType="egovframework.com.codegen.sample2.service.Sample2VO" resultType="egovMap">
-			SELECT /* egovframework.com.codegen.sample2.service.impl.Sample2Mapper.selectSample2List */
+			SELECT
 								ID
 								, NAME
 								, DESCRIPTION

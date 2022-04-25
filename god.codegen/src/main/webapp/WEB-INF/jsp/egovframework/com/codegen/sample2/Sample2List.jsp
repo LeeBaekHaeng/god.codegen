@@ -51,7 +51,7 @@ function fn_egov_link_page(pageNo){
 </script>
 </head>
 <body>
-<form:form modelAttribute="searchVO" name="listForm" id="listForm" method="post">
+<form:form commandName="searchVO" name="listForm" id="listForm" method="post" modelAttribute="searchVO">
 	<input type="hidden" name="id" />
 <div id="content_pop">
 	<!-- 타이틀 -->
