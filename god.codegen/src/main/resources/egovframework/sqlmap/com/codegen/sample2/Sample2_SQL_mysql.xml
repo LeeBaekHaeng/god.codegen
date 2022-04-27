@@ -79,10 +79,8 @@ WHERE
 ]]>
 	</select>
 
-	<select id="sample2DAO.selectSample2List_D" parameterClass="egovframework.com.codegen.sample2.service.Sample2DefaultVO" resultClass="org.egovframe.rte.psl.dataaccess.util.EgovMap">
+	<sql id="sample2DAO.selectSample2List_D.sql">
 <![CDATA[
-/* sample2DAO.selectSample2List_D */
-/* 코드생성팀 이백행 SAMPLE2 조회(멀티건) */
 SELECT
 	ID,
 	NAME,
@@ -99,11 +97,21 @@ WHERE
 	AND ID = #searchKeyword#
 ]]>
 		</isEqual>
+
 		<isEqual property="searchCondition" compareValue="1">
 <![CDATA[
 	AND NAME LIKE CONCAT('%', #searchKeyword#, '%')
 ]]>
 		</isEqual>
+
+	</sql>
+
+	<select id="sample2DAO.selectSample2List_D" parameterClass="egovframework.com.codegen.sample2.service.Sample2DefaultVO" resultClass="org.egovframe.rte.psl.dataaccess.util.EgovMap">
+<![CDATA[
+/* sample2DAO.selectSample2List_D */
+/* 코드생성팀 이백행 SAMPLE2 조회(멀티건) */
+]]>
+	<include refid="sample2DAO.selectSample2List_D.sql" />
 <![CDATA[
 ORDER BY
 	ID DESC
@@ -117,22 +125,12 @@ LIMIT #firstIndex#, #recordCountPerPage#
 /* 코드생성팀 이백행 SAMPLE2 조회(멀티건) 카운트 */
 SELECT
 	COUNT(*) AS TOTCNT
-FROM
-	SAMPLE2
-WHERE
-	1 = 1
+FROM (
 ]]>
-		<isEqual property="searchCondition" compareValue="0">
+	<include refid="sample2DAO.selectSample2List_D.sql" />
 <![CDATA[
-	AND ID = #searchKeyword#
+) AS A
 ]]>
-		</isEqual>
-
-		<isEqual property="searchCondition" compareValue="1">
-<![CDATA[
-	AND NAME LIKE CONCAT('%', #searchKeyword#, '%')
-]]>
-		</isEqual>
 	</select>
 
 </sqlMap>
