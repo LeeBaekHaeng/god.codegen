@@ -106,11 +106,11 @@ public class CrudCodeGenTest {
 		pathname = dataModel.getFolder().getSqlMapFolder();
 		writeStringToFile(pathname, result);
 
-//		templateFile = eGovFrameTemplates + "resource/pkg/EgovSample_Sample2_MAPPER.vm";
-//		result = crudCodeGen.generate(dataModel, templateFile);
-//		pathname = dataModel.getFolder().getMapperFolder();
-//		writeStringToFile(pathname, result);
-//
+		templateFile = eGovFrameTemplates + "resource/pkg/EgovSample_Sample2_MAPPER.vm";
+		result = crudCodeGen.generate(dataModel, templateFile);
+		pathname = dataModel.getFolder().getMapperFolder();
+		writeStringToFile(pathname, result);
+
 //		templateFile = eGovFrameTemplates + "java/pkg/service/impl/Sample2DAO.vm";
 ////		templateFile = "eGovFrameTemplates/crud/java/pkg/service/impl/Sample2DAO2.vm";
 //		result = crudCodeGen.generate(dataModel, templateFile);
