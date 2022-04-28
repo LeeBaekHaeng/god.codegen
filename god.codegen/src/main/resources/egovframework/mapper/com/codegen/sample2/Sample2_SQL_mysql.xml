@@ -3,7 +3,7 @@
 
 <mapper namespace="egovframework.com.codegen.sample2.service.impl.Sample2Mapper">
 
-	<resultMap id="sample2" type="egovframework.com.codegen.sample2.service.Sample2VO">
+	<resultMap id="resultMapSample2" type="egovframework.com.codegen.sample2.service.Sample2VO">
 		<result property="id" column="ID" />
 		<result property="name" column="NAME" />
 		<result property="description" column="DESCRIPTION" />
@@ -51,23 +51,32 @@ WHERE
 	</update>
 
 	<delete id="deleteSample2">
-		<![CDATA[
-			DELETE FROM SAMPLE2
-						WHERE ID=#{id}
-				]]>
+<![CDATA[
+/* deleteSample2 */
+/* 코드생성팀 이백행 SAMPLE2 삭제 */
+DELETE
+FROM
+	SAMPLE2
+WHERE
+	ID = #{id}
+]]>
 	</delete>
 
-	<select id="selectSample2" resultMap="sample2">
-		<![CDATA[
-			SELECT
-				ID
-				, NAME
-				, DESCRIPTION
-				, USE_YN
-				, REG_USER
-			FROM SAMPLE2
-						WHERE ID=#{id}
-				]]>
+	<select id="selectSample2" resultMap="resultMapSample2">
+<![CDATA[
+/* selectSample2 */
+/* 코드생성팀 이백행 SAMPLE2 조회(단건) */
+SELECT
+	ID,
+	NAME,
+	DESCRIPTION,
+	USE_YN,
+	REG_USER
+FROM
+	SAMPLE2
+WHERE
+	ID = #{id}
+]]>
 	</select>
 
 	<select id="selectSample2List" parameterType="egovframework.com.codegen.sample2.service.Sample2VO" resultType="egovMap">
