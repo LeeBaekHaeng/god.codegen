@@ -29,7 +29,7 @@ public interface Sample2Mapper {
 	 * @return 등록 결과
 	 * @exception Exception
 	 */
-    public void insertSample2(Sample2VO vo) throws Exception;
+    public void insertSample2(Sample2VO vo);
 
     /**
 	 * SAMPLE2을 수정한다.
@@ -37,7 +37,7 @@ public interface Sample2Mapper {
 	 * @return void형
 	 * @exception Exception
 	 */
-    public void updateSample2(Sample2VO vo) throws Exception;
+    public void updateSample2(Sample2VO vo);
 
     /**
 	 * SAMPLE2을 삭제한다.
@@ -45,7 +45,7 @@ public interface Sample2Mapper {
 	 * @return void형 
 	 * @exception Exception
 	 */
-    public void deleteSample2(Sample2VO vo) throws Exception;
+    public void deleteSample2(Sample2VO vo);
 
     /**
 	 * SAMPLE2을 조회한다.
@@ -53,7 +53,7 @@ public interface Sample2Mapper {
 	 * @return 조회한 SAMPLE2
 	 * @exception Exception
 	 */
-    public Sample2VO selectSample2(Sample2VO vo) throws Exception;
+    public Sample2VO selectSample2(Sample2VO vo);
 
     /**
 	 * SAMPLE2 목록을 조회한다.
@@ -61,7 +61,7 @@ public interface Sample2Mapper {
 	 * @return SAMPLE2 목록
 	 * @exception Exception
 	 */
-    public List<?> selectSample2List(Sample2DefaultVO searchVO) throws Exception;
+    public List<?> selectSample2List(Sample2DefaultVO searchVO);
 
     /**
 	 * SAMPLE2 총 갯수를 조회한다.

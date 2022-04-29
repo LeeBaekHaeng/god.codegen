@@ -5,8 +5,8 @@ import java.util.List;
 import org.springframework.stereotype.Repository;
 
 import egovframework.com.cmm.service.impl.EgovComAbstractDAO;
-import egovframework.com.codegen.sample2.service.Sample2DefaultVO;
 import egovframework.com.codegen.sample2.service.Sample2VO;
+import egovframework.com.codegen.sample2.service.Sample2DefaultVO;
 
 /**
  * @Class Name : Sample2DAO.java
@@ -30,7 +30,7 @@ public class Sample2DAO extends EgovComAbstractDAO {
 	 * @return 등록 결과
 	 * @exception Exception
 	 */
-    public String insertSample2(Sample2VO vo) throws Exception {
+    public String insertSample2(Sample2VO vo) {
         return (String)insert("sample2DAO.insertSample2_S", vo);
     }
 
@@ -40,7 +40,7 @@ public class Sample2DAO extends EgovComAbstractDAO {
 	 * @return void형
 	 * @exception Exception
 	 */
-    public void updateSample2(Sample2VO vo) throws Exception {
+    public void updateSample2(Sample2VO vo) {
         update("sample2DAO.updateSample2_S", vo);
     }
 
@@ -50,7 +50,7 @@ public class Sample2DAO extends EgovComAbstractDAO {
 	 * @return void형 
 	 * @exception Exception
 	 */
-    public void deleteSample2(Sample2VO vo) throws Exception {
+    public void deleteSample2(Sample2VO vo) {
         delete("sample2DAO.deleteSample2_S", vo);
     }
 
@@ -60,7 +60,7 @@ public class Sample2DAO extends EgovComAbstractDAO {
 	 * @return 조회한 SAMPLE2
 	 * @exception Exception
 	 */
-    public Sample2VO selectSample2(Sample2VO vo) throws Exception {
+    public Sample2VO selectSample2(Sample2VO vo) {
         return (Sample2VO) select("sample2DAO.selectSample2_S", vo);
     }
 
@@ -70,7 +70,7 @@ public class Sample2DAO extends EgovComAbstractDAO {
 	 * @return SAMPLE2 목록
 	 * @exception Exception
 	 */
-    public List<?> selectSample2List(Sample2DefaultVO searchVO) throws Exception {
+    public List<?> selectSample2List(Sample2DefaultVO searchVO) {
         return list("sample2DAO.selectSample2List_D", searchVO);
     }
 

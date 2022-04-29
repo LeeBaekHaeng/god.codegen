@@ -51,28 +51,26 @@ public class Sample2Controller {
 	 * @exception Exception
 	 */
     @RequestMapping(value="/sample2/Sample2List.do")
-    public String selectSample2List(@ModelAttribute("searchVO") Sample2DefaultVO searchVO, 
-    		ModelMap model)
-            throws Exception {
+    public String selectSample2List(Sample2VO sample2VO, Model model) {
     	
     	/** EgovPropertyService.sample */
-    	searchVO.setPageUnit(propertiesService.getInt("pageUnit"));
-    	searchVO.setPageSize(propertiesService.getInt("pageSize"));
+    	sample2VO.setPageUnit(propertiesService.getInt("pageUnit"));
+    	sample2VO.setPageSize(propertiesService.getInt("pageSize"));
     	
     	/** pageing */
     	PaginationInfo paginationInfo = new PaginationInfo();
-		paginationInfo.setCurrentPageNo(searchVO.getPageIndex());
-		paginationInfo.setRecordCountPerPage(searchVO.getPageUnit());
-		paginationInfo.setPageSize(searchVO.getPageSize());
+		paginationInfo.setCurrentPageNo(sample2VO.getPageIndex());
+		paginationInfo.setRecordCountPerPage(sample2VO.getPageUnit());
+		paginationInfo.setPageSize(sample2VO.getPageSize());
 		
-		searchVO.setFirstIndex(paginationInfo.getFirstRecordIndex());
-		searchVO.setLastIndex(paginationInfo.getLastRecordIndex());
-		searchVO.setRecordCountPerPage(paginationInfo.getRecordCountPerPage());
+		sample2VO.setFirstIndex(paginationInfo.getFirstRecordIndex());
+		sample2VO.setLastIndex(paginationInfo.getLastRecordIndex());
+		sample2VO.setRecordCountPerPage(paginationInfo.getRecordCountPerPage());
 		
-        List<?> sample2List = sample2Service.selectSample2List(searchVO);
+        List<?> sample2List = sample2Service.selectSample2List(sample2VO);
         model.addAttribute("resultList", sample2List);
         
-        int totCnt = sample2Service.selectSample2ListTotCnt(searchVO);
+        int totCnt = sample2Service.selectSample2ListTotCnt(sample2VO);
 		paginationInfo.setTotalRecordCount(totCnt);
         model.addAttribute("paginationInfo", paginationInfo);
         

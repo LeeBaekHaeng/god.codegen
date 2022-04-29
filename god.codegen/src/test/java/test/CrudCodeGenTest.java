@@ -75,13 +75,13 @@ public class CrudCodeGenTest {
 		dataModel.setAttributes(attributes);
 		dataModel.setPrimaryKeys(primaryKeys);
 
-		String egovPackageName = "egovframework.com";
+		String topLevelPackage = "egovframework.com";
 		String egovPackageName2 = "codegen";
 		String egovPackageName3 = entity.getLcName();
-		EgovPackage egovPackage = new EgovPackage(egovPackageName, egovPackageName2, egovPackageName3);
+		EgovPackage egovPackage = new EgovPackage(topLevelPackage, egovPackageName2, egovPackageName3);
 		dataModel.setEgovPackage(egovPackage);
 
-		Folder folder = new Folder(egovPackageName, egovPackageName2, egovPackageName3, entity.getPcName());
+		Folder folder = new Folder(topLevelPackage, egovPackageName2, egovPackageName3, entity.getPcName());
 		dataModel.setFolder(folder);
 	}
 
@@ -111,41 +111,41 @@ public class CrudCodeGenTest {
 		pathname = dataModel.getFolder().getMapperFolder();
 		writeStringToFile(pathname, result);
 
-//		templateFile = eGovFrameTemplates + "java/pkg/service/impl/Sample2DAO.vm";
-////		templateFile = "eGovFrameTemplates/crud/java/pkg/service/impl/Sample2DAO2.vm";
-//		result = crudCodeGen.generate(dataModel, templateFile);
-//		pathname = dataModel.getFolder().getDaoPackageFolder();
-//		writeStringToFile(pathname, result);
-//
-//		templateFile = eGovFrameTemplates + "java/pkg/service/impl/Sample2Mapper.vm";
-//		result = crudCodeGen.generate(dataModel, templateFile);
-//		pathname = dataModel.getFolder().getMapperPackageFolder();
-//		writeStringToFile(pathname, result);
-//
-//		templateFile = eGovFrameTemplates + "java/pkg/service/EgovSample2Service.vm";
-//		result = crudCodeGen.generate(dataModel, templateFile);
-//		pathname = dataModel.getFolder().getServicePackageFolder();
-//		writeStringToFile(pathname, result);
-//
-//		templateFile = eGovFrameTemplates + "java/pkg/service/impl/EgovSample2ServiceImpl.vm";
-//		result = crudCodeGen.generate(dataModel, templateFile);
-//		pathname = dataModel.getFolder().getImplPackageFolder();
-//		writeStringToFile(pathname, result);
-//
-//		templateFile = eGovFrameTemplates + "java/pkg/web/EgovSample2Controller.vm";
-//		result = crudCodeGen.generate(dataModel, templateFile);
-//		pathname = dataModel.getFolder().getControllerPackageFolder();
-//		writeStringToFile(pathname, result);
-//
-//		templateFile = eGovFrameTemplates + "jsp/pkg/egovSample2List.vm";
-//		result = crudCodeGen.generate(dataModel, templateFile);
-//		pathname = dataModel.getFolder().getJspListFolder();
-//		writeStringToFile(pathname, result);
-//
-//		templateFile = eGovFrameTemplates + "jsp/pkg/egovSample2Register.vm";
-//		result = crudCodeGen.generate(dataModel, templateFile);
-//		pathname = dataModel.getFolder().getJspRegistFolder();
-//		writeStringToFile(pathname, result);
+		templateFile = eGovFrameTemplates + "java/pkg/service/impl/Sample2DAO.vm";
+//		templateFile = "eGovFrameTemplates/crud/java/pkg/service/impl/Sample2DAO2.vm";
+		result = crudCodeGen.generate(dataModel, templateFile);
+		pathname = dataModel.getFolder().getDaoPackageFolder();
+		writeStringToFile(pathname, result);
+
+		templateFile = eGovFrameTemplates + "java/pkg/service/impl/Sample2Mapper.vm";
+		result = crudCodeGen.generate(dataModel, templateFile);
+		pathname = dataModel.getFolder().getMapperPackageFolder();
+		writeStringToFile(pathname, result);
+
+		templateFile = eGovFrameTemplates + "java/pkg/service/EgovSample2Service.vm";
+		result = crudCodeGen.generate(dataModel, templateFile);
+		pathname = dataModel.getFolder().getServicePackageFolder();
+		writeStringToFile(pathname, result);
+
+		templateFile = eGovFrameTemplates + "java/pkg/service/impl/EgovSample2ServiceImpl.vm";
+		result = crudCodeGen.generate(dataModel, templateFile);
+		pathname = dataModel.getFolder().getImplPackageFolder();
+		writeStringToFile(pathname, result);
+
+		templateFile = eGovFrameTemplates + "java/pkg/web/EgovSample2Controller.vm";
+		result = crudCodeGen.generate(dataModel, templateFile);
+		pathname = dataModel.getFolder().getControllerPackageFolder();
+		writeStringToFile(pathname, result);
+
+		templateFile = eGovFrameTemplates + "jsp/pkg/egovSample2List.vm";
+		result = crudCodeGen.generate(dataModel, templateFile);
+		pathname = dataModel.getFolder().getJspListFolder();
+		writeStringToFile(pathname, result);
+
+		templateFile = eGovFrameTemplates + "jsp/pkg/egovSample2Register.vm";
+		result = crudCodeGen.generate(dataModel, templateFile);
+		pathname = dataModel.getFolder().getJspRegistFolder();
+		writeStringToFile(pathname, result);
 	}
 
 	private void writeStringToFile(String pathname, String result) {

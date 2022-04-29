@@ -24,7 +24,7 @@ public interface Sample2Service {
 	 * @return 등록 결과
 	 * @exception Exception
 	 */
-    String insertSample2(Sample2VO vo) throws Exception;
+    String insertSample2(Sample2VO vo);
     
     /**
 	 * SAMPLE2을 수정한다.
@@ -32,7 +32,7 @@ public interface Sample2Service {
 	 * @return void형
 	 * @exception Exception
 	 */
-    void updateSample2(Sample2VO vo) throws Exception;
+    void updateSample2(Sample2VO vo);
     
     /**
 	 * SAMPLE2을 삭제한다.
@@ -40,7 +40,7 @@ public interface Sample2Service {
 	 * @return void형 
 	 * @exception Exception
 	 */
-    void deleteSample2(Sample2VO vo) throws Exception;
+    void deleteSample2(Sample2VO vo);
     
     /**
 	 * SAMPLE2을 조회한다.
@@ -48,7 +48,7 @@ public interface Sample2Service {
 	 * @return 조회한 SAMPLE2
 	 * @exception Exception
 	 */
-    Sample2VO selectSample2(Sample2VO vo) throws Exception;
+    Sample2VO selectSample2(Sample2VO vo);
     
     /**
 	 * SAMPLE2 목록을 조회한다.
@@ -56,7 +56,7 @@ public interface Sample2Service {
 	 * @return SAMPLE2 목록
 	 * @exception Exception
 	 */
-    List selectSample2List(Sample2DefaultVO searchVO) throws Exception;
+    List selectSample2List(Sample2VO vo);
     
     /**
 	 * SAMPLE2 총 갯수를 조회한다.
@@ -64,6 +64,6 @@ public interface Sample2Service {
 	 * @return SAMPLE2 총 갯수
 	 * @exception
 	 */
-    int selectSample2ListTotCnt(Sample2DefaultVO searchVO);
+    int selectSample2ListTotCnt(Sample2VO vo);
     
 }
