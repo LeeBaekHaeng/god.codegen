@@ -6,6 +6,7 @@ import egovframework.com.codegen.sample2.service.Sample2VO;
 import egovframework.com.codegen.sample2.service.Sample2DefaultVO;
 
 import org.egovframe.rte.psl.dataaccess.mapper.Mapper;
+import org.egovframe.rte.psl.dataaccess.util.EgovMap;
 
 /**
  * @Class Name : Sample2Mapper.java
@@ -16,59 +17,53 @@ import org.egovframe.rte.psl.dataaccess.mapper.Mapper;
  * @since 2022-04-24
  * @version 1.0
  * @see
- *  
+ *
  *  Copyright (C)  All right reserved.
  */
 
 @Mapper
-public interface Sample2Mapper {
+interface Sample2Mapper {
 
 	/**
 	 * SAMPLE2을 등록한다.
-	 * @param vo - 등록할 정보가 담긴 Sample2VO
+	 * @param sample2VO - 등록할 정보가 담긴 Sample2VO
 	 * @return 등록 결과
-	 * @exception Exception
 	 */
-    public void insertSample2(Sample2VO vo);
+	 int insertSample2(Sample2VO sample2VO);
 
-    /**
+	 /**
 	 * SAMPLE2을 수정한다.
-	 * @param vo - 수정할 정보가 담긴 Sample2VO
+	 * @param sample2VO - 수정할 정보가 담긴 Sample2VO
 	 * @return void형
-	 * @exception Exception
 	 */
-    public void updateSample2(Sample2VO vo);
+	 int updateSample2(Sample2VO sample2VO);
 
-    /**
+	 /**
 	 * SAMPLE2을 삭제한다.
-	 * @param vo - 삭제할 정보가 담긴 Sample2VO
-	 * @return void형 
-	 * @exception Exception
+	 * @param sample2VO - 삭제할 정보가 담긴 Sample2VO
+	 * @return void형
 	 */
-    public void deleteSample2(Sample2VO vo);
+	 int deleteSample2(Sample2VO sample2VO);
 
-    /**
+	 /**
 	 * SAMPLE2을 조회한다.
-	 * @param vo - 조회할 정보가 담긴 Sample2VO
+	 * @param sample2VO - 조회할 정보가 담긴 Sample2VO
 	 * @return 조회한 SAMPLE2
-	 * @exception Exception
 	 */
-    public Sample2VO selectSample2(Sample2VO vo);
+	 Sample2VO selectSample2(Sample2VO sample2VO);
 
-    /**
+	 /**
 	 * SAMPLE2 목록을 조회한다.
-	 * @param searchMap - 조회할 정보가 담긴 Map
+	 * @param sample2VO - 조회할 정보가 담긴 Sample2VO
 	 * @return SAMPLE2 목록
-	 * @exception Exception
 	 */
-    public List<?> selectSample2List(Sample2DefaultVO searchVO);
+	 List<EgovMap> selectSample2List(Sample2VO sample2VO);
 
-    /**
+	 /**
 	 * SAMPLE2 총 갯수를 조회한다.
-	 * @param searchMap - 조회할 정보가 담긴 Map
+	 * @param sample2VO - 조회할 정보가 담긴 Sample2VO
 	 * @return SAMPLE2 총 갯수
-	 * @exception
 	 */
-    public int selectSample2ListTotCnt(Sample2DefaultVO searchVO);
+	 int selectSample2ListTotCnt(Sample2VO sample2VO);
 
 }
