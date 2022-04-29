@@ -3,7 +3,6 @@ package egovframework.com.codegen.sample2.service.impl;
 import java.util.List;
 
 import egovframework.com.codegen.sample2.service.Sample2VO;
-import egovframework.com.codegen.sample2.service.Sample2DefaultVO;
 
 import org.egovframe.rte.psl.dataaccess.mapper.Mapper;
 import org.egovframe.rte.psl.dataaccess.util.EgovMap;
