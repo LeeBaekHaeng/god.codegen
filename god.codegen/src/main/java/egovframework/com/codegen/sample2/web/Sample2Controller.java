@@ -3,6 +3,7 @@ package egovframework.com.codegen.sample2.web;
 import java.util.List;
 
 import javax.annotation.Resource;
+import org.springframework.beans.factory.annotation.Autowired;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -37,7 +38,7 @@ import egovframework.com.codegen.sample2.service.Sample2VO;
 @SessionAttributes(types=Sample2VO.class)
 public class Sample2Controller {
 
-    @Resource(name = "sample2Service")
+    @Autowired
     private Sample2Service sample2Service;
     
     /** EgovPropertyService */
