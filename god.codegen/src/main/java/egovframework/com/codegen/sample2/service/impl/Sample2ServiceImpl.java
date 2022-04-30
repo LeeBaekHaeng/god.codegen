@@ -2,13 +2,14 @@ package egovframework.com.codegen.sample2.service.impl;
 
 import java.util.List;
 
-import org.springframework.beans.factory.annotation.Autowired;
 
 import org.springframework.stereotype.Service;
 
 import org.egovframe.rte.fdl.cmmn.EgovAbstractServiceImpl;
 import org.egovframe.rte.psl.dataaccess.util.EgovMap;
+import org.egovframe.rte.fdl.cmmn.exception.FdlException;
 import org.egovframe.rte.fdl.idgnr.EgovIdGnrService;
+import org.egovframe.rte.fdl.idgnr.impl.EgovUUIdGnrServiceImpl;
 import egovframework.com.codegen.sample2.service.Sample2Service;
 import egovframework.com.codegen.sample2.service.Sample2VO;
 /**
@@ -27,15 +28,13 @@ import egovframework.com.codegen.sample2.service.Sample2VO;
 @Service
 public class Sample2ServiceImpl extends EgovAbstractServiceImpl implements Sample2Service {
 
-	@Autowired
-	private Sample2Mapper sample2DAO;
+	private final Sample2Mapper sample2DAO;
+	private final EgovIdGnrService sample2EgovIdGnrService;
 
-//	@Autowired
-//	private Sample2DAO sample2DAO;
-
-	/** ID Generation */
-	//@Resource(name="{egovSample2IdGnrService}")
-	//private EgovIdGnrService egovIdGnrService;
+	public Sample2ServiceImpl(Sample2Mapper sample2DAO) {
+		this.sample2DAO = sample2DAO;
+		this.sample2EgovIdGnrService = new EgovUUIdGnrServiceImpl();
+	}
 
 	/**
 	 * SAMPLE2을 등록한다.
@@ -44,13 +43,17 @@ public class Sample2ServiceImpl extends EgovAbstractServiceImpl implements Sampl
 	 * @return 등록 결과
 	 */
 	public int insertSample2(Sample2VO sample2VO) {
-		egovLogger.debug(sample2VO.toString());
+		egovLogger.debug("sample2VO=", sample2VO);
 
-		/** ID Generation Service */
-		//TODO 해당 테이블 속성에 따라 ID 제너레이션 서비스 사용
-		//String id = egovIdGnrService.getNextStringId();
-		//sample2VO.setId(id);
-		egovLogger.debug(sample2VO.toString());
+		try {
+			sample2VO.setId(sample2EgovIdGnrService.getNextStringId());
+			egovLogger.debug("id={}", sample2VO.getId());
+		} catch (FdlException e) {
+			egovLogger.error("sample2EgovIdGnrService FdlException");
+			return 0;
+		}
+
+		egovLogger.debug("sample2VO=", sample2VO);
 
 		return sample2DAO.insertSample2(sample2VO);
 	}
@@ -82,8 +85,8 @@ public class Sample2ServiceImpl extends EgovAbstractServiceImpl implements Sampl
 	 * @return 조회한 SAMPLE2
 	 */
 	public Sample2VO selectSample2(Sample2VO sample2VO) {
-		Sample2VO resultVO = sample2DAO.selectSample2(sample2VO);
-		if (resultVO == null) {
+		Sample2VO result = sample2DAO.selectSample2(sample2VO);
+		if (result == null) {
 			try {
 				throw processException("info.nodata.msg");
 			} catch (Exception e) {
@@ -91,7 +94,7 @@ public class Sample2ServiceImpl extends EgovAbstractServiceImpl implements Sampl
 				return null;
 			}
 		}
-		return resultVO;
+		return result;
 	}
 
 	/**

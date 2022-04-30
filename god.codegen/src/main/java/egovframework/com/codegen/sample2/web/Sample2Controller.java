@@ -35,7 +35,6 @@ import egovframework.com.codegen.sample2.service.Sample2VO;
  */
 
 @Controller
-@SessionAttributes(types=Sample2VO.class)
 public class Sample2Controller {
 
     @Autowired
