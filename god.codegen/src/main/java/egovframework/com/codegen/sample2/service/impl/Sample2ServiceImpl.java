@@ -7,9 +7,9 @@ import org.springframework.stereotype.Service;
 
 import org.egovframe.rte.fdl.cmmn.EgovAbstractServiceImpl;
 import org.egovframe.rte.psl.dataaccess.util.EgovMap;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.egovframe.rte.fdl.cmmn.exception.FdlException;
 import org.egovframe.rte.fdl.idgnr.EgovIdGnrService;
-import org.egovframe.rte.fdl.idgnr.impl.EgovUUIdGnrServiceImpl;
 import egovframework.com.codegen.sample2.service.Sample2Service;
 import egovframework.com.codegen.sample2.service.Sample2VO;
 /**
@@ -31,9 +31,11 @@ public class Sample2ServiceImpl extends EgovAbstractServiceImpl implements Sampl
 	private final Sample2Mapper sample2DAO;
 	private final EgovIdGnrService sample2EgovIdGnrService;
 
-	public Sample2ServiceImpl(Sample2Mapper sample2DAO) {
+	public Sample2ServiceImpl(Sample2Mapper sample2DAO,
+			// TODO 이백행 egovFileIdGnrService 수정
+			@Qualifier("egovFileIdGnrService") EgovIdGnrService sample2EgovIdGnrService) {
 		this.sample2DAO = sample2DAO;
-		this.sample2EgovIdGnrService = new EgovUUIdGnrServiceImpl();
+		this.sample2EgovIdGnrService = sample2EgovIdGnrService;
 	}
 
 	/**
