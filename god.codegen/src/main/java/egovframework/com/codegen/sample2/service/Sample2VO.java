@@ -13,7 +13,7 @@ package egovframework.com.codegen.sample2.service;
  *  Copyright (C)  All right reserved.
  */
 @SuppressWarnings("serial")
-public class Sample2VO extends Sample2DefaultVO{
+public class Sample2VO extends Sample2DefaultVO {
 
 	/** ID */
 	private String id;

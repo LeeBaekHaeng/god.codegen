@@ -5,12 +5,14 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.support.SessionStatus;
 
 import org.egovframe.rte.fdl.property.EgovPropertyService;
+import org.egovframe.rte.psl.dataaccess.util.EgovMap;
 import org.egovframe.rte.ptl.mvc.tags.ui.pagination.PaginationInfo;
 
 import egovframework.com.codegen.sample2.service.Sample2Service;
@@ -46,9 +48,8 @@ public class Sample2Controller {
 	 * SAMPLE2 목록을 조회한다. (pageing)
 	 * @param searchVO - 조회할 정보가 담긴 Sample2DefaultVO
 	 * @return "egovframework/com/codegen/sample2/Sample2List"
-	 * @exception Exception
 	 */
-	@RequestMapping(value="/sample2/Sample2List.do")
+	@GetMapping(value="/sample2/selectSample2List.do")
 	public String selectSample2List(Sample2VO sample2VO, Model model) {
 
 		/** EgovPropertyService.sample */
@@ -65,7 +66,7 @@ public class Sample2Controller {
 		sample2VO.setLastIndex(paginationInfo.getLastRecordIndex());
 		sample2VO.setRecordCountPerPage(paginationInfo.getRecordCountPerPage());
 
-		List<?> sample2List = sample2Service.selectSample2List(sample2VO);
+		List<EgovMap> sample2List = sample2Service.selectSample2List(sample2VO);
 		model.addAttribute("resultList", sample2List);
 
 		int totCnt = sample2Service.selectSample2ListTotCnt(sample2VO);
@@ -75,62 +76,40 @@ public class Sample2Controller {
 		return "egovframework/com/codegen/sample2/Sample2List";
 	}
 
-	@RequestMapping("/sample2/addSample2View.do")
-	public String addSample2View(
-			@ModelAttribute("searchVO") Sample2DefaultVO searchVO, Model model)
-			throws Exception {
-		model.addAttribute("sample2VO", new Sample2VO());
+	@GetMapping("/sample2/addSample2View.do")
+	public String addSample2View(Sample2VO sample2VO, Model model) {
 		return "egovframework/com/codegen/sample2/Sample2Regist";
 	}
 
-	@RequestMapping("/sample2/addSample2.do")
-	public String addSample2(
-			Sample2VO sample2VO,
-			@ModelAttribute("searchVO") Sample2DefaultVO searchVO, SessionStatus status)
-			throws Exception {
-		sample2Service.insertSample2(sample2VO);
-		status.setComplete();
-		return "forward:/sample2/Sample2List.do";
+	@PostMapping("/sample2/addSample2.do")
+	public String addSample2(Sample2VO sample2VO) {
+		int insertSample2 = sample2Service.insertSample2(sample2VO);
+		return "redirect:/sample2/selectSample2List.do?insertSample2=" + insertSample2;
 	}
 
-	@RequestMapping("/sample2/updateSample2View.do")
-	public String updateSample2View(
-			@RequestParam("id") String id ,
-			@ModelAttribute("searchVO") Sample2DefaultVO searchVO, Model model)
-			throws Exception {
-		Sample2VO sample2VO = new Sample2VO();
-		sample2VO.setId(id);
-		// 변수명은 CoC 에 따라 sample2VO
-		model.addAttribute(selectSample2(sample2VO, searchVO));
+	@GetMapping("/sample2/updateSample2View.do")
+	public String updateSample2View(Sample2VO sample2VO,
+			@RequestParam("id") String id,
+			Model model) {
+		model.addAttribute(sample2Service.selectSample2(sample2VO));
 		return "egovframework/com/codegen/sample2/Sample2Regist";
 	}
 
-	@RequestMapping("/sample2/selectSample2.do")
-	public @ModelAttribute("sample2VO")
-	Sample2VO selectSample2(
-			Sample2VO sample2VO,
-			@ModelAttribute("searchVO") Sample2DefaultVO searchVO) throws Exception {
+	@GetMapping("/sample2/selectSample2.do")
+	public Sample2VO selectSample2(Sample2VO sample2VO) {
 		return sample2Service.selectSample2(sample2VO);
 	}
 
-	@RequestMapping("/sample2/updateSample2.do")
-	public String updateSample2(
-			Sample2VO sample2VO,
-			@ModelAttribute("searchVO") Sample2DefaultVO searchVO, SessionStatus status)
-			throws Exception {
-		sample2Service.updateSample2(sample2VO);
-		status.setComplete();
-		return "forward:/sample2/Sample2List.do";
+	@PostMapping("/sample2/updateSample2.do")
+	public String updateSample2(Sample2VO sample2VO) {
+		int updateSample2 = sample2Service.updateSample2(sample2VO);
+		return "redirect:/sample2/selectSample2List.do?updateSample2=" + updateSample2;
 	}
 
-	@RequestMapping("/sample2/deleteSample2.do")
-	public String deleteSample2(
-			Sample2VO sample2VO,
-			@ModelAttribute("searchVO") Sample2DefaultVO searchVO, SessionStatus status)
-			throws Exception {
-		sample2Service.deleteSample2(sample2VO);
-		status.setComplete();
-		return "forward:/sample2/Sample2List.do";
+	@PostMapping("/sample2/deleteSample2.do")
+	public String deleteSample2(Sample2VO sample2VO) {
+		int deleteSample2 = sample2Service.deleteSample2(sample2VO);
+		return "redirect:/sample2/selectSample2List.do?deleteSample2=" + deleteSample2;
 	}
 
 }

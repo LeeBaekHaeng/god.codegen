@@ -43,7 +43,7 @@ function fn_egov_addView() {
 /* pagination 페이지 링크 function */
 function fn_egov_link_page(pageNo){
 	document.getElementById("listForm").pageIndex.value = pageNo;
-	document.getElementById("listForm").action = "<c:url value='/sample2/Sample2List.do'/>";
+	document.getElementById("listForm").action = "<c:url value='/sample2/selectSample2List.do'/>";
    	document.getElementById("listForm").submit();
 }
 
@@ -51,7 +51,7 @@ function fn_egov_link_page(pageNo){
 </script>
 </head>
 <body>
-<form:form modelAttribute="sample2VO" name="listForm" id="listForm" method="post">
+<form:form modelAttribute="sample2VO" name="listForm" id="listForm" method="get">
 	<input type="hidden" name="id" />
 <div id="content_pop">
 	<!-- 타이틀 -->

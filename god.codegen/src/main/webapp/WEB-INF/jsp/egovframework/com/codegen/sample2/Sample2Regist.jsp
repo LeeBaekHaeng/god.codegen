@@ -35,7 +35,8 @@
 <!--
 /* 글 목록 화면 function */
 function fn_egov_selectList() {
-   	document.getElementById("detailForm").action = "<c:url value='/sample2/Sample2List.do'/>";
+	document.getElementById("detailForm").method = "get";
+   	document.getElementById("detailForm").action = "<c:url value='/sample2/selectSample2List.do'/>";
    	document.getElementById("detailForm").submit();		
 }
 
@@ -61,7 +62,7 @@ function fn_egov_save() {
 </head>
 <body>
 
-<form:form commandName="sample2VO" name="detailForm" id="detailForm" modelAttribute="sample2VO">
+<form:form modelAttribute="sample2VO" name="detailForm" id="detailForm">
 <div id="content_pop">
 	<!-- 타이틀 -->
 	<div id="title">
@@ -134,9 +135,9 @@ function fn_egov_save() {
 	</div>
 </div>
 <!-- 검색조건 유지 -->
-<input type="hidden" name="searchCondition" value="<c:out value='${searchVO.searchCondition}'/>"/>
-<input type="hidden" name="searchKeyword" value="<c:out value='${searchVO.searchKeyword}'/>"/>
-<input type="hidden" name="pageIndex" value="<c:out value='${searchVO.pageIndex}'/>"/>
+<form:hidden path="searchCondition" />
+<form:hidden path="searchKeyword" />
+<form:hidden path="pageIndex" />
 </form:form>
 </body>
 </html>
