@@ -52,7 +52,7 @@ function fn_egov_save() {
 
 	/* TODO Validation기능 보완 */
 	
-  	frm.action = "<c:url value="${registerFlag == '등록' ? '/sample2/addSample2.do' : '/sample2/updateSample2.do'}"/>";
+  	frm.action = "<c:url value="${registerFlag == '등록' ? '/sample2/insertSample2.do' : '/sample2/updateSample2.do'}"/>";
     frm.submit();
 
 }

@@ -30,7 +30,7 @@
 
 function fn_egov_update(id) {
 	document.getElementById("listForm").id.value = id;
-   	document.getElementById("listForm").action = "<c:url value='/sample2/updateSample2View.do'/>";
+   	document.getElementById("listForm").action = "<c:url value='/sample2/updateSample2.do'/>";
    	document.getElementById("listForm").submit();
 }
 
@@ -42,7 +42,7 @@ function fn_egov_select(id) {
 
 /* 글 등록 화면 function */
 function fn_egov_addView() {
-   	document.getElementById("listForm").action = "<c:url value='/sample2/addSample2View.do'/>";
+   	document.getElementById("listForm").action = "<c:url value='/sample2/insertSample2.do'/>";
    	document.getElementById("listForm").submit();		
 }
 

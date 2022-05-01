@@ -43,10 +43,12 @@ public class Sample2Controller {
 
 	/**
 	 * SAMPLE2 목록을 조회한다. (pageing)
-	 * @param searchVO - 조회할 정보가 담긴 Sample2DefaultVO
+	 *
+	 * @param sample2VO - 조회할 정보가 담긴 Sample2VO
+	 * @param model
 	 * @return "egovframework/com/codegen/sample2/Sample2List"
 	 */
-	@GetMapping(value="/sample2/selectSample2List.do")
+	@GetMapping("/sample2/selectSample2List.do")
 	public String selectSample2List(Sample2VO sample2VO, Model model) {
 
 		/** EgovPropertyService.sample */
@@ -73,19 +75,19 @@ public class Sample2Controller {
 		return "egovframework/com/codegen/sample2/Sample2List";
 	}
 
-	@GetMapping("/sample2/addSample2View.do")
-	public String addSample2View(Sample2VO sample2VO, Model model) {
+	@GetMapping("/sample2/insertSample2.do")
+	public String insertSample2(Sample2VO sample2VO, Model model) {
 		return "egovframework/com/codegen/sample2/Sample2Regist";
 	}
 
-	@PostMapping("/sample2/addSample2.do")
-	public String addSample2(Sample2VO sample2VO) {
+	@PostMapping("/sample2/insertSample2.do")
+	public String insertSample2(Sample2VO sample2VO) {
 		int insertSample2 = sample2Service.insertSample2(sample2VO);
 		return "redirect:/sample2/selectSample2List.do?insertSample2=" + insertSample2;
 	}
 
-	@GetMapping("/sample2/updateSample2View.do")
-	public String updateSample2View(Sample2VO sample2VO,
+	@GetMapping("/sample2/updateSample2.do")
+	public String updateSample2(Sample2VO sample2VO,
 			@RequestParam("id") String id,
 			Model model) {
 		model.addAttribute(sample2Service.selectSample2(sample2VO));
@@ -108,6 +110,30 @@ public class Sample2Controller {
 	public String deleteSample2(Sample2VO sample2VO) {
 		int deleteSample2 = sample2Service.deleteSample2(sample2VO);
 		return "redirect:/sample2/selectSample2List.do?deleteSample2=" + deleteSample2;
+	}
+
+	/**
+	 * 등록/수정
+	 * 
+	 * @param sample2VO
+	 * @return
+	 */
+	@PostMapping("/sample2/mergeSample2.do")
+	public String mergeSample2(Sample2VO sample2VO) {
+		int mergeSample2 = sample2Service.mergeSample2(sample2VO);
+		return "redirect:/sample2/selectSample2List.do?mergeSample2=" + mergeSample2;
+	}
+
+	/**
+	 * 등록/수정/삭제
+	 * 
+	 * @param sample2VO
+	 * @return
+	 */
+	@PostMapping("/sample2/multiSample2.do")
+	public String multiSample2(Sample2VO sample2VO) {
+		int multiSample2 = sample2Service.multiSample2(sample2VO);
+		return "redirect:/sample2/selectSample2List.do?multiSample2=" + multiSample2;
 	}
 
 }

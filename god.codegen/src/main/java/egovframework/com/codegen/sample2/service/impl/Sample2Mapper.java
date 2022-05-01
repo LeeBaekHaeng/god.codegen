@@ -65,4 +65,20 @@ interface Sample2Mapper {
 	 */
 	 int selectSample2ListTotCnt(Sample2VO sample2VO);
 
+	 /**
+	 * SAMPLE2을 등록/수정한다.
+	 * 
+	 * @param sample2VO - 등록/수정할 정보가 담긴 Sample2VO
+	 * @return 등록/수정 결과
+	 */
+	int mergeSample2(Sample2VO sample2VO);
+
+	 /**
+	 * SAMPLE2을 등록/수정/삭제한다.
+	 * 
+	 * @param sample2VO - 등록/수정/삭제할 정보가 담긴 Sample2VO
+	 * @return 등록/수정/삭제 결과
+	 */
+	int multiSample2(Sample2VO sample2VO);
+
 }

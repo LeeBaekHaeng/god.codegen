@@ -110,13 +110,33 @@ public class Sample2ServiceImpl extends EgovAbstractServiceImpl implements Sampl
 	}
 
 	/**
-	 * @param sample2VO - 조회할 정보가 담긴 Sample2VO
+	 * SAMPLE2 총 갯수를 조회한다.
 	 * 
 	 * @param sample2VO - 조회할 정보가 담긴 Sample2VO
 	 * @return SAMPLE2 총 갯수
 	 */
 	public int selectSample2ListTotCnt(Sample2VO sample2VO) {
 		return sample2DAO.selectSample2ListTotCnt(sample2VO);
+	}
+
+	/**
+	 * SAMPLE2을 등록/수정한다.
+	 * 
+	 * @param sample2VO - 등록/수정할 정보가 담긴 Sample2VO
+	 * @return 등록/수정 결과
+	 */
+	public int mergeSample2(Sample2VO sample2VO) {
+		return sample2DAO.mergeSample2(sample2VO);
+	}
+
+	/**
+	 * SAMPLE2을 등록/수정/삭제한다.
+	 * 
+	 * @param sample2VO - 등록/수정/삭제할 정보가 담긴 Sample2VO
+	 * @return 등록/수정/삭제 결과
+	 */
+	public int multiSample2(Sample2VO sample2VO) {
+		return sample2DAO.multiSample2(sample2VO);
 	}
 
 }
