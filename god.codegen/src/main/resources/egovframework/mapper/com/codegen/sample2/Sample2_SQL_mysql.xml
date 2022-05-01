@@ -1,0 +1,219 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="egovframework.com.codegen.sample2.service.impl.Sample2Mapper">
+
+	<resultMap id="resultMapSample2" type="egovframework.com.codegen.sample2.service.Sample2VO">
+		<result property="id" column="ID" />
+		<result property="name" column="NAME" />
+		<result property="description" column="DESCRIPTION" />
+		<result property="useYn" column="USE_YN" />
+		<result property="regUser" column="REG_USER" />
+	</resultMap>
+
+	<insert id="insertSample2">
+<![CDATA[
+/* insertSample2 */
+/* 코드생성팀 이백행 SAMPLE2 등록 */
+INSERT INTO
+	SAMPLE2
+(
+	ID,
+	NAME,
+	DESCRIPTION,
+	USE_YN,
+	REG_USER
+) VALUES (
+	#{id},
+	#{name},
+	#{description},
+	#{useYn},
+	#{regUser}
+)
+]]>
+	</insert>
+
+	<update id="updateSample2">
+<![CDATA[
+/* updateSample2 */
+/* 코드생성팀 이백행 SAMPLE2 수정 */
+UPDATE
+	SAMPLE2
+SET
+	ID = #{id},
+	NAME = #{name},
+	DESCRIPTION = #{description},
+	USE_YN = #{useYn},
+	REG_USER = #{regUser}
+WHERE
+	ID = #{id}
+]]>
+	</update>
+
+	<delete id="deleteSample2">
+<![CDATA[
+/* deleteSample2 */
+/* 코드생성팀 이백행 SAMPLE2 삭제 */
+DELETE
+FROM
+	SAMPLE2
+WHERE
+	ID = #{id}
+]]>
+	</delete>
+
+	<select id="selectSample2" resultMap="resultMapSample2">
+<![CDATA[
+/* selectSample2 */
+/* 코드생성팀 이백행 SAMPLE2 조회(단건) */
+SELECT
+	ID,
+	NAME,
+	DESCRIPTION,
+	USE_YN,
+	REG_USER
+FROM
+	SAMPLE2
+WHERE
+	ID = #{id}
+]]>
+	</select>
+
+	<sql id="selectSample2ListSql">
+<![CDATA[
+SELECT
+	ID,
+	NAME,
+	DESCRIPTION,
+	USE_YN,
+	REG_USER
+FROM
+	SAMPLE2
+WHERE
+	1 = 1
+]]>
+
+		<if test="@egovframework.com.cmm.util.EgovMybaitsUtil@isNotEmpty(searchKeyword)">
+			<choose>
+				<when test="@egovframework.com.cmm.util.EgovMybaitsUtil@isEquals(searchCondition, '0')">
+<![CDATA[
+	AND ID = #{searchKeyword}
+]]>
+				</when>
+
+				<when test="@egovframework.com.cmm.util.EgovMybaitsUtil@isEquals(searchCondition, '1')">
+<![CDATA[
+	AND NAME LIKE CONCAT('%', #{searchKeyword}, '%')
+]]>
+				</when>
+				<otherwise>
+<![CDATA[
+	/* otherwise */
+]]>
+				</otherwise>
+
+			</choose>
+		</if>
+
+		<!--  -->
+		<if test="@egovframework.com.cmm.util.EgovMybaitsUtil@isNotEmpty(id)">
+<![CDATA[
+	AND ID = #{id}
+]]>
+		</if>
+
+		<if test="@egovframework.com.cmm.util.EgovMybaitsUtil@isNotEmpty(name)">
+<![CDATA[
+	AND NAME = #{name}
+]]>
+		</if>
+
+		<if test="@egovframework.com.cmm.util.EgovMybaitsUtil@isNotEmpty(description)">
+<![CDATA[
+	AND DESCRIPTION = #{description}
+]]>
+		</if>
+
+		<if test="@egovframework.com.cmm.util.EgovMybaitsUtil@isNotEmpty(useYn)">
+<![CDATA[
+	AND USE_YN = #{useYn}
+]]>
+		</if>
+
+		<if test="@egovframework.com.cmm.util.EgovMybaitsUtil@isNotEmpty(regUser)">
+<![CDATA[
+	AND REG_USER = #{regUser}
+]]>
+		</if>
+
+		<!--  -->
+		<if test="@egovframework.com.cmm.util.EgovMybaitsUtil@isNotEmpty(ids)">
+			<foreach item="item" index="index" collection="ids" open="AND ID IN (" separator="," close=")">
+<![CDATA[
+#{item}
+]]>
+			</foreach>
+		</if>
+
+		<if test="@egovframework.com.cmm.util.EgovMybaitsUtil@isNotEmpty(names)">
+			<foreach item="item" index="index" collection="names" open="AND NAME IN (" separator="," close=")">
+<![CDATA[
+#{item}
+]]>
+			</foreach>
+		</if>
+
+		<if test="@egovframework.com.cmm.util.EgovMybaitsUtil@isNotEmpty(descriptions)">
+			<foreach item="item" index="index" collection="descriptions" open="AND DESCRIPTION IN (" separator="," close=")">
+<![CDATA[
+#{item}
+]]>
+			</foreach>
+		</if>
+
+		<if test="@egovframework.com.cmm.util.EgovMybaitsUtil@isNotEmpty(useYns)">
+			<foreach item="item" index="index" collection="useYns" open="AND USE_YN IN (" separator="," close=")">
+<![CDATA[
+#{item}
+]]>
+			</foreach>
+		</if>
+
+		<if test="@egovframework.com.cmm.util.EgovMybaitsUtil@isNotEmpty(regUsers)">
+			<foreach item="item" index="index" collection="regUsers" open="AND REG_USER IN (" separator="," close=")">
+<![CDATA[
+#{item}
+]]>
+			</foreach>
+		</if>
+
+	</sql>
+
+	<select id="selectSample2List" parameterType="egovframework.com.codegen.sample2.service.Sample2VO" resultType="org.egovframe.rte.psl.dataaccess.util.EgovMap">
+<![CDATA[
+/* selectSample2List */
+/* 코드생성팀 이백행 SAMPLE2 조회(멀티건) */
+]]>
+	<include refid="selectSample2ListSql" />
+<![CDATA[
+ORDER BY
+	ID DESC
+LIMIT #{firstIndex}, #{recordCountPerPage}
+]]>
+	</select>
+
+	<select id="selectSample2ListTotCnt" parameterType="egovframework.com.codegen.sample2.service.Sample2VO" resultType="int">
+<![CDATA[
+/* selectSample2ListTotCnt */
+/* 코드생성팀 이백행 SAMPLE2 조회(멀티건) 카운트 */
+SELECT
+	COUNT(*) AS TOTCNT
+FROM (
+]]>
+	<include refid="selectSample2ListSql" />
+<![CDATA[
+) AS A
+]]>
+	</select>
+
+</mapper>

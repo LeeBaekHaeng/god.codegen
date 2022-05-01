@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<project name="MyProject" default="copy" basedir=".">
+	<description>
+		simple example build file
+	</description>
+	<!-- set global properties for this build -->
+	<property name="egovframework.dev.imp.codegen.template.src" location="../../egovframework.dev.imp.codegen.template" />
+	<property name="egovframework.dev.imp.codegen.template.templates.src" location="../../egovframework.dev.imp.codegen.template.templates" />
+	<property name="egovframework.dev.imp.templates.src" location="../../egovframework.dev.imp.templates" />
+
+	<property name="god.codegen.src" location=".." />
+	<property name="god.codegen.src.test.java" location="${god.codegen.src}/src/test/java" />
+	<property name="god.codegen.src.test.resources" location="${god.codegen.src}/src/test/resources" />
+
+	<target name="copy" description="copy">
+		<copy todir="${god.codegen.src.test.resources}/eGovFrameTemplates">
+			<fileset dir="${egovframework.dev.imp.codegen.template.templates.src}/eGovFrameTemplates" />
+		</copy>
+	</target>
+
+</project>

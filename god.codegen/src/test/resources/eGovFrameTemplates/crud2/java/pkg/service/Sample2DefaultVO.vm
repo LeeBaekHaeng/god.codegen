@@ -1,0 +1,47 @@
+##
+#set($voPackage="${voPackage}")
+#set($defaultVoClassName="${model.entity.pcName}VO")
+#set($defaultVoClassName="${model.entity.pcName}DefaultVO")
+##
+##
+package $voPackage;
+
+import java.util.List;
+
+import egovframework.com.cmm.ComDefaultVO;
+
+/**
+ * @Class Name : ${defaultVoClassName}.java
+ * @Description : ${model.entity.pcName} DefaultVO class
+ * @Modification Information
+ *
+ * @author ${author}
+ * @since ${createDate}
+ * @version 1.0
+ * @see
+ *  
+ *  Copyright (C)  All right reserved.
+ */
+public class ${defaultVoClassName} extends ComDefaultVO {
+
+#set($i=0)	
+#foreach($attribute in $model.attributes)
+    /** ${attribute.name} */
+    private List<${attribute.javaType}> ${attribute.ccName}s;
+    
+#set($i=$i+1)
+#end
+##
+#set($i=0)	
+#foreach($attribute in $model.attributes)
+    public List<${attribute.javaType}> get${attribute.pcName}s() {
+        return this.${attribute.ccName}s;
+    }
+    
+    public void set${attribute.pcName}s(List<${attribute.javaType}> ${attribute.ccName}s) {
+        this.${attribute.ccName}s = ${attribute.ccName}s;
+    }
+    
+#set($i=$i+1)
+#end  
+}

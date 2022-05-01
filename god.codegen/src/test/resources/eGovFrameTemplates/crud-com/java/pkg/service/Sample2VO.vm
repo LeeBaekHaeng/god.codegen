@@ -1,0 +1,46 @@
+##
+#set($voPackage="${voPackage}")
+#set($voClassName="${model.entity.pcName}VO")
+#set($defaultVoClassName="${model.entity.pcName}DefaultVO")
+##
+##
+package $voPackage;
+
+/**
+ * @Class Name : ${voClassName}.java
+ * @Description : ${model.entity.pcName} VO class
+ * @Modification Information
+ *
+ * @author ${author}
+ * @since ${createDate}
+ * @version 1.0
+ * @see
+ *  
+ *  Copyright (C)  All right reserved.
+ */
+@SuppressWarnings("serial")
+public class ${voClassName} extends ${defaultVoClassName} {
+
+#set($i=0)
+#foreach($attribute in $model.attributes)
+	/** ${attribute.name} */
+	private ${attribute.javaType} ${attribute.ccName};
+
+#set($i=$i+1)
+#end
+##
+#set($i=0)
+#foreach($attribute in $model.attributes)
+	/** ${attribute.name} 값읽기 */
+	public ${attribute.javaType} get${attribute.pcName}() {
+		return this.${attribute.ccName};
+	}
+
+	/** ${attribute.name} 값설정 */
+	public void set${attribute.pcName}(${attribute.javaType} ${attribute.ccName}) {
+		this.${attribute.ccName} = ${attribute.ccName};
+	}
+
+#set($i=$i+1)
+#end
+}
