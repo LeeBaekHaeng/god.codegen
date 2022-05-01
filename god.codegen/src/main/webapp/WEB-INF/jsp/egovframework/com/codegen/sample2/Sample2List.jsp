@@ -28,9 +28,15 @@
 /* 글 수정 화면 function */
 
 
-function fn_egov_select(id) {
+function fn_egov_update(id) {
 	document.getElementById("listForm").id.value = id;
    	document.getElementById("listForm").action = "<c:url value='/sample2/updateSample2View.do'/>";
+   	document.getElementById("listForm").submit();
+}
+
+function fn_egov_select(id) {
+	document.getElementById("listForm").id.value = id;
+   	document.getElementById("listForm").action = "<c:url value='/sample2/selectSample2.do'/>";
    	document.getElementById("listForm").submit();
 }
 
@@ -80,7 +86,10 @@ function fn_egov_link_page(pageNo){
 							</tr>
 			<c:forEach var="result" items="${resultList}" varStatus="status">
 			<tr>
-													<td align="center" class="listtd"><a href="javascript:fn_egov_select('<c:out value="${result.id}"/>')"><c:out value="${result.id}"/></a>&nbsp;</td>
+													<td align="center" class="listtd">
+<a href="javascript:fn_egov_update('<c:out value="${result.id}"/>')">수정</a>&nbsp;
+<a href="javascript:fn_egov_select('<c:out value="${result.id}"/>')">상세</a>&nbsp;
+</td>
 						<td align="center" class="listtd"><c:out value="${result.name}"/>&nbsp;</td>
 						<td align="center" class="listtd"><c:out value="${result.description}"/>&nbsp;</td>
 						<td align="center" class="listtd"><c:out value="${result.useYn}"/>&nbsp;</td>

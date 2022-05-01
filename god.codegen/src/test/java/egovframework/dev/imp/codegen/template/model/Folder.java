@@ -74,6 +74,8 @@ public class Folder {
 		jspListFolder2 = smj + "/" + entityPcName + "List";
 		jspRegistFolder = jspFolder + smj + "/" + entityPcName + "Regist.jsp";
 		jspRegistFolder2 = smj + "/" + entityPcName + "Regist";
+		jspDetailFolder = jspFolder + smj + "/" + entityPcName + "Detail.jsp";
+		jspDetailFolder2 = smj + "/" + entityPcName + "Detail";
 	}
 
 	// DataAccess
@@ -98,7 +100,8 @@ public class Folder {
 	private String jspListFolder2;
 	private String jspRegistFolder;
 	private String jspRegistFolder2;
-//	private String jspDetailFolder;
+	private String jspDetailFolder;
+	private String jspDetailFolder2;
 //	private String jspUpdtFolder;
 //	private String jspPopupFolder;
 //	private String jspSearchFolder;
@@ -213,6 +216,22 @@ public class Folder {
 
 	public void setJspRegistFolder2(String jspRegistFolder2) {
 		this.jspRegistFolder2 = jspRegistFolder2;
+	}
+
+	public String getJspDetailFolder() {
+		return jspDetailFolder;
+	}
+
+	public void setJspDetailFolder(String jspDetailFolder) {
+		this.jspDetailFolder = jspDetailFolder;
+	}
+
+	public String getJspDetailFolder2() {
+		return jspDetailFolder2;
+	}
+
+	public void setJspDetailFolder2(String jspDetailFolder2) {
+		this.jspDetailFolder2 = jspDetailFolder2;
 	}
 
 }

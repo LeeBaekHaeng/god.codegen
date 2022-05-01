@@ -6,17 +6,14 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.support.SessionStatus;
 
 import org.egovframe.rte.fdl.property.EgovPropertyService;
 import org.egovframe.rte.psl.dataaccess.util.EgovMap;
 import org.egovframe.rte.ptl.mvc.tags.ui.pagination.PaginationInfo;
 
 import egovframework.com.codegen.sample2.service.Sample2Service;
-import egovframework.com.codegen.sample2.service.Sample2DefaultVO;
 import egovframework.com.codegen.sample2.service.Sample2VO;
 
 /**
@@ -96,8 +93,9 @@ public class Sample2Controller {
 	}
 
 	@GetMapping("/sample2/selectSample2.do")
-	public Sample2VO selectSample2(Sample2VO sample2VO) {
-		return sample2Service.selectSample2(sample2VO);
+	public String selectSample2(Sample2VO sample2VO, Model model) {
+		model.addAttribute(sample2Service.selectSample2(sample2VO));
+		return "egovframework/com/codegen/sample2/Sample2Detail";
 	}
 
 	@PostMapping("/sample2/updateSample2.do")

@@ -146,6 +146,11 @@ public class CrudCodeGenTest {
 		result = crudCodeGen.generate(dataModel, templateFile);
 		pathname = dataModel.getFolder().getJspRegistFolder();
 		writeStringToFile(pathname, result);
+
+		templateFile = eGovFrameTemplates + "jsp/pkg/egovSample2Detail.vm";
+		result = crudCodeGen.generate(dataModel, templateFile);
+		pathname = dataModel.getFolder().getJspDetailFolder();
+		writeStringToFile(pathname, result);
 	}
 
 	private void writeStringToFile(String pathname, String result) {
