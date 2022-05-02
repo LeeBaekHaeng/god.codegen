@@ -46,11 +46,16 @@ public class Folder {
 
 		String srcMainJava = "src/main/java/";
 		String srcMainResources = "src/main/resources/";
+		String srcTestJava = "src/test/java/";
+//		String srcTestResources = "src/test/resources/";
 		String srcMainWebapp = "src/main/webapp/";
 
 		String service = srcMainJava + smj + "/service/";
 		String serviceImpl = srcMainJava + smj + "/service/impl/";
 		String web = srcMainJava + smj + "/web/";
+		String srcTestService = srcTestJava + smj + "/service/";
+//		String srcTestServiceImpl = srcTestJava + smj + "/service/impl/";
+//		String srcTestWeb = srcTestJava + smj + "/web/";
 
 		// DataAccess
 		// TODO 이백행 mysql
@@ -59,6 +64,7 @@ public class Folder {
 		daoPackageFolder = serviceImpl + entityPcName + "DAO.java";
 		mapperPackageFolder = serviceImpl + entityPcName + "Mapper.java";
 		voPackageFolder = service + entityPcName + "VO.java";
+		voPackageTestFolder = srcTestService + entityPcName + "VOTest.java";
 
 		// Service
 		servicePackageFolder = service + entityPcName + "Service.java";
@@ -85,6 +91,7 @@ public class Folder {
 	private String daoPackageFolder;
 	private String mapperPackageFolder;
 	private String voPackageFolder;
+	private String voPackageTestFolder;
 
 	// Service
 	private String servicePackageFolder;
@@ -102,10 +109,10 @@ public class Folder {
 	private String jspRegistFolder2;
 	private String jspDetailFolder;
 	private String jspDetailFolder2;
+
 //	private String jspUpdtFolder;
 //	private String jspPopupFolder;
 //	private String jspSearchFolder;
-
 	public String getSqlMapFolder() {
 		return sqlMapFolder;
 	}
@@ -144,6 +151,14 @@ public class Folder {
 
 	public void setVoPackageFolder(String voPackageFolder) {
 		this.voPackageFolder = voPackageFolder;
+	}
+
+	public String getVoPackageTestFolder() {
+		return voPackageTestFolder;
+	}
+
+	public void setVoPackageTestFolder(String voPackageTestFolder) {
+		this.voPackageTestFolder = voPackageTestFolder;
 	}
 
 	public String getServicePackageFolder() {
@@ -194,20 +209,20 @@ public class Folder {
 		this.jspListFolder = jspListFolder;
 	}
 
-	public String getJspRegistFolder() {
-		return jspRegistFolder;
-	}
-
-	public void setJspRegistFolder(String jspRegistFolder) {
-		this.jspRegistFolder = jspRegistFolder;
-	}
-
 	public String getJspListFolder2() {
 		return jspListFolder2;
 	}
 
 	public void setJspListFolder2(String jspListFolder2) {
 		this.jspListFolder2 = jspListFolder2;
+	}
+
+	public String getJspRegistFolder() {
+		return jspRegistFolder;
+	}
+
+	public void setJspRegistFolder(String jspRegistFolder) {
+		this.jspRegistFolder = jspRegistFolder;
 	}
 
 	public String getJspRegistFolder2() {
