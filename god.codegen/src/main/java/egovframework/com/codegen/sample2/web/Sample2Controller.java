@@ -13,6 +13,7 @@ import org.egovframe.rte.fdl.property.EgovPropertyService;
 import org.egovframe.rte.psl.dataaccess.util.EgovMap;
 import org.egovframe.rte.ptl.mvc.tags.ui.pagination.PaginationInfo;
 
+import egovframework.com.cmm.web.EgovComAbstractController;
 import egovframework.com.codegen.sample2.service.Sample2Service;
 import egovframework.com.codegen.sample2.service.Sample2VO;
 
@@ -30,15 +31,12 @@ import egovframework.com.codegen.sample2.service.Sample2VO;
  */
 
 @Controller
-public class Sample2Controller {
+public class Sample2Controller extends EgovComAbstractController {
 
 	private final Sample2Service sample2Service;
-	private final EgovPropertyService egovPropertyService;
 
-	public Sample2Controller(Sample2Service sample2Service,
-			@Qualifier("propertiesService") EgovPropertyService egovPropertyService) {
+	public Sample2Controller(Sample2Service sample2Service) {
 		this.sample2Service = sample2Service;
-		this.egovPropertyService = egovPropertyService;
 	}
 
 	/**
@@ -51,19 +49,7 @@ public class Sample2Controller {
 	@GetMapping("/sample2/selectSample2List.do")
 	public String selectSample2List(Sample2VO sample2VO, Model model) {
 
-		/** EgovPropertyService.sample */
-		sample2VO.setPageUnit(egovPropertyService.getInt("pageUnit"));
-		sample2VO.setPageSize(egovPropertyService.getInt("pageSize"));
-
-		/** pageing */
-		PaginationInfo paginationInfo = new PaginationInfo();
-		paginationInfo.setCurrentPageNo(sample2VO.getPageIndex());
-		paginationInfo.setRecordCountPerPage(sample2VO.getPageUnit());
-		paginationInfo.setPageSize(sample2VO.getPageSize());
-
-		sample2VO.setFirstIndex(paginationInfo.getFirstRecordIndex());
-		sample2VO.setLastIndex(paginationInfo.getLastRecordIndex());
-		sample2VO.setRecordCountPerPage(paginationInfo.getRecordCountPerPage());
+		PaginationInfo paginationInfo = builderPaginationInfo(sample2VO);
 
 		List<EgovMap> sample2List = sample2Service.selectSample2List(sample2VO);
 		model.addAttribute("resultList", sample2List);
