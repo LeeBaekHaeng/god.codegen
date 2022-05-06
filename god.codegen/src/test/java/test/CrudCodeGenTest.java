@@ -112,7 +112,6 @@ public class CrudCodeGenTest {
 		writeStringToFile(pathname, result);
 
 		templateFile = eGovFrameTemplates + "java/pkg/service/impl/Sample2DAO.vm";
-//		templateFile = "eGovFrameTemplates/crud/java/pkg/service/impl/Sample2DAO2.vm";
 		result = crudCodeGen.generate(dataModel, templateFile);
 		pathname = dataModel.getFolder().getDaoPackageFolder();
 		writeStringToFile(pathname, result);
@@ -156,6 +155,11 @@ public class CrudCodeGenTest {
 		templateFile = eGovFrameTemplates + "java/pkg/service/Sample2VOTest.vm";
 		result = crudCodeGen.generate(dataModel, templateFile);
 		pathname = dataModel.getFolder().getVoPackageTestFolder();
+		writeStringToFile(pathname, result);
+		
+		templateFile = eGovFrameTemplates + "java/pkg/service/impl/Sample2DAOTest.vm";
+		result = crudCodeGen.generate(dataModel, templateFile);
+		pathname = dataModel.getFolder().getDaoPackageTestFolder();
 		writeStringToFile(pathname, result);
 	}
 

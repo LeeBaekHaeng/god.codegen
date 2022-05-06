@@ -52,6 +52,7 @@ public class Folder {
 
 		String service = srcMainJava + smj + "/service/";
 		String serviceImpl = srcMainJava + smj + "/service/impl/";
+		String srcTestServiceImpl = srcTestJava + smj + "/service/impl/";
 		String web = srcMainJava + smj + "/web/";
 		String srcTestService = srcTestJava + smj + "/service/";
 //		String srcTestServiceImpl = srcTestJava + smj + "/service/impl/";
@@ -62,6 +63,7 @@ public class Folder {
 		sqlMapFolder = srcMainResources + sqlmap + entityPcName + "_SQL_mysql.xml";
 		mapperFolder = srcMainResources + smr + entityPcName + "_SQL_mysql.xml"; // TODO 이백행 mysql
 		daoPackageFolder = serviceImpl + entityPcName + "DAO.java";
+		daoPackageTestFolder = srcTestServiceImpl + entityPcName + "DAOTest.java";
 		mapperPackageFolder = serviceImpl + entityPcName + "Mapper.java";
 		voPackageFolder = service + entityPcName + "VO.java";
 		voPackageTestFolder = srcTestService + entityPcName + "VOTest.java";
@@ -89,6 +91,7 @@ public class Folder {
 	private String mapperFolder;
 
 	private String daoPackageFolder;
+	private String daoPackageTestFolder;
 	private String mapperPackageFolder;
 	private String voPackageFolder;
 	private String voPackageTestFolder;
@@ -135,6 +138,14 @@ public class Folder {
 
 	public void setDaoPackageFolder(String daoPackageFolder) {
 		this.daoPackageFolder = daoPackageFolder;
+	}
+
+	public String getDaoPackageTestFolder() {
+		return daoPackageTestFolder;
+	}
+
+	public void setDaoPackageTestFolder(String daoPackageTestFolder) {
+		this.daoPackageTestFolder = daoPackageTestFolder;
 	}
 
 	public String getMapperPackageFolder() {
