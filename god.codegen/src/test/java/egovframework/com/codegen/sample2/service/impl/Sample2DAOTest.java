@@ -58,6 +58,12 @@ public class Sample2DAOTest {
 			egovLogger.error("sample2EgovIdGnrService FdlException");
 		}
 
+//		sample2VO.setId("test id");
+//		sample2VO.setName("test name");
+//		sample2VO.setDescription("test description");
+//		sample2VO.setUseYn("test useYn");
+//		sample2VO.setRegUser("test regUser");
+
 		int insertSample2 = sample2DAO.insertSample2(sample2VO);
 		egovLogger.debug("insertSample2={}", insertSample2);
 	}
@@ -68,6 +74,15 @@ public class Sample2DAOTest {
 	@Test
 	public void updateSample2() {
 		Sample2VO sample2VO = new Sample2VO();
+
+		sample2VO.setId("test id");
+
+//		sample2VO.setId("test id");
+//		sample2VO.setName("test name");
+//		sample2VO.setDescription("test description");
+//		sample2VO.setUseYn("test useYn");
+//		sample2VO.setRegUser("test regUser");
+
 		int updateSample2 = sample2DAO.updateSample2(sample2VO);
 		egovLogger.debug("updateSample2={}", updateSample2);
 	}
@@ -78,6 +93,15 @@ public class Sample2DAOTest {
 	@Test
 	public void deleteSample2() {
 		Sample2VO sample2VO = new Sample2VO();
+
+		sample2VO.setId("test id");
+
+//		sample2VO.setId("test id");
+//		sample2VO.setName("test name");
+//		sample2VO.setDescription("test description");
+//		sample2VO.setUseYn("test useYn");
+//		sample2VO.setRegUser("test regUser");
+
 		int deleteSample2 = sample2DAO.deleteSample2(sample2VO);
 		egovLogger.debug("deleteSample2={}", deleteSample2);
 	}
@@ -88,6 +112,15 @@ public class Sample2DAOTest {
 	@Test
 	public void selectSample2() {
 		Sample2VO sample2VO = new Sample2VO();
+
+		sample2VO.setId("test id");
+
+//		sample2VO.setId("test id");
+//		sample2VO.setName("test name");
+//		sample2VO.setDescription("test description");
+//		sample2VO.setUseYn("test useYn");
+//		sample2VO.setRegUser("test regUser");
+
 		Sample2VO result = sample2DAO.selectSample2(sample2VO);
 		egovLogger.debug("result={}", result);
 	}
@@ -98,6 +131,13 @@ public class Sample2DAOTest {
 	@Test
 	public void selectSample2List() {
 		Sample2VO sample2VO = new Sample2VO();
+
+//		sample2VO.setId("test id");
+//		sample2VO.setName("test name");
+//		sample2VO.setDescription("test description");
+//		sample2VO.setUseYn("test useYn");
+//		sample2VO.setRegUser("test regUser");
+
 		List<EgovMap> resultList = sample2DAO.selectSample2List(sample2VO);
 		egovLogger.debug("resultList={}", resultList);
 	}
@@ -108,6 +148,13 @@ public class Sample2DAOTest {
 	@Test
 	public void selectSample2ListTotCnt() {
 		Sample2VO sample2VO = new Sample2VO();
+
+//		sample2VO.setId("test id");
+//		sample2VO.setName("test name");
+//		sample2VO.setDescription("test description");
+//		sample2VO.setUseYn("test useYn");
+//		sample2VO.setRegUser("test regUser");
+
 		int selectSample2ListTotCnt = sample2DAO.selectSample2ListTotCnt(sample2VO);
 		egovLogger.debug("selectSample2ListTotCnt={}", selectSample2ListTotCnt);
 	}

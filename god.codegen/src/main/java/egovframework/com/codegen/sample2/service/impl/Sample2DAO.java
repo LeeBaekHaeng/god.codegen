@@ -31,7 +31,7 @@ public class Sample2DAO extends EgovComAbstractDAO {
 	 * @exception Exception
 	 */
 	public int insertSample2(Sample2VO sample2VO) {
-		return (int) insert("sample2DAO.insertSample2_S", sample2VO);
+		return (int) update("sample2DAO.insertSample2_S", sample2VO);
 	}
 
 	/**
