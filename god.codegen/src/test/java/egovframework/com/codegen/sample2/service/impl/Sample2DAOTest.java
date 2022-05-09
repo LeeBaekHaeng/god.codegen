@@ -58,7 +58,6 @@ public class Sample2DAOTest {
 			egovLogger.error("sample2EgovIdGnrService FdlException");
 		}
 
-//		sample2VO.setId("test id");
 //		sample2VO.setName("test name");
 //		sample2VO.setDescription("test description");
 //		sample2VO.setUseYn("test useYn");
@@ -77,7 +76,6 @@ public class Sample2DAOTest {
 
 		sample2VO.setId("test id");
 
-//		sample2VO.setId("test id");
 //		sample2VO.setName("test name");
 //		sample2VO.setDescription("test description");
 //		sample2VO.setUseYn("test useYn");
@@ -96,7 +94,6 @@ public class Sample2DAOTest {
 
 		sample2VO.setId("test id");
 
-//		sample2VO.setId("test id");
 //		sample2VO.setName("test name");
 //		sample2VO.setDescription("test description");
 //		sample2VO.setUseYn("test useYn");
@@ -115,7 +112,6 @@ public class Sample2DAOTest {
 
 		sample2VO.setId("test id");
 
-//		sample2VO.setId("test id");
 //		sample2VO.setName("test name");
 //		sample2VO.setDescription("test description");
 //		sample2VO.setUseYn("test useYn");
@@ -132,7 +128,11 @@ public class Sample2DAOTest {
 	public void selectSample2List() {
 		Sample2VO sample2VO = new Sample2VO();
 
+		sample2VO.setFirstIndex(1);
+		sample2VO.setRecordCountPerPage(10);
+
 //		sample2VO.setId("test id");
+
 //		sample2VO.setName("test name");
 //		sample2VO.setDescription("test description");
 //		sample2VO.setUseYn("test useYn");
@@ -150,6 +150,7 @@ public class Sample2DAOTest {
 		Sample2VO sample2VO = new Sample2VO();
 
 //		sample2VO.setId("test id");
+
 //		sample2VO.setName("test name");
 //		sample2VO.setDescription("test description");
 //		sample2VO.setUseYn("test useYn");
