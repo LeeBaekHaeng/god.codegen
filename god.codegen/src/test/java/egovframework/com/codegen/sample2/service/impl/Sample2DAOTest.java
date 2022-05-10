@@ -131,6 +131,18 @@ public class Sample2DAOTest {
 		sample2VO.setFirstIndex(1);
 		sample2VO.setRecordCountPerPage(10);
 
+		sample2VO.setSearchCondition("");
+		sample2VO.setSearchKeyword("");
+		sample2VO.setSearchUseYn("");
+//		sample2VO.setPageIndex(1);
+//		sample2VO.setPageUnit(10);
+//		sample2VO.setPageSize(10);
+//		sample2VO.setFirstIndex(1);
+//		sample2VO.setLastIndex(1);
+//		sample2VO.setRecordCountPerPage(10);
+		sample2VO.setSearchKeywordFrom("");
+		sample2VO.setSearchKeywordTo("");
+
 //		sample2VO.setId("test id");
 
 //		sample2VO.setName("test name");
@@ -148,6 +160,21 @@ public class Sample2DAOTest {
 	@Test
 	public void selectSample2ListTotCnt() {
 		Sample2VO sample2VO = new Sample2VO();
+
+		sample2VO.setFirstIndex(1);
+		sample2VO.setRecordCountPerPage(10);
+
+		sample2VO.setSearchCondition("");
+		sample2VO.setSearchKeyword("");
+		sample2VO.setSearchUseYn("");
+//		sample2VO.setPageIndex(1);
+//		sample2VO.setPageUnit(10);
+//		sample2VO.setPageSize(10);
+//		sample2VO.setFirstIndex(1);
+//		sample2VO.setLastIndex(1);
+//		sample2VO.setRecordCountPerPage(10);
+		sample2VO.setSearchKeywordFrom("");
+		sample2VO.setSearchKeywordTo("");
 
 //		sample2VO.setId("test id");
 
