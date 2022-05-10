@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<project name="MyProject" default="copy" basedir=".">
+
+	<target name="copy">
+		<copy todir="E:\EGOVFRAME\git\egovframe-development\egovframework.dev.imp.codegen.template.templates\eGovFrameTemplates\crud-com" verbose="true" overwrite="true">
+			<fileset dir="E:\EGOVFRAME\git\god.codegen\god.codegen\src\test\resources\eGovFrameTemplates\crud-com" />
+		</copy>
+	</target>
+
+</project>
