@@ -37,6 +37,39 @@ package egovframework.dev.imp.codegen.template.model;
  */
 public class Folder {
 
+	// DataAccess
+	private String sqlMapFolder;
+	private String mapperFolder;
+
+	private String daoPackageFolder;
+	private String daoPackageTestFolder;
+	private String mapperPackageFolder;
+	private String mapperPackageTestFolder;
+	private String voPackageFolder;
+	private String voPackageTestFolder;
+
+	// Service
+	private String servicePackageFolder;
+	private String implPackageFolder;
+	private String implPackageTestFolder;
+
+	// Web
+	private String controllerPackageFolder;
+	private String jspFolder;
+
+	private String defaultVOFolder;
+
+	private String jspListFolder;
+	private String jspListFolder2;
+	private String jspRegistFolder;
+	private String jspRegistFolder2;
+	private String jspDetailFolder;
+	private String jspDetailFolder2;
+
+//	private String jspUpdtFolder;
+//	private String jspPopupFolder;
+//	private String jspSearchFolder;
+
 	public Folder(String egovPackageName1, String egovPackageName2, String egovPackageName3, String entityPcName) {
 		String smj = (egovPackageName1 + "." + egovPackageName2 + "." + egovPackageName3).replaceAll("\\.", "/");
 		String smr = (egovPackageName1.replaceFirst("\\.", ".mapper.") + "." + egovPackageName2 + "."
@@ -65,12 +98,14 @@ public class Folder {
 		daoPackageFolder = serviceImpl + entityPcName + "DAO.java";
 		daoPackageTestFolder = srcTestServiceImpl + entityPcName + "DAOTest.java";
 		mapperPackageFolder = serviceImpl + entityPcName + "Mapper.java";
+		mapperPackageTestFolder = srcTestServiceImpl + entityPcName + "MapperTest.java";
 		voPackageFolder = service + entityPcName + "VO.java";
 		voPackageTestFolder = srcTestService + entityPcName + "VOTest.java";
 
 		// Service
 		servicePackageFolder = service + entityPcName + "Service.java";
 		implPackageFolder = serviceImpl + entityPcName + "ServiceImpl.java";
+		implPackageTestFolder = srcTestServiceImpl + entityPcName + "ServiceImplTest.java";
 
 		// Web
 		controllerPackageFolder = web + entityPcName + "Controller.java";
@@ -86,36 +121,6 @@ public class Folder {
 		jspDetailFolder2 = smj + "/" + entityPcName + "Detail";
 	}
 
-	// DataAccess
-	private String sqlMapFolder;
-	private String mapperFolder;
-
-	private String daoPackageFolder;
-	private String daoPackageTestFolder;
-	private String mapperPackageFolder;
-	private String voPackageFolder;
-	private String voPackageTestFolder;
-
-	// Service
-	private String servicePackageFolder;
-	private String implPackageFolder;
-
-	// Web
-	private String controllerPackageFolder;
-	private String jspFolder;
-
-	private String defaultVOFolder;
-
-	private String jspListFolder;
-	private String jspListFolder2;
-	private String jspRegistFolder;
-	private String jspRegistFolder2;
-	private String jspDetailFolder;
-	private String jspDetailFolder2;
-
-//	private String jspUpdtFolder;
-//	private String jspPopupFolder;
-//	private String jspSearchFolder;
 	public String getSqlMapFolder() {
 		return sqlMapFolder;
 	}
@@ -156,6 +161,14 @@ public class Folder {
 		this.mapperPackageFolder = mapperPackageFolder;
 	}
 
+	public String getMapperPackageTestFolder() {
+		return mapperPackageTestFolder;
+	}
+
+	public void setMapperPackageTestFolder(String mapperPackageTestFolder) {
+		this.mapperPackageTestFolder = mapperPackageTestFolder;
+	}
+
 	public String getVoPackageFolder() {
 		return voPackageFolder;
 	}
@@ -186,6 +199,14 @@ public class Folder {
 
 	public void setImplPackageFolder(String implPackageFolder) {
 		this.implPackageFolder = implPackageFolder;
+	}
+
+	public String getImplPackageTestFolder() {
+		return implPackageTestFolder;
+	}
+
+	public void setImplPackageTestFolder(String implPackageTestFolder) {
+		this.implPackageTestFolder = implPackageTestFolder;
 	}
 
 	public String getControllerPackageFolder() {

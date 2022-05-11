@@ -18,7 +18,7 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import egovframework.com.codegen.sample2.service.Sample2VO;
 
 /**
- * @Class Name : Sample2DAO.java
+ * @Class Name : Sample2Mapper.java
  * @Description : Sample2 DAO Class
  * @Modification Information
  *
@@ -33,12 +33,12 @@ import egovframework.com.codegen.sample2.service.Sample2VO;
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations = { "classpath*:egovframework/spring/com/**/context-*.xml" })
 @ActiveProfiles("mysql")
-public class Sample2DAOTest {
+public class Sample2MapperTest {
 
-	protected Logger egovLogger = LoggerFactory.getLogger(Sample2DAOTest.class);
+	protected Logger egovLogger = LoggerFactory.getLogger(Sample2MapperTest.class);
 
 	@Resource
-	private Sample2DAO sample2DAO;
+	private Sample2Mapper sample2Mapper;
 
 	@Resource(name = "egovFileIdGnrService")
 	private EgovIdGnrService sample2EgovIdGnrService;
@@ -62,7 +62,7 @@ public class Sample2DAOTest {
 //		sample2VO.setUseYn("test useYn");
 //		sample2VO.setRegUser("test regUser");
 
-		int insertSample2 = sample2DAO.insertSample2(sample2VO);
+		int insertSample2 = sample2Mapper.insertSample2(sample2VO);
 		egovLogger.debug("insertSample2={}", insertSample2);
 	}
 
@@ -80,7 +80,7 @@ public class Sample2DAOTest {
 //		sample2VO.setUseYn("test useYn");
 //		sample2VO.setRegUser("test regUser");
 
-		int updateSample2 = sample2DAO.updateSample2(sample2VO);
+		int updateSample2 = sample2Mapper.updateSample2(sample2VO);
 		egovLogger.debug("updateSample2={}", updateSample2);
 	}
 
@@ -98,7 +98,7 @@ public class Sample2DAOTest {
 //		sample2VO.setUseYn("test useYn");
 //		sample2VO.setRegUser("test regUser");
 
-		int deleteSample2 = sample2DAO.deleteSample2(sample2VO);
+		int deleteSample2 = sample2Mapper.deleteSample2(sample2VO);
 		egovLogger.debug("deleteSample2={}", deleteSample2);
 	}
 
@@ -116,7 +116,7 @@ public class Sample2DAOTest {
 //		sample2VO.setUseYn("test useYn");
 //		sample2VO.setRegUser("test regUser");
 
-		Sample2VO result = sample2DAO.selectSample2(sample2VO);
+		Sample2VO result = sample2Mapper.selectSample2(sample2VO);
 		egovLogger.debug("result={}", result);
 	}
 
@@ -149,7 +149,7 @@ public class Sample2DAOTest {
 //		sample2VO.setUseYn("test useYn");
 //		sample2VO.setRegUser("test regUser");
 
-		List<EgovMap> resultList = sample2DAO.selectSample2List(sample2VO);
+		List<EgovMap> resultList = sample2Mapper.selectSample2List(sample2VO);
 		egovLogger.debug("resultList={}", resultList);
 	}
 
@@ -182,7 +182,7 @@ public class Sample2DAOTest {
 //		sample2VO.setUseYn("test useYn");
 //		sample2VO.setRegUser("test regUser");
 
-		int selectSample2ListTotCnt = sample2DAO.selectSample2ListTotCnt(sample2VO);
+		int selectSample2ListTotCnt = sample2Mapper.selectSample2ListTotCnt(sample2VO);
 		egovLogger.debug("selectSample2ListTotCnt={}", selectSample2ListTotCnt);
 	}
 

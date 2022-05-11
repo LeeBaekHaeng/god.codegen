@@ -156,10 +156,20 @@ public class CrudCodeGenTest {
 		result = crudCodeGen.generate(dataModel, templateFile);
 		pathname = dataModel.getFolder().getVoPackageTestFolder();
 		writeStringToFile(pathname, result);
-		
+
 		templateFile = eGovFrameTemplates + "java/pkg/service/impl/Sample2DAOTest.vm";
 		result = crudCodeGen.generate(dataModel, templateFile);
 		pathname = dataModel.getFolder().getDaoPackageTestFolder();
+		writeStringToFile(pathname, result);
+
+		templateFile = eGovFrameTemplates + "java/pkg/service/impl/Sample2MapperTest.vm";
+		result = crudCodeGen.generate(dataModel, templateFile);
+		pathname = dataModel.getFolder().getMapperPackageTestFolder();
+		writeStringToFile(pathname, result);
+
+		templateFile = eGovFrameTemplates + "java/pkg/service/impl/EgovSample2ServiceImplTest.vm";
+		result = crudCodeGen.generate(dataModel, templateFile);
+		pathname = dataModel.getFolder().getImplPackageTestFolder();
 		writeStringToFile(pathname, result);
 	}
 

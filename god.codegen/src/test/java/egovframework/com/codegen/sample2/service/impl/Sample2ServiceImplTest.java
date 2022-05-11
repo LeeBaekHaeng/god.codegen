@@ -4,8 +4,6 @@ import java.util.List;
 
 import javax.annotation.Resource;
 
-import org.egovframe.rte.fdl.cmmn.exception.FdlException;
-import org.egovframe.rte.fdl.idgnr.EgovIdGnrService;
 import org.egovframe.rte.psl.dataaccess.util.EgovMap;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -15,10 +13,11 @@ import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
+import egovframework.com.codegen.sample2.service.Sample2Service;
 import egovframework.com.codegen.sample2.service.Sample2VO;
 
 /**
- * @Class Name : Sample2DAO.java
+ * @Class Name : Sample2Service.java
  * @Description : Sample2 DAO Class
  * @Modification Information
  *
@@ -33,15 +32,12 @@ import egovframework.com.codegen.sample2.service.Sample2VO;
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations = { "classpath*:egovframework/spring/com/**/context-*.xml" })
 @ActiveProfiles("mysql")
-public class Sample2DAOTest {
+public class Sample2ServiceImplTest {
 
-	protected Logger egovLogger = LoggerFactory.getLogger(Sample2DAOTest.class);
+	protected Logger egovLogger = LoggerFactory.getLogger(Sample2ServiceImplTest.class);
 
 	@Resource
-	private Sample2DAO sample2DAO;
-
-	@Resource(name = "egovFileIdGnrService")
-	private EgovIdGnrService sample2EgovIdGnrService;
+	private Sample2Service sample2Service;
 
 	/**
 	 * SAMPLE2을 등록한다.
@@ -50,19 +46,12 @@ public class Sample2DAOTest {
 	public void insertSample2() {
 		Sample2VO sample2VO = new Sample2VO();
 
-		try {
-			sample2VO.setId(sample2EgovIdGnrService.getNextStringId());
-			egovLogger.debug("id={}", sample2VO.getId());
-		} catch (FdlException e) {
-			egovLogger.error("sample2EgovIdGnrService FdlException");
-		}
-
 //		sample2VO.setName("test name");
 //		sample2VO.setDescription("test description");
 //		sample2VO.setUseYn("test useYn");
 //		sample2VO.setRegUser("test regUser");
 
-		int insertSample2 = sample2DAO.insertSample2(sample2VO);
+		int insertSample2 = sample2Service.insertSample2(sample2VO);
 		egovLogger.debug("insertSample2={}", insertSample2);
 	}
 
@@ -80,7 +69,7 @@ public class Sample2DAOTest {
 //		sample2VO.setUseYn("test useYn");
 //		sample2VO.setRegUser("test regUser");
 
-		int updateSample2 = sample2DAO.updateSample2(sample2VO);
+		int updateSample2 = sample2Service.updateSample2(sample2VO);
 		egovLogger.debug("updateSample2={}", updateSample2);
 	}
 
@@ -98,7 +87,7 @@ public class Sample2DAOTest {
 //		sample2VO.setUseYn("test useYn");
 //		sample2VO.setRegUser("test regUser");
 
-		int deleteSample2 = sample2DAO.deleteSample2(sample2VO);
+		int deleteSample2 = sample2Service.deleteSample2(sample2VO);
 		egovLogger.debug("deleteSample2={}", deleteSample2);
 	}
 
@@ -116,7 +105,7 @@ public class Sample2DAOTest {
 //		sample2VO.setUseYn("test useYn");
 //		sample2VO.setRegUser("test regUser");
 
-		Sample2VO result = sample2DAO.selectSample2(sample2VO);
+		Sample2VO result = sample2Service.selectSample2(sample2VO);
 		egovLogger.debug("result={}", result);
 	}
 
@@ -149,7 +138,7 @@ public class Sample2DAOTest {
 //		sample2VO.setUseYn("test useYn");
 //		sample2VO.setRegUser("test regUser");
 
-		List<EgovMap> resultList = sample2DAO.selectSample2List(sample2VO);
+		List<EgovMap> resultList = sample2Service.selectSample2List(sample2VO);
 		egovLogger.debug("resultList={}", resultList);
 	}
 
@@ -182,7 +171,7 @@ public class Sample2DAOTest {
 //		sample2VO.setUseYn("test useYn");
 //		sample2VO.setRegUser("test regUser");
 
-		int selectSample2ListTotCnt = sample2DAO.selectSample2ListTotCnt(sample2VO);
+		int selectSample2ListTotCnt = sample2Service.selectSample2ListTotCnt(sample2VO);
 		egovLogger.debug("selectSample2ListTotCnt={}", selectSample2ListTotCnt);
 	}
 
