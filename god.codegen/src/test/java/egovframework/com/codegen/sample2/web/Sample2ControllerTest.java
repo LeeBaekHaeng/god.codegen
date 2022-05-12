@@ -57,6 +57,9 @@ public class Sample2ControllerTest {
 
 	private MockMvc mockMvc;
 
+
+	static Sample2VO sample2VO;
+
 	@Before
 	public void setup() {
 		mockMvc = webAppContextSetup(wac).build();
@@ -80,10 +83,10 @@ public class Sample2ControllerTest {
 
 		// @formatter:off
 		mockMvc.perform(get("/sample2/insertSample2.do").params(params))
-			.andDo(print())
 			.andExpect(status().isOk())
 //			.andExpect(content().contentType("text/html"))
 			.andExpect(forwardedUrl("/WEB-INF/jsp/egovframework/com/codegen/sample2/Sample2Regist.jsp"))
+			.andDo(print())
 		;
 		// @formatter:on
 	}
@@ -106,15 +109,15 @@ public class Sample2ControllerTest {
 
 		// @formatter:off
 		ResultActions resultActions = mockMvc.perform(post("/sample2/insertSample2.do").params(params))
-			.andDo(print())
 			.andExpect(status().isFound())
 //			.andExpect(content().contentType("text/html"))
 			.andExpect(redirectedUrl("/sample2/selectSample2List.do?insertSample2=1"))
+			.andDo(print())
 		;
 		// @formatter:on
 
 		MvcResult mvcResult = resultActions.andReturn();
-		Sample2VO sample2VO = (Sample2VO) mvcResult.getModelAndView().getModel().get("sample2VO");
+		sample2VO = (Sample2VO) mvcResult.getModelAndView().getModel().get("sample2VO");
 		egovLogger.debug("id={}", sample2VO.getId());
 	}
 
@@ -139,7 +142,8 @@ public class Sample2ControllerTest {
 //		params.add("setSearchKeywordFrom", "");
 //		params.add("setSearchKeywordTo", "");
 
-//		params.add("id", "test id");
+		params.add("id", sample2VO.getId());
+		egovLogger.debug("id={}", sample2VO.getId());
 
 //		params.add("name", "test name");
 //		params.add("description", "test description");
@@ -148,10 +152,10 @@ public class Sample2ControllerTest {
 
 		// @formatter:off
 		mockMvc.perform(get("/sample2/selectSample2List.do").params(params))
-			.andDo(print())
 			.andExpect(status().isOk())
 //			.andExpect(content().contentType("text/html"))
 			.andExpect(forwardedUrl("/WEB-INF/jsp/egovframework/com/codegen/sample2/Sample2List.jsp"))
+			.andDo(print())
 		;
 		// @formatter:on
 	}
@@ -165,7 +169,8 @@ public class Sample2ControllerTest {
 	public void d1_selectSample2() throws Exception {
 		MultiValueMap<String, String> params = new LinkedMultiValueMap<>();
 
-//		params.add("id", "test id");
+		params.add("id", sample2VO.getId());
+		egovLogger.debug("id={}", sample2VO.getId());
 
 //		params.add("name", "test name");
 //		params.add("description", "test description");
@@ -174,10 +179,10 @@ public class Sample2ControllerTest {
 
 		// @formatter:off
 		mockMvc.perform(get("/sample2/selectSample2.do").params(params))
-			.andDo(print())
 			.andExpect(status().isOk())
 //			.andExpect(content().contentType("text/html"))
 			.andExpect(forwardedUrl("/WEB-INF/jsp/egovframework/com/codegen/sample2/Sample2Detail.jsp"))
+			.andDo(print())
 		;
 		// @formatter:on
 	}
@@ -191,7 +196,8 @@ public class Sample2ControllerTest {
 	public void e1_updateSample2View() throws Exception {
 		MultiValueMap<String, String> params = new LinkedMultiValueMap<>();
 
-//		params.add("id", "test id");
+		params.add("id", sample2VO.getId());
+		egovLogger.debug("id={}", sample2VO.getId());
 
 //		params.add("name", "test name");
 //		params.add("description", "test description");
@@ -200,10 +206,10 @@ public class Sample2ControllerTest {
 
 		// @formatter:off
 		mockMvc.perform(get("/sample2/updateSample2.do").params(params))
-			.andDo(print())
 			.andExpect(status().isOk())
 //			.andExpect(content().contentType("text/html"))
 			.andExpect(forwardedUrl("/WEB-INF/jsp/egovframework/com/codegen/sample2/Sample2Regist.jsp"))
+			.andDo(print())
 		;
 		// @formatter:on
 	}
@@ -217,7 +223,8 @@ public class Sample2ControllerTest {
 	public void f1_updateSample2() throws Exception {
 		MultiValueMap<String, String> params = new LinkedMultiValueMap<>();
 
-//		params.add("id", "test id");
+		params.add("id", sample2VO.getId());
+		egovLogger.debug("id={}", sample2VO.getId());
 
 //		params.add("name", "test name");
 //		params.add("description", "test description");
@@ -226,10 +233,10 @@ public class Sample2ControllerTest {
 
 		// @formatter:off
 		mockMvc.perform(post("/sample2/updateSample2.do").params(params))
-			.andDo(print())
 			.andExpect(status().isFound())
 //			.andExpect(content().contentType("text/html"))
 			.andExpect(redirectedUrl("/sample2/selectSample2List.do?updateSample2=1"))
+			.andDo(print())
 		;
 		// @formatter:on
 	}
@@ -243,7 +250,8 @@ public class Sample2ControllerTest {
 	public void g1_deleteSample2() throws Exception {
 		MultiValueMap<String, String> params = new LinkedMultiValueMap<>();
 
-//		params.add("id", "test id");
+		params.add("id", sample2VO.getId());
+		egovLogger.debug("id={}", sample2VO.getId());
 
 //		params.add("name", "test name");
 //		params.add("description", "test description");
@@ -252,10 +260,10 @@ public class Sample2ControllerTest {
 
 		// @formatter:off
 		mockMvc.perform(post("/sample2/deleteSample2.do").params(params))
-			.andDo(print())
 			.andExpect(status().isFound())
 //			.andExpect(content().contentType("text/html"))
 			.andExpect(redirectedUrl("/sample2/selectSample2List.do?deleteSample2=1"))
+			.andDo(print())
 		;
 		// @formatter:on
 	}
