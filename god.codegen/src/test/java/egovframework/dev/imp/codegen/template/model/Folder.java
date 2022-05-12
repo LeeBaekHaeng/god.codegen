@@ -55,6 +55,7 @@ public class Folder {
 
 	// Web
 	private String controllerPackageFolder;
+	private String controllerPackageTestFolder;
 	private String jspFolder;
 
 	private String defaultVOFolder;
@@ -85,11 +86,10 @@ public class Folder {
 
 		String service = srcMainJava + smj + "/service/";
 		String serviceImpl = srcMainJava + smj + "/service/impl/";
-		String srcTestServiceImpl = srcTestJava + smj + "/service/impl/";
 		String web = srcMainJava + smj + "/web/";
 		String srcTestService = srcTestJava + smj + "/service/";
-//		String srcTestServiceImpl = srcTestJava + smj + "/service/impl/";
-//		String srcTestWeb = srcTestJava + smj + "/web/";
+		String srcTestServiceImpl = srcTestJava + smj + "/service/impl/";
+		String srcTestWeb = srcTestJava + smj + "/web/";
 
 		// DataAccess
 		// TODO 이백행 mysql
@@ -109,6 +109,7 @@ public class Folder {
 
 		// Web
 		controllerPackageFolder = web + entityPcName + "Controller.java";
+		controllerPackageTestFolder = srcTestWeb + entityPcName + "ControllerTest.java";
 		jspFolder = srcMainWebapp + "WEB-INF/jsp/";
 
 		defaultVOFolder = service + entityPcName + "DefaultVO.java";
@@ -215,6 +216,14 @@ public class Folder {
 
 	public void setControllerPackageFolder(String controllerPackageFolder) {
 		this.controllerPackageFolder = controllerPackageFolder;
+	}
+
+	public String getControllerPackageTestFolder() {
+		return controllerPackageTestFolder;
+	}
+
+	public void setControllerPackageTestFolder(String controllerPackageTestFolder) {
+		this.controllerPackageTestFolder = controllerPackageTestFolder;
 	}
 
 	public String getJspFolder() {

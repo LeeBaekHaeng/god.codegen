@@ -171,6 +171,11 @@ public class CrudCodeGenTest {
 		result = crudCodeGen.generate(dataModel, templateFile);
 		pathname = dataModel.getFolder().getImplPackageTestFolder();
 		writeStringToFile(pathname, result);
+
+		templateFile = eGovFrameTemplates + "java/pkg/web/EgovSample2ControllerTest.vm";
+		result = crudCodeGen.generate(dataModel, templateFile);
+		pathname = dataModel.getFolder().getControllerPackageTestFolder();
+		writeStringToFile(pathname, result);
 	}
 
 	private void writeStringToFile(String pathname, String result) {
