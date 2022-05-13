@@ -8,6 +8,9 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 import static org.springframework.test.web.servlet.setup.MockMvcBuilders.webAppContextSetup;
 
+import java.util.Date;
+
+import org.egovframe.rte.fdl.string.EgovDateUtil;
 import org.junit.Before;
 import org.junit.FixMethodOrder;
 import org.junit.Test;
@@ -60,6 +63,8 @@ public class Sample2ControllerTest {
 
 	static Sample2VO sample2VO;
 
+	static String today = " " + EgovDateUtil.toString(new Date(), null, null);
+
 	@Before
 	public void setup() {
 		mockMvc = webAppContextSetup(wac).build();
@@ -102,10 +107,10 @@ public class Sample2ControllerTest {
 
 //		params.add("id", "test id");
 
-//		params.add("name", "test name");
-//		params.add("description", "test description");
-//		params.add("useYn", "test useYn");
-//		params.add("regUser", "test regUser");
+		params.add("name", "test name" + today);
+		params.add("description", "test description" + today);
+		params.add("useYn", "test useYn" + today);
+		params.add("regUser", "test regUser" + today);
 
 		// @formatter:off
 		ResultActions resultActions = mockMvc.perform(post("/sample2/insertSample2.do").params(params))
@@ -226,10 +231,10 @@ public class Sample2ControllerTest {
 		params.add("id", sample2VO.getId());
 		egovLogger.debug("id={}", sample2VO.getId());
 
-//		params.add("name", "test name");
-//		params.add("description", "test description");
-//		params.add("useYn", "test useYn");
-//		params.add("regUser", "test regUser");
+		params.add("name", "test name" + today + " 수정");
+		params.add("description", "test description" + today + " 수정");
+		params.add("useYn", "test useYn" + today + " 수정");
+		params.add("regUser", "test regUser" + today + " 수정");
 
 		// @formatter:off
 		mockMvc.perform(post("/sample2/updateSample2.do").params(params))
