@@ -106,7 +106,7 @@ public class Sample2DAOTest {
 	 * SAMPLE2 총 갯수를 조회한다.
 	 */
 	@Test
-	public void c1_selectSample2ListTotCnt() {
+	public void b1_selectSample2ListTotCnt() {
 		Sample2VO sample2VO = new Sample2VO();
 
 		sample2VO.setFirstIndex(1);
@@ -139,7 +139,7 @@ public class Sample2DAOTest {
 	 * SAMPLE2을 조회한다.
 	 */
 	@Test
-	public void d1_selectSample2() {
+	public void b1_selectSample2() {
 		Sample2VO sample2VO = new Sample2VO();
 
 		sample2VO.setId("test id");
@@ -157,7 +157,7 @@ public class Sample2DAOTest {
 	 * SAMPLE2을 수정한다.
 	 */
 	@Test
-	public void e1_updateSample2() {
+	public void c1_updateSample2() {
 		Sample2VO sample2VO = new Sample2VO();
 
 		sample2VO.setId("test id");
@@ -175,7 +175,7 @@ public class Sample2DAOTest {
 	 * SAMPLE2을 삭제한다.
 	 */
 	@Test
-	public void f1_deleteSample2() {
+	public void d1_deleteSample2() {
 		Sample2VO sample2VO = new Sample2VO();
 
 		sample2VO.setId("test id");

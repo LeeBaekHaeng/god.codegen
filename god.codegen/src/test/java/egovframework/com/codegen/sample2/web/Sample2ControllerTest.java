@@ -102,7 +102,7 @@ public class Sample2ControllerTest {
 	 * @throws Exception
 	 */
 	@Test
-	public void b1_insertSample2() throws Exception {
+	public void a1_insertSample2() throws Exception {
 		MultiValueMap<String, String> params = new LinkedMultiValueMap<>();
 
 //		params.add("id", "test id");
@@ -132,7 +132,7 @@ public class Sample2ControllerTest {
 	 * @throws Exception
 	 */
 	@Test
-	public void c1_selectSample2List() throws Exception {
+	public void b1_selectSample2List() throws Exception {
 		MultiValueMap<String, String> params = new LinkedMultiValueMap<>();
 
 		params.add("setPageIndex", "1");
@@ -171,7 +171,7 @@ public class Sample2ControllerTest {
 	 * @throws Exception
 	 */
 	@Test
-	public void d1_selectSample2() throws Exception {
+	public void b1_selectSample2() throws Exception {
 		MultiValueMap<String, String> params = new LinkedMultiValueMap<>();
 
 		params.add("id", sample2VO.getId());
@@ -198,7 +198,7 @@ public class Sample2ControllerTest {
 	 * @throws Exception
 	 */
 	@Test
-	public void e1_updateSample2View() throws Exception {
+	public void c1_updateSample2View() throws Exception {
 		MultiValueMap<String, String> params = new LinkedMultiValueMap<>();
 
 		params.add("id", sample2VO.getId());
@@ -225,7 +225,7 @@ public class Sample2ControllerTest {
 	 * @throws Exception
 	 */
 	@Test
-	public void f1_updateSample2() throws Exception {
+	public void c1_updateSample2() throws Exception {
 		MultiValueMap<String, String> params = new LinkedMultiValueMap<>();
 
 		params.add("id", sample2VO.getId());
@@ -252,7 +252,7 @@ public class Sample2ControllerTest {
 	 * @throws Exception
 	 */
 	@Test
-	public void g1_deleteSample2() throws Exception {
+	public void d1_deleteSample2() throws Exception {
 		MultiValueMap<String, String> params = new LinkedMultiValueMap<>();
 
 		params.add("id", sample2VO.getId());
