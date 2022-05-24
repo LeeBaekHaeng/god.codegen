@@ -4,7 +4,9 @@ import java.sql.Connection;
 import java.sql.DatabaseMetaData;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
+import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.Date;
 
 import org.apache.commons.lang3.SystemUtils;
@@ -29,7 +31,7 @@ import org.slf4j.LoggerFactory;
 import egovframework.com.codegen.sample2.service.impl.Sample2ServiceImplTest;
 
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
-public class A1_InformationSchema_getTables_MySQL {
+public class A1_MySQL_INFORMATION_SCHEMA_TABLES2 {
 
 	protected Logger egovLogger = LoggerFactory.getLogger(Sample2ServiceImplTest.class);
 
@@ -53,15 +55,10 @@ public class A1_InformationSchema_getTables_MySQL {
 
 	@Test
 	public void a1_test() {
-		String catalog = "com";
-		String schemaPattern = "";
-		String tableNamePattern = "%";
-		String[] types = {};
-
 		Workbook wb = new XSSFWorkbook();
 		Sheet sheet = wb.createSheet();
 		String filepath = SystemUtils.USER_HOME + "/Desktop/god.codegen/"
-				+ EgovDateUtil.toString(new Date(), "yyyy-MM-dd HH-mm-ss", null) + "_information_schema_getTables.xlsx";
+				+ EgovDateUtil.toString(new Date(), "yyyy-MM-dd HH-mm-ss", null) + "_INFORMATION_SCHEMA.TABLES2.xlsx";
 
 //		String url = "jdbc:egovLogger4jdbc:mysql://127.0.0.1:3306/com";
 		String url = "jdbc:mysql://127.0.0.1:3306/com?useInformationSchema=true";
@@ -86,9 +83,23 @@ public class A1_InformationSchema_getTables_MySQL {
 
 			try (
 
-					ResultSet tables = metaData.getTables(catalog, schemaPattern, tableNamePattern, types);
+					Statement stmt = con.createStatement();
+
+					ResultSet tables = stmt
+							.executeQuery("SELECT * FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_SCHEMA = 'COM'");
 
 			) {
+
+				ResultSetMetaData rsmd = tables.getMetaData();
+				int columnCount = rsmd.getColumnCount();
+				egovLogger.debug("columnCount={}", columnCount);
+				for (int column = 1; column <= columnCount; column++) {
+					egovLogger.debug("getColumnLabel={}", rsmd.getColumnLabel(column));
+					egovLogger.debug("getColumnName={}", rsmd.getColumnName(column));
+					egovLogger.debug("getColumnType={}", rsmd.getColumnType(column));
+					egovLogger.debug("getColumnTypeName={}", rsmd.getColumnTypeName(column));
+					egovLogger.debug("");
+				}
 
 				int i = 1;
 				int rownum = 0;
@@ -167,112 +178,111 @@ public class A1_InformationSchema_getTables_MySQL {
 
 				while (tables.next()) {
 
-					String tableCat = tables.getString("TABLE_CAT");
-					String tableSchem = tables.getString("TABLE_SCHEM");
-					String tableName = tables.getString("TABLE_NAME");
-					String tableType = tables.getString("TABLE_TYPE");
-					String remarks = tables.getString("REMARKS");
-					String typeCat = tables.getString("TYPE_CAT");
-					String typeSchem = tables.getString("TYPE_SCHEM");
-					String typeName = tables.getString("TYPE_NAME");
-					String selfReferencingColName = tables.getString("SELF_REFERENCING_COL_NAME");
-					String refGeneration = tables.getString("REF_GENERATION");
-
-					egovLogger.debug("i={}", i);
-//					egovLogger.debug("tables={}", tables);
-					egovLogger.debug("tableCat={}", tableCat);
-					egovLogger.debug("tableSchem={}", tableSchem);
-					egovLogger.debug("tableName={}", tableName);
-					egovLogger.debug("tableType={}", tableType);
-					egovLogger.debug("remarks={}", remarks);
-					egovLogger.debug("typeCat={}", typeCat);
-					egovLogger.debug("typeSchem={}", typeSchem);
-					egovLogger.debug("typeName={}", typeName);
-					egovLogger.debug("selfReferencingColName={}", selfReferencingColName);
-					egovLogger.debug("refGeneration={}", refGeneration);
-					egovLogger.debug("");
-
-					row = sheet.createRow(rownum);
-					cellA = row.createCell(0);
-					cellA.setCellValue(tableCat); // TABLE_CATALOG
-
-					cellB = row.createCell(1);
-					cellB.setCellValue(tableSchem); // TABLE_SCHEMA
-
-					cellC = row.createCell(2);
-					cellC.setCellValue(tableName); // TABLE_NAME
-
-					cellD = row.createCell(3);
-					cellD.setCellValue(tableType); // TABLE_TYPE
-
-					cellE = row.createCell(4);
-					cellE.setCellValue(""); // ENGINE
-
-					cellF = row.createCell(5);
-					cellF.setCellValue(""); // VERSION
-
-					cellG = row.createCell(6);
-					cellG.setCellValue(""); // ROW_FORMAT
-
-					cellH = row.createCell(7);
-					cellH.setCellValue(""); // TABLE_ROWS
-
-					cellI = row.createCell(8);
-					cellI.setCellValue(""); // AVG_ROW_LENGTH
-
-					cellJ = row.createCell(9);
-					cellJ.setCellValue(""); // DATA_LENGTH
-
-					cellK = row.createCell(10);
-					cellK.setCellValue(""); // MAX_DATA_LENGTH
-
-					cellL = row.createCell(11);
-					cellL.setCellValue(""); // INDEX_LENGTH
-
-					cellM = row.createCell(12);
-					cellM.setCellValue(""); // DATA_FREE
-
-					cellN = row.createCell(13);
-					cellN.setCellValue(""); // AUTO_INCREMENT
-
-					cellO = row.createCell(14);
-					cellO.setCellValue(""); // CREATE_TIME
-
-					cellP = row.createCell(15);
-					cellP.setCellValue(""); // UPDATE_TIME
-
-					cellQ = row.createCell(16);
-					cellQ.setCellValue(""); // CHECK_TIME
-
-					cellR = row.createCell(17);
-					cellR.setCellValue(""); // TABLE_COLLATION
-
-					cellS = row.createCell(18);
-					cellS.setCellValue(""); // CHECKSUM
-
-					cellT = row.createCell(19);
-					cellT.setCellValue(""); // CREATE_OPTIONS
-
-					cellU = row.createCell(20);
-					cellU.setCellValue(remarks); // TABLE_COMMENT
-
-					cellV = row.createCell(21);
-					cellV.setCellValue(""); // MAX_INDEX_LENGTH
-
-					cellW = row.createCell(22);
-					cellW.setCellValue(""); // TEMPORARY
+//					String tableCat = tables.getString("TABLE_CAT");
+//					String tableSchem = tables.getString("TABLE_SCHEM");
+//					String tableName = tables.getString("TABLE_NAME");
+//					String tableType = tables.getString("TABLE_TYPE");
+//					String remarks = tables.getString("REMARKS");
+//					String typeCat = tables.getString("TYPE_CAT");
+//					String typeSchem = tables.getString("TYPE_SCHEM");
+//					String typeName = tables.getString("TYPE_NAME");
+//					String selfReferencingColName = tables.getString("SELF_REFERENCING_COL_NAME");
+//					String refGeneration = tables.getString("REF_GENERATION");
+//
+//					egovLogger.debug("i={}", i);
+////					egovLogger.debug("tables={}", tables);
+//					egovLogger.debug("tableCat={}", tableCat);
+//					egovLogger.debug("tableSchem={}", tableSchem);
+//					egovLogger.debug("tableName={}", tableName);
+//					egovLogger.debug("tableType={}", tableType);
+//					egovLogger.debug("remarks={}", remarks);
+//					egovLogger.debug("typeCat={}", typeCat);
+//					egovLogger.debug("typeSchem={}", typeSchem);
+//					egovLogger.debug("typeName={}", typeName);
+//					egovLogger.debug("selfReferencingColName={}", selfReferencingColName);
+//					egovLogger.debug("refGeneration={}", refGeneration);
+//					egovLogger.debug("");
+//
+//					row = sheet.createRow(rownum);
+//					cellA = row.createCell(0);
+//					cellA.setCellValue(tableCat); // TABLE_CATALOG
+//
+//					cellB = row.createCell(1);
+//					cellB.setCellValue(tableSchem); // TABLE_SCHEMA
+//
+//					cellC = row.createCell(2);
+//					cellC.setCellValue(tableName); // TABLE_NAME
+//
+//					cellD = row.createCell(3);
+//					cellD.setCellValue(tableType); // TABLE_TYPE
+//
+//					cellE = row.createCell(4);
+//					cellE.setCellValue(""); // ENGINE
+//
+//					cellF = row.createCell(5);
+//					cellF.setCellValue(""); // VERSION
+//
+//					cellG = row.createCell(6);
+//					cellG.setCellValue(""); // ROW_FORMAT
+//
+//					cellH = row.createCell(7);
+//					cellH.setCellValue(""); // TABLE_ROWS
+//
+//					cellI = row.createCell(8);
+//					cellI.setCellValue(""); // AVG_ROW_LENGTH
+//
+//					cellJ = row.createCell(9);
+//					cellJ.setCellValue(""); // DATA_LENGTH
+//
+//					cellK = row.createCell(10);
+//					cellK.setCellValue(""); // MAX_DATA_LENGTH
+//
+//					cellL = row.createCell(11);
+//					cellL.setCellValue(""); // INDEX_LENGTH
+//
+//					cellM = row.createCell(12);
+//					cellM.setCellValue(""); // DATA_FREE
+//
+//					cellN = row.createCell(13);
+//					cellN.setCellValue(""); // AUTO_INCREMENT
+//
+//					cellO = row.createCell(14);
+//					cellO.setCellValue(""); // CREATE_TIME
+//
+//					cellP = row.createCell(15);
+//					cellP.setCellValue(""); // UPDATE_TIME
+//
+//					cellQ = row.createCell(16);
+//					cellQ.setCellValue(""); // CHECK_TIME
+//
+//					cellR = row.createCell(17);
+//					cellR.setCellValue(""); // TABLE_COLLATION
+//
+//					cellS = row.createCell(18);
+//					cellS.setCellValue(""); // CHECKSUM
+//
+//					cellT = row.createCell(19);
+//					cellT.setCellValue(""); // CREATE_OPTIONS
+//
+//					cellU = row.createCell(20);
+//					cellU.setCellValue(remarks); // TABLE_COMMENT
+//
+//					cellV = row.createCell(21);
+//					cellV.setCellValue(""); // MAX_INDEX_LENGTH
+//
+//					cellW = row.createCell(22);
+//					cellW.setCellValue(""); // TEMPORARY
 
 					i++;
 					rownum++;
 
 				}
 
-			} catch (SQLException e) {
-				egovLogger.error("getTables SQLException");
 			}
 
 		} catch (SQLException e) {
-			egovLogger.error("getConnection SQLException");
+			egovLogger.error("SQLException");
+			e.printStackTrace();
 		}
 
 		try {

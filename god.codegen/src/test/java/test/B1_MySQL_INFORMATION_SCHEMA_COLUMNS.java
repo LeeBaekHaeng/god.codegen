@@ -29,7 +29,7 @@ import org.slf4j.LoggerFactory;
 import egovframework.com.codegen.sample2.service.impl.Sample2ServiceImplTest;
 
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
-public class B1_DatabaseMetaData_getColumns_MySQL {
+public class B1_MySQL_INFORMATION_SCHEMA_COLUMNS {
 
 	protected Logger egovLogger = LoggerFactory.getLogger(Sample2ServiceImplTest.class);
 
@@ -61,7 +61,7 @@ public class B1_DatabaseMetaData_getColumns_MySQL {
 		Workbook wb = new XSSFWorkbook();
 		Sheet sheet = wb.createSheet();
 		String filepath = SystemUtils.USER_HOME + "/Desktop/god.codegen/"
-				+ EgovDateUtil.toString(new Date(), "yyyy-MM-dd HH-mm-ss", null) + "_DatabaseMetaData_getColumns.xlsx";
+				+ EgovDateUtil.toString(new Date(), "yyyy-MM-dd HH-mm-ss", null) + "_INFORMATION_SCHEMA.COLUMNS.xlsx";
 
 //		String url = "jdbc:egovLogger4jdbc:mysql://127.0.0.1:3306/com";
 		String url = "jdbc:mysql://127.0.0.1:3306/com?useInformationSchema=true";
@@ -96,10 +96,10 @@ public class B1_DatabaseMetaData_getColumns_MySQL {
 
 				Row row = sheet.createRow(rownum);
 				Cell cellA = row.createCell(0);
-				cellA.setCellValue("TABLE_CAT");
+				cellA.setCellValue("TABLE_CATALOG");
 
 				Cell cellB = row.createCell(1);
-				cellB.setCellValue("TABLE_SCHEM");
+				cellB.setCellValue("TABLE_SCHEMA");
 
 				Cell cellC = row.createCell(2);
 				cellC.setCellValue("TABLE_NAME");
@@ -108,64 +108,58 @@ public class B1_DatabaseMetaData_getColumns_MySQL {
 				cellD.setCellValue("COLUMN_NAME");
 
 				Cell cellE = row.createCell(4);
-				cellE.setCellValue("DATA_TYPE");
+				cellE.setCellValue("ORDINAL_POSITION");
 
 				Cell cellF = row.createCell(5);
-				cellF.setCellValue("TYPE_NAME");
+				cellF.setCellValue("COLUMN_DEFAULT");
 
 				Cell cellG = row.createCell(6);
-				cellG.setCellValue("COLUMN_SIZE");
+				cellG.setCellValue("IS_NULLABLE");
 
 				Cell cellH = row.createCell(7);
-				cellH.setCellValue("BUFFER_LENGTH");
+				cellH.setCellValue("DATA_TYPE");
 
 				Cell cellI = row.createCell(8);
-				cellI.setCellValue("DECIMAL_DIGITS");
+				cellI.setCellValue("CHARACTER_MAXIMUM_LENGTH");
 
 				Cell cellJ = row.createCell(9);
-				cellJ.setCellValue("NUM_PREC_RADIX");
+				cellJ.setCellValue("CHARACTER_OCTET_LENGTH");
 
 				Cell cellK = row.createCell(10);
-				cellK.setCellValue("NULLABLE");
+				cellK.setCellValue("NUMERIC_PRECISION");
 
 				Cell cellL = row.createCell(11);
-				cellL.setCellValue("REMARKS");
+				cellL.setCellValue("NUMERIC_SCALE");
 
 				Cell cellM = row.createCell(12);
-				cellM.setCellValue("COLUMN_DEF");
+				cellM.setCellValue("DATETIME_PRECISION");
 
 				Cell cellN = row.createCell(13);
-				cellN.setCellValue("SQL_DATA_TYPE");
+				cellN.setCellValue("CHARACTER_SET_NAME");
 
 				Cell cellO = row.createCell(14);
-				cellO.setCellValue("SQL_DATETIME_SUB");
+				cellO.setCellValue("COLLATION_NAME");
 
 				Cell cellP = row.createCell(15);
-				cellP.setCellValue("CHAR_OCTET_LENGTH");
+				cellP.setCellValue("COLUMN_TYPE");
 
 				Cell cellQ = row.createCell(16);
-				cellQ.setCellValue("ORDINAL_POSITION");
+				cellQ.setCellValue("COLUMN_KEY");
 
 				Cell cellR = row.createCell(17);
-				cellR.setCellValue("IS_NULLABLE");
+				cellR.setCellValue("EXTRA");
 
 				Cell cellS = row.createCell(18);
-				cellS.setCellValue("SCOPE_CATALOG");
+				cellS.setCellValue("PRIVILEGES");
 
 				Cell cellT = row.createCell(19);
-				cellT.setCellValue("SCOPE_SCHEMA");
+				cellT.setCellValue("COLUMN_COMMENT");
 
 				Cell cellU = row.createCell(20);
-				cellU.setCellValue("SCOPE_TABLE");
+				cellU.setCellValue("IS_GENERATED");
 
 				Cell cellV = row.createCell(21);
-				cellV.setCellValue("SOURCE_DATA_TYPE");
-
-				Cell cellW = row.createCell(22);
-				cellW.setCellValue("IS_AUTOINCREMENT");
-
-				Cell cellX = row.createCell(23);
-				cellX.setCellValue("IS_GENERATEDCOLUMN");
+				cellV.setCellValue("GENERATION_EXPRESSION");
 
 				rownum++;
 
@@ -226,10 +220,10 @@ public class B1_DatabaseMetaData_getColumns_MySQL {
 
 					row = sheet.createRow(rownum);
 					cellA = row.createCell(0);
-					cellA.setCellValue(tableCat); // TABLE_CAT
+					cellA.setCellValue(tableCat); // TABLE_CATALOG
 
 					cellB = row.createCell(1);
-					cellB.setCellValue(tableSchem); // TABLE_SCHEM
+					cellB.setCellValue(tableSchem); // TABLE_SCHEMA
 
 					cellC = row.createCell(2);
 					cellC.setCellValue(tableName); // TABLE_NAME
@@ -238,77 +232,68 @@ public class B1_DatabaseMetaData_getColumns_MySQL {
 					cellD.setCellValue(columnName); // COLUMN_NAME
 
 					cellE = row.createCell(4);
-					cellE.setCellValue(dataType); // DATA_TYPE
+					cellE.setCellValue(ordinalPosition); // ORDINAL_POSITION
 
 					cellF = row.createCell(5);
-					cellF.setCellValue(typeName); // TYPE_NAME
+					cellF.setCellValue(columnDef); // COLUMN_DEFAULT
 
 					cellG = row.createCell(6);
-					cellG.setCellValue(columnSize); // COLUMN_SIZE
+					cellG.setCellValue(nullable); // IS_NULLABLE
 
 					cellH = row.createCell(7);
-					cellH.setCellValue(bufferLength); // BUFFER_LENGTH
+					cellH.setCellValue(dataType); // DATA_TYPE
 
 					cellI = row.createCell(8);
-					cellI.setCellValue(decimalDigits); // DECIMAL_DIGITS
+					cellI.setCellValue(columnSize); // CHARACTER_MAXIMUM_LENGTH
 
 					cellJ = row.createCell(9);
-					cellJ.setCellValue(numPrecRadix); // NUM_PREC_RADIX
+					cellJ.setCellValue(numPrecRadix); // CHARACTER_OCTET_LENGTH
 
 					cellK = row.createCell(10);
-					cellK.setCellValue(nullable); // NULLABLE
+					cellK.setCellValue(""); // NUMERIC_PRECISION
 
 					cellL = row.createCell(11);
-					cellL.setCellValue(remarks); // REMARKS
+					cellL.setCellValue(""); // NUMERIC_SCALE
 
 					cellM = row.createCell(12);
-					cellM.setCellValue(columnDef); // COLUMN_DEF
+					cellM.setCellValue(""); // DATETIME_PRECISION
 
 					cellN = row.createCell(13);
-					cellN.setCellValue(sqlDataType); // SQL_DATA_TYPE
+					cellN.setCellValue(""); // CHARACTER_SET_NAME
 
 					cellO = row.createCell(14);
-					cellO.setCellValue(sqlDatetimeSub); // SQL_DATETIME_SUB
+					cellO.setCellValue(""); // COLLATION_NAME
 
 					cellP = row.createCell(15);
-					cellP.setCellValue(charOctetLength); // CHAR_OCTET_LENGTH
+					cellP.setCellValue(""); // COLUMN_TYPE
 
 					cellP = row.createCell(16);
-					cellP.setCellValue(ordinalPosition); // ORDINAL_POSITION
+					cellP.setCellValue(""); // COLUMN_KEY
 
 					cellQ = row.createCell(17);
-					cellQ.setCellValue(isNullable); // IS_NULLABLE
+					cellQ.setCellValue(""); // EXTRA
 
 					cellS = row.createCell(18);
-					cellS.setCellValue(scopeCatalog); // SCOPE_CATALOG
+					cellS.setCellValue(""); // PRIVILEGES
 
 					cellT = row.createCell(19);
-					cellT.setCellValue(scopeSchema); // SCOPE_SCHEMA
+					cellT.setCellValue(remarks); // COLUMN_COMMENT
 
 					cellU = row.createCell(20);
-					cellU.setCellValue(scopeTable); // SCOPE_TABLE
+					cellU.setCellValue(""); // IS_GENERATED
 
 					cellV = row.createCell(21);
-					cellV.setCellValue(sourceDataType); // SOURCE_DATA_TYPE
-
-					cellW = row.createCell(22);
-					cellW.setCellValue(isAutoincrement); // IS_AUTOINCREMENT
-
-					cellX = row.createCell(23);
-					cellX.setCellValue(isGeneratedcolumn); // IS_GENERATEDCOLUMN
+					cellV.setCellValue(""); // GENERATION_EXPRESSION
 
 					i++;
 					rownum++;
 
 				}
 
-			} catch (SQLException e) {
-				egovLogger.error("getColumns SQLException");
-				e.printStackTrace();
 			}
 
 		} catch (SQLException e) {
-			egovLogger.error("getConnection SQLException");
+			egovLogger.error("SQLException");
 		}
 
 		try {
