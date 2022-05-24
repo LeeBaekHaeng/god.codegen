@@ -29,7 +29,7 @@ import org.slf4j.LoggerFactory;
 import egovframework.com.codegen.sample2.service.impl.Sample2ServiceImplTest;
 
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
-public class A1_DatabaseMetaDataTables_MySQL {
+public class A1_InformationSchema_getTables_MySQL {
 
 	protected Logger egovLogger = LoggerFactory.getLogger(Sample2ServiceImplTest.class);
 
@@ -60,8 +60,8 @@ public class A1_DatabaseMetaDataTables_MySQL {
 
 		Workbook wb = new XSSFWorkbook();
 		Sheet sheet = wb.createSheet();
-		String filepath = SystemUtils.USER_HOME + "/Desktop/god.codegen/DatabaseMetaData.tables_"
-				+ EgovDateUtil.toString(new Date(), "yyyy-MM-dd HH-mm-ss", null) + ".xlsx";
+		String filepath = SystemUtils.USER_HOME + "/Desktop/god.codegen/"
+				+ EgovDateUtil.toString(new Date(), "yyyy-MM-dd HH-mm-ss", null) + "_information_schema_getTables.xlsx";
 
 //		String url = "jdbc:egovLogger4jdbc:mysql://127.0.0.1:3306/com";
 		String url = "jdbc:mysql://127.0.0.1:3306/com?useInformationSchema=true";
@@ -95,10 +95,10 @@ public class A1_DatabaseMetaDataTables_MySQL {
 
 				Row row = sheet.createRow(rownum);
 				Cell cellA = row.createCell(0);
-				cellA.setCellValue("TABLE_CAT");
+				cellA.setCellValue("TABLE_CATALOG");
 
 				Cell cellB = row.createCell(1);
-				cellB.setCellValue("TABLE_SCHEM");
+				cellB.setCellValue("TABLE_SCHEMA");
 
 				Cell cellC = row.createCell(2);
 				cellC.setCellValue("TABLE_NAME");
@@ -107,22 +107,61 @@ public class A1_DatabaseMetaDataTables_MySQL {
 				cellD.setCellValue("TABLE_TYPE");
 
 				Cell cellE = row.createCell(4);
-				cellE.setCellValue("REMARKS");
+				cellE.setCellValue("ENGINE");
 
 				Cell cellF = row.createCell(5);
-				cellF.setCellValue("TYPE_CAT");
+				cellF.setCellValue("VERSION");
 
 				Cell cellG = row.createCell(6);
-				cellG.setCellValue("TYPE_SCHEM");
+				cellG.setCellValue("ROW_FORMAT");
 
 				Cell cellH = row.createCell(7);
-				cellH.setCellValue("TYPE_NAME");
+				cellH.setCellValue("TABLE_ROWS");
 
 				Cell cellI = row.createCell(8);
-				cellI.setCellValue("REF_GENERATION");
+				cellI.setCellValue("AVG_ROW_LENGTH");
 
-				Cell cellJ = row.createCell(8);
-				cellJ.setCellValue("AVG_ROW_LENGTH");
+				Cell cellJ = row.createCell(9);
+				cellJ.setCellValue("DATA_LENGTH");
+
+				Cell cellK = row.createCell(10);
+				cellK.setCellValue("MAX_DATA_LENGTH");
+
+				Cell cellL = row.createCell(11);
+				cellL.setCellValue("INDEX_LENGTH");
+
+				Cell cellM = row.createCell(12);
+				cellM.setCellValue("DATA_FREE");
+
+				Cell cellN = row.createCell(13);
+				cellN.setCellValue("AUTO_INCREMENT");
+
+				Cell cellO = row.createCell(14);
+				cellO.setCellValue("CREATE_TIME");
+
+				Cell cellP = row.createCell(15);
+				cellP.setCellValue("UPDATE_TIME");
+
+				Cell cellQ = row.createCell(16);
+				cellQ.setCellValue("CHECK_TIME");
+
+				Cell cellR = row.createCell(17);
+				cellR.setCellValue("TABLE_COLLATION");
+
+				Cell cellS = row.createCell(18);
+				cellS.setCellValue("CHECKSUM");
+
+				Cell cellT = row.createCell(19);
+				cellT.setCellValue("CREATE_OPTIONS");
+
+				Cell cellU = row.createCell(20);
+				cellU.setCellValue("TABLE_COMMENT");
+
+				Cell cellV = row.createCell(21);
+				cellV.setCellValue("MAX_INDEX_LENGTH");
+
+				Cell cellW = row.createCell(22);
+				cellW.setCellValue("TEMPORARY");
 
 				rownum++;
 
@@ -155,10 +194,10 @@ public class A1_DatabaseMetaDataTables_MySQL {
 
 					row = sheet.createRow(rownum);
 					cellA = row.createCell(0);
-					cellA.setCellValue(tableCat); // TABLE_CAT
+					cellA.setCellValue(tableCat); // TABLE_CATALOG
 
 					cellB = row.createCell(1);
-					cellB.setCellValue(tableSchem); // TABLE_SCHEM
+					cellB.setCellValue(tableSchem); // TABLE_SCHEMA
 
 					cellC = row.createCell(2);
 					cellC.setCellValue(tableName); // TABLE_NAME
@@ -167,22 +206,61 @@ public class A1_DatabaseMetaDataTables_MySQL {
 					cellD.setCellValue(tableType); // TABLE_TYPE
 
 					cellE = row.createCell(4);
-					cellE.setCellValue(remarks); // REMARKS
+					cellE.setCellValue(""); // ENGINE
 
 					cellF = row.createCell(5);
-					cellF.setCellValue(typeCat); // TYPE_CAT
+					cellF.setCellValue(""); // VERSION
 
 					cellG = row.createCell(6);
-					cellG.setCellValue(typeSchem); // TYPE_SCHEM
+					cellG.setCellValue(""); // ROW_FORMAT
 
 					cellH = row.createCell(7);
-					cellH.setCellValue(typeName); // TYPE_NAME
+					cellH.setCellValue(""); // TABLE_ROWS
 
 					cellI = row.createCell(8);
-					cellI.setCellValue(selfReferencingColName); // SELF_REFERENCING_COL_NAME
+					cellI.setCellValue(""); // AVG_ROW_LENGTH
 
 					cellJ = row.createCell(9);
-					cellJ.setCellValue(refGeneration); // REF_GENERATION
+					cellJ.setCellValue(""); // DATA_LENGTH
+
+					cellK = row.createCell(10);
+					cellK.setCellValue(""); // MAX_DATA_LENGTH
+
+					cellL = row.createCell(11);
+					cellL.setCellValue(""); // INDEX_LENGTH
+
+					cellM = row.createCell(12);
+					cellM.setCellValue(""); // DATA_FREE
+
+					cellN = row.createCell(13);
+					cellN.setCellValue(""); // AUTO_INCREMENT
+
+					cellO = row.createCell(14);
+					cellO.setCellValue(""); // CREATE_TIME
+
+					cellP = row.createCell(15);
+					cellP.setCellValue(""); // UPDATE_TIME
+
+					cellQ = row.createCell(16);
+					cellQ.setCellValue(""); // CHECK_TIME
+
+					cellR = row.createCell(17);
+					cellR.setCellValue(""); // TABLE_COLLATION
+
+					cellS = row.createCell(18);
+					cellS.setCellValue(""); // CHECKSUM
+
+					cellT = row.createCell(19);
+					cellT.setCellValue(""); // CREATE_OPTIONS
+
+					cellU = row.createCell(20);
+					cellU.setCellValue(remarks); // TABLE_COMMENT
+
+					cellV = row.createCell(21);
+					cellV.setCellValue(""); // MAX_INDEX_LENGTH
+
+					cellW = row.createCell(22);
+					cellW.setCellValue(""); // TEMPORARY
 
 					i++;
 					rownum++;
