@@ -298,7 +298,7 @@ public class B1_MySQL_INFORMATION_SCHEMA_COLUMNS {
 
 		try {
 			egovExcelService.createWorkbook(wb, filepath);
-		} catch (Exception e1) {
+		} catch (Exception e) {
 			egovLogger.error("createWorkbook Exception");
 		}
 

@@ -197,7 +197,7 @@ public class A1_MySQL_DatabaseMetaData_getTables {
 
 		try {
 			egovExcelService.createWorkbook(wb, filepath);
-		} catch (Exception e1) {
+		} catch (Exception e) {
 			egovLogger.error("createWorkbook Exception");
 		}
 

@@ -275,7 +275,7 @@ public class A1_MySQL_INFORMATION_SCHEMA_TABLES {
 
 		try {
 			egovExcelService.createWorkbook(wb, filepath);
-		} catch (Exception e1) {
+		} catch (Exception e) {
 			egovLogger.error("createWorkbook Exception");
 		}
 

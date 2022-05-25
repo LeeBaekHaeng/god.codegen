@@ -310,7 +310,7 @@ public class B1_MySQL_DatabaseMetaData_getColumns {
 
 		try {
 			egovExcelService.createWorkbook(wb, filepath);
-		} catch (Exception e1) {
+		} catch (Exception e) {
 			egovLogger.error("createWorkbook Exception");
 		}
 
