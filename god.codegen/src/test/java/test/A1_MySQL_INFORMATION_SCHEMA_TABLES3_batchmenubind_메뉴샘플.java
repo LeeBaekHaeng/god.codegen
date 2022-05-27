@@ -61,8 +61,8 @@ public class A1_MySQL_INFORMATION_SCHEMA_TABLES3_batchmenubind_메뉴샘플 {
 	@Test
 	public void a1_test() {
 		String prefix = "aaa";
-//		prefix = "bbb";
-//		prefix = "ccc";
+//		prefix = "baa";
+//		prefix = "caa";
 
 //		String prefixPcName = NamingUtils.convertCamelcaseToPascalcase(prefix);
 
@@ -202,30 +202,26 @@ public class A1_MySQL_INFORMATION_SCHEMA_TABLES3_batchmenubind_메뉴샘플 {
 					egovLogger.debug("temporary={}", temporary);
 					egovLogger.debug("");
 
-					Row row = sheet.createRow(rownum);
-
-					Cell cellA = row.createCell(0);
 					String tableNameCcName = NamingUtils.convertUnderscoreNameToCamelcase(prefix + "_" + tableName);
 					String tableNamePcName = NamingUtils.convertCamelcaseToPascalcase(tableNameCcName);
-					cellA.setCellValue(tableNamePcName); // 프로그램명
 
-					Cell cellB = row.createCell(1);
-					cellB.setCellValue(tableComment); // 프로그램한글명
+					insert(sheet, rownum, tableNamePcName, prefix, tableNamePcName, tableComment);
+					rownum++;
 
-					Cell cellC = row.createCell(2);
-					cellC.setCellValue("/" + prefix + "/" + tableName); // 프로그램저장경로
+					select(sheet, rownum, tableNamePcName, prefix, tableNamePcName, tableComment);
+					rownum++;
 
-					Cell cellD = row.createCell(3);
-					cellD.setCellValue("/" + prefix + "/" + tableName + "/" + tableName + ".do"); // URL
+					selectList(sheet, rownum, tableNamePcName, prefix, tableNamePcName, tableComment);
+					rownum++;
 
-					Cell cellE = row.createCell(4);
-					cellE.setCellValue(tableComment); // 프로그램설명
+					update(sheet, rownum, tableNamePcName, prefix, tableNamePcName, tableComment);
+					rownum++;
 
-					Cell cellF = row.createCell(5);
-					cellF.setCellValue(tableName);
+					delete(sheet, rownum, tableNamePcName, prefix, tableNamePcName, tableComment);
+					rownum++;
 
 					i++;
-					rownum++;
+//					rownum++;
 
 				}
 
@@ -243,6 +239,156 @@ public class A1_MySQL_INFORMATION_SCHEMA_TABLES3_batchmenubind_메뉴샘플 {
 			return;
 		}
 
+	}
+
+	private void insert(Sheet sheet, int rownum, String tableNamePcName, String prefix, String tableName,
+			String tableComment) {
+
+		String progrmFileNm = tableNamePcName + "Insert"; // 프로그램명, 프로그램파일명
+		String progrmKoreanNm = tableComment + " 등록"; // 프로그램한글명
+		String progrmStrePath = "/" + prefix + "/insert" + tableNamePcName; // 프로그램저장경로
+		String url = progrmStrePath + "/insert" + tableNamePcName + ".do"; // URL
+		String progrmDc = progrmKoreanNm; // 프로그램설명
+
+		Row row = sheet.createRow(rownum);
+
+		Cell cellA = row.createCell(0);
+		cellA.setCellValue(progrmFileNm); // 프로그램명
+
+		Cell cellB = row.createCell(1);
+		cellB.setCellValue(progrmKoreanNm); // 프로그램한글명
+
+		Cell cellC = row.createCell(2);
+		cellC.setCellValue(progrmStrePath); // 프로그램저장경로
+
+		Cell cellD = row.createCell(3);
+		cellD.setCellValue(url); // URL
+
+		Cell cellE = row.createCell(4);
+		cellE.setCellValue(progrmDc); // 프로그램설명
+
+		Cell cellF = row.createCell(5);
+		cellF.setCellValue(tableName);
+	}
+
+	private void select(Sheet sheet, int rownum, String tableNamePcName, String prefix, String tableName,
+			String tableComment) {
+
+		String progrmFileNm = tableNamePcName + "Select"; // 프로그램명, 프로그램파일명
+		String progrmKoreanNm = tableComment + " 조회(단건)"; // 프로그램한글명
+		String progrmStrePath = "/" + prefix + "/select" + tableNamePcName; // 프로그램저장경로
+		String url = progrmStrePath + "/select" + tableNamePcName + ".do"; // URL
+		String progrmDc = progrmKoreanNm; // 프로그램설명
+
+		Row row = sheet.createRow(rownum);
+
+		Cell cellA = row.createCell(0);
+		cellA.setCellValue(progrmFileNm); // 프로그램명
+
+		Cell cellB = row.createCell(1);
+		cellB.setCellValue(progrmKoreanNm); // 프로그램한글명
+
+		Cell cellC = row.createCell(2);
+		cellC.setCellValue(progrmStrePath); // 프로그램저장경로
+
+		Cell cellD = row.createCell(3);
+		cellD.setCellValue(url); // URL
+
+		Cell cellE = row.createCell(4);
+		cellE.setCellValue(progrmDc); // 프로그램설명
+
+		Cell cellF = row.createCell(5);
+		cellF.setCellValue(tableName);
+	}
+
+	private void selectList(Sheet sheet, int rownum, String tableNamePcName, String prefix, String tableName,
+			String tableComment) {
+
+		String progrmFileNm = tableNamePcName + "SelectList"; // 프로그램명, 프로그램파일명
+		String progrmKoreanNm = tableComment + " 조회(멀티건)"; // 프로그램한글명
+		String progrmStrePath = "/" + prefix + "/select" + tableNamePcName + "List"; // 프로그램저장경로
+		String url = progrmStrePath + "/select" + tableNamePcName + "List.do"; // URL
+		String progrmDc = progrmKoreanNm; // 프로그램설명
+
+		Row row = sheet.createRow(rownum);
+
+		Cell cellA = row.createCell(0);
+		cellA.setCellValue(progrmFileNm); // 프로그램명
+
+		Cell cellB = row.createCell(1);
+		cellB.setCellValue(progrmKoreanNm); // 프로그램한글명
+
+		Cell cellC = row.createCell(2);
+		cellC.setCellValue(progrmStrePath); // 프로그램저장경로
+
+		Cell cellD = row.createCell(3);
+		cellD.setCellValue(url); // URL
+
+		Cell cellE = row.createCell(4);
+		cellE.setCellValue(progrmDc); // 프로그램설명
+
+		Cell cellF = row.createCell(5);
+		cellF.setCellValue(tableName);
+	}
+
+	private void update(Sheet sheet, int rownum, String tableNamePcName, String prefix, String tableName,
+			String tableComment) {
+
+		String progrmFileNm = tableNamePcName + "Update"; // 프로그램명, 프로그램파일명
+		String progrmKoreanNm = tableComment + " 수정"; // 프로그램한글명
+		String progrmStrePath = "/" + prefix + "/update" + tableNamePcName; // 프로그램저장경로
+		String url = progrmStrePath + "/update" + tableNamePcName; // URL
+		String progrmDc = progrmKoreanNm; // 프로그램설명
+
+		Row row = sheet.createRow(rownum);
+
+		Cell cellA = row.createCell(0);
+		cellA.setCellValue(progrmFileNm); // 프로그램명
+
+		Cell cellB = row.createCell(1);
+		cellB.setCellValue(progrmKoreanNm); // 프로그램한글명
+
+		Cell cellC = row.createCell(2);
+		cellC.setCellValue(progrmStrePath); // 프로그램저장경로
+
+		Cell cellD = row.createCell(3);
+		cellD.setCellValue(url); // URL
+
+		Cell cellE = row.createCell(4);
+		cellE.setCellValue(progrmDc); // 프로그램설명
+
+		Cell cellF = row.createCell(5);
+		cellF.setCellValue(tableName);
+	}
+
+	private void delete(Sheet sheet, int rownum, String tableNamePcName, String prefix, String tableName,
+			String tableComment) {
+
+		String progrmFileNm = tableNamePcName + "Delete"; // 프로그램명, 프로그램파일명
+		String progrmKoreanNm = tableComment + " 삭제"; // 프로그램한글명
+		String progrmStrePath = "/" + prefix + "/delete" + tableNamePcName; // 프로그램저장경로
+		String url = progrmStrePath + "/delete" + tableNamePcName; // URL
+		String progrmDc = progrmKoreanNm; // 프로그램설명
+
+		Row row = sheet.createRow(rownum);
+
+		Cell cellA = row.createCell(0);
+		cellA.setCellValue(progrmFileNm); // 프로그램명
+
+		Cell cellB = row.createCell(1);
+		cellB.setCellValue(progrmKoreanNm); // 프로그램한글명
+
+		Cell cellC = row.createCell(2);
+		cellC.setCellValue(progrmStrePath); // 프로그램저장경로
+
+		Cell cellD = row.createCell(3);
+		cellD.setCellValue(url); // URL
+
+		Cell cellE = row.createCell(4);
+		cellE.setCellValue(progrmDc); // 프로그램설명
+
+		Cell cellF = row.createCell(5);
+		cellF.setCellValue(tableName);
 	}
 
 }
