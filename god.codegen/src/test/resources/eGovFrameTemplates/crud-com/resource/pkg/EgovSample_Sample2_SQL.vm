@@ -50,7 +50,8 @@
 /* ${insertQueryId} */
 /* ${model.author} ${model.entity.name} 등록 */
 INSERT INTO
-	${model.entity.name}
+##	${model.entity.name}
+	${model.entity.tableName}
 (
 #set($i=0)
 #foreach($attribute in $model.attributes)
@@ -86,7 +87,8 @@ INSERT INTO
 /* ${updateQueryId} */
 /* ${model.author} ${model.entity.name} 수정 */
 UPDATE
-	${model.entity.name}
+##	${model.entity.name}
+	${model.entity.tableName}
 SET
 #set($i=0)
 #foreach($attribute in $model.attributes)
@@ -125,7 +127,8 @@ WHERE
 /* ${model.author} ${model.entity.name} 삭제 */
 DELETE
 FROM
-	${model.entity.name}
+##	${model.entity.name}
+	${model.entity.tableName}
 #if(!${model.primaryKeys} == [])
 WHERE
 	${model.attributes.get(0).name} = #${model.attributes.get(0).ccName}#
@@ -162,7 +165,8 @@ SELECT
 #set($i=$i+1)
 #end
 FROM
-	${model.entity.name}
+##	${model.entity.name}
+	${model.entity.tableName}
 #if(!${model.primaryKeys} == [])
 WHERE
 	${model.attributes.get(0).name} = #${model.attributes.get(0).ccName}#
@@ -198,7 +202,8 @@ SELECT
 #set($i=$i+1)
 #end
 FROM
-	${model.entity.name}
+##	${model.entity.name}
+	${model.entity.tableName}
 WHERE
 	1 = 1
 ]]>
@@ -229,7 +234,8 @@ SELECT
 #set($i=$i+1)
 #end
 FROM
-	${model.entity.name}
+##	${model.entity.name}
+	${model.entity.tableName}
 WHERE
 	1 = 1
 ]]>
@@ -259,7 +265,8 @@ SELECT
 #set($i=$i+1)
 #end
 FROM
-	${model.entity.name}
+##	${model.entity.name}
+	${model.entity.tableName}
 WHERE
 	1 = 1
 ]]>

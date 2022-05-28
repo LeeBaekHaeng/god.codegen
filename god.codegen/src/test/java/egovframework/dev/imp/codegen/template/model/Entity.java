@@ -46,4 +46,14 @@ public class Entity extends DbModelElement {
         super(name);
     }
 
+	private String tableName;
+
+	public String getTableName() {
+		return tableName;
+	}
+
+	public void setTableName(String tableName) {
+		this.tableName = tableName;
+	}
+
 }

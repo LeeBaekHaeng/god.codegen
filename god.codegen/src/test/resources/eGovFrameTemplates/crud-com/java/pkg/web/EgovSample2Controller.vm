@@ -132,7 +132,7 @@ public class ${controllerClassName} extends EgovComAbstractController {
 		${voInstanceName}.setFirstIndex(paginationInfo.getFirstRecordIndex());
 		${voInstanceName}.setLastIndex(paginationInfo.getLastRecordIndex());
 		${voInstanceName}.setRecordCountPerPage(paginationInfo.getRecordCountPerPage());*#
-		PaginationInfo paginationInfo = builderPaginationInfo(sample2VO);
+		PaginationInfo paginationInfo = builderPaginationInfo(${voInstanceName});
 
 		List<EgovMap> ${listInstanceName} = ${serviceInstanceName}.${selectListMethodName}(${voInstanceName});
 		model.addAttribute("resultList", ${listInstanceName});

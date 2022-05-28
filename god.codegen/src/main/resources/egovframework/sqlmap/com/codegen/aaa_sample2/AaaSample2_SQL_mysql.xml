@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+
+<sqlMap namespace="AaaSample2">
+
+	<resultMap id="aaaSample2DAO.resultMap" class="egovframework.com.codegen.aaa_sample2.service.AaaSample2VO">
+		<result property="id" column="ID" columnIndex="1" />
+		<result property="name" column="NAME" columnIndex="2" />
+		<result property="description" column="DESCRIPTION" columnIndex="3" />
+		<result property="useYn" column="USE_YN" columnIndex="4" />
+		<result property="regUser" column="REG_USER" columnIndex="5" />
+	</resultMap>
+
+	<insert id="aaaSample2DAO.insertAaaSample2_S">
+<![CDATA[
+/* aaaSample2DAO.insertAaaSample2_S */
+/* 코드생성팀 이백행 AAA_SAMPLE2 등록 */
+INSERT INTO
+	sample2
+(
+	ID,
+	NAME,
+	DESCRIPTION,
+	USE_YN,
+	REG_USER
+) VALUES (
+	#id#,
+	#name#,
+	#description#,
+	#useYn#,
+	#regUser#
+)
+]]>
+	</insert>
+
+	<update id="aaaSample2DAO.updateAaaSample2_S">
+<![CDATA[
+/* aaaSample2DAO.updateAaaSample2_S */
+/* 코드생성팀 이백행 AAA_SAMPLE2 수정 */
+UPDATE
+	sample2
+SET
+	ID = #id#,
+	NAME = #name#,
+	DESCRIPTION = #description#,
+	USE_YN = #useYn#,
+	REG_USER = #regUser#
+WHERE
+	ID = #id#
+]]>
+	</update>
+
+	<delete id="aaaSample2DAO.deleteAaaSample2_S">
+<![CDATA[
+/* aaaSample2DAO.deleteAaaSample2_S */
+/* 코드생성팀 이백행 AAA_SAMPLE2 삭제 */
+DELETE
+FROM
+	sample2
+WHERE
+	ID = #id#
+]]>
+	</delete>
+
+	<select id="aaaSample2DAO.selectAaaSample2_S" resultMap="aaaSample2DAO.resultMap">
+<![CDATA[
+/* aaaSample2DAO.selectAaaSample2_S */
+/* 코드생성팀 이백행 AAA_SAMPLE2 조회(단건) */
+SELECT
+	ID,
+	NAME,
+	DESCRIPTION,
+	USE_YN,
+	REG_USER
+FROM
+	sample2
+WHERE
+	ID = #id#
+]]>
+	</select>
+
+	<sql id="aaaSample2DAO.selectAaaSample2List_D.sql">
+<![CDATA[
+SELECT
+	ID,
+	NAME,
+	DESCRIPTION,
+	USE_YN,
+	REG_USER
+FROM
+	sample2
+WHERE
+	1 = 1
+]]>
+		<isEqual property="searchCondition" compareValue="0">
+<![CDATA[
+	AND ID = #searchKeyword#
+]]>
+		</isEqual>
+
+		<isEqual property="searchCondition" compareValue="1">
+<![CDATA[
+	AND NAME LIKE CONCAT('%', #searchKeyword#, '%')
+]]>
+		</isEqual>
+
+	</sql>
+
+	<select id="aaaSample2DAO.selectAaaSample2List_D" parameterClass="egovframework.com.codegen.aaa_sample2.service.AaaSample2DefaultVO" resultClass="org.egovframe.rte.psl.dataaccess.util.EgovMap">
+<![CDATA[
+/* aaaSample2DAO.selectAaaSample2List_D */
+/* 코드생성팀 이백행 AAA_SAMPLE2 조회(멀티건) */
+]]>
+	<include refid="aaaSample2DAO.selectAaaSample2List_D.sql" />
+<![CDATA[
+ORDER BY
+	ID DESC
+LIMIT #firstIndex#, #recordCountPerPage#
+]]>
+	</select>
+
+	<select id="aaaSample2DAO.selectAaaSample2ListTotCnt_S" parameterClass="egovframework.com.codegen.aaa_sample2.service.AaaSample2DefaultVO" resultClass="int">
+<![CDATA[
+/* aaaSample2DAO.selectAaaSample2ListTotCnt_S */
+/* 코드생성팀 이백행 AAA_SAMPLE2 조회(멀티건) 카운트 */
+SELECT
+	COUNT(*) AS TOTCNT
+FROM (
+]]>
+	<include refid="aaaSample2DAO.selectAaaSample2List_D.sql" />
+<![CDATA[
+) AS A
+]]>
+	</select>
+
+</sqlMap>

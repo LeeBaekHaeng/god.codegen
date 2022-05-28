@@ -7,9 +7,19 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.apache.commons.io.FileUtils;
-import org.junit.Before;
+import org.apache.commons.lang3.SystemUtils;
+import org.apache.poi.ss.usermodel.Cell;
+import org.apache.poi.ss.usermodel.Row;
+import org.apache.poi.ss.usermodel.Sheet;
+import org.apache.poi.ss.usermodel.Workbook;
+import org.egovframe.rte.fdl.excel.EgovExcelService;
+import org.egovframe.rte.fdl.excel.impl.EgovExcelServiceImpl;
+import org.egovframe.rte.fdl.excel.util.EgovExcelUtil;
 import org.junit.Test;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
+import egovframework.com.codegen.sample2.service.impl.Sample2ServiceImplTest;
 import egovframework.dev.imp.codegen.template.model.Attribute;
 import egovframework.dev.imp.codegen.template.model.DataModelContext;
 import egovframework.dev.imp.codegen.template.model.EgovPackage;
@@ -18,19 +28,63 @@ import egovframework.dev.imp.codegen.template.model.Folder;
 import operation.CrudCodeGen;
 
 public class CRUD_프로그램_자동_생성_기능 {
-	private CrudCodeGen crudCodeGen;
-	private DataModelContext dataModel;
+
+	protected Logger egovLogger = LoggerFactory.getLogger(Sample2ServiceImplTest.class);
+
+	private final EgovExcelService egovExcelService = new EgovExcelServiceImpl();
+
+//	private CrudCodeGen crudCodeGen;
+//	private DataModelContext dataModel;
 
 //	String eGovFrameTemplates = "eGovFrameTemplates/crud/";
 //	String eGovFrameTemplates = "eGovFrameTemplates/crud2/";
 	String eGovFrameTemplates = "eGovFrameTemplates/crud-com/";
 
-	@Before
-	public void setUp() throws Exception {
-		crudCodeGen = new CrudCodeGen();
+	@Test
+	public void a1_test() {
+		String parent = SystemUtils.USER_HOME + "/Desktop/god.codegen/";
+		String child = "2022-05-28 09-31-02_batchmenubind_메뉴샘플.xls";
+		String filepath = new File(parent, child).getAbsolutePath();
+		egovLogger.debug("filepath={}", filepath);
 
-		dataModel = new DataModelContext();
+		Workbook wb = null;
+		try {
+			wb = egovExcelService.loadWorkbook(filepath);
+		} catch (Exception e) {
+			egovLogger.error("loadWorkbook Exception");
+			return;
+		}
 
+		Sheet sheet = wb.getSheetAt(0);
+		String sheetName = sheet.getSheetName();
+
+		CrudCodeGen crudCodeGen = new CrudCodeGen();
+		DataModelContext dataModel = new DataModelContext();
+
+		for (Row row : sheet) {
+			String cellF = EgovExcelUtil.getValue(row.getCell(5)); // 코드생성여부
+			if (!"Y".equals(cellF)) {
+				continue;
+			}
+
+			String cellG = EgovExcelUtil.getValue(row.getCell(6)); // 테이블 영문명
+			String cellH = EgovExcelUtil.getValue(row.getCell(7)); // 관련엔터티명
+
+			int rowNum = row.getRowNum();
+			egovLogger.debug("rowNum={}", rowNum);
+			for (Cell cell : row) {
+				egovLogger.debug("sheetName={}, rowNum={}, getValue={}", sheetName, rowNum,
+						EgovExcelUtil.getValue(cell));
+			}
+			egovLogger.debug("");
+
+			dataModel = new DataModelContext();
+			set(dataModel, cellG, cellH);
+			generate(crudCodeGen, dataModel);
+		}
+	}
+
+	void set(DataModelContext dataModel, String cellG, String cellH) {
 //		dataModel.setVender("HSQLDB");
 //		dataModel.setVender("Oracle");
 		dataModel.setVender("MySql");
@@ -42,7 +96,8 @@ public class CRUD_프로그램_자동_생성_기능 {
 //		dataModel.setCreateDate(EgovDateUtil.toString(new Date(), null, null));
 		dataModel.setCreateDate("2022-04-24");
 
-		Entity entity = new Entity("SAMPLE2");
+		Entity entity = new Entity(cellH);
+		entity.setTableName(cellG);
 
 		dataModel.setEntity(entity);
 
@@ -85,95 +140,162 @@ public class CRUD_프로그램_자동_생성_기능 {
 		dataModel.setFolder(folder);
 	}
 
-	@Test
-	public void testSQLMap() throws Exception {
+	void generate(CrudCodeGen crudCodeGen, DataModelContext dataModel) {
 		String templateFile = "";
 		String result = "";
 		String pathname = "";
 
 		templateFile = eGovFrameTemplates + "java/pkg/service/Sample2DefaultVO.vm";
-		result = crudCodeGen.generate(dataModel, templateFile);
+		try {
+			result = crudCodeGen.generate(dataModel, templateFile);
+		} catch (Exception e) {
+			System.err.println("generate Exception");
+		}
 		pathname = dataModel.getFolder().getDefaultVOFolder();
 		writeStringToFile(pathname, result);
 
 		templateFile = eGovFrameTemplates + "java/pkg/service/Sample2VO.vm";
-		result = crudCodeGen.generate(dataModel, templateFile);
+		try {
+			result = crudCodeGen.generate(dataModel, templateFile);
+		} catch (Exception e) {
+			System.err.println("generate Exception");
+		}
 		pathname = dataModel.getFolder().getVoPackageFolder();
 		writeStringToFile(pathname, result);
 
 		templateFile = eGovFrameTemplates + "resource/pkg/EgovSample_Sample2_SQL.vm";
-		result = crudCodeGen.generate(dataModel, templateFile);
+		try {
+			result = crudCodeGen.generate(dataModel, templateFile);
+		} catch (Exception e) {
+			System.err.println("generate Exception");
+		}
 		pathname = dataModel.getFolder().getSqlMapFolder();
 		writeStringToFile(pathname, result);
 
 		templateFile = eGovFrameTemplates + "resource/pkg/EgovSample_Sample2_MAPPER.vm";
-		result = crudCodeGen.generate(dataModel, templateFile);
+		try {
+			result = crudCodeGen.generate(dataModel, templateFile);
+		} catch (Exception e) {
+			System.err.println("generate Exception");
+		}
 		pathname = dataModel.getFolder().getMapperFolder();
 		writeStringToFile(pathname, result);
 
 		templateFile = eGovFrameTemplates + "java/pkg/service/impl/Sample2DAO.vm";
-		result = crudCodeGen.generate(dataModel, templateFile);
+		try {
+			result = crudCodeGen.generate(dataModel, templateFile);
+		} catch (Exception e) {
+			System.err.println("generate Exception");
+		}
 		pathname = dataModel.getFolder().getDaoPackageFolder();
 		writeStringToFile(pathname, result);
 
 		templateFile = eGovFrameTemplates + "java/pkg/service/impl/Sample2Mapper.vm";
-		result = crudCodeGen.generate(dataModel, templateFile);
+		try {
+			result = crudCodeGen.generate(dataModel, templateFile);
+		} catch (Exception e) {
+			System.err.println("generate Exception");
+		}
 		pathname = dataModel.getFolder().getMapperPackageFolder();
 		writeStringToFile(pathname, result);
 
 		templateFile = eGovFrameTemplates + "java/pkg/service/EgovSample2Service.vm";
-		result = crudCodeGen.generate(dataModel, templateFile);
+		try {
+			result = crudCodeGen.generate(dataModel, templateFile);
+		} catch (Exception e) {
+			System.err.println("generate Exception");
+		}
 		pathname = dataModel.getFolder().getServicePackageFolder();
 		writeStringToFile(pathname, result);
 
 		templateFile = eGovFrameTemplates + "java/pkg/service/impl/EgovSample2ServiceImpl.vm";
-		result = crudCodeGen.generate(dataModel, templateFile);
+		try {
+			result = crudCodeGen.generate(dataModel, templateFile);
+		} catch (Exception e) {
+			System.err.println("generate Exception");
+		}
 		pathname = dataModel.getFolder().getImplPackageFolder();
 		writeStringToFile(pathname, result);
 
 		templateFile = eGovFrameTemplates + "java/pkg/web/EgovSample2Controller.vm";
-		result = crudCodeGen.generate(dataModel, templateFile);
+		try {
+			result = crudCodeGen.generate(dataModel, templateFile);
+		} catch (Exception e) {
+			System.err.println("generate Exception");
+		}
 		pathname = dataModel.getFolder().getControllerPackageFolder();
 		writeStringToFile(pathname, result);
 
 		templateFile = eGovFrameTemplates + "jsp/pkg/egovSample2List.vm";
-		result = crudCodeGen.generate(dataModel, templateFile);
+		try {
+			result = crudCodeGen.generate(dataModel, templateFile);
+		} catch (Exception e) {
+			System.err.println("generate Exception");
+		}
 		pathname = dataModel.getFolder().getJspListFolder();
 		writeStringToFile(pathname, result);
 
 		templateFile = eGovFrameTemplates + "jsp/pkg/egovSample2Register.vm";
-		result = crudCodeGen.generate(dataModel, templateFile);
+		try {
+			result = crudCodeGen.generate(dataModel, templateFile);
+		} catch (Exception e) {
+			System.err.println("generate Exception");
+		}
 		pathname = dataModel.getFolder().getJspRegistFolder();
 		writeStringToFile(pathname, result);
 
 		templateFile = eGovFrameTemplates + "jsp/pkg/egovSample2Detail.vm";
-		result = crudCodeGen.generate(dataModel, templateFile);
+		try {
+			result = crudCodeGen.generate(dataModel, templateFile);
+		} catch (Exception e) {
+			System.err.println("generate Exception");
+		}
 		pathname = dataModel.getFolder().getJspDetailFolder();
 		writeStringToFile(pathname, result);
 
 		// test
 		templateFile = eGovFrameTemplates + "java/pkg/service/Sample2VOTest.vm";
-		result = crudCodeGen.generate(dataModel, templateFile);
+		try {
+			result = crudCodeGen.generate(dataModel, templateFile);
+		} catch (Exception e) {
+			System.err.println("generate Exception");
+		}
 		pathname = dataModel.getFolder().getVoPackageTestFolder();
 		writeStringToFile(pathname, result);
 
 		templateFile = eGovFrameTemplates + "java/pkg/service/impl/Sample2DAOTest.vm";
-		result = crudCodeGen.generate(dataModel, templateFile);
+		try {
+			result = crudCodeGen.generate(dataModel, templateFile);
+		} catch (Exception e) {
+			System.err.println("generate Exception");
+		}
 		pathname = dataModel.getFolder().getDaoPackageTestFolder();
 		writeStringToFile(pathname, result);
 
 		templateFile = eGovFrameTemplates + "java/pkg/service/impl/Sample2MapperTest.vm";
-		result = crudCodeGen.generate(dataModel, templateFile);
+		try {
+			result = crudCodeGen.generate(dataModel, templateFile);
+		} catch (Exception e) {
+			System.err.println("generate Exception");
+		}
 		pathname = dataModel.getFolder().getMapperPackageTestFolder();
 		writeStringToFile(pathname, result);
 
 		templateFile = eGovFrameTemplates + "java/pkg/service/impl/EgovSample2ServiceImplTest.vm";
-		result = crudCodeGen.generate(dataModel, templateFile);
+		try {
+			result = crudCodeGen.generate(dataModel, templateFile);
+		} catch (Exception e) {
+			System.err.println("generate Exception");
+		}
 		pathname = dataModel.getFolder().getImplPackageTestFolder();
 		writeStringToFile(pathname, result);
 
 		templateFile = eGovFrameTemplates + "java/pkg/web/EgovSample2ControllerTest.vm";
-		result = crudCodeGen.generate(dataModel, templateFile);
+		try {
+			result = crudCodeGen.generate(dataModel, templateFile);
+		} catch (Exception e) {
+			System.err.println("generate Exception");
+		}
 		pathname = dataModel.getFolder().getControllerPackageTestFolder();
 		writeStringToFile(pathname, result);
 	}

@@ -205,19 +205,21 @@ public class A1_MySQL_INFORMATION_SCHEMA_TABLES3_batchmenubind_메뉴샘플 {
 					String tableNameCcName = NamingUtils.convertUnderscoreNameToCamelcase(prefix + "_" + tableName);
 					String tableNamePcName = NamingUtils.convertCamelcaseToPascalcase(tableNameCcName);
 
-					insert(sheet, rownum, tableNamePcName, prefix, tableNamePcName, tableComment);
+					String entityName = (prefix + "_" + tableName).toUpperCase();
+
+					insert(sheet, rownum, tableNamePcName, prefix, tableName, tableComment, entityName);
 					rownum++;
 
-					select(sheet, rownum, tableNamePcName, prefix, tableNamePcName, tableComment);
+					select(sheet, rownum, tableNamePcName, prefix, tableName, tableComment, entityName);
 					rownum++;
 
-					selectList(sheet, rownum, tableNamePcName, prefix, tableNamePcName, tableComment);
+					selectList(sheet, rownum, tableNamePcName, prefix, tableName, tableComment, entityName);
 					rownum++;
 
-					update(sheet, rownum, tableNamePcName, prefix, tableNamePcName, tableComment);
+					update(sheet, rownum, tableNamePcName, prefix, tableName, tableComment, entityName);
 					rownum++;
 
-					delete(sheet, rownum, tableNamePcName, prefix, tableNamePcName, tableComment);
+					delete(sheet, rownum, tableNamePcName, prefix, tableName, tableComment, entityName);
 					rownum++;
 
 					i++;
@@ -242,7 +244,7 @@ public class A1_MySQL_INFORMATION_SCHEMA_TABLES3_batchmenubind_메뉴샘플 {
 	}
 
 	private void insert(Sheet sheet, int rownum, String tableNamePcName, String prefix, String tableName,
-			String tableComment) {
+			String tableComment, String entityName) {
 
 		String progrmFileNm = tableNamePcName + "Insert"; // 프로그램명, 프로그램파일명
 		String progrmKoreanNm = tableComment + " 등록"; // 프로그램한글명
@@ -268,11 +270,17 @@ public class A1_MySQL_INFORMATION_SCHEMA_TABLES3_batchmenubind_메뉴샘플 {
 		cellE.setCellValue(progrmDc); // 프로그램설명
 
 		Cell cellF = row.createCell(5);
-		cellF.setCellValue(tableName);
+		cellF.setCellValue("N"); // 코드생성여부
+
+		Cell cellG = row.createCell(6);
+		cellG.setCellValue(tableName); // 테이블 영문명
+
+		Cell cellH = row.createCell(7);
+		cellH.setCellValue(entityName); // 관련엔터티명
 	}
 
 	private void select(Sheet sheet, int rownum, String tableNamePcName, String prefix, String tableName,
-			String tableComment) {
+			String tableComment, String entityName) {
 
 		String progrmFileNm = tableNamePcName + "Select"; // 프로그램명, 프로그램파일명
 		String progrmKoreanNm = tableComment + " 조회(단건)"; // 프로그램한글명
@@ -298,11 +306,17 @@ public class A1_MySQL_INFORMATION_SCHEMA_TABLES3_batchmenubind_메뉴샘플 {
 		cellE.setCellValue(progrmDc); // 프로그램설명
 
 		Cell cellF = row.createCell(5);
-		cellF.setCellValue(tableName);
+		cellF.setCellValue("N"); // 코드생성여부
+
+		Cell cellG = row.createCell(6);
+		cellG.setCellValue(tableName); // 테이블 영문명
+
+		Cell cellH = row.createCell(7);
+		cellH.setCellValue(entityName); // 관련엔터티명
 	}
 
 	private void selectList(Sheet sheet, int rownum, String tableNamePcName, String prefix, String tableName,
-			String tableComment) {
+			String tableComment, String entityName) {
 
 		String progrmFileNm = tableNamePcName + "SelectList"; // 프로그램명, 프로그램파일명
 		String progrmKoreanNm = tableComment + " 조회(멀티건)"; // 프로그램한글명
@@ -328,11 +342,17 @@ public class A1_MySQL_INFORMATION_SCHEMA_TABLES3_batchmenubind_메뉴샘플 {
 		cellE.setCellValue(progrmDc); // 프로그램설명
 
 		Cell cellF = row.createCell(5);
-		cellF.setCellValue(tableName);
+		cellF.setCellValue("N"); // 코드생성여부
+
+		Cell cellG = row.createCell(6);
+		cellG.setCellValue(tableName); // 테이블 영문명
+
+		Cell cellH = row.createCell(7);
+		cellH.setCellValue(entityName); // 관련엔터티명
 	}
 
 	private void update(Sheet sheet, int rownum, String tableNamePcName, String prefix, String tableName,
-			String tableComment) {
+			String tableComment, String entityName) {
 
 		String progrmFileNm = tableNamePcName + "Update"; // 프로그램명, 프로그램파일명
 		String progrmKoreanNm = tableComment + " 수정"; // 프로그램한글명
@@ -358,11 +378,17 @@ public class A1_MySQL_INFORMATION_SCHEMA_TABLES3_batchmenubind_메뉴샘플 {
 		cellE.setCellValue(progrmDc); // 프로그램설명
 
 		Cell cellF = row.createCell(5);
-		cellF.setCellValue(tableName);
+		cellF.setCellValue("N"); // 코드생성여부
+
+		Cell cellG = row.createCell(6);
+		cellG.setCellValue(tableName); // 테이블 영문명
+
+		Cell cellH = row.createCell(7);
+		cellH.setCellValue(entityName); // 관련엔터티명
 	}
 
 	private void delete(Sheet sheet, int rownum, String tableNamePcName, String prefix, String tableName,
-			String tableComment) {
+			String tableComment, String entityName) {
 
 		String progrmFileNm = tableNamePcName + "Delete"; // 프로그램명, 프로그램파일명
 		String progrmKoreanNm = tableComment + " 삭제"; // 프로그램한글명
@@ -388,7 +414,13 @@ public class A1_MySQL_INFORMATION_SCHEMA_TABLES3_batchmenubind_메뉴샘플 {
 		cellE.setCellValue(progrmDc); // 프로그램설명
 
 		Cell cellF = row.createCell(5);
-		cellF.setCellValue(tableName);
+		cellF.setCellValue("N"); // 코드생성여부
+
+		Cell cellG = row.createCell(6);
+		cellG.setCellValue(tableName); // 테이블 영문명
+
+		Cell cellH = row.createCell(7);
+		cellH.setCellValue(entityName); // 관련엔터티명
 	}
 
 }

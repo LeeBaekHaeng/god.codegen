@@ -24,18 +24,18 @@ public class EgovExcelServiceImpl_d1_loadWorkbook_xls {
 		String path = "test/batchmenubind_메뉴샘플.xls";
 		egovLogger.debug("path={}", path);
 
-		String templateName = null;
+		String filepath = null;
 		try {
-			templateName = new ClassPathResource(path).getFile().getAbsolutePath();
+			filepath = new ClassPathResource(path).getFile().getAbsolutePath();
 		} catch (IOException e) {
 			egovLogger.error("ClassPathResource IOException");
 			return;
 		}
-		egovLogger.debug("templateName={}", templateName);
+		egovLogger.debug("filepath={}", filepath);
 
 		Workbook wb = null;
 		try {
-			wb = egovExcelService.loadWorkbook(templateName);
+			wb = egovExcelService.loadWorkbook(filepath);
 		} catch (Exception e) {
 			egovLogger.error("loadWorkbook Exception");
 			return;

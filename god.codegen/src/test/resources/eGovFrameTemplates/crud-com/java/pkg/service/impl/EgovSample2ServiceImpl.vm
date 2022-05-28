@@ -117,10 +117,10 @@ public class ${serviceImplClassName} extends EgovAbstractServiceImpl implements 
 		egovLogger.debug("${voInstanceName}=", ${voInstanceName});
 
 		try {
-			sample2VO.setId(sample2EgovIdGnrService.getNextStringId());
-			egovLogger.debug("id={}", sample2VO.getId());
+			${voInstanceName}.setId(${model.entity.ccName}EgovIdGnrService.getNextStringId());
+			egovLogger.debug("id={}", ${voInstanceName}.getId());
 		} catch (FdlException e) {
-			egovLogger.error("sample2EgovIdGnrService FdlException");
+			egovLogger.error("${model.entity.ccName}EgovIdGnrService FdlException");
 			return 0;
 		}
 
