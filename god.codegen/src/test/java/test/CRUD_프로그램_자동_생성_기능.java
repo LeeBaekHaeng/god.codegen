@@ -132,7 +132,7 @@ public class CRUD_프로그램_자동_생성_기능 {
 
 		String topLevelPackage = "egovframework.com";
 		String egovPackageName2 = "codegen";
-		String egovPackageName3 = entity.getLcName();
+		String egovPackageName3 = entity.getCcName().toLowerCase();
 		EgovPackage egovPackage = new EgovPackage(topLevelPackage, egovPackageName2, egovPackageName3);
 		dataModel.setEgovPackage(egovPackage);
 
