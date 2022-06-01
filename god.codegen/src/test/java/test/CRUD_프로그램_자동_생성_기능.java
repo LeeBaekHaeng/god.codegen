@@ -12,6 +12,7 @@ import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.ss.usermodel.Sheet;
 import org.apache.poi.ss.usermodel.Workbook;
+import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.egovframe.rte.fdl.excel.EgovExcelService;
 import org.egovframe.rte.fdl.excel.impl.EgovExcelServiceImpl;
 import org.egovframe.rte.fdl.excel.util.EgovExcelUtil;
@@ -104,28 +105,29 @@ public class CRUD_프로그램_자동_생성_기능 {
 		List<Attribute> attributes = new ArrayList<Attribute>();
 		List<Attribute> primaryKeys = new ArrayList<Attribute>();
 
-		Attribute attr = new Attribute("ID");
-		attr.setJavaType("String");
-		attr.setPrimaryKey(true);
-		attributes.add(attr);
-		primaryKeys.add(attr);
+		Sheet sheet = getColumns();
 
-		attr = new Attribute("NAME");
-		attr.setJavaType("String");
-		attributes.add(attr);
-//		primaryKeys.add(attr);
+		for (Row row : sheet) {
+			int rowNum = row.getRowNum();
+			if (rowNum == 0) {
+				continue;
+			}
 
-		attr = new Attribute("DESCRIPTION");
-		attr.setJavaType("String");
-		attributes.add(attr);
+			String cellC = EgovExcelUtil.getValue(row.getCell(2)); // TABLE_NAME
+			String cellD = EgovExcelUtil.getValue(row.getCell(3)); // COLUMN_NAME
+//			String cellH2 = EgovExcelUtil.getValue(row.getCell(7)); // DATA_TYPE
+			String cellQ = EgovExcelUtil.getValue(row.getCell(16)); // COLUMN_KEY
 
-		attr = new Attribute("USE_YN");
-		attr.setJavaType("String");
-		attributes.add(attr);
-
-		attr = new Attribute("REG_USER");
-		attr.setJavaType("String");
-		attributes.add(attr);
+			if (cellG.equals(cellC)) {
+				Attribute attr = new Attribute(cellD);
+				attr.setJavaType("String");
+				if ("PRI".equals(cellQ)) {
+					attr.setPrimaryKey(true);
+					primaryKeys.add(attr);
+				}
+				attributes.add(attr);
+			}
+		}
 
 		dataModel.setAttributes(attributes);
 		dataModel.setPrimaryKeys(primaryKeys);
@@ -307,6 +309,24 @@ public class CRUD_프로그램_자동_생성_기능 {
 		} catch (IOException e) {
 			System.err.println("파일 생성 실패: " + pathname);
 		}
+	}
+
+	@SuppressWarnings("resource")
+	private Sheet getColumns() {
+		String parent = SystemUtils.USER_HOME + "/Desktop/god.codegen/";
+		String child = "2022-06-01 21-57-34_INFORMATION_SCHEMA.COLUMNS2.xlsx";
+		String filepath = new File(parent, child).getAbsolutePath();
+		egovLogger.debug("filepath={}", filepath);
+
+		XSSFWorkbook wb = new XSSFWorkbook();
+		try {
+			wb = egovExcelService.loadWorkbook(filepath, wb);
+		} catch (Exception e) {
+			egovLogger.error("loadWorkbook Exception");
+			return null;
+		}
+
+		return wb.getSheetAt(0);
 	}
 
 }
