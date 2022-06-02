@@ -115,12 +115,16 @@ public class CRUD_프로그램_자동_생성_기능 {
 
 			String cellC = EgovExcelUtil.getValue(row.getCell(2)); // TABLE_NAME
 			String cellD = EgovExcelUtil.getValue(row.getCell(3)); // COLUMN_NAME
-//			String cellH2 = EgovExcelUtil.getValue(row.getCell(7)); // DATA_TYPE
+			String cellH2 = EgovExcelUtil.getValue(row.getCell(7)); // DATA_TYPE
 			String cellQ = EgovExcelUtil.getValue(row.getCell(16)); // COLUMN_KEY
 
 			if (cellG.equals(cellC)) {
 				Attribute attr = new Attribute(cellD);
-				attr.setJavaType("String");
+				if ("decimal".equals(cellH2)) {
+					attr.setJavaType("int");
+				} else {
+					attr.setJavaType("String");
+				}
 				if ("PRI".equals(cellQ)) {
 					attr.setPrimaryKey(true);
 					primaryKeys.add(attr);
