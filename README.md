@@ -77,3 +77,13 @@ ResultSet columns = metaData.getColumns(catalog, schemaPattern, tableNamePattern
 
 ResultSet primaryKeys = metaData.getPrimaryKeys(catalog, schema, table);
 ```
+
+## 톰캣 캐시의 최대 크기를 증가
+
+Servers > Tomcat v8.5 Server at localhost-config > context.xml
+
+```xml
+    <!-- 캐시의 최대 크기를 증가시키는 것을 고려해 보십시오. -->
+    <!-- 10240 10MB 에서 102400 100MB 로 수정 -->
+    <Resources cacheMaxSize="102400"></Resources>
+```
