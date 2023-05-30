@@ -44,7 +44,7 @@ public class CRUD_프로그램_자동_생성_기능 {
 	@Test
 	public void a1_test() {
 		String parent = SystemUtils.USER_HOME + "/Desktop/god.codegen/";
-		String child = "2022-05-28 09-31-02_batchmenubind_메뉴샘플.xls";
+		String child = "2023-05-30 17-17-43_batchmenubind_메뉴샘플.xls";
 		String filepath = new File(parent, child).getAbsolutePath();
 		egovLogger.debug("filepath={}", filepath);
 
@@ -169,14 +169,14 @@ public class CRUD_프로그램_자동_생성_기능 {
 		pathname = dataModel.getFolder().getVoPackageFolder();
 		writeStringToFile(pathname, result);
 
-		templateFile = eGovFrameTemplates + "resource/pkg/EgovSample_Sample2_SQL.vm";
-		try {
-			result = crudCodeGen.generate(dataModel, templateFile);
-		} catch (Exception e) {
-			System.err.println("generate Exception");
-		}
-		pathname = dataModel.getFolder().getSqlMapFolder();
-		writeStringToFile(pathname, result);
+//		templateFile = eGovFrameTemplates + "resource/pkg/EgovSample_Sample2_SQL.vm";
+//		try {
+//			result = crudCodeGen.generate(dataModel, templateFile);
+//		} catch (Exception e) {
+//			System.err.println("generate Exception");
+//		}
+//		pathname = dataModel.getFolder().getSqlMapFolder();
+//		writeStringToFile(pathname, result);
 
 		templateFile = eGovFrameTemplates + "resource/pkg/EgovSample_Sample2_MAPPER.vm";
 		try {
@@ -196,14 +196,14 @@ public class CRUD_프로그램_자동_생성_기능 {
 		pathname = dataModel.getFolder().getDaoPackageFolder();
 		writeStringToFile(pathname, result);
 
-		templateFile = eGovFrameTemplates + "java/pkg/service/impl/Sample2Mapper.vm";
-		try {
-			result = crudCodeGen.generate(dataModel, templateFile);
-		} catch (Exception e) {
-			System.err.println("generate Exception");
-		}
-		pathname = dataModel.getFolder().getMapperPackageFolder();
-		writeStringToFile(pathname, result);
+//		templateFile = eGovFrameTemplates + "java/pkg/service/impl/Sample2Mapper.vm";
+//		try {
+//			result = crudCodeGen.generate(dataModel, templateFile);
+//		} catch (Exception e) {
+//			System.err.println("generate Exception");
+//		}
+//		pathname = dataModel.getFolder().getMapperPackageFolder();
+//		writeStringToFile(pathname, result);
 
 		templateFile = eGovFrameTemplates + "java/pkg/service/EgovSample2Service.vm";
 		try {
@@ -318,7 +318,7 @@ public class CRUD_프로그램_자동_생성_기능 {
 	@SuppressWarnings("resource")
 	private Sheet getColumns() {
 		String parent = SystemUtils.USER_HOME + "/Desktop/god.codegen/";
-		String child = "2022-06-01 21-57-34_INFORMATION_SCHEMA.COLUMNS2.xlsx";
+		String child = "2023-05-30 17-25-20_INFORMATION_SCHEMA.COLUMNS2.xlsx";
 		String filepath = new File(parent, child).getAbsolutePath();
 		egovLogger.debug("filepath={}", filepath);
 
