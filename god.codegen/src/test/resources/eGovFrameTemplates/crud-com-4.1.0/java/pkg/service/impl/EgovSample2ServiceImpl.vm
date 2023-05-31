@@ -1,0 +1,183 @@
+##
+#set($voPackage="${voPackage}")
+#set($voClassName="${model.entity.pcName}VO")
+#set($voInstanceName="${model.entity.ccName}VO")
+#set($defaultVoClassName="${model.entity.pcName}DefaultVO")
+#set($daoPackage="${daoPackage}")
+#set($daoClassName="${model.entity.pcName}DAO")
+#set($daoName="${model.entity.ccName}DAO")
+#set($daoInstanceName="${model.entity.ccName}DAO")
+#set($mapperPackage="${mapperPackage}")
+#set($mapperClassName="${model.entity.pcName}Mapper")
+#set($mapperName="${model.entity.ccName}Mapper")
+#set($mapperInstanceName="${model.entity.ccName}Mapper")
+#set($servicePackage="${servicePackage}")
+#set($serviceClassName="${model.entity.pcName}Service")
+#set($serviceImplPackage="${implPackage}")
+#set($serviceImplClassName="${model.entity.pcName}ServiceImpl")
+#set($serviceName="${model.entity.ccName}Service")
+##
+##
+#set($insertMethodName="insert${model.entity.pcName}")
+#set($updateMethodName="update${model.entity.pcName}")
+#set($deleteMethodName="delete${model.entity.pcName}")
+#set($selectMethodName="select${model.entity.pcName}")
+#set($selectListMethodName="select${model.entity.pcName}List")
+#set($selectListTotCntMethodName="select${model.entity.pcName}ListTotCnt")
+#set($mergeMethodName="merge${model.entity.pcName}")
+#set($multiMethodName="multi${model.entity.pcName}")
+#set($idGnrService="egov${model.entity.pcName}IdGnrService")
+##
+##
+package ${serviceImplPackage};
+
+import java.util.List;
+
+##import javax.annotation.Resource;
+##import org.springframework.beans.factory.annotation.Autowired;
+
+import org.springframework.stereotype.Service;
+
+import org.egovframe.rte.fdl.cmmn.EgovAbstractServiceImpl;
+import org.egovframe.rte.psl.dataaccess.util.EgovMap;
+import org.springframework.beans.factory.annotation.Qualifier;
+import org.egovframe.rte.fdl.cmmn.exception.FdlException;
+import org.egovframe.rte.fdl.idgnr.EgovIdGnrService;
+##import org.egovframe.rte.fdl.idgnr.impl.EgovUUIdGnrServiceImpl;
+import ${servicePackage}.${serviceClassName};
+#if (${voPackage}=='${voPackage}')
+// Vo 객체에 대한 import 구문
+// import (vo package).${defaultVoClassName};
+// import (vo package).${voClassName};
+#else
+##import ${voPackage}.${defaultVoClassName};
+import ${voPackage}.${voClassName};
+#end
+#if (${daoPackage}=='${daoPackage}')
+// Dao 객체에 대한 import 구문
+// import (dao package).${daoClassName};
+#else
+##import ${daoPackage}.${daoClassName};
+#end
+#if (${mapperPackage}=='${mapperPackage}')
+// Mapper 객체에 대한 import 구문
+// import (mapper package).${mapperClassName};
+#else
+##import ${mapperPackage}.${mapperClassName};
+#end
+/**
+ * @Class Name : ${serviceImplClassName}.java
+ * @Description : ${model.entity.pcName} Business Implement class
+ * @Modification Information
+ *
+ * @author ${author}
+ * @since ${createDate}
+ * @version 1.0
+ * @see
+ *
+ *  Copyright (C)  All right reserved.
+ */
+
+@Service
+public class ${serviceImplClassName} extends EgovAbstractServiceImpl implements ${serviceClassName} {
+##
+##	private static final egovLogger egovLogger = egovLoggerFactory.getegovLogger(${serviceImplClassName}.class);
+##
+##	@Autowired
+##	private ${mapperClassName} ${daoInstanceName};
+##
+##//	@Autowired
+##//	private ${daoClassName} ${daoInstanceName};
+##
+##	/** ID Generation */
+##	//@Resource(name="{$idGnrService}")
+##	//private EgovIdGnrService egovIdGnrService;
+
+	private final ${daoClassName} ${daoInstanceName};
+	private final EgovIdGnrService ${model.entity.ccName}EgovIdGnrService;
+
+##	public ${serviceImplClassName}(${mapperClassName} ${daoInstanceName}) {
+##		this.${daoInstanceName} = ${daoInstanceName};
+##		this.${model.entity.ccName}EgovIdGnrService = new EgovUUIdGnrServiceImpl();
+##	}
+	public ${serviceImplClassName}(${daoClassName} ${daoInstanceName},
+			// TODO 이백행 egovFileIdGnrService 수정
+			@Qualifier("egovFileIdGnrService") EgovIdGnrService ${model.entity.ccName}EgovIdGnrService) {
+		this.${daoInstanceName} = ${daoInstanceName};
+		this.${model.entity.ccName}EgovIdGnrService = ${model.entity.ccName}EgovIdGnrService;
+	}
+
+	/**
+	 * ${model.entity.name}을 등록한다.
+	 * 
+	 * @param ${voInstanceName} - 등록할 정보가 담긴 ${voClassName}
+	 * @return 등록 결과
+	 */
+	public int ${insertMethodName}(${voClassName} ${voInstanceName}) {
+		egovLogger.debug("${voInstanceName}=", ${voInstanceName});
+
+		egovLogger.debug("${voInstanceName}=", ${voInstanceName});
+
+		return ${daoInstanceName}.${insertMethodName}(${voInstanceName});
+	}
+
+	/**
+	 * ${model.entity.name}을 수정한다.
+	 * 
+	 * @param ${voInstanceName} - 수정할 정보가 담긴 ${voClassName}
+	 * @return void형
+	 */
+	public int ${updateMethodName}(${voClassName} ${voInstanceName}) {
+		return ${daoInstanceName}.${updateMethodName}(${voInstanceName});
+	}
+
+	/**
+	 * ${model.entity.name}을 삭제한다.
+	 * 
+	 * @param ${voInstanceName} - 삭제할 정보가 담긴 ${voClassName}
+	 * @return void형
+	 */
+	public int ${deleteMethodName}(${voClassName} ${voInstanceName}) {
+		return ${daoInstanceName}.${deleteMethodName}(${voInstanceName});
+	}
+
+	/**
+	 * ${model.entity.name}을 조회한다.
+	 * 
+	 * @param ${voInstanceName} - 조회할 정보가 담긴 ${voClassName}
+	 * @return 조회한 ${model.entity.name}
+	 */
+	public ${voClassName} ${selectMethodName}(${voClassName} ${voInstanceName}) {
+		${voClassName} result = ${daoInstanceName}.${selectMethodName}(${voInstanceName});
+		if (result == null) {
+			try {
+				throw processException("info.nodata.msg");
+			} catch (Exception e) {
+				egovLogger.error(e.getMessage());
+				return null;
+			}
+		}
+		return result;
+	}
+
+	/**
+	 * ${model.entity.name} 목록을 조회한다.
+	 * 
+	 * @param ${voInstanceName} - 조회할 정보가 담긴 ${voClassName}
+	 * @return ${model.entity.name} 목록
+	 */
+	public List<EgovMap> ${selectListMethodName}($voClassName ${voInstanceName}) {
+		return ${daoInstanceName}.${selectListMethodName}(${voInstanceName});
+	}
+
+	/**
+	 * ${model.entity.name} 총 갯수를 조회한다.
+	 * 
+	 * @param ${voInstanceName} - 조회할 정보가 담긴 ${voClassName}
+	 * @return ${model.entity.name} 총 갯수
+	 */
+	public int ${selectListTotCntMethodName}($voClassName ${voInstanceName}) {
+		return ${daoInstanceName}.${selectListTotCntMethodName}(${voInstanceName});
+	}
+
+}

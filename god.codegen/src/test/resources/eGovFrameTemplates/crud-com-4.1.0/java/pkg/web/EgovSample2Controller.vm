@@ -1,0 +1,198 @@
+##
+#set($voPackage="${voPackage}")
+#set($voClassName="${model.entity.pcName}VO")
+#set($defaultVoClassName="${model.entity.pcName}DefaultVO")
+#set($voInstanceName="${model.entity.ccName}VO")
+#set($servicePackage="${servicePackage}")
+#set($serviceClassName="${model.entity.pcName}Service")
+#set($serviceName="${model.entity.ccName}Service")
+#set($serviceInstanceName="${model.entity.ccName}Service")
+#set($controllerPackage="${controllerPackage}")
+#set($controllerClassName="${model.entity.pcName}Controller")
+##
+##
+#set($listInstanceName="${model.entity.ccName}List")
+#set($insertMethodName="insert${model.entity.pcName}")
+#set($updateMethodName="update${model.entity.pcName}")
+#set($deleteMethodName="delete${model.entity.pcName}")
+#set($mergeMethodName="merge${model.entity.pcName}")
+#set($multiMethodName="multi${model.entity.pcName}")
+#set($selectMethodName="select${model.entity.pcName}")
+#set($selectListMethodName="select${model.entity.pcName}List")
+#set($selectListTotCntMethodName="select${model.entity.pcName}ListTotCnt")
+##
+##
+#set($updateViewMethodName="update${model.entity.pcName}")
+#set($addMethodName="insert${model.entity.pcName}")
+#set($addViewMethodName="insert${model.entity.pcName}")
+##
+#set($listPath="/${model.entity.ccName}/select${model.entity.pcName}List.do")
+#set($addViewPath="/${model.entity.ccName}/insert${model.entity.pcName}.do")
+#set($addPath="/${model.entity.ccName}/insert${model.entity.pcName}.do")
+#set($selectPath="/${model.entity.ccName}/select${model.entity.pcName}.do")
+#set($updatePath="/${model.entity.ccName}/update${model.entity.pcName}.do")
+#set($updateViewPath="/${model.entity.ccName}/update${model.entity.pcName}.do")
+#set($deletePath="/${model.entity.ccName}/delete${model.entity.pcName}.do")
+#set($mergePath="/${model.entity.ccName}/merge${model.entity.pcName}.do")
+#set($multiPath="/${model.entity.ccName}/multi${model.entity.pcName}.do")
+##
+#set($listView="${model.folder.jspListFolder2}")
+#set($registerView="${model.folder.jspRegistFolder2}")
+#set($detailView="${model.folder.jspDetailFolder2}")
+##
+##
+package ${controllerPackage};
+
+import java.util.List;
+##
+##import javax.annotation.Resource;
+##import org.springframework.beans.factory.annotation.Autowired;
+
+##import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
+##import org.springframework.ui.ModelMap;
+##import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
+##import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+##import org.springframework.web.bind.annotation.SessionAttributes;
+##import org.springframework.web.bind.support.SessionStatus;
+
+##import org.egovframe.rte.fdl.property.EgovPropertyService;
+import org.egovframe.rte.psl.dataaccess.util.EgovMap;
+import org.egovframe.rte.ptl.mvc.tags.ui.pagination.PaginationInfo;
+
+import egovframework.com.cmm.web.EgovComAbstractController;
+#if (${servicePackage}=='${servicePackage}')
+// Servoce 객체에 대한 import 구문
+// import (service package).${serviceClassName};
+#else
+import ${servicePackage}.${serviceClassName};
+#end
+#if (${voPackage}=='${voPackage}')
+// Vo 객체에 대한 import 구문
+// import (vo package).${defaultVoClassName};
+// import (vo package).${voClassName};
+#else
+##import ${voPackage}.${defaultVoClassName};
+import ${voPackage}.${voClassName};
+#end
+
+/**
+ * @Class Name : ${controllerClassName}.java
+ * @Description : ${model.entity.pcName} Controller class
+ * @Modification Information
+ *
+ * @author ${author}
+ * @since ${createDate}
+ * @version 1.0
+ * @see
+ *
+ *  Copyright (C)  All right reserved.
+ */
+
+@Controller
+##@SessionAttributes(types=${voClassName}.class)
+public class ${controllerClassName} extends EgovComAbstractController {
+
+	private final ${serviceClassName} ${serviceInstanceName};
+##	private final EgovPropertyService egovPropertyService;
+##
+#*	public ${controllerClassName}(${serviceClassName} ${serviceInstanceName},
+			@Qualifier("propertiesService") EgovPropertyService egovPropertyService) {
+		this.${serviceInstanceName} = ${serviceInstanceName};
+		this.egovPropertyService = egovPropertyService;
+	}*#
+	public ${controllerClassName}(${serviceClassName} ${serviceInstanceName}) {
+		this.${serviceInstanceName} = ${serviceInstanceName};
+	}
+
+	/**
+	 * ${model.entity.name} 목록을 조회한다. (pageing)
+	 *
+	 * @param ${voInstanceName} - 조회할 정보가 담긴 ${voClassName}
+	 * @param model
+	 * @return "${listView}"
+	 */
+	@GetMapping("${listPath}")
+	public String ${selectListMethodName}(${voClassName} ${voInstanceName}, Model model) {
+##
+#*		/** EgovPropertyService.sample */
+		${voInstanceName}.setPageUnit(egovPropertyService.getInt("pageUnit"));
+		${voInstanceName}.setPageSize(egovPropertyService.getInt("pageSize"));
+
+		/** pageing */
+		PaginationInfo paginationInfo = new PaginationInfo();
+		paginationInfo.setCurrentPageNo(${voInstanceName}.getPageIndex());
+		paginationInfo.setRecordCountPerPage(${voInstanceName}.getPageUnit());
+		paginationInfo.setPageSize(${voInstanceName}.getPageSize());
+
+		${voInstanceName}.setFirstIndex(paginationInfo.getFirstRecordIndex());
+		${voInstanceName}.setLastIndex(paginationInfo.getLastRecordIndex());
+		${voInstanceName}.setRecordCountPerPage(paginationInfo.getRecordCountPerPage());*#
+		PaginationInfo paginationInfo = builderPaginationInfo(${voInstanceName});
+
+		List<EgovMap> ${listInstanceName} = ${serviceInstanceName}.${selectListMethodName}(${voInstanceName});
+		model.addAttribute("resultList", ${listInstanceName});
+
+		int totCnt = ${serviceInstanceName}.${selectListTotCntMethodName}(${voInstanceName});
+		paginationInfo.setTotalRecordCount(totCnt);
+		model.addAttribute("paginationInfo", paginationInfo);
+
+		return "${listView}";
+	}
+
+	@GetMapping("${addViewPath}")
+	public String ${addViewMethodName}(${voClassName} ${voInstanceName}, Model model) {
+		return "${registerView}";
+	}
+
+	@PostMapping("${addPath}")
+	public String ${addMethodName}(${voClassName} ${voInstanceName}) {
+		int ${insertMethodName} = ${serviceInstanceName}.${insertMethodName}(${voInstanceName});
+		return "redirect:${listPath}?${insertMethodName}=" + ${insertMethodName};
+	}
+
+	@GetMapping("${updateViewPath}")
+	public String ${updateViewMethodName}(${voClassName} ${voInstanceName},
+#if(${model.primaryKeys} == [])
+			@RequestParam("${model.attributes.get(0).ccName}") ${model.attributes.get(0).javaType} ${model.attributes.get(0).ccName},
+#else
+#foreach($attribute in $model.primaryKeys)
+			@RequestParam("${attribute.ccName}") ${attribute.javaType} ${attribute.ccName},
+#end
+#end
+			Model model) {
+##		${voClassName} ${voInstanceName} = new ${voClassName}();
+#if(${model.primaryKeys} == [])
+##		${voInstanceName}.set${model.attributes.get(0).pcName}(${model.attributes.get(0).ccName});
+#else
+#foreach($attribute in $model.primaryKeys)
+##		${voInstanceName}.set${attribute.pcName}(${attribute.ccName});
+#end
+#end
+		model.addAttribute(${serviceInstanceName}.${selectMethodName}(${voInstanceName}));
+		return "${registerView}";
+	}
+
+	@GetMapping("${selectPath}")
+	public String ${selectMethodName}(${voClassName} ${voInstanceName}, Model model) {
+		model.addAttribute(${serviceInstanceName}.${selectMethodName}(${voInstanceName}));
+		return "${detailView}";
+	}
+
+	@PostMapping("${updatePath}")
+	public String ${updateMethodName}(${voClassName} ${voInstanceName}) {
+		int ${updateMethodName} = ${serviceInstanceName}.${updateMethodName}(${voInstanceName});
+		return "redirect:${listPath}?${updateMethodName}=" + ${updateMethodName};
+	}
+
+	@PostMapping("${deletePath}")
+	public String ${deleteMethodName}(${voClassName} ${voInstanceName}) {
+		int ${deleteMethodName} = ${serviceInstanceName}.${deleteMethodName}(${voInstanceName});
+		return "redirect:${listPath}?${deleteMethodName}=" + ${deleteMethodName};
+	}
+
+}

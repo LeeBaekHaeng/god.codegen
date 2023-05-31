@@ -1,0 +1,252 @@
+##
+#set($voPackage="${voPackage}")
+#set($voClassName="${model.entity.pcName}VO")
+#set($voInstanceName="${model.entity.ccName}VO")
+#set($defaultVoClassName="${model.entity.pcName}DefaultVO")
+##
+#set($servicePackage="${servicePackage}")
+#set($serviceClassName="${model.entity.pcName}Service")
+#set($serviceImplPackage="${implPackage}")
+#set($serviceImplClassName="${model.entity.pcName}ServiceImpl")
+#set($serviceName="${model.entity.ccName}Service")
+#set($serviceInstanceName="${model.entity.ccName}Service")
+##
+##
+#set($insertMethodName="insert${model.entity.pcName}")
+#set($updateMethodName="update${model.entity.pcName}")
+#set($deleteMethodName="delete${model.entity.pcName}")
+#set($selectMethodName="select${model.entity.pcName}")
+#set($selectListMethodName="select${model.entity.pcName}List")
+#set($selectListTotCntMethodName="select${model.entity.pcName}ListTotCnt")
+##
+##
+#set($insertQueryId="${serviceInstanceName}.insert${model.entity.pcName}_S")
+#set($updateQueryId="${serviceInstanceName}.update${model.entity.pcName}_S")
+#set($deleteQueryId="${serviceInstanceName}.delete${model.entity.pcName}_S")
+#set($selectQueryId="${serviceInstanceName}.select${model.entity.pcName}_S")
+#set($selectListQueryId="${serviceInstanceName}.select${model.entity.pcName}List_D")
+#set($selectListTotCntQueryId="${serviceInstanceName}.select${model.entity.pcName}ListTotCnt_S")
+##
+##
+package ${daoPackage};
+
+import java.util.List;
+
+import javax.annotation.Resource;
+
+##import org.egovframe.rte.fdl.cmmn.exception.FdlException;
+##import org.egovframe.rte.fdl.idgnr.EgovIdGnrService;
+import org.egovframe.rte.psl.dataaccess.util.EgovMap;
+import org.junit.FixMethodOrder;
+import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.junit.runners.MethodSorters;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+##import org.springframework.beans.factory.annotation.Autowired;
+##import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.test.context.ActiveProfiles;
+import org.springframework.test.context.ContextConfiguration;
+import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+
+#if (${servicePackage}=='${servicePackage}')
+// Servoce 객체에 대한 import 구문
+// import (service package).${serviceClassName};
+#else
+import ${servicePackage}.${serviceClassName};
+#end
+import ${voPackage}.${voClassName};
+##import ${voPackage}.${defaultVoClassName};
+
+/**
+ * @Class Name : ${serviceClassName}.java
+ * @Description : ${model.entity.pcName} DAO Class
+ * @Modification Information
+ *
+ * @author ${author}
+ * @since ${createDate}
+ * @version 1.0
+ * @see
+ *
+ *  Copyright (C)  All right reserved.
+ */
+
+@FixMethodOrder(MethodSorters.NAME_ASCENDING)
+@RunWith(SpringJUnit4ClassRunner.class)
+@ContextConfiguration(locations = { "classpath*:egovframework/spring/com/**/context-*.xml" })
+@ActiveProfiles("mysql")
+public class ${serviceImplClassName}Test {
+
+	protected Logger egovLogger = LoggerFactory.getLogger(${serviceImplClassName}Test.class);
+
+##	@Autowired
+	@Resource
+	private ${serviceClassName} ${serviceInstanceName};
+
+##	@Autowired
+##	@Qualifier("egovFileIdGnrService")
+##	@Resource(name = "egovFileIdGnrService")
+##	private EgovIdGnrService ${model.entity.ccName}EgovIdGnrService;
+##
+	/**
+	 * ${model.entity.name}을 등록한다.
+	 */
+	@Test
+	public void a_${insertMethodName}() {
+		${voClassName} ${voInstanceName} = new ${voClassName}();
+#*
+#foreach($attribute in $model.primaryKeys)
+		try {
+			${voInstanceName}.set${attribute.pcName}(${model.entity.ccName}EgovIdGnrService.getNextStringId());
+			egovLogger.debug("${attribute.ccName}={}", ${voInstanceName}.get${attribute.pcName}());
+		} catch (FdlException e) {
+			egovLogger.error("${model.entity.ccName}EgovIdGnrService FdlException");
+		}
+#end
+*#
+#foreach($attribute in $model.attributes)
+#if($attribute.isPrimaryKey == false)
+//		${voInstanceName}.set${attribute.pcName}("test ${attribute.ccName}");
+#end
+#end
+
+		int ${insertMethodName} = ${serviceInstanceName}.${insertMethodName}(${voInstanceName});
+		egovLogger.debug("${insertMethodName}={}", ${insertMethodName});
+	}
+
+	/**
+	 * ${model.entity.name}을 조회한다.
+	 */
+	@Test
+	public void b1_${selectMethodName}() {
+		${voClassName} ${voInstanceName} = new ${voClassName}();
+
+#foreach($attribute in $model.primaryKeys)
+		${voInstanceName}.set${attribute.pcName}("test ${attribute.ccName}");
+#end
+
+#foreach($attribute in $model.attributes)
+#if($attribute.isPrimaryKey == false)
+//		${voInstanceName}.set${attribute.pcName}("test ${attribute.ccName}");
+#end
+#end
+
+		${voClassName} result = ${serviceInstanceName}.${selectMethodName}(${voInstanceName});
+		egovLogger.debug("result={}", result);
+	}
+
+	/**
+	 * ${model.entity.name} 목록을 조회한다.
+	 */
+	@Test
+	public void b1_${selectListMethodName}() {
+		${voClassName} ${voInstanceName} = new ${voClassName}();
+
+		${voInstanceName}.setFirstIndex(1);
+		${voInstanceName}.setRecordCountPerPage(10);
+
+		${voInstanceName}.setSearchCondition("");
+		${voInstanceName}.setSearchKeyword("");
+		${voInstanceName}.setSearchUseYn("");
+//		${voInstanceName}.setPageIndex(1);
+//		${voInstanceName}.setPageUnit(10);
+//		${voInstanceName}.setPageSize(10);
+//		${voInstanceName}.setFirstIndex(1);
+//		${voInstanceName}.setLastIndex(1);
+//		${voInstanceName}.setRecordCountPerPage(10);
+		${voInstanceName}.setSearchKeywordFrom("");
+		${voInstanceName}.setSearchKeywordTo("");
+
+#foreach($attribute in $model.primaryKeys)
+//		${voInstanceName}.set${attribute.pcName}("test ${attribute.ccName}");
+#end
+
+#foreach($attribute in $model.attributes)
+#if($attribute.isPrimaryKey == false)
+//		${voInstanceName}.set${attribute.pcName}("test ${attribute.ccName}");
+#end
+#end
+
+		List<EgovMap> resultList = ${serviceInstanceName}.${selectListMethodName}(${voInstanceName});
+		egovLogger.debug("resultList={}", resultList);
+	}
+
+	/**
+	 * ${model.entity.name} 총 갯수를 조회한다.
+	 */
+	@Test
+	public void b1_${selectListTotCntMethodName}() {
+		${voClassName} ${voInstanceName} = new ${voClassName}();
+
+		${voInstanceName}.setFirstIndex(1);
+		${voInstanceName}.setRecordCountPerPage(10);
+
+		${voInstanceName}.setSearchCondition("");
+		${voInstanceName}.setSearchKeyword("");
+		${voInstanceName}.setSearchUseYn("");
+//		${voInstanceName}.setPageIndex(1);
+//		${voInstanceName}.setPageUnit(10);
+//		${voInstanceName}.setPageSize(10);
+//		${voInstanceName}.setFirstIndex(1);
+//		${voInstanceName}.setLastIndex(1);
+//		${voInstanceName}.setRecordCountPerPage(10);
+		${voInstanceName}.setSearchKeywordFrom("");
+		${voInstanceName}.setSearchKeywordTo("");
+
+#foreach($attribute in $model.primaryKeys)
+//		${voInstanceName}.set${attribute.pcName}("test ${attribute.ccName}");
+#end
+
+#foreach($attribute in $model.attributes)
+#if($attribute.isPrimaryKey == false)
+//		${voInstanceName}.set${attribute.pcName}("test ${attribute.ccName}");
+#end
+#end
+
+		int ${selectListTotCntMethodName} = ${serviceInstanceName}.${selectListTotCntMethodName}(${voInstanceName});
+		egovLogger.debug("${selectListTotCntMethodName}={}", ${selectListTotCntMethodName});
+	}
+
+	/**
+	 * ${model.entity.name}을 수정한다.
+	 */
+	@Test
+	public void c1_${updateMethodName}() {
+		${voClassName} ${voInstanceName} = new ${voClassName}();
+
+#foreach($attribute in $model.primaryKeys)
+		${voInstanceName}.set${attribute.pcName}("test ${attribute.ccName}");
+#end
+
+#foreach($attribute in $model.attributes)
+#if($attribute.isPrimaryKey == false)
+//		${voInstanceName}.set${attribute.pcName}("test ${attribute.ccName}");
+#end
+#end
+
+		int ${updateMethodName} = ${serviceInstanceName}.${updateMethodName}(${voInstanceName});
+		egovLogger.debug("${updateMethodName}={}", ${updateMethodName});
+	}
+
+	/**
+	 * ${model.entity.name}을 삭제한다.
+	 */
+	@Test
+	public void d1_${deleteMethodName}() {
+		${voClassName} ${voInstanceName} = new ${voClassName}();
+
+#foreach($attribute in $model.primaryKeys)
+		${voInstanceName}.set${attribute.pcName}("test ${attribute.ccName}");
+#end
+
+#foreach($attribute in $model.attributes)
+#if($attribute.isPrimaryKey == false)
+//		${voInstanceName}.set${attribute.pcName}("test ${attribute.ccName}");
+#end
+#end
+
+		int ${deleteMethodName} = ${serviceInstanceName}.${deleteMethodName}(${voInstanceName});
+		egovLogger.debug("${deleteMethodName}={}", ${deleteMethodName});
+	}
+
+}
