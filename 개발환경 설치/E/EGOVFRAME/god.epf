@@ -3,7 +3,7 @@
 /configuration/org.eclipse.core.net/org.eclipse.core.net.hasMigrated=true
 /configuration/org.eclipse.epp.mpc.ui/showOpenFavoritesNotification=false
 /configuration/org.eclipse.ui.ide/MAX_RECENT_WORKSPACES=10
-/configuration/org.eclipse.ui.ide/RECENT_WORKSPACES=C\:\\EGOVFRAME\\eGovFrameDev-4.1.0-64bit\\workspace
+/configuration/org.eclipse.ui.ide/RECENT_WORKSPACES=E\:\\EGOVFRAME\\eGovFrameDev-4.1.0-64bit\\workspace
 /configuration/org.eclipse.ui.ide/RECENT_WORKSPACES_PROTOCOL=3
 /configuration/org.eclipse.ui.ide/SHOW_RECENT_WORKSPACES=true
 /configuration/org.eclipse.ui.ide/SHOW_WORKSPACE_SELECTION_DIALOG=true
@@ -416,7 +416,7 @@
 /instance/org.eclipse.jdt.core/org.eclipse.jdt.core.formatter.wrap_before_switch_case_arrow_operator=false
 /instance/org.eclipse.jdt.core/org.eclipse.jdt.core.formatter.wrap_outer_expressions_when_nested=true
 /instance/org.eclipse.jdt.junit/org.eclipse.jdt.junit.content_assist_favorite_static_members_migrated=true
-/instance/org.eclipse.jdt.launching/org.eclipse.jdt.launching.PREF_VM_XML=<?xml version\="1.0" encoding\="UTF-8" standalone\="no"?>\r\n<vmSettings defaultVM\="57,org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType13,1685709795911">\r\n    <vmType id\="org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType">\r\n        <vm id\="1685709795911" name\="jre" path\="C\:\\EGOVFRAME\\eGovFrameDev-4.1.0-64bit\\eclipse\\plugins\\org.eclipse.justj.openjdk.hotspot.jre.full.win32.x86_64_17.0.2.v20220201-1208\\jre"/>\r\n        <vm id\="1685709824377" javadocURL\="https\://docs.oracle.com/javase/8/docs/api/" name\="jdk8u242-b08" path\="C\:\\EGOVFRAME\\eGovCI-4.0.0_64bit\\bin\\jdk8u242-b08"/>\r\n    </vmType>\r\n</vmSettings>\r\n
+/instance/org.eclipse.jdt.launching/org.eclipse.jdt.launching.PREF_VM_XML=<?xml version\="1.0" encoding\="UTF-8" standalone\="no"?>\r\n<vmSettings defaultVM\="57,org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType13,1685709795911">\r\n    <vmType id\="org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType">\r\n        <vm id\="1685709795911" name\="jre" path\="E\:\\EGOVFRAME\\eGovFrameDev-4.1.0-64bit\\eclipse\\plugins\\org.eclipse.justj.openjdk.hotspot.jre.full.win32.x86_64_17.0.2.v20220201-1208\\jre"/>\r\n        <vm id\="1685709824377" javadocURL\="https\://docs.oracle.com/javase/8/docs/api/" name\="jdk8u242-b08" path\="E\:\\EGOVFRAME\\eGovCI-4.0.0_64bit\\bin\\jdk8u242-b08"/>\r\n    </vmType>\r\n</vmSettings>\r\n
 /instance/org.eclipse.jdt.ui/content_assist_proposals_background=255,255,255
 /instance/org.eclipse.jdt.ui/content_assist_proposals_foreground=0,0,0
 /instance/org.eclipse.jdt.ui/editor_save_participant_org.eclipse.jdt.ui.postsavelistener.cleanup=true
@@ -571,10 +571,10 @@
 /instance/org.eclipse.jsch.core/org.eclipse.jsch.core.hasChangedDefaultWin32SshHome=true
 /instance/org.eclipse.jsch.core/org.eclipse.jsch.core.hasMigratedSsh2Preferences=true
 /instance/org.eclipse.jst.j2ee.webservice.ui/areThereWebServices=false
-/instance/org.eclipse.jst.server.tomcat.core/locationorg.eclipse.jst.server.tomcat.runtime.85=C\:/EGOVFRAME/eGovCI-4.0.0_64bit/bin/apache-tomcat-8.5.73-jenkins
+/instance/org.eclipse.jst.server.tomcat.core/locationorg.eclipse.jst.server.tomcat.runtime.85=E\:/EGOVFRAME/eGovCI-4.0.0_64bit/bin/apache-tomcat-8.5.73-jenkins
 /instance/org.eclipse.m2e.apt/org.eclipse.m2e.apt.mode=jdt_apt
 /instance/org.eclipse.m2e.apt/org.springframework.ide.eclipse.boot.customised=true
-/instance/org.eclipse.m2e.core/eclipse.m2.userSettingsFile=C\:\\EGOVFRAME\\eGovCI-4.0.0_64bit\\bin\\apache-maven-3.8.4\\conf\\settings.xml
+/instance/org.eclipse.m2e.core/eclipse.m2.userSettingsFile=E\:\\EGOVFRAME\\eGovCI-4.0.0_64bit\\bin\\apache-maven-3.8.4\\conf\\settings.xml
 /instance/org.eclipse.m2e.discovery/org.eclipse.m2e.discovery.pref.projects=
 /instance/org.eclipse.mylyn.context.core/mylyn.attention.migrated=true
 /instance/org.eclipse.mylyn.monitor.ui/org.eclipse.mylyn.monitor.activity.tracking.enabled.checked=true
@@ -595,7 +595,7 @@
 /instance/org.eclipse.ui.workbench/org.eclipse.ui.workbench.ACTIVE_TAB_BG_START=255,255,255
 /instance/org.eclipse.ui.workbench/org.eclipse.ui.workbench.INACTIVE_TAB_BG_START=242,242,242
 /instance/org.eclipse.ui/showIntro=false
-/instance/org.eclipse.wst.server.core/runtimes=<?xml version\="1.0" encoding\="UTF-8" standalone\="no"?>\r\n<runtimes>\r\n  <runtime id\="Apache Tomcat v8.5" location\="C\:/EGOVFRAME/eGovCI-4.0.0_64bit/bin/apache-tomcat-8.5.73-jenkins" name\="Apache Tomcat v8.5" runtime-type-id\="org.eclipse.jst.server.tomcat.runtime.85" timestamp\="0" vm-install-id\="1685709824377" vm-install-type-id\="org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType"/>\r\n</runtimes>\r\n
+/instance/org.eclipse.wst.server.core/runtimes=<?xml version\="1.0" encoding\="UTF-8" standalone\="no"?>\r\n<runtimes>\r\n  <runtime id\="Apache Tomcat v8.5" location\="E\:/EGOVFRAME/eGovCI-4.0.0_64bit/bin/apache-tomcat-8.5.73-jenkins" name\="Apache Tomcat v8.5" runtime-type-id\="org.eclipse.jst.server.tomcat.runtime.85" timestamp\="0" vm-install-id\="1685709824377" vm-install-type-id\="org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType"/>\r\n</runtimes>\r\n
 /instance/org.eclipse.wst.server.discovery/cache-lastUpdatedDate=Fri Jun 02 2023 21\:44\:42 KST
 /instance/org.eclipse.wst.validation/DELEGATES_PREFERENCE=delegateValidatorList
 /instance/org.eclipse.wst.validation/USER_BUILD_PREFERENCE=enabledBuildValidatorListorg.eclipse.wst.wsi.ui.internal.WSIMessageValidator;org.eclipse.jst.j2ee.internal.jca.validation.UIConnectorValidator;org.eclipse.jst.j2ee.internal.web.validation.UIWarValidator;org.eclipse.jst.j2ee.internal.ejb.workbench.validation.UIEjbValidator;org.eclipse.jst.j2ee.internal.validation.UIEarValidator;org.eclipse.jst.j2ee.internal.classpathdep.ClasspathDependencyValidator;org.eclipse.jst.j2ee.internal.validation.UIApplicationClientValidator;
