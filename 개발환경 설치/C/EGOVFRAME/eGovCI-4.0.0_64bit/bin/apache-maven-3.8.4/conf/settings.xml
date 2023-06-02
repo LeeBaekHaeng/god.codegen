@@ -53,6 +53,8 @@ under the License.
   <localRepository>/path/to/local/repo</localRepository>
   -->
 
+  <localRepository>/EGOVFRAME/.m2/repository</localRepository>
+
   <!-- interactiveMode
    | This will determine whether maven prompts you when it needs input. If set to false,
    | maven will use a sensible default value, perhaps based on some other setting, for
@@ -156,13 +158,13 @@ under the License.
       <url>http://my.repository.com/repo/path</url>
     </mirror>
      -->
-    <mirror>
+    <!-- <mirror>
       <id>maven-default-http-blocker</id>
       <mirrorOf>external:http:*</mirrorOf>
       <name>Pseudo repository to mirror external repositories initially using HTTP.</name>
       <url>http://0.0.0.0/</url>
       <blocked>true</blocked>
-    </mirror>
+    </mirror> -->
   </mirrors>
 
   <!-- profiles
