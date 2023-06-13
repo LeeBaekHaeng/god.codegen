@@ -641,6 +641,12 @@
         <!-- Utility for Omnione End -->
         <!-- 모바일 운전면허증 라이브러리 끝 -->
 
+        <dependency>
+            <groupId>org.apache.tiles</groupId>
+            <artifactId>tiles-jsp</artifactId>
+            <version>3.0.8</version>
+        </dependency>
+
     </dependencies>
 
     <build>

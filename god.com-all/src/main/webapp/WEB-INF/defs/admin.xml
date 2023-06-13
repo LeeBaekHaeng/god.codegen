@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE tiles-definitions PUBLIC
+       "-//Apache Software Foundation//DTD Tiles Configuration 3.0//EN"
+       "http://tiles.apache.org/dtds/tiles-config_3_0.dtd">
+<tiles-definitions>
+
+    <definition name="god.admin" template="/WEB-INF/jsp/god/admin/layouts/admin/layout.jsp">
+        <put-attribute name="title" value="관리자" />
+        <put-attribute name="header" value="/WEB-INF/jsp/god/admin/layouts/admin/header.jsp" />
+        <put-attribute name="menu" value="/WEB-INF/jsp/god/admin/layouts/admin/menu.jsp" />
+        <put-attribute name="body" value="/WEB-INF/jsp/god/admin/layouts/admin/body.jsp" />
+        <put-attribute name="footer" value="/WEB-INF/jsp/god/admin/layouts/admin/footer.jsp" />
+    </definition>
+
+    <definition name="god/admin/*/*" extends="god.admin">
+        <put-attribute name="body" value="/WEB-INF/jsp/god/admin/{1}/{2}.jsp" />
+    </definition>
+
+</tiles-definitions>
