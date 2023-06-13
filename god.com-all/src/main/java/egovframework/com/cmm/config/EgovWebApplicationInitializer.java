@@ -22,6 +22,10 @@ import egovframework.com.sec.security.filter.EgovSpringSecurityLoginFilter;
 import egovframework.com.sec.security.filter.EgovSpringSecurityLogoutFilter;
 import egovframework.com.uat.uap.filter.EgovLoginPolicyFilter;
 import egovframework.com.utl.wed.filter.CkFilter;
+import god.admin.cmm.service.AdminGlobals;
+import god.admin2.cmm.service.Admin2Globals;
+import god.user.cmm.service.UserGlobals;
+import god.user2.cmm.service.User2Globals;
 
 /**
  * EgovWebApplicationInitializer 클래스 <Notice> 사용자 인증 권한처리를 분리(session, spring
@@ -51,6 +55,11 @@ public class EgovWebApplicationInitializer implements WebApplicationInitializer 
 
     @Override
     public void onStartup(ServletContext servletContext) throws ServletException {
+        servletContext.setAttribute("AdminGlobals.WEB_PATH", AdminGlobals.WEB_PATH);
+        servletContext.setAttribute("Admin2Globals.WEB_PATH", Admin2Globals.WEB_PATH);
+        servletContext.setAttribute("UserGlobals.WEB_PATH", UserGlobals.WEB_PATH);
+        servletContext.setAttribute("User2Globals.WEB_PATH", User2Globals.WEB_PATH);
+
         LOGGER.debug("EgovWebApplicationInitializer START-============================================");
 
         // -------------------------------------------------------------

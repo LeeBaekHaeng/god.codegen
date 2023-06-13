@@ -335,5 +335,10 @@ function fnOnepassLogin() {
 </form>
 <!-- login영역 //-->
 
+<br>AdminGlobals.WEB_PATH=<c:out value="${applicationScope['AdminGlobals.WEB_PATH']}" />
+<br>Admin2Globals.WEB_PATH=<c:out value="${applicationScope['Admin2Globals.WEB_PATH']}" />
+<br>UserGlobals.WEB_PATH=<c:out value="${applicationScope['UserGlobals.WEB_PATH']}" />
+<br>User2Globals.WEB_PATH=<c:out value="${applicationScope['User2Globals.WEB_PATH']}" />
+
 </body>
 </html>
