@@ -87,3 +87,18 @@ Servers > Tomcat v8.5 Server at localhost-config > context.xml
     <!-- 10240 10MB 에서 102400 100MB 로 수정 -->
     <Resources cacheMaxSize="102400"></Resources>
 ```
+
+## spring.profiles.active
+
+```
+-Dspring.profiles.active=mysql,security
+```
+
+```
+-Dspring.profiles.active=mysqlHikariCP,security
+```
+
+```
+-Dspring.profiles.active=mysqlHikariCP,security
+-Dcatalina.base="C:\GOD.CODEGEN\eGovFrameDev-4.1.0-64bit\workspace\.metadata\.plugins\org.eclipse.wst.server.core\tmp0" -Dcatalina.home="C:\GOD.CODEGEN\eGovCI-4.0.0_64bit\bin\apache-tomcat-8.5.73-jenkins" -Dwtp.deploy="C:\GOD.CODEGEN\eGovFrameDev-4.1.0-64bit\workspace\.metadata\.plugins\org.eclipse.wst.server.core\tmp0\wtpwebapps" -Djava.endorsed.dirs="C:\GOD.CODEGEN\eGovCI-4.0.0_64bit\bin\apache-tomcat-8.5.73-jenkins\endorsed"
+```

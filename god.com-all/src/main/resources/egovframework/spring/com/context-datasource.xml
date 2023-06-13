@@ -24,6 +24,14 @@
             <property name="password" value="#{egovEnvCryptoService.getPassword()}" />
         </bean>
     </beans>
+    <beans profile="mysqlHikariCP">
+        <bean id="dataSource" class="com.zaxxer.hikari.HikariDataSource" destroy-method="close">
+            <property name="driverClassName" value="${Globals.mysql.DriverClassName}" />
+            <property name="jdbcUrl" value="${Globals.mysql.Url}" />
+            <property name="username" value="${Globals.mysql.UserName}" />
+            <property name="password" value="#{egovEnvCryptoService.getPassword()}" />
+        </bean>
+    </beans>
 
     <!-- oracle -->
     <beans profile="oracle">
