@@ -102,3 +102,41 @@ Servers > Tomcat v8.5 Server at localhost-config > context.xml
 -Dspring.profiles.active=mysqlHikariCP,security
 -Dcatalina.base="C:\GOD.CODEGEN\eGovFrameDev-4.1.0-64bit\workspace\.metadata\.plugins\org.eclipse.wst.server.core\tmp0" -Dcatalina.home="C:\GOD.CODEGEN\eGovCI-4.0.0_64bit\bin\apache-tomcat-8.5.73-jenkins" -Dwtp.deploy="C:\GOD.CODEGEN\eGovFrameDev-4.1.0-64bit\workspace\.metadata\.plugins\org.eclipse.wst.server.core\tmp0\wtpwebapps" -Djava.endorsed.dirs="C:\GOD.CODEGEN\eGovCI-4.0.0_64bit\bin\apache-tomcat-8.5.73-jenkins\endorsed"
 ```
+
+## HikariCP
+
+https://github.com/brettwooldridge/HikariCP#rocket-initialization
+
+/god.com-all/src/main/resources/egovframework/spring/com/context-datasource.xml
+
+```xml
+    <beans profile="mysqlHikariCP">
+        <bean id="dataSource" class="com.zaxxer.hikari.HikariDataSource" destroy-method="close">
+            <property name="driverClassName" value="${Globals.mysql.DriverClassName}" />
+            <property name="jdbcUrl" value="${Globals.mysql.Url}" />
+            <property name="username" value="${Globals.mysql.UserName}" />
+            <property name="password" value="#{egovEnvCryptoService.getPassword()}" />
+        </bean>
+    </beans>
+```
+
+```xml
+    <!-- MySQL -->
+    <beans profile="mysql">
+        <bean id="dataSource" class="org.apache.commons.dbcp2.BasicDataSource" destroy-method="close">
+            <property name="driverClassName" value="${Globals.mysql.DriverClassName}" />
+            <property name="url" value="${Globals.mysql.Url}" />
+            <property name="username" value="${Globals.mysql.UserName}" />
+            <!-- 암호화(Crypto) 관련 서비스 https://www.egovframe.go.kr/wiki/doku.php?id=egovframework:rte2:fdl:crypto_simplify_v3_8 참조 -->
+            <property name="password" value="#{egovEnvCryptoService.getPassword()}" />
+        </bean>
+    </beans>
+    <beans profile="mysqlHikariCP">
+        <bean id="dataSource" class="com.zaxxer.hikari.HikariDataSource" destroy-method="close">
+            <property name="driverClassName" value="${Globals.mysql.DriverClassName}" />
+            <property name="jdbcUrl" value="${Globals.mysql.Url}" />
+            <property name="username" value="${Globals.mysql.UserName}" />
+            <property name="password" value="#{egovEnvCryptoService.getPassword()}" />
+        </bean>
+    </beans>
+```
