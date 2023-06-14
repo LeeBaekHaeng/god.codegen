@@ -8,6 +8,10 @@
         <setting name="mapUnderscoreToCamelCase" value="true"></setting>
         <!-- 파라미터에 Null 값이 있을 경우 에러 처리 -->
         <setting name="jdbcTypeForNull" value="VARCHAR"></setting>
+
+        <!-- 데이터베이스로의 응답을 얼마나 오래 기다릴지를 판단하는 타임아웃을 설정 -->
+        <!-- 5000 5초 -->
+        <setting name="defaultStatementTimeout" value="5000" />
     </settings>
 
     <!-- Type Aliases 설정 -->
