@@ -12,6 +12,10 @@
         <property name="mapperLocations">
             <list>
                 <value>classpath:/egovframework/mapper/com/**/*_${Globals.DbType}.xml</value>
+                <value>classpath:/god/mapper/admin/**/*_${Globals.DbType}.xml</value>
+                <value>classpath:/god/mapper/admin2/**/*_${Globals.DbType}.xml</value>
+                <value>classpath:/god/mapper/user/**/*_${Globals.DbType}.xml</value>
+                <value>classpath:/god/mapper/user2/**/*_${Globals.DbType}.xml</value>
             </list>
         </property>
     </bean>
