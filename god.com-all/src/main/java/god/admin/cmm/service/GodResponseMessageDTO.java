@@ -1,7 +1,5 @@
 package god.admin.cmm.service;
 
-import org.springframework.ui.ModelMap;
-
 /**
  * 응답 메시지
  * 
@@ -10,7 +8,7 @@ import org.springframework.ui.ModelMap;
  *
  */
 //@ToString
-public class GodResponseMessageDTO {
+public class GodResponseMessageDTO<T> {
 
     /**
      * 공유서비스 공통 메시지헤더
@@ -25,7 +23,7 @@ public class GodResponseMessageDTO {
     /**
      * 서비스별 개별 메시지바디
      */
-    private ModelMap msgBody = new ModelMap();
+    private T msgBody;
 
     /**
      * 공유서비스 공통 메시지헤더 값읽기
@@ -68,7 +66,7 @@ public class GodResponseMessageDTO {
      * 
      * @return
      */
-    public ModelMap getMsgBody() {
+    public T getMsgBody() {
         return msgBody;
     }
 
@@ -77,7 +75,7 @@ public class GodResponseMessageDTO {
      * 
      * @param msgBody
      */
-    public void setMsgBody(ModelMap msgBody) {
+    public void setMsgBody(T msgBody) {
         this.msgBody = msgBody;
     }
 
