@@ -1,5 +1,7 @@
 package god.admin.cmm.web;
 
+import java.time.LocalDateTime;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -7,7 +9,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import egovframework.com.cmm.ComDefaultVO;
 
 /**
- * 관리자 메인 Controller
+ * 관리자 공통 Controller
  * 
  * @author 이백행
  *
@@ -16,7 +18,7 @@ import egovframework.com.cmm.ComDefaultVO;
 public class AdminCmmController {
 
     /**
-     * 관리자 메인
+     * 관리자 공통 메인
      * 
      * @param model
      * @return
@@ -26,9 +28,16 @@ public class AdminCmmController {
         return "god/admin/cmm/AdminCmmMain";
     }
 
-    @GetMapping("/rest/admin/cmm/main")
+    /**
+     * 관리자 공통 메인 json
+     * 
+     * @param comDefaultVO
+     * @param model
+     * @return
+     */
+    @GetMapping("/do/admin/cmm/main.json")
     public String main(ComDefaultVO comDefaultVO, ModelMap model) {
-        model.addAttribute("god", "test 이백행 2023-06-15");
+        model.addAttribute("god", "test 이백행 " + LocalDateTime.now());
         return "jsonView";
     }
 
