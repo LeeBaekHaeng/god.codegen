@@ -2,7 +2,6 @@ package god.admin.cmm.web;
 
 import java.time.LocalDateTime;
 import java.util.Map;
-import java.util.UUID;
 import java.util.concurrent.ConcurrentHashMap;
 
 import org.springframework.web.bind.annotation.GetMapping;
@@ -53,11 +52,16 @@ public class AdminCmmRestController {
 
         final GodResponseMessageDTO<Mainv1ResDto> godResponseMessageDTO = new GodResponseMessageDTO<>();
         final ComMsgHeader comMsgHeader = new ComMsgHeader();
-        comMsgHeader.setRequestMsgID("test 이백행 요청 메시지 ID " + LocalDateTime.now());
-        comMsgHeader.setResponseTime(LocalDateTime.now().toString());
-        comMsgHeader.setResponseMsgID(UUID.randomUUID().toString());
-        comMsgHeader.setSuccessYN(SuccessYN.Y);
-        comMsgHeader.setReturnCode(ReturnCode.A00);
+        if (godRequestMessageDTO.getComMsgHeader().getRequestMsgID() == null) {
+            comMsgHeader.setRequestMsgID("test 이백행 요청 메시지 ID " + LocalDateTime.now());
+        } else {
+            comMsgHeader.setRequestMsgID(godRequestMessageDTO.getComMsgHeader().getRequestMsgID());
+        }
+//        comMsgHeader.setResponseTime(LocalDateTime.now().toString());
+//        comMsgHeader.setResponseMsgID(UUID.randomUUID().toString());
+        comMsgHeader.setSuccessYN(SuccessYN.N);
+        comMsgHeader.setReturnCode(ReturnCode.A01);
+        comMsgHeader.setErrMsg("test 이백행 에러 메시지" + LocalDateTime.now());
         godResponseMessageDTO.setComMsgHeader(comMsgHeader);
 
 //        final ModelMap model = new ModelMap();

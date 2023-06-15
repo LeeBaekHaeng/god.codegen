@@ -1,5 +1,8 @@
 package god.admin.cmm.service;
 
+import java.time.LocalDateTime;
+import java.util.UUID;
+
 /**
  * 응답 메시지
  * 
@@ -57,7 +60,7 @@ public class GodResponseMessageDTO<T> {
      * 
      * @param msgHeader
      */
-    public void setMsgHeader(MsgHeader msgHeader) {
+    public void setMsgHeader(final MsgHeader msgHeader) {
         this.msgHeader = msgHeader;
     }
 
@@ -75,7 +78,7 @@ public class GodResponseMessageDTO<T> {
      * 
      * @param msgBody
      */
-    public void setMsgBody(T msgBody) {
+    public void setMsgBody(final T msgBody) {
         this.msgBody = msgBody;
     }
 
@@ -128,6 +131,13 @@ public class GodResponseMessageDTO<T> {
          * 에러 메시지
          */
         private String errMsg;
+
+        public ComMsgHeader() {
+            setResponseTime(LocalDateTime.now().toString());
+            setResponseMsgID(UUID.randomUUID().toString());
+            setSuccessYN(SuccessYN.Y);
+            setReturnCode(ReturnCode.A00);
+        }
 
         /**
          * 요청 메시지 ID 값읽기
@@ -273,7 +283,7 @@ public class GodResponseMessageDTO<T> {
          * 
          * @param errMsg
          */
-        public void setErrMsg(String errMsg) {
+        public void setErrMsg(final String errMsg) {
             this.errMsg = errMsg;
         }
 
@@ -445,13 +455,16 @@ public class GodResponseMessageDTO<T> {
      */
 //    @ToString
     static public class MsgHeader {
+        /**
+         * 
+         */
         private String string;
 
         public String getString() {
             return string;
         }
 
-        public void setString(String string) {
+        public void setString(final String string) {
             this.string = string;
         }
 
