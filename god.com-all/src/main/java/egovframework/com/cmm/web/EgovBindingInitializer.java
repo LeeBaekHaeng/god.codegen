@@ -1,8 +1,14 @@
 package egovframework.com.cmm.web;
 
+import java.beans.PropertyEditorSupport;
 import java.text.SimpleDateFormat;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
 import java.util.Date;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.propertyeditors.CustomDateEditor;
 import org.springframework.beans.propertyeditors.StringTrimmerEditor;
 import org.springframework.web.bind.WebDataBinder;
@@ -36,6 +42,45 @@ public class EgovBindingInitializer implements WebBindingInitializer {
         binder.registerCustomEditor(String.class, new StringTrimmerEditor(false));
 
         binder.registerCustomEditor(String.class, "atchFileId", new EgovAtchFileIdPropertyEditor());
+
+        binder.registerCustomEditor(LocalDateTime.class, new EgovLocalDateTimePropertyEditor());
+    }
+
+    /**
+     * LocalDateTime
+     * 
+     * @author 이백행
+     *
+     */
+    /* default */ static class EgovLocalDateTimePropertyEditor extends PropertyEditorSupport {
+
+        /**
+         * 로거
+         */
+        private static final Logger LOGGER = LoggerFactory.getLogger(EgovLocalDateTimePropertyEditor.class);
+
+        @Override
+        public void setAsText(final String text) throws IllegalArgumentException {
+            LOGGER.debug("text={}", text);
+            if (text.isEmpty()) {
+                setValue(null);
+            } else {
+                try {
+                    setValue(LocalDateTime.parse(text, DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss.SSS")));
+                } catch (DateTimeParseException e) {
+                    LOGGER.error("DateTimeParseException");
+                    throw e;
+                }
+            }
+        }
+
+        @Override
+        public String getAsText() {
+            final Object value = getValue();
+            LOGGER.debug("value={}", value);
+            return (value != null ? value.toString() : "");
+        }
+
     }
 
 }
