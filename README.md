@@ -140,3 +140,65 @@ https://github.com/brettwooldridge/HikariCP#rocket-initialization
         </bean>
     </beans>
 ```
+
+## log4jdbc 를 Log4jdbc-log4j2 로 수정
+
+log4jdbc
+- https://mvnrepository.com/artifact/com.googlecode.log4jdbc/log4jdbc/1.2
+- https://code.google.com/archive/p/log4jdbc/
+
+```xml
+<!-- https://mvnrepository.com/artifact/com.googlecode.log4jdbc/log4jdbc -->
+<dependency>
+    <groupId>com.googlecode.log4jdbc</groupId>
+    <artifactId>log4jdbc</artifactId>
+    <version>1.2</version>
+</dependency>
+
+```
+
+Log4jdbc-log4j2
+- https://mvnrepository.com/artifact/org.bgee.log4jdbc-log4j2/log4jdbc-log4j2-jdbc4.1/1.16
+- https://mvnrepository.com/search?q=log4jdbc-log4j2
+- https://log4jdbc.brunorozendo.com/
+- https://code.google.com/archive/p/log4jdbc-log4j2/
+
+```xml
+<!-- https://mvnrepository.com/artifact/org.bgee.log4jdbc-log4j2/log4jdbc-log4j2-jdbc4.1 -->
+<dependency>
+    <groupId>org.bgee.log4jdbc-log4j2</groupId>
+    <artifactId>log4jdbc-log4j2-jdbc4.1</artifactId>
+    <version>1.16</version>
+</dependency>
+```
+
+### log4jdbc:
+
+3. Modification of your source code
+- 3. 소스 코드 수정
+
+3.1. Change your JDBC URL
+- 3.1. JDBC URL 변경
+
+Prepend jdbc:log4 to the normal JDBC URL that you are using. For example, if your normal JDBC URL is:
+- 사용 중인 일반 JDBC URL 앞에 jdbc:log4를 추가합니다. 예를 들어 정상적인 JDBC URL이 다음과 같은 경우:
+```xml
+jdbc:derby://localhost:1527//db-derby-10.2.2.0-bin/databases/MyDatabase
+```
+
+then you would change it to:
+- 그런 다음 다음과 같이 변경합니다.
+```
+jdbc:log4jdbc:derby://localhost:1527//db-derby-10.2.2.0-bin/databases/MyDatabase
+```
+
+### net.sf.log4jdbc.sql.jdbcapi.DriverSpy
+
+Configure a DataSource
+- 데이터 소스 구성
+
+Option 1: configure Driver class name and JDBC URL
+- 옵션 1: 드라이버 클래스 이름 및 JDBC URL 구성
+
+You can either configure your DataSource to use the log4jdbc-log4j2 driver (net.sf.log4jdbc.sql.jdbcapi.DriverSpy), and to use the modified JDBC URL (prepending jdbc:log4 to the normal JDBC URL).
+- log4jdbc-log4j2 드라이버(net.sf.log4jdbc.sql.jdbcapi.DriverSpy)를 사용하고 수정된 JDBC URL(일반 JDBC URL 앞에 jdbc:log4 추가)을 사용하도록 DataSource를 구성할 수 있습니다.
