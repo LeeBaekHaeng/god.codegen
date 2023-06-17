@@ -7,6 +7,7 @@ import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
 
 import egovframework.com.cmm.ComDefaultVO;
+import egovframework.com.cmm.web.EgovComAbstractController;
 
 /**
  * 관리자 공통 Controller
@@ -15,7 +16,7 @@ import egovframework.com.cmm.ComDefaultVO;
  *
  */
 @Controller
-public class AdminCmmController {
+public class AdminCmmController extends EgovComAbstractController {
 
     /**
      * 관리자 공통 메인
