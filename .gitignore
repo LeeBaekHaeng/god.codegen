@@ -28,3 +28,4 @@ EGOVFRAME-3.10.0/
 target/
 .classpath
 #.project
+.pmd
