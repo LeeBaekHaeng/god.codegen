@@ -6,6 +6,14 @@
         </Console>
     </Appenders>
     <Loggers>
+
+        <Logger name="god" level="DEBUG" additivity="false">
+            <AppenderRef ref="console" />
+        </Logger>
+        <Logger name="egovframework.com.cmm.util.EgovWildcardReloadableResourceBundleMessageSource" level="ERROR" additivity="false">
+            <AppenderRef ref="console" />
+        </Logger>
+
         <Logger name="java.sql" level="DEBUG" additivity="false">
             <AppenderRef ref="console" />
         </Logger>
@@ -15,13 +23,13 @@
         <Logger name="org.egovframe" level="DEBUG" additivity="false">
             <AppenderRef ref="console" />
         </Logger>
-		<!-- log SQL with timing information, post execution -->
-	    <Logger name="jdbc.sqltiming" level="DEBUG" additivity="false">
-	        <AppenderRef ref="console" />
-	    </Logger>
-	    <Logger name="org.springframework" level="INFO" additivity="false">
-	        <AppenderRef ref="console" />
-	    </Logger>
+        <!-- log SQL with timing information, post execution -->
+        <Logger name="jdbc.sqltiming" level="DEBUG" additivity="false">
+            <AppenderRef ref="console" />
+        </Logger>
+        <Logger name="org.springframework" level="INFO" additivity="false">
+            <AppenderRef ref="console" />
+        </Logger>
         <Root level="INFO">
             <AppenderRef ref="console" />
         </Root>

@@ -10,6 +10,9 @@
         <Logger name="god" level="DEBUG" additivity="false">
             <AppenderRef ref="console" />
         </Logger>
+        <Logger name="egovframework.com.cmm.util.EgovWildcardReloadableResourceBundleMessageSource" level="ERROR" additivity="false">
+            <AppenderRef ref="console" />
+        </Logger>
 
         <Logger name="java.sql" level="DEBUG" additivity="false">
             <AppenderRef ref="console" />
