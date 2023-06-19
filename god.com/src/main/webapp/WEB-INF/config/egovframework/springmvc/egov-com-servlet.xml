@@ -61,6 +61,14 @@
         </property>
     </bean>
 
+    <bean class="org.springframework.web.servlet.view.ContentNegotiatingViewResolver" p:order="0">
+        <property name="defaultViews">
+            <list>
+                <bean class="org.springframework.web.servlet.view.json.MappingJackson2JsonView" />
+            </list>
+        </property>
+    </bean>
+
     <!-- for JFile -->
     <bean class="org.springframework.web.servlet.view.BeanNameViewResolver" p:order="0" />
 
