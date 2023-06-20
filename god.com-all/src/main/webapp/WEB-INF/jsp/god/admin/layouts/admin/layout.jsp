@@ -7,6 +7,15 @@
 <meta charset="UTF-8">
 <title>관리자</title>
 <link rel="icon" type="image/png" href="<c:url value="/resources/admin/favicon.png" />">
+
+<script src="${pageContext.request.contextPath}/js/egovframework/com/cmm/jquery-1.12.4.min.js"></script>
+
+<script type="text/javascript">
+    var vr_comCmm_contextPath = '${pageContext.request.contextPath}';
+</script>
+
+<script src="${pageContext.request.contextPath}/resources/com/cmm/ComCmm.js"></script>
+
 </head>
 <body>
 
