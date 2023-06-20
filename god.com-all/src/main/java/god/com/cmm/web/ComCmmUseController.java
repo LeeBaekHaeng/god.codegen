@@ -119,4 +119,41 @@ public class ComCmmUseController {
          */
         private String codeDc;
     }
+
+    /**
+     * ComDefaultCodeVO의 리스트를 받아서 여러개의 코드 리스트를 맵에 담아서 리턴한다.
+     * 
+     * @param requestDto
+     * @param model
+     * @return
+     * @throws Exception
+     */
+    @GetMapping("/do/com/cmm/selectCmmCodeDetails.do")
+    public String selectCmmCodeDetails(final SelectCmmCodeDetailsRequestDto requestDto, final ModelMap model)
+            throws Exception {
+        List<ComDefaultCodeVO> voList = new ArrayList<>();
+        for (String codeId : requestDto.getCodeId()) {
+            ComDefaultCodeVO comDefaultCodeVO = new ComDefaultCodeVO();
+            comDefaultCodeVO.setCodeId(codeId);
+            voList.add(comDefaultCodeVO);
+        }
+
+        model.addAttribute("resultList", egovCmmUseService.selectCmmCodeDetails(voList));
+
+        return "jsonView";
+    }
+
+    /**
+     * ComDefaultCodeVO의 리스트를 받아서 여러개의 코드 리스트를 맵에 담아서 리턴한다. 요청 Dto
+     * 
+     * @author 이백행
+     *
+     */
+    @Data
+    private static class SelectCmmCodeDetailsRequestDto {
+        /**
+         * 코드 ID
+         */
+        private List<String> codeId;
+    }
 }
