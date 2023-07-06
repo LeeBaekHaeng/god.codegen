@@ -3,6 +3,7 @@ package egovframework.com.cop.cmt.service.impl;
 import static org.junit.Assert.assertTrue;
 
 import java.sql.SQLException;
+import java.time.LocalDateTime;
 
 import javax.annotation.Resource;
 
@@ -17,6 +18,7 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.FilterType;
 import org.springframework.context.annotation.ImportResource;
 import org.springframework.dao.DataAccessException;
+import org.springframework.test.annotation.Commit;
 import org.springframework.test.context.ContextConfiguration;
 
 import egovframework.com.cmm.EgovMessageSource;
@@ -140,7 +142,7 @@ public class EgovArticleCommentDAOV2Test extends EgovAbstractDAOV2Test {
      * 테스트
      */
     @Test
-//    @Commit
+    @Commit
     public void testa10insertArticleComment() {
         final Board board = new Board();
         final LoginVO loginVO = (LoginVO) EgovUserDetailsHelper.getAuthenticatedUser();
@@ -148,14 +150,17 @@ public class EgovArticleCommentDAOV2Test extends EgovAbstractDAOV2Test {
 
         // given
         final Comment comment = new Comment();
-        comment.setNttId(board.getNttId());
-        comment.setBbsId(board.getBbsId());
-
         try {
             comment.setCommentNo(String.valueOf(egovAnswerNoGnrService.getNextLongId()));
         } catch (FdlException e) {
             egovLogger.error("FdlException egovAnswerNoGnrService");
         }
+
+        comment.setNttId(board.getNttId());
+        comment.setBbsId(board.getBbsId());
+
+        comment.setCommentPassword("rhdxhd12");
+        comment.setCommentCn("test 이백행 댓글 " + LocalDateTime.now());
 
         setLoginVO(comment, loginVO);
 
@@ -227,6 +232,10 @@ public class EgovArticleCommentDAOV2Test extends EgovAbstractDAOV2Test {
         }
         comment.setFrstRegisterId(loginVO.getUniqId());
 //        comment.setLastUpdusrId(loginVO.getUniqId());
+
+//        comment.setWrterId(loginVO.getId());
+        comment.setWrterId(loginVO.getUniqId());
+        comment.setWrterNm(loginVO.getName());
     }
 
 }
