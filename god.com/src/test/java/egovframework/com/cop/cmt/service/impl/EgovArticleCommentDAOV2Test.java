@@ -10,6 +10,7 @@ import org.egovframe.rte.fdl.cmmn.exception.FdlException;
 import org.egovframe.rte.fdl.idgnr.EgovIdGnrService;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.ComponentScan.Filter;
 import org.springframework.context.annotation.Configuration;
@@ -19,7 +20,13 @@ import org.springframework.dao.DataAccessException;
 import org.springframework.test.context.ContextConfiguration;
 
 import egovframework.com.cmm.EgovMessageSource;
+import egovframework.com.cmm.LoginVO;
+import egovframework.com.cmm.util.EgovUserDetailsHelper;
+import egovframework.com.cop.bbs.service.Board;
+import egovframework.com.cop.bbs.service.BoardMaster;
 import egovframework.com.cop.bbs.service.impl.BBSAddedOptionsDAO;
+import egovframework.com.cop.bbs.service.impl.EgovArticleDAO;
+import egovframework.com.cop.bbs.service.impl.EgovBBSMasterDAO;
 import egovframework.com.cop.cmt.service.Comment;
 import egovframework.com.test.EgovAbstractDAOV2Test;
 import lombok.RequiredArgsConstructor;
@@ -37,6 +44,8 @@ import lombok.RequiredArgsConstructor;
 @ImportResource({
 
         "classpath*:egovframework/spring/com/idgn/context-idgn-AnswerNo.xml",
+
+        "classpath*:egovframework/spring/com/idgn/context-idgn-bbs.xml",
 
 })
 
@@ -66,6 +75,10 @@ import lombok.RequiredArgsConstructor;
 
                                 BBSAddedOptionsDAO.class,
 
+                                EgovBBSMasterDAO.class,
+
+                                EgovArticleDAO.class,
+
                         }
 
                 )
@@ -86,7 +99,9 @@ public class EgovArticleCommentDAOV2Test extends EgovAbstractDAOV2Test {
     /**
      * 답글 ANSWER_NO 생성
      */
-    @Resource(name = "egovAnswerNoGnrService")
+//    @Resource(name = "egovAnswerNoGnrService")
+    @Autowired
+    @Qualifier("egovAnswerNoGnrService")
     private EgovIdGnrService egovAnswerNoGnrService;
 
     /**
@@ -96,18 +111,53 @@ public class EgovArticleCommentDAOV2Test extends EgovAbstractDAOV2Test {
     private EgovMessageSource egovMessageSource;
 
     /**
+     * EgovBBSMasterDAO
+     */
+    @Autowired
+    private EgovBBSMasterDAO egovBBSMasterDAO;
+
+    /**
+     * EgovArticleDAO
+     */
+    @Autowired
+    private EgovArticleDAO egovArticleDAO;
+
+    /**
+     * 게시판용 BBS_ID 생성
+     */
+    @Autowired
+    @Qualifier("egovBBSMstrIdGnrService")
+    private EgovIdGnrService egovBBSMstrIdGnrService;
+
+    /**
+     * 게시판용 NTT_ID 생성
+     */
+    @Autowired
+    @Qualifier("egovNttIdGnrService")
+    private EgovIdGnrService egovNttIdGnrService;
+
+    /**
      * 테스트
      */
     @Test
+//    @Commit
     public void testa10insertArticleComment() {
+        final Board board = new Board();
+        final LoginVO loginVO = (LoginVO) EgovUserDetailsHelper.getAuthenticatedUser();
+        insertBBSMasterInf(board, loginVO);
+
         // given
         final Comment comment = new Comment();
+        comment.setNttId(board.getNttId());
+        comment.setBbsId(board.getBbsId());
 
         try {
             comment.setCommentNo(String.valueOf(egovAnswerNoGnrService.getNextLongId()));
         } catch (FdlException e) {
             egovLogger.error("FdlException egovAnswerNoGnrService");
         }
+
+        setLoginVO(comment, loginVO);
 
         // when
         boolean result = true;
@@ -133,6 +183,50 @@ public class EgovArticleCommentDAOV2Test extends EgovAbstractDAOV2Test {
     private Object[] args(final SQLException sqle) {
         return new Object[] { sqle.getErrorCode(), sqle.getMessage(), sqle.getSQLState(), };
 //        return new Object[] { sqle.getErrorCode(), sqle.getSQLState(), sqle.getMessage(), };
+    }
+
+    private void insertBBSMasterInf(final Board board, final LoginVO loginVO) {
+        final BoardMaster boardMaster = new BoardMaster();
+        try {
+            boardMaster.setBbsId(egovBBSMstrIdGnrService.getNextStringId());
+        } catch (FdlException e) {
+            egovLogger.error("FdlException egovBBSMstrIdGnrService");
+        }
+        setLoginVO(boardMaster, loginVO);
+        egovBBSMasterDAO.insertBBSMasterInf(boardMaster);
+
+        try {
+            board.setNttId(egovNttIdGnrService.getNextLongId());
+        } catch (FdlException e) {
+            egovLogger.error("FdlException egovNttIdGnrService");
+        }
+        board.setBbsId(boardMaster.getBbsId());
+        setLoginVO(board, loginVO);
+        egovArticleDAO.insertArticle(board);
+    }
+
+    private void setLoginVO(final BoardMaster boardMaster, final LoginVO loginVO) {
+        if (loginVO == null) {
+            return;
+        }
+        boardMaster.setFrstRegisterId(loginVO.getUniqId());
+//        boardMaster.setLastUpdusrId(loginVO.getUniqId());
+    }
+
+    private void setLoginVO(final Board board, final LoginVO loginVO) {
+        if (loginVO == null) {
+            return;
+        }
+        board.setFrstRegisterId(loginVO.getUniqId());
+//        board.setLastUpdusrId(loginVO.getUniqId());
+    }
+
+    private void setLoginVO(final Comment comment, final LoginVO loginVO) {
+        if (loginVO == null) {
+            return;
+        }
+        comment.setFrstRegisterId(loginVO.getUniqId());
+//        comment.setLastUpdusrId(loginVO.getUniqId());
     }
 
 }

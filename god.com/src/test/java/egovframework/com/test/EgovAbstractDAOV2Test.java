@@ -36,12 +36,13 @@ import org.springframework.util.StopWatch;
 
 //		"classpath*:egovframework/spring/com/**/context-*.xml",
 
-		"classpath*:egovframework/spring/com/test-context-common.xml",
+        "classpath*:egovframework/spring/com/test-context-common.xml",
 
-		"classpath*:egovframework/spring/com/context-crypto.xml",
-		"classpath*:egovframework/spring/com/context-datasource.xml",
-		"classpath*:egovframework/spring/com/context-mapper.xml",
-		"classpath*:egovframework/spring/com/context-transaction.xml",
+        "classpath*:egovframework/spring/com/context-crypto.xml",
+        "classpath*:egovframework/spring/com/context-datasource.xml",
+        "classpath*:egovframework/spring/com/context-egovuserdetailshelper.xml",
+        "classpath*:egovframework/spring/com/context-mapper.xml",
+        "classpath*:egovframework/spring/com/context-transaction.xml",
 
 })
 
@@ -49,57 +50,57 @@ import org.springframework.util.StopWatch;
 
 public abstract class EgovAbstractDAOV2Test {
 
-	protected static Logger EGOV_LOGGER = LoggerFactory.getLogger(EgovAbstractDAOV2Test.class);
-	protected Logger egovLogger = LoggerFactory.getLogger(EgovAbstractDAOV2Test.class);
+    protected static Logger EGOV_LOGGER = LoggerFactory.getLogger(EgovAbstractDAOV2Test.class);
+    protected Logger egovLogger = LoggerFactory.getLogger(EgovAbstractDAOV2Test.class);
 
-	protected static final StopWatch STOP_WATCH = new StopWatch();
-	protected final StopWatch stopWatch = new StopWatch();
+    protected static final StopWatch STOP_WATCH = new StopWatch();
+    protected final StopWatch stopWatch = new StopWatch();
 
-	private static String[] beanDefinitionNames = null;
+    private static String[] beanDefinitionNames = null;
 
-	@Autowired
-	private ApplicationContext context;
+    @Autowired
+    private ApplicationContext context;
 
-	@BeforeClass
-	public static void setUpBeforeClass() {
-		STOP_WATCH.start();
+    @BeforeClass
+    public static void setUpBeforeClass() {
+        STOP_WATCH.start();
 
-		EGOV_LOGGER.debug("setUpBeforeClass start");
-	}
+        EGOV_LOGGER.debug("setUpBeforeClass start");
+    }
 
-	@AfterClass
-	public static void tearDownAfterClass() {
-		STOP_WATCH.stop();
+    @AfterClass
+    public static void tearDownAfterClass() {
+        STOP_WATCH.stop();
 
-		EGOV_LOGGER.debug("tearDownAfterClass stop");
+        EGOV_LOGGER.debug("tearDownAfterClass stop");
 
-		EGOV_LOGGER.debug("totalTimeMillis={}", STOP_WATCH.getTotalTimeMillis());
-		EGOV_LOGGER.debug("totalTimeSeconds={}", STOP_WATCH.getTotalTimeSeconds());
-	}
+        EGOV_LOGGER.debug("totalTimeMillis={}", STOP_WATCH.getTotalTimeMillis());
+        EGOV_LOGGER.debug("totalTimeSeconds={}", STOP_WATCH.getTotalTimeSeconds());
+    }
 
-	@Before
-	public void setUp() {
-		stopWatch.start();
+    @Before
+    public void setUp() {
+        stopWatch.start();
 
-		egovLogger.debug("setUp start");
+        egovLogger.debug("setUp start");
 
-		if (beanDefinitionNames == null) {
-			beanDefinitionNames = context.getBeanDefinitionNames();
-			for (String beanDefinitionName : beanDefinitionNames) {
-				egovLogger.debug("beanDefinitionName={}", beanDefinitionName);
-			}
-			egovLogger.debug("length={}", beanDefinitionNames.length);
-		}
-	}
+        if (beanDefinitionNames == null) {
+            beanDefinitionNames = context.getBeanDefinitionNames();
+            for (String beanDefinitionName : beanDefinitionNames) {
+                egovLogger.debug("beanDefinitionName={}", beanDefinitionName);
+            }
+            egovLogger.debug("length={}", beanDefinitionNames.length);
+        }
+    }
 
-	@After
-	public void tearDown() {
-		stopWatch.stop();
+    @After
+    public void tearDown() {
+        stopWatch.stop();
 
-		egovLogger.debug("tearDown stop");
+        egovLogger.debug("tearDown stop");
 
-		egovLogger.debug("totalTimeMillis={}", stopWatch.getTotalTimeMillis());
-		egovLogger.debug("totalTimeSeconds={}", stopWatch.getTotalTimeSeconds());
-	}
+        egovLogger.debug("totalTimeMillis={}", stopWatch.getTotalTimeMillis());
+        egovLogger.debug("totalTimeSeconds={}", stopWatch.getTotalTimeSeconds());
+    }
 
 }
