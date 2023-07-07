@@ -272,8 +272,6 @@ public class EgovArticleCommentDAOV2Test extends EgovAbstractDAOV2Test {
     public void testB10SelectList() {
         final Board board = new Board();
         final LoginVO loginVO = (LoginVO) EgovUserDetailsHelper.getAuthenticatedUser();
-        testData(board, loginVO);
-
         final Comment comment = new Comment();
         testData(board, loginVO, comment);
 
@@ -288,15 +286,54 @@ public class EgovArticleCommentDAOV2Test extends EgovAbstractDAOV2Test {
         @SuppressWarnings("unchecked")
         final List<CommentVO> results = (List<CommentVO>) egovArticleCommentDAO.selectArticleCommentList(commentVO);
         for (final CommentVO result : results) {
-            egovLogger.debug("result={}", result);
-            egovLogger.debug("getBbsId={}", result.getBbsId());
-            egovLogger.debug("getNttId={}", result.getNttId());
-            egovLogger.debug("getCommentNo={}", result.getCommentNo());
+            debug(result);
+//            debug2(result);
 
             // then
             assertEquals(egovMessageSource.getMessage("fail.common.select"), comment.getCommentNo(),
                     result.getCommentNo());
         }
+    }
+
+    /* default */ void debug(final CommentVO result) {
+        egovLogger.debug("result={}", result);
+
+        egovLogger.debug("getCommentNo={}", result.getCommentNo());
+        egovLogger.debug("getNttId={}", result.getNttId());
+        egovLogger.debug("getBbsId={}", result.getBbsId());
+
+        egovLogger.debug("getWrterId={}", result.getWrterId());
+        egovLogger.debug("getWrterNm={}", result.getWrterNm());
+        egovLogger.debug("getCommentPassword={}", result.getCommentPassword());
+        egovLogger.debug("getCommentCn={}", result.getCommentCn());
+
+        egovLogger.debug("getUseAt={}", result.getUseAt());
+
+        egovLogger.debug("getFrstRegisterPnttm={}", result.getFrstRegisterPnttm());
+        egovLogger.debug("getFrstRegisterNm={}", result.getFrstRegisterNm());
+    }
+
+    /* default */ void debug2(final CommentVO result) {
+        egovLogger.debug("result={}", result);
+
+        egovLogger.debug("getNttId={}", result.getNttId());
+        egovLogger.debug("getBbsId={}", result.getBbsId());
+        egovLogger.debug("getCommentNo={}", result.getCommentNo());
+
+        egovLogger.debug("getWrterId={}", result.getWrterId());
+        egovLogger.debug("getWrterNm={}", result.getWrterNm());
+        egovLogger.debug("getCommentCn={}", result.getCommentCn());
+
+        egovLogger.debug("getUseAt={}", result.getUseAt());
+
+        egovLogger.debug("getFrstRegisterPnttm={}", result.getFrstRegisterPnttm());
+        egovLogger.debug("getFrstRegisterId={}", result.getFrstRegisterId());
+        egovLogger.debug("getFrstRegisterNm={}", result.getFrstRegisterNm());
+
+        egovLogger.debug("getLastUpdusrPnttm={}", result.getLastUpdusrPnttm());
+        egovLogger.debug("getLastUpdusrId={}", result.getLastUpdusrId());
+
+        egovLogger.debug("getCommentPassword={}", result.getCommentPassword());
     }
 
 }
