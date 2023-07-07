@@ -231,4 +231,12 @@ public class EgovArticleCommentDAOV2Test extends EgovAbstractDAOV2Test {
 //        return new Object[] { sqle.getErrorCode(), sqle.getSQLState(), sqle.getMessage(), };
     }
 
+    /**
+     * 댓글 DAO 단위 테스트: 조회(멀티건)
+     */
+    @Test
+    public void testA10SelectList() {
+
+    }
+
 }
