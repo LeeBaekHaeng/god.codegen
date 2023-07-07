@@ -336,4 +336,28 @@ public class EgovArticleCommentDAOV2Test extends EgovAbstractDAOV2Test {
         egovLogger.debug("getCommentPassword={}", result.getCommentPassword());
     }
 
+    /**
+     * 댓글 DAO 단위 테스트: 조회(멀티건) 총 수
+     */
+    @Test
+    public void testC10SelectListTotCnt() {
+        final Board board = new Board();
+        final LoginVO loginVO = (LoginVO) EgovUserDetailsHelper.getAuthenticatedUser();
+        final Comment comment = new Comment();
+        testData(board, loginVO, comment);
+
+        // given
+        final CommentVO commentVO = new CommentVO();
+        commentVO.setBbsId(comment.getBbsId());
+        commentVO.setNttId(comment.getNttId());
+
+        // when
+        final int totCnt = egovArticleCommentDAO.selectArticleCommentListCnt(commentVO);
+
+        egovLogger.debug("totCnt={}", totCnt);
+
+        // then
+        assertEquals(egovMessageSource.getMessage("fail.common.select"), 1, totCnt);
+    }
+
 }
