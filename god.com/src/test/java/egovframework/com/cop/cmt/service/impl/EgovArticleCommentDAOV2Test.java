@@ -174,7 +174,7 @@ public class EgovArticleCommentDAOV2Test extends EgovAbstractDAOV2Test {
      */
     @Test
 //    @Commit
-    public void testa10insertArticleComment() {
+    public void testA10Insert() {
         final Board board = new Board();
         final LoginVO loginVO = (LoginVO) EgovUserDetailsHelper.getAuthenticatedUser();
         testData(board, loginVO);
