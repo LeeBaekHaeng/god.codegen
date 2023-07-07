@@ -140,8 +140,10 @@ public class EgovArticleCommentDAOV1Test extends EgovAbstractDAOV1Test {
         try {
             egovArticleCommentDAO.insertArticleComment(comment);
         } catch (DataAccessException e) {
-            egovLogger.error("DataAccessException insertArticleComment");
-            egovLogger.error(egovMessageSource.getMessage("fail.common.insert"));
+            if (egovLogger.isErrorEnabled()) {
+                egovLogger.error("DataAccessException insertArticleComment");
+                egovLogger.error(egovMessageSource.getMessage("fail.common.insert"));
+            }
             error(e);
         }
     }
@@ -176,8 +178,10 @@ public class EgovArticleCommentDAOV1Test extends EgovAbstractDAOV1Test {
         try {
             egovArticleCommentDAO.insertArticleComment(comment);
         } catch (DataAccessException e) {
-            egovLogger.error("DataAccessException insertArticleComment");
-            egovLogger.error(egovMessageSource.getMessage("fail.common.insert"));
+            if (egovLogger.isErrorEnabled()) {
+                egovLogger.error("DataAccessException insertArticleComment");
+                egovLogger.error(egovMessageSource.getMessage("fail.common.insert"));
+            }
             error(e);
 
             insertArticleComment = 0;
@@ -234,44 +238,48 @@ public class EgovArticleCommentDAOV1Test extends EgovAbstractDAOV1Test {
     }
 
     /* default */ void debug(final CommentVO result) {
-        egovLogger.debug("result={}", result);
+        if (egovLogger.isDebugEnabled()) {
+            egovLogger.debug("result={}", result);
 
-        egovLogger.debug("getCommentNo={}", result.getCommentNo());
-        egovLogger.debug("getNttId={}", result.getNttId());
-        egovLogger.debug("getBbsId={}", result.getBbsId());
+            egovLogger.debug("getCommentNo={}", result.getCommentNo());
+            egovLogger.debug("getNttId={}", result.getNttId());
+            egovLogger.debug("getBbsId={}", result.getBbsId());
 
-        egovLogger.debug("getWrterId={}", result.getWrterId());
-        egovLogger.debug("getWrterNm={}", result.getWrterNm());
-        egovLogger.debug("getCommentPassword={}", result.getCommentPassword());
-        egovLogger.debug("getCommentCn={}", result.getCommentCn());
+            egovLogger.debug("getWrterId={}", result.getWrterId());
+            egovLogger.debug("getWrterNm={}", result.getWrterNm());
+            egovLogger.debug("getCommentPassword={}", result.getCommentPassword());
+            egovLogger.debug("getCommentCn={}", result.getCommentCn());
 
-        egovLogger.debug("getUseAt={}", result.getUseAt());
+            egovLogger.debug("getUseAt={}", result.getUseAt());
 
-        egovLogger.debug("getFrstRegisterPnttm={}", result.getFrstRegisterPnttm());
-        egovLogger.debug("getFrstRegisterNm={}", result.getFrstRegisterNm());
+            egovLogger.debug("getFrstRegisterPnttm={}", result.getFrstRegisterPnttm());
+            egovLogger.debug("getFrstRegisterNm={}", result.getFrstRegisterNm());
+        }
     }
 
     /* default */ void debug2(final CommentVO result) {
-        egovLogger.debug("result={}", result);
+        if (egovLogger.isDebugEnabled()) {
+            egovLogger.debug("result={}", result);
 
-        egovLogger.debug("getNttId={}", result.getNttId());
-        egovLogger.debug("getBbsId={}", result.getBbsId());
-        egovLogger.debug("getCommentNo={}", result.getCommentNo());
+            egovLogger.debug("getNttId={}", result.getNttId());
+            egovLogger.debug("getBbsId={}", result.getBbsId());
+            egovLogger.debug("getCommentNo={}", result.getCommentNo());
 
-        egovLogger.debug("getWrterId={}", result.getWrterId());
-        egovLogger.debug("getWrterNm={}", result.getWrterNm());
-        egovLogger.debug("getCommentCn={}", result.getCommentCn());
+            egovLogger.debug("getWrterId={}", result.getWrterId());
+            egovLogger.debug("getWrterNm={}", result.getWrterNm());
+            egovLogger.debug("getCommentCn={}", result.getCommentCn());
 
-        egovLogger.debug("getUseAt={}", result.getUseAt());
+            egovLogger.debug("getUseAt={}", result.getUseAt());
 
-        egovLogger.debug("getFrstRegisterPnttm={}", result.getFrstRegisterPnttm());
-        egovLogger.debug("getFrstRegisterId={}", result.getFrstRegisterId());
-        egovLogger.debug("getFrstRegisterNm={}", result.getFrstRegisterNm());
+            egovLogger.debug("getFrstRegisterPnttm={}", result.getFrstRegisterPnttm());
+            egovLogger.debug("getFrstRegisterId={}", result.getFrstRegisterId());
+            egovLogger.debug("getFrstRegisterNm={}", result.getFrstRegisterNm());
 
-        egovLogger.debug("getLastUpdusrPnttm={}", result.getLastUpdusrPnttm());
-        egovLogger.debug("getLastUpdusrId={}", result.getLastUpdusrId());
+            egovLogger.debug("getLastUpdusrPnttm={}", result.getLastUpdusrPnttm());
+            egovLogger.debug("getLastUpdusrId={}", result.getLastUpdusrId());
 
-        egovLogger.debug("getCommentPassword={}", result.getCommentPassword());
+            egovLogger.debug("getCommentPassword={}", result.getCommentPassword());
+        }
     }
 
     /**
@@ -345,8 +353,10 @@ public class EgovArticleCommentDAOV1Test extends EgovAbstractDAOV1Test {
         try {
             egovArticleCommentDAO.updateArticleComment(comment);
         } catch (DataAccessException e) {
-            egovLogger.error("DataAccessException updateArticleComment");
-            egovLogger.error(egovMessageSource.getMessage("fail.common.update"));
+            if (egovLogger.isErrorEnabled()) {
+                egovLogger.error("DataAccessException updateArticleComment");
+                egovLogger.error(egovMessageSource.getMessage("fail.common.update"));
+            }
             error(e);
 
             result = 0;
@@ -379,8 +389,10 @@ public class EgovArticleCommentDAOV1Test extends EgovAbstractDAOV1Test {
         try {
             egovArticleCommentDAO.deleteArticleComment(commentVO);
         } catch (DataAccessException e) {
-            egovLogger.error("DataAccessException deleteArticleComment");
-            egovLogger.error(egovMessageSource.getMessage("fail.common.delete"));
+            if (egovLogger.isErrorEnabled()) {
+                egovLogger.error("DataAccessException deleteArticleComment");
+                egovLogger.error(egovMessageSource.getMessage("fail.common.delete"));
+            }
             error(e);
 
             result = 0;
@@ -391,10 +403,12 @@ public class EgovArticleCommentDAOV1Test extends EgovAbstractDAOV1Test {
     }
 
     /* default */ void error(final DataAccessException dataAccessException) {
-        egovLogger.error(egovMessageSource.getMessage("fail.common.msg"));
+        if (egovLogger.isErrorEnabled()) {
+            egovLogger.error(egovMessageSource.getMessage("fail.common.msg"));
 
-        final SQLException sqle = (SQLException) dataAccessException.getCause();
-        egovLogger.error(egovMessageSource.getMessageArgs("fail.common.sql", args(sqle)));
+            final SQLException sqle = (SQLException) dataAccessException.getCause();
+            egovLogger.error(egovMessageSource.getMessageArgs("fail.common.sql", args(sqle)));
+        }
     }
 
 }
