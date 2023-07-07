@@ -1,6 +1,6 @@
 package egovframework.com.cop.cmt.service.impl;
 
-import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.assertEquals;
 
 import java.sql.SQLException;
 import java.time.LocalDateTime;
@@ -18,7 +18,6 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.FilterType;
 import org.springframework.context.annotation.ImportResource;
 import org.springframework.dao.DataAccessException;
-import org.springframework.test.annotation.Commit;
 import org.springframework.test.context.ContextConfiguration;
 
 import egovframework.com.cmm.EgovMessageSource;
@@ -139,14 +138,46 @@ public class EgovArticleCommentDAOV2Test extends EgovAbstractDAOV2Test {
     private EgovIdGnrService egovNttIdGnrService;
 
     /**
+     * insertArticleComment
+     */
+    private int insertArticleComment = 1;
+
+    private void testData(final Board board, final LoginVO loginVO) {
+        final BoardMaster boardMaster = new BoardMaster();
+
+        if (loginVO != null) {
+            boardMaster.setFrstRegisterId(loginVO.getUniqId());
+//          boardMaster.setLastUpdusrId(loginVO.getUniqId());
+
+            board.setFrstRegisterId(loginVO.getUniqId());
+//          board.setLastUpdusrId(loginVO.getUniqId());
+        }
+
+        try {
+            boardMaster.setBbsId(egovBBSMstrIdGnrService.getNextStringId());
+        } catch (FdlException e) {
+            egovLogger.error("FdlException egovBBSMstrIdGnrService");
+        }
+        egovBBSMasterDAO.insertBBSMasterInf(boardMaster);
+
+        try {
+            board.setNttId(egovNttIdGnrService.getNextLongId());
+        } catch (FdlException e) {
+            egovLogger.error("FdlException egovNttIdGnrService");
+        }
+        board.setBbsId(boardMaster.getBbsId());
+        egovArticleDAO.insertArticle(board);
+    }
+
+    /**
      * 댓글 DAO 단위 테스트: 등록
      */
     @Test
-    @Commit
+//    @Commit
     public void testa10insertArticleComment() {
         final Board board = new Board();
         final LoginVO loginVO = (LoginVO) EgovUserDetailsHelper.getAuthenticatedUser();
-        insertBBSMasterInf(board, loginVO);
+        testData(board, loginVO);
 
         // given
         final Comment comment = new Comment();
@@ -165,7 +196,6 @@ public class EgovArticleCommentDAOV2Test extends EgovAbstractDAOV2Test {
         setLoginVO(comment, loginVO);
 
         // when
-        boolean result = true;
         try {
             egovArticleCommentDAO.insertArticleComment(comment);
         } catch (DataAccessException e) {
@@ -178,64 +208,27 @@ public class EgovArticleCommentDAOV2Test extends EgovAbstractDAOV2Test {
 
             egovLogger.error(egovMessageSource.getMessage("fail.common.insert"));
 
-            result = false;
+            insertArticleComment = 0;
         }
 
         // then
-        assertTrue(egovMessageSource.getMessage("success.common.insert"), result);
+        assertEquals(egovMessageSource.getMessage("fail.common.insert"), 1, insertArticleComment);
+    }
+
+    private void setLoginVO(final Comment comment, final LoginVO loginVO) {
+        if (loginVO != null) {
+            comment.setFrstRegisterId(loginVO.getUniqId());
+//            comment.setLastUpdusrId(loginVO.getUniqId());
+
+//            comment.setWrterId(loginVO.getId());
+            comment.setWrterId(loginVO.getUniqId());
+            comment.setWrterNm(loginVO.getName());
+        }
     }
 
     private Object[] args(final SQLException sqle) {
         return new Object[] { sqle.getErrorCode(), sqle.getMessage(), sqle.getSQLState(), };
 //        return new Object[] { sqle.getErrorCode(), sqle.getSQLState(), sqle.getMessage(), };
-    }
-
-    private void insertBBSMasterInf(final Board board, final LoginVO loginVO) {
-        final BoardMaster boardMaster = new BoardMaster();
-        try {
-            boardMaster.setBbsId(egovBBSMstrIdGnrService.getNextStringId());
-        } catch (FdlException e) {
-            egovLogger.error("FdlException egovBBSMstrIdGnrService");
-        }
-        setLoginVO(boardMaster, loginVO);
-        egovBBSMasterDAO.insertBBSMasterInf(boardMaster);
-
-        try {
-            board.setNttId(egovNttIdGnrService.getNextLongId());
-        } catch (FdlException e) {
-            egovLogger.error("FdlException egovNttIdGnrService");
-        }
-        board.setBbsId(boardMaster.getBbsId());
-        setLoginVO(board, loginVO);
-        egovArticleDAO.insertArticle(board);
-    }
-
-    private void setLoginVO(final BoardMaster boardMaster, final LoginVO loginVO) {
-        if (loginVO == null) {
-            return;
-        }
-        boardMaster.setFrstRegisterId(loginVO.getUniqId());
-//        boardMaster.setLastUpdusrId(loginVO.getUniqId());
-    }
-
-    private void setLoginVO(final Board board, final LoginVO loginVO) {
-        if (loginVO == null) {
-            return;
-        }
-        board.setFrstRegisterId(loginVO.getUniqId());
-//        board.setLastUpdusrId(loginVO.getUniqId());
-    }
-
-    private void setLoginVO(final Comment comment, final LoginVO loginVO) {
-        if (loginVO == null) {
-            return;
-        }
-        comment.setFrstRegisterId(loginVO.getUniqId());
-//        comment.setLastUpdusrId(loginVO.getUniqId());
-
-//        comment.setWrterId(loginVO.getId());
-        comment.setWrterId(loginVO.getUniqId());
-        comment.setWrterNm(loginVO.getName());
     }
 
 }
