@@ -420,7 +420,42 @@ public class EgovArticleCommentDAOV2Test extends EgovAbstractDAOV2Test {
         }
 
         // then
-        assertEquals(egovMessageSource.getMessage(FAIL_COMMON_SELECT), 1, result);
+        assertEquals(egovMessageSource.getMessage("fail.common.update"), 1, result);
+    }
+
+    /**
+     * 댓글 DAO 단위 테스트: 삭제
+     */
+    @Test
+    public void testF10delete() {
+        final Board board = new Board();
+        final LoginVO loginVO = (LoginVO) EgovUserDetailsHelper.getAuthenticatedUser();
+        final Comment comment = new Comment();
+        testData(board, loginVO, comment);
+
+        // given
+        final CommentVO commentVO = new CommentVO();
+        commentVO.setCommentNo(comment.getCommentNo());
+
+        // when
+        int result = 1;
+        try {
+            egovArticleCommentDAO.deleteArticleComment(commentVO);
+        } catch (DataAccessException e) {
+            egovLogger.error("DataAccessException deleteArticleComment");
+
+            egovLogger.error(egovMessageSource.getMessage("fail.common.msg"));
+
+            final SQLException sqle = (SQLException) e.getCause();
+            egovLogger.error(egovMessageSource.getMessageArgs("fail.common.sql", args(sqle)));
+
+            egovLogger.error(egovMessageSource.getMessage("fail.common.delete"));
+
+            result = 0;
+        }
+
+        // then
+        assertEquals(egovMessageSource.getMessage("fail.common.delete"), 1, result);
     }
 
 }
