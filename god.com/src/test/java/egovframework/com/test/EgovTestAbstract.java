@@ -12,10 +12,11 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
 import org.springframework.test.context.ActiveProfiles;
-import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.StopWatch;
+
+import lombok.RequiredArgsConstructor;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @OrderWith(Alphanumeric.class)
@@ -29,73 +30,100 @@ import org.springframework.util.StopWatch;
 //@ActiveProfiles({ "postgres", "dummy" })
 //@ActiveProfiles({ "goldilocks", "dummy" })
 
-@ContextConfiguration(locations = {
-
-//		"classpath*:egovframework/spring/com/**/context-*.xml",
-
-        "classpath*:egovframework/spring/com/context-*.xml",
-
-        "classpath*:egovframework/spring/com/idgn/context-*.xml",
-
-        "classpath*:egovframework/spring/com/scheduling/context-*.xml",
-
-})
-
 @Transactional
 
-public abstract class EgovAbstractDAOV1Test {
+@RequiredArgsConstructor
 
-    protected static Logger EGOV_LOGGER = LoggerFactory.getLogger(EgovAbstractDAOV1Test.class);
-    protected Logger egovLogger = LoggerFactory.getLogger(EgovAbstractDAOV1Test.class);
+/**
+ * 단위 테스트
+ * 
+ * @author 이백행
+ *
+ */
+public class EgovTestAbstract {
 
+    /**
+     * Logger
+     */
+    protected static final Logger LOGGER = LoggerFactory.getLogger(EgovTestAbstract.class);
+
+    /**
+     * BeforeClass AfterClass
+     */
     protected static final StopWatch STOP_WATCH = new StopWatch();
+
+    /**
+     * Before After
+     */
     protected final StopWatch stopWatch = new StopWatch();
 
-    private static String[] beanDefinitionNames = null;
+    /**
+     * beanDefinitionNames
+     */
+    private static String[] beanDefinitionNames;
 
+    /**
+     * ApplicationContext
+     */
     @Autowired
     private ApplicationContext context;
 
+    /**
+     * setUpBeforeClass
+     */
     @BeforeClass
     public static void setUpBeforeClass() {
         STOP_WATCH.start();
 
-        EGOV_LOGGER.debug("setUpBeforeClass start");
+        LOGGER.debug("setUpBeforeClass start");
     }
 
+    /**
+     * tearDownAfterClass
+     */
     @AfterClass
     public static void tearDownAfterClass() {
         STOP_WATCH.stop();
 
-        EGOV_LOGGER.debug("tearDownAfterClass stop");
+        if (LOGGER.isDebugEnabled()) {
+            LOGGER.debug("tearDownAfterClass stop");
 
-        EGOV_LOGGER.debug("totalTimeMillis={}", STOP_WATCH.getTotalTimeMillis());
-        EGOV_LOGGER.debug("totalTimeSeconds={}", STOP_WATCH.getTotalTimeSeconds());
+            LOGGER.debug("totalTimeMillis={}", STOP_WATCH.getTotalTimeMillis());
+            LOGGER.debug("totalTimeSeconds={}", STOP_WATCH.getTotalTimeSeconds());
+        }
     }
 
+    /**
+     * setUp
+     */
     @Before
     public void setUp() {
         stopWatch.start();
 
-        egovLogger.debug("setUp start");
+        LOGGER.debug("setUp start");
 
         if (beanDefinitionNames == null) {
             beanDefinitionNames = context.getBeanDefinitionNames();
-            for (String beanDefinitionName : beanDefinitionNames) {
-                egovLogger.debug("beanDefinitionName={}", beanDefinitionName);
+            for (final String beanDefinitionName : beanDefinitionNames) {
+                LOGGER.debug("beanDefinitionName={}", beanDefinitionName);
             }
-            egovLogger.debug("length={}", beanDefinitionNames.length);
+            LOGGER.debug("length={}", beanDefinitionNames.length);
         }
     }
 
+    /**
+     * tearDown
+     */
     @After
     public void tearDown() {
         stopWatch.stop();
 
-        egovLogger.debug("tearDown stop");
+        if (LOGGER.isDebugEnabled()) {
+            LOGGER.debug("tearDown stop");
 
-        egovLogger.debug("totalTimeMillis={}", stopWatch.getTotalTimeMillis());
-        egovLogger.debug("totalTimeSeconds={}", stopWatch.getTotalTimeSeconds());
+            LOGGER.debug("totalTimeMillis={}", STOP_WATCH.getTotalTimeMillis());
+            LOGGER.debug("totalTimeSeconds={}", STOP_WATCH.getTotalTimeSeconds());
+        }
     }
 
 }
