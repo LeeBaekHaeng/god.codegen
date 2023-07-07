@@ -24,7 +24,7 @@ import egovframework.com.cop.bbs.service.impl.EgovArticleDAO;
 import egovframework.com.cop.bbs.service.impl.EgovBBSMasterDAO;
 import egovframework.com.cop.cmt.service.Comment;
 import egovframework.com.cop.cmt.service.CommentVO;
-import egovframework.com.test.EgovTestAbstractDAOV1;
+import egovframework.com.test.EgovTestAbstractDAO2;
 import lombok.RequiredArgsConstructor;
 
 /**
@@ -34,7 +34,7 @@ import lombok.RequiredArgsConstructor;
  *
  */
 @RequiredArgsConstructor
-public class EgovArticleCommentDAOV1Test extends EgovTestAbstractDAOV1 {
+public class EgovArticleCommentDAOTest2 extends EgovTestAbstractDAO2 {
 
     /**
      * EgovArticleCommentDAO
