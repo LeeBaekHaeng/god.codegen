@@ -272,7 +272,11 @@
    <rule ref="category/java/errorprone.xml/LoggerIsNotStaticFinal"/>
    <rule ref="category/java/design.xml/LogicInversion"/>
    <rule ref="category/java/performance.xml/LongInstantiation"/>
-   <rule ref="category/java/codestyle.xml/LongVariable"/>
+   <rule ref="category/java/codestyle.xml/LongVariable">
+      <properties>
+         <property name="minimum" value="170"/>
+      </properties>
+   </rule>
    <rule ref="category/java/bestpractices.xml/LooseCoupling"/>
    <rule ref="category/java/design.xml/LoosePackageCoupling"/>
    <rule ref="category/java/codestyle.xml/MDBAndSessionBeanNamingConvention"/>
