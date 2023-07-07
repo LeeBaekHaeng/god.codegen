@@ -34,7 +34,7 @@ import lombok.RequiredArgsConstructor;
  *
  */
 @RequiredArgsConstructor
-public class EgovArticleCommentDAOTest2 extends EgovTestAbstractDAO2 {
+public class EgovArticleCommentDAO2Test extends EgovTestAbstractDAO2 {
 
     /**
      * EgovArticleCommentDAO
