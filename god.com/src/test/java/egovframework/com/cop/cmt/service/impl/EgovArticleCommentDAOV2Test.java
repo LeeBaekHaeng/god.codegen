@@ -213,7 +213,7 @@ public class EgovArticleCommentDAOV2Test extends EgovAbstractDAOV2Test {
      */
     @Test
 //    @Commit
-    public void testA10Insert() {
+    public void testA10insert() {
         final Board board = new Board();
         final LoginVO loginVO = (LoginVO) EgovUserDetailsHelper.getAuthenticatedUser();
         testData(board, loginVO);
@@ -274,7 +274,7 @@ public class EgovArticleCommentDAOV2Test extends EgovAbstractDAOV2Test {
      * 댓글 DAO 단위 테스트: 조회(멀티건)
      */
     @Test
-    public void testB10SelectList() {
+    public void testB10selectList() {
         final Board board = new Board();
         final LoginVO loginVO = (LoginVO) EgovUserDetailsHelper.getAuthenticatedUser();
         final Comment comment = new Comment();
@@ -345,7 +345,7 @@ public class EgovArticleCommentDAOV2Test extends EgovAbstractDAOV2Test {
      * 댓글 DAO 단위 테스트: 조회(멀티건) 총 수
      */
     @Test
-    public void testC10SelectListTotCnt() {
+    public void testC10selectListTotCnt() {
         final Board board = new Board();
         final LoginVO loginVO = (LoginVO) EgovUserDetailsHelper.getAuthenticatedUser();
         final Comment comment = new Comment();
@@ -369,7 +369,7 @@ public class EgovArticleCommentDAOV2Test extends EgovAbstractDAOV2Test {
      * 댓글 DAO 단위 테스트: 조회(단건)
      */
     @Test
-    public void testD10Select() {
+    public void testD10select() {
         final Board board = new Board();
         final LoginVO loginVO = (LoginVO) EgovUserDetailsHelper.getAuthenticatedUser();
         final Comment comment = new Comment();
