@@ -143,7 +143,6 @@
    <rule ref="category/java/errorprone.xml/DataflowAnomalyAnalysis"/>
    <rule ref="category/apex/bestpractices.xml/DebugsShouldUseLoggingLevel"/>
    <rule ref="category/java/bestpractices.xml/DefaultLabelNotLastInSwitchStmt"/>
-   <rule ref="category/java/codestyle.xml/DefaultPackage"/>
    <rule ref="category/java/errorprone.xml/DetachedTestCase"/>
    <rule ref="category/java/errorprone.xml/DoNotCallGarbageCollectionExplicitly"/>
    <rule ref="category/java/design.xml/DoNotExtendJavaLangError"/>
