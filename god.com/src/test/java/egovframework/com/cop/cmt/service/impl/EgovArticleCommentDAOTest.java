@@ -31,7 +31,7 @@ import egovframework.com.cop.bbs.service.impl.EgovArticleDAO;
 import egovframework.com.cop.bbs.service.impl.EgovBBSMasterDAO;
 import egovframework.com.cop.cmt.service.Comment;
 import egovframework.com.cop.cmt.service.CommentVO;
-import egovframework.com.test.EgovTestAbstractDAOV2;
+import egovframework.com.test.EgovTestAbstractDAO;
 import lombok.RequiredArgsConstructor;
 
 /**
@@ -40,7 +40,8 @@ import lombok.RequiredArgsConstructor;
  * @author 이백행
  *
  */
-@ContextConfiguration(classes = { EgovTestAbstractDAOV2.class, EgovArticleCommentDAOV2Test.class, })
+
+@ContextConfiguration(classes = { EgovTestAbstractDAO.class, EgovArticleCommentDAOTest.class, })
 
 @Configuration
 
@@ -92,7 +93,7 @@ import lombok.RequiredArgsConstructor;
 
 @RequiredArgsConstructor
 //@Commit
-public class EgovArticleCommentDAOV2Test extends EgovTestAbstractDAOV2 {
+public class EgovArticleCommentDAOTest extends EgovTestAbstractDAO {
 
     /**
      * EgovArticleCommentDAO
