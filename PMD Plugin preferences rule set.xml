@@ -145,7 +145,6 @@
    <rule ref="category/java/design.xml/CyclomaticComplexity"/>
    <rule ref="category/plsql/design.xml/CyclomaticComplexity"/>
    <rule ref="category/java/design.xml/DataClass"/>
-   <rule ref="category/java/errorprone.xml/DataflowAnomalyAnalysis"/>
    <rule ref="category/apex/bestpractices.xml/DebugsShouldUseLoggingLevel"/>
    <rule ref="category/java/bestpractices.xml/DefaultLabelNotLastInSwitchStmt"/>
    <rule ref="category/java/errorprone.xml/DetachedTestCase"/>
