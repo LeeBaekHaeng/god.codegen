@@ -144,6 +144,11 @@ public class EgovArticleCommentDAOV2Test extends EgovAbstractDAOV2Test {
      */
     private int insertArticleComment = 1;
 
+    /**
+     * 조회에 실패하였습니다.
+     */
+    private static final String FAIL_COMMON_SELECT = "fail.common.select";
+
     private void testData(final Board board, final LoginVO loginVO) {
         final BoardMaster boardMaster = new BoardMaster();
 
@@ -290,7 +295,7 @@ public class EgovArticleCommentDAOV2Test extends EgovAbstractDAOV2Test {
 //            debug2(result);
 
             // then
-            assertEquals(egovMessageSource.getMessage("fail.common.select"), comment.getCommentNo(),
+            assertEquals(egovMessageSource.getMessage(FAIL_COMMON_SELECT), comment.getCommentNo(),
                     result.getCommentNo());
         }
     }
@@ -357,7 +362,7 @@ public class EgovArticleCommentDAOV2Test extends EgovAbstractDAOV2Test {
         egovLogger.debug("totCnt={}", totCnt);
 
         // then
-        assertEquals(egovMessageSource.getMessage("fail.common.select"), 1, totCnt);
+        assertEquals(egovMessageSource.getMessage(FAIL_COMMON_SELECT), 1, totCnt);
     }
 
     /**
@@ -380,8 +385,7 @@ public class EgovArticleCommentDAOV2Test extends EgovAbstractDAOV2Test {
         debug(result);
 
         // then
-        assertEquals(egovMessageSource.getMessage("fail.common.select"), commentVO.getCommentNo(),
-                result.getCommentNo());
+        assertEquals(egovMessageSource.getMessage(FAIL_COMMON_SELECT), commentVO.getCommentNo(), result.getCommentNo());
     }
 
     /**
@@ -416,7 +420,7 @@ public class EgovArticleCommentDAOV2Test extends EgovAbstractDAOV2Test {
         }
 
         // then
-        assertEquals(egovMessageSource.getMessage("fail.common.select"), 1, result);
+        assertEquals(egovMessageSource.getMessage(FAIL_COMMON_SELECT), 1, result);
     }
 
 }
