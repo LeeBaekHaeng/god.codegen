@@ -209,7 +209,6 @@ public class EgovArticleCommentDAOTest extends EgovTestAbstractDAO {
         setLoginVO(comment, loginVO);
 
         // when
-
         egovArticleCommentDAO.insertArticleComment(comment);
 
         // then
@@ -394,7 +393,6 @@ public class EgovArticleCommentDAOTest extends EgovTestAbstractDAO {
         commentVO.setCommentNo(comment.getCommentNo());
 
         // when
-
         egovArticleCommentDAO.deleteArticleComment(commentVO);
 
         // then
