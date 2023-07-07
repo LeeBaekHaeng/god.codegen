@@ -5,8 +5,6 @@ import static org.junit.Assert.assertEquals;
 import java.time.LocalDateTime;
 import java.util.List;
 
-import javax.annotation.Resource;
-
 import org.egovframe.rte.fdl.cmmn.exception.FdlException;
 import org.egovframe.rte.fdl.idgnr.EgovIdGnrService;
 import org.junit.Test;
@@ -19,7 +17,6 @@ import org.springframework.context.annotation.FilterType;
 import org.springframework.context.annotation.ImportResource;
 import org.springframework.test.context.ContextConfiguration;
 
-import egovframework.com.cmm.EgovMessageSource;
 import egovframework.com.cmm.LoginVO;
 import egovframework.com.cmm.util.EgovUserDetailsHelper;
 import egovframework.com.cop.bbs.service.Board;
@@ -106,12 +103,6 @@ public class EgovArticleCommentDAOTest extends EgovTestAbstractDAO {
     @Autowired
     @Qualifier("egovAnswerNoGnrService")
     private EgovIdGnrService egovAnswerNoGnrService;
-
-    /**
-     * 메시지 리소스 사용을 위한 MessageSource 인터페이스 및 ReloadableResourceBundleMessageSource 클래스의 구현체
-     */
-    @Resource(name = "egovMessageSource")
-    private EgovMessageSource egovMessageSource;
 
     /**
      * EgovBBSMasterDAO
