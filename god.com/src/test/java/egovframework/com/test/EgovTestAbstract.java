@@ -18,6 +18,12 @@ import org.springframework.util.StopWatch;
 
 import lombok.RequiredArgsConstructor;
 
+/**
+ * 테스트
+ * 
+ * @author 이백행
+ */
+
 @RunWith(SpringJUnit4ClassRunner.class)
 @OrderWith(Alphanumeric.class)
 
@@ -34,12 +40,6 @@ import lombok.RequiredArgsConstructor;
 
 @RequiredArgsConstructor
 
-/**
- * 단위 테스트
- * 
- * @author 이백행
- *
- */
 public class EgovTestAbstract {
 
     /**

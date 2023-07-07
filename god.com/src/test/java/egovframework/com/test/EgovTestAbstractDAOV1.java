@@ -4,6 +4,12 @@ import org.springframework.test.context.ContextConfiguration;
 
 import lombok.RequiredArgsConstructor;
 
+/**
+ * DAO 테스트
+ * 
+ * @author 이백행
+ */
+
 @ContextConfiguration(locations = {
 
 //		"classpath*:egovframework/spring/com/**/context-*.xml",
@@ -18,12 +24,6 @@ import lombok.RequiredArgsConstructor;
 
 @RequiredArgsConstructor
 
-/**
- * DAO 단위 테스트
- * 
- * @author 이백행
- *
- */
 public class EgovTestAbstractDAOV1 extends EgovTestAbstract {
 
 }

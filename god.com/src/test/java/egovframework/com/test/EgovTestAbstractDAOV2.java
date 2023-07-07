@@ -5,6 +5,12 @@ import org.springframework.context.annotation.ImportResource;
 
 import lombok.RequiredArgsConstructor;
 
+/**
+ * DAO 테스트
+ * 
+ * @author 이백행
+ */
+
 @Configuration
 
 @ImportResource({
@@ -23,12 +29,6 @@ import lombok.RequiredArgsConstructor;
 
 @RequiredArgsConstructor
 
-/**
- * DAO 테스트
- * 
- * @author 이백행
- *
- */
 public class EgovTestAbstractDAOV2 extends EgovTestAbstract {
 
 }
