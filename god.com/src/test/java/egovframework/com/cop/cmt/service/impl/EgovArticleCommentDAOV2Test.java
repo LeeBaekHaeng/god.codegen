@@ -376,6 +376,11 @@ public class EgovArticleCommentDAOV2Test extends EgovAbstractDAOV2Test {
         debug(result);
 
         // then
+//        assertEquals(egovMessageSource.getMessage(FAIL_COMMON_SELECT), commentVO.getCommentNo(), result.getCommentNo());
+        assert1(commentVO, result);
+    }
+
+    private void assert1(final CommentVO commentVO, final CommentVO result) {
         assertEquals(egovMessageSource.getMessage(FAIL_COMMON_SELECT), commentVO.getCommentNo(), result.getCommentNo());
     }
 
@@ -391,7 +396,7 @@ public class EgovArticleCommentDAOV2Test extends EgovAbstractDAOV2Test {
 
         // given
         comment.setCommentCn(comment.getCommentCn() + " > 수정 test 이백행 댓글 " + LocalDateTime.now());
-        comment.setLastUpdusrId(loginVO.getUniqId());
+        updateArticleComment(loginVO, comment);
 
         // when
         int result = 1;
@@ -407,6 +412,10 @@ public class EgovArticleCommentDAOV2Test extends EgovAbstractDAOV2Test {
 
         // then
         assertEquals(egovMessageSource.getMessage("fail.common.update"), 1, result);
+    }
+
+    private void updateArticleComment(final LoginVO loginVO, final Comment comment) {
+        comment.setLastUpdusrId(loginVO.getUniqId());
     }
 
     /**
