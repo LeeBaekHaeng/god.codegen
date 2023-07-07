@@ -360,4 +360,28 @@ public class EgovArticleCommentDAOV2Test extends EgovAbstractDAOV2Test {
         assertEquals(egovMessageSource.getMessage("fail.common.select"), 1, totCnt);
     }
 
+    /**
+     * 댓글 DAO 단위 테스트: 조회(단건)
+     */
+    @Test
+    public void testD10Select() {
+        final Board board = new Board();
+        final LoginVO loginVO = (LoginVO) EgovUserDetailsHelper.getAuthenticatedUser();
+        final Comment comment = new Comment();
+        testData(board, loginVO, comment);
+
+        // given
+        final CommentVO commentVO = new CommentVO();
+        commentVO.setCommentNo(comment.getCommentNo());
+
+        // when
+        final CommentVO result = egovArticleCommentDAO.selectArticleCommentDetail(commentVO);
+
+        debug(result);
+
+        // then
+        assertEquals(egovMessageSource.getMessage("fail.common.select"), commentVO.getCommentNo(),
+                result.getCommentNo());
+    }
+
 }
