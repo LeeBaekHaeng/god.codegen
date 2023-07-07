@@ -384,4 +384,39 @@ public class EgovArticleCommentDAOV2Test extends EgovAbstractDAOV2Test {
                 result.getCommentNo());
     }
 
+    /**
+     * 댓글 DAO 단위 테스트: 수정
+     */
+    @Test
+    public void testE10update() {
+        final Board board = new Board();
+        final LoginVO loginVO = (LoginVO) EgovUserDetailsHelper.getAuthenticatedUser();
+        final Comment comment = new Comment();
+        testData(board, loginVO, comment);
+
+        // given
+        comment.setCommentCn(comment.getCommentCn() + " > 수정 test 이백행 댓글 " + LocalDateTime.now());
+        comment.setLastUpdusrId(loginVO.getUniqId());
+
+        // when
+        int result = 1;
+        try {
+            egovArticleCommentDAO.updateArticleComment(comment);
+        } catch (DataAccessException e) {
+            egovLogger.error("DataAccessException updateArticleComment");
+
+            egovLogger.error(egovMessageSource.getMessage("fail.common.msg"));
+
+            final SQLException sqle = (SQLException) e.getCause();
+            egovLogger.error(egovMessageSource.getMessageArgs("fail.common.sql", args(sqle)));
+
+            egovLogger.error(egovMessageSource.getMessage("fail.common.update"));
+
+            result = 0;
+        }
+
+        // then
+        assertEquals(egovMessageSource.getMessage("fail.common.select"), 1, result);
+    }
+
 }
