@@ -1,7 +1,5 @@
 package egovframework.com.test;
 
-import javax.annotation.Resource;
-
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -12,6 +10,7 @@ import org.junit.runner.manipulation.Alphanumeric;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.ApplicationContext;
 import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
@@ -74,7 +73,9 @@ public class EgovTestAbstract {
     /**
      * 메시지 리소스 사용을 위한 MessageSource 인터페이스 및 ReloadableResourceBundleMessageSource 클래스의 구현체
      */
-    @Resource(name = "egovMessageSource")
+//    @Resource(name = "egovMessageSource")
+    @Autowired
+    @Qualifier("egovMessageSource")
     protected EgovMessageSource egovMessageSource;
 
     /**
