@@ -191,7 +191,7 @@ public class EgovArticleCommentDAOV2Test extends EgovAbstractDAOV2Test {
         comment.setBbsId(board.getBbsId());
 
         comment.setCommentPassword("rhdxhd12");
-        comment.setCommentCn("test 이백행 댓글 " + LocalDateTime.now().toString());
+        comment.setCommentCn("test 이백행 댓글 " + LocalDateTime.now());
 
         setLoginVO(comment, loginVO);
 
