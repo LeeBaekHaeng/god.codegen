@@ -4,6 +4,7 @@ import static org.junit.Assert.assertEquals;
 
 import java.sql.SQLException;
 import java.time.LocalDateTime;
+import java.util.List;
 
 import javax.annotation.Resource;
 
@@ -29,6 +30,7 @@ import egovframework.com.cop.bbs.service.impl.BBSAddedOptionsDAO;
 import egovframework.com.cop.bbs.service.impl.EgovArticleDAO;
 import egovframework.com.cop.bbs.service.impl.EgovBBSMasterDAO;
 import egovframework.com.cop.cmt.service.Comment;
+import egovframework.com.cop.cmt.service.CommentVO;
 import egovframework.com.test.EgovAbstractDAOV2Test;
 import lombok.RequiredArgsConstructor;
 
@@ -169,6 +171,38 @@ public class EgovArticleCommentDAOV2Test extends EgovAbstractDAOV2Test {
         egovArticleDAO.insertArticle(board);
     }
 
+    private void testData(final Board board, final LoginVO loginVO, final Comment comment) {
+        testData(board, loginVO);
+
+        try {
+            comment.setCommentNo(String.valueOf(egovAnswerNoGnrService.getNextLongId()));
+        } catch (FdlException e) {
+            egovLogger.error("FdlException egovAnswerNoGnrService");
+        }
+
+        comment.setNttId(board.getNttId());
+        comment.setBbsId(board.getBbsId());
+
+        comment.setCommentPassword("rhdxhd12");
+        comment.setCommentCn("test 이백행 댓글 " + LocalDateTime.now());
+
+        setLoginVO(comment, loginVO);
+
+        // when
+        try {
+            egovArticleCommentDAO.insertArticleComment(comment);
+        } catch (DataAccessException e) {
+            egovLogger.error("DataAccessException insertArticleComment");
+
+            egovLogger.error(egovMessageSource.getMessage("fail.common.msg"));
+
+            final SQLException sqle = (SQLException) e.getCause();
+            egovLogger.error(egovMessageSource.getMessageArgs("fail.common.sql", args(sqle)));
+
+            egovLogger.error(egovMessageSource.getMessage("fail.common.insert"));
+        }
+    }
+
     /**
      * 댓글 DAO 단위 테스트: 등록
      */
@@ -235,8 +269,34 @@ public class EgovArticleCommentDAOV2Test extends EgovAbstractDAOV2Test {
      * 댓글 DAO 단위 테스트: 조회(멀티건)
      */
     @Test
-    public void testA10SelectList() {
+    public void testB10SelectList() {
+        final Board board = new Board();
+        final LoginVO loginVO = (LoginVO) EgovUserDetailsHelper.getAuthenticatedUser();
+        testData(board, loginVO);
 
+        final Comment comment = new Comment();
+        testData(board, loginVO, comment);
+
+        // given
+        final CommentVO commentVO = new CommentVO();
+        commentVO.setBbsId(comment.getBbsId());
+        commentVO.setNttId(comment.getNttId());
+        commentVO.setSubRecordCountPerPage(1);
+        commentVO.setSubFirstIndex(0);
+
+        // when
+        @SuppressWarnings("unchecked")
+        final List<CommentVO> results = (List<CommentVO>) egovArticleCommentDAO.selectArticleCommentList(commentVO);
+        for (final CommentVO result : results) {
+            egovLogger.debug("result={}", result);
+            egovLogger.debug("getBbsId={}", result.getBbsId());
+            egovLogger.debug("getNttId={}", result.getNttId());
+            egovLogger.debug("getCommentNo={}", result.getCommentNo());
+
+            // then
+            assertEquals(egovMessageSource.getMessage("fail.common.select"), comment.getCommentNo(),
+                    result.getCommentNo());
+        }
     }
 
 }
