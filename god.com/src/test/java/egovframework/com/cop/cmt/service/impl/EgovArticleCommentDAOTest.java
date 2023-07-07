@@ -2,7 +2,6 @@ package egovframework.com.cop.cmt.service.impl;
 
 import static org.junit.Assert.assertEquals;
 
-import java.sql.SQLException;
 import java.time.LocalDateTime;
 import java.util.List;
 
@@ -18,7 +17,6 @@ import org.springframework.context.annotation.ComponentScan.Filter;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.FilterType;
 import org.springframework.context.annotation.ImportResource;
-import org.springframework.dao.DataAccessException;
 import org.springframework.test.context.ContextConfiguration;
 
 import egovframework.com.cmm.EgovMessageSource;
@@ -142,11 +140,6 @@ public class EgovArticleCommentDAOTest extends EgovTestAbstractDAO {
     private EgovIdGnrService egovNttIdGnrService;
 
     /**
-     * insertArticleComment
-     */
-    private int insertArticleComment = 1;
-
-    /**
      * 조회에 실패하였습니다.
      */
     private static final String FAIL_COMMON_SELECT = "fail.common.select";
@@ -195,16 +188,7 @@ public class EgovArticleCommentDAOTest extends EgovTestAbstractDAO {
 
         setLoginVO(comment, loginVO);
 
-        // when
-        try {
-            egovArticleCommentDAO.insertArticleComment(comment);
-        } catch (DataAccessException e) {
-            if (LOGGER.isErrorEnabled()) {
-                LOGGER.error("DataAccessException insertArticleComment");
-                LOGGER.error(egovMessageSource.getMessage("fail.common.insert"));
-            }
-            error(e);
-        }
+        egovArticleCommentDAO.insertArticleComment(comment);
     }
 
     /**
@@ -234,20 +218,11 @@ public class EgovArticleCommentDAOTest extends EgovTestAbstractDAO {
         setLoginVO(comment, loginVO);
 
         // when
-        try {
-            egovArticleCommentDAO.insertArticleComment(comment);
-        } catch (DataAccessException e) {
-            if (LOGGER.isErrorEnabled()) {
-                LOGGER.error("DataAccessException insertArticleComment");
-                LOGGER.error(egovMessageSource.getMessage("fail.common.insert"));
-            }
-            error(e);
 
-            insertArticleComment = 0;
-        }
+        egovArticleCommentDAO.insertArticleComment(comment);
 
         // then
-        assertEquals(egovMessageSource.getMessage("fail.common.insert"), 1, insertArticleComment);
+        assertEquals(egovMessageSource.getMessage("fail.common.insert"), 1, 1);
     }
 
     private void setLoginVO(final Comment comment, final LoginVO loginVO) {
@@ -261,16 +236,11 @@ public class EgovArticleCommentDAOTest extends EgovTestAbstractDAO {
         }
     }
 
-    private Object[] args(final SQLException sqle) {
-        return new Object[] { sqle.getErrorCode(), sqle.getMessage(), sqle.getSQLState(), };
-//        return new Object[] { sqle.getErrorCode(), sqle.getSQLState(), sqle.getMessage(), };
-    }
-
     /**
      * 댓글 DAO 단위 테스트: 조회(멀티건)
      */
     @Test
-    public void testB10selectList() {
+    public void testA20selectList() {
         final Board board = new Board();
         final LoginVO loginVO = (LoginVO) EgovUserDetailsHelper.getAuthenticatedUser();
         final Comment comment = new Comment();
@@ -345,7 +315,7 @@ public class EgovArticleCommentDAOTest extends EgovTestAbstractDAO {
      * 댓글 DAO 단위 테스트: 조회(멀티건) 총 수
      */
     @Test
-    public void testC10selectListTotCnt() {
+    public void testA30selectListTotCnt() {
         final Board board = new Board();
         final LoginVO loginVO = (LoginVO) EgovUserDetailsHelper.getAuthenticatedUser();
         final Comment comment = new Comment();
@@ -369,7 +339,7 @@ public class EgovArticleCommentDAOTest extends EgovTestAbstractDAO {
      * 댓글 DAO 단위 테스트: 조회(단건)
      */
     @Test
-    public void testD10select() {
+    public void testA40select() {
         final Board board = new Board();
         final LoginVO loginVO = (LoginVO) EgovUserDetailsHelper.getAuthenticatedUser();
         final Comment comment = new Comment();
@@ -397,7 +367,7 @@ public class EgovArticleCommentDAOTest extends EgovTestAbstractDAO {
      * 댓글 DAO 단위 테스트: 수정
      */
     @Test
-    public void testE10update() {
+    public void testA50update() {
         final Board board = new Board();
         final LoginVO loginVO = (LoginVO) EgovUserDetailsHelper.getAuthenticatedUser();
         final Comment comment = new Comment();
@@ -408,21 +378,10 @@ public class EgovArticleCommentDAOTest extends EgovTestAbstractDAO {
         updateArticleComment(loginVO, comment);
 
         // when
-        int result = 1;
-        try {
-            egovArticleCommentDAO.updateArticleComment(comment);
-        } catch (DataAccessException e) {
-            if (LOGGER.isErrorEnabled()) {
-                LOGGER.error("DataAccessException updateArticleComment");
-                LOGGER.error(egovMessageSource.getMessage("fail.common.update"));
-            }
-            error(e);
-
-            result = 0;
-        }
+        egovArticleCommentDAO.updateArticleComment(comment);
 
         // then
-        assertEquals(egovMessageSource.getMessage("fail.common.update"), 1, result);
+        assertEquals(egovMessageSource.getMessage("fail.common.update"), 1, 1);
     }
 
     private void updateArticleComment(final LoginVO loginVO, final Comment comment) {
@@ -433,7 +392,7 @@ public class EgovArticleCommentDAOTest extends EgovTestAbstractDAO {
      * 댓글 DAO 단위 테스트: 삭제
      */
     @Test
-    public void testF10delete() {
+    public void testA60delete() {
         final Board board = new Board();
         final LoginVO loginVO = (LoginVO) EgovUserDetailsHelper.getAuthenticatedUser();
         final Comment comment = new Comment();
@@ -444,30 +403,11 @@ public class EgovArticleCommentDAOTest extends EgovTestAbstractDAO {
         commentVO.setCommentNo(comment.getCommentNo());
 
         // when
-        int result = 1;
-        try {
-            egovArticleCommentDAO.deleteArticleComment(commentVO);
-        } catch (DataAccessException e) {
-            if (LOGGER.isErrorEnabled()) {
-                LOGGER.error("DataAccessException deleteArticleComment");
-                LOGGER.error(egovMessageSource.getMessage("fail.common.delete"));
-            }
-            error(e);
 
-            result = 0;
-        }
+        egovArticleCommentDAO.deleteArticleComment(commentVO);
 
         // then
-        assertEquals(egovMessageSource.getMessage("fail.common.delete"), 1, result);
-    }
-
-    /* default */ void error(final DataAccessException dataAccessException) {
-        if (LOGGER.isErrorEnabled()) {
-            LOGGER.error(egovMessageSource.getMessage("fail.common.msg"));
-
-            final SQLException sqle = (SQLException) dataAccessException.getCause();
-            LOGGER.error(egovMessageSource.getMessageArgs("fail.common.sql", args(sqle)));
-        }
+        assertEquals(egovMessageSource.getMessage("fail.common.delete"), 1, 1);
     }
 
 }
