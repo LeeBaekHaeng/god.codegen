@@ -139,7 +139,7 @@ public class EgovArticleCommentDAOV2Test extends EgovAbstractDAOV2Test {
     private EgovIdGnrService egovNttIdGnrService;
 
     /**
-     * 테스트
+     * 댓글 DAO 단위 테스트: 등록
      */
     @Test
     @Commit
