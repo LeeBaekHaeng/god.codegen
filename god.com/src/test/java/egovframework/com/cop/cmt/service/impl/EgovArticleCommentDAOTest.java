@@ -31,7 +31,7 @@ import egovframework.com.cop.bbs.service.impl.EgovArticleDAO;
 import egovframework.com.cop.bbs.service.impl.EgovBBSMasterDAO;
 import egovframework.com.cop.cmt.service.Comment;
 import egovframework.com.cop.cmt.service.CommentVO;
-import egovframework.com.test.EgovTestAbstractDAO;
+import egovframework.com.test.EgovTestAbstractDAOServiceImpl;
 import lombok.RequiredArgsConstructor;
 
 /**
@@ -41,7 +41,7 @@ import lombok.RequiredArgsConstructor;
  *
  */
 
-@ContextConfiguration(classes = { EgovTestAbstractDAO.class, EgovArticleCommentDAOTest.class, })
+@ContextConfiguration(classes = { EgovTestAbstractDAOServiceImpl.class, EgovArticleCommentDAOTest.class, })
 
 @Configuration
 
@@ -93,7 +93,7 @@ import lombok.RequiredArgsConstructor;
 
 @RequiredArgsConstructor
 //@Commit
-public class EgovArticleCommentDAOTest extends EgovTestAbstractDAO {
+public class EgovArticleCommentDAOTest extends EgovTestAbstractDAOServiceImpl {
 
     /**
      * EgovArticleCommentDAO
