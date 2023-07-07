@@ -29,6 +29,6 @@ import lombok.RequiredArgsConstructor;
 
 @RequiredArgsConstructor
 
-public class EgovTestAbstractDAOServiceImpl extends EgovTestAbstract {
+public class EgovTestAbstractDAO extends EgovTestAbstract {
 
 }
