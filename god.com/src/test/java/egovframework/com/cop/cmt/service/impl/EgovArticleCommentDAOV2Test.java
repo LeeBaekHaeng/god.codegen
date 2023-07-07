@@ -91,6 +91,7 @@ import lombok.RequiredArgsConstructor;
 )
 
 @RequiredArgsConstructor
+//@Commit
 public class EgovArticleCommentDAOV2Test extends EgovAbstractDAOV2Test {
 
     /**
@@ -198,13 +199,8 @@ public class EgovArticleCommentDAOV2Test extends EgovAbstractDAOV2Test {
             egovArticleCommentDAO.insertArticleComment(comment);
         } catch (DataAccessException e) {
             egovLogger.error("DataAccessException insertArticleComment");
-
-            egovLogger.error(egovMessageSource.getMessage("fail.common.msg"));
-
-            final SQLException sqle = (SQLException) e.getCause();
-            egovLogger.error(egovMessageSource.getMessageArgs("fail.common.sql", args(sqle)));
-
             egovLogger.error(egovMessageSource.getMessage("fail.common.insert"));
+            error(e);
         }
     }
 
@@ -239,13 +235,8 @@ public class EgovArticleCommentDAOV2Test extends EgovAbstractDAOV2Test {
             egovArticleCommentDAO.insertArticleComment(comment);
         } catch (DataAccessException e) {
             egovLogger.error("DataAccessException insertArticleComment");
-
-            egovLogger.error(egovMessageSource.getMessage("fail.common.msg"));
-
-            final SQLException sqle = (SQLException) e.getCause();
-            egovLogger.error(egovMessageSource.getMessageArgs("fail.common.sql", args(sqle)));
-
             egovLogger.error(egovMessageSource.getMessage("fail.common.insert"));
+            error(e);
 
             insertArticleComment = 0;
         }
@@ -408,13 +399,8 @@ public class EgovArticleCommentDAOV2Test extends EgovAbstractDAOV2Test {
             egovArticleCommentDAO.updateArticleComment(comment);
         } catch (DataAccessException e) {
             egovLogger.error("DataAccessException updateArticleComment");
-
-            egovLogger.error(egovMessageSource.getMessage("fail.common.msg"));
-
-            final SQLException sqle = (SQLException) e.getCause();
-            egovLogger.error(egovMessageSource.getMessageArgs("fail.common.sql", args(sqle)));
-
             egovLogger.error(egovMessageSource.getMessage("fail.common.update"));
+            error(e);
 
             result = 0;
         }
@@ -443,19 +429,21 @@ public class EgovArticleCommentDAOV2Test extends EgovAbstractDAOV2Test {
             egovArticleCommentDAO.deleteArticleComment(commentVO);
         } catch (DataAccessException e) {
             egovLogger.error("DataAccessException deleteArticleComment");
-
-            egovLogger.error(egovMessageSource.getMessage("fail.common.msg"));
-
-            final SQLException sqle = (SQLException) e.getCause();
-            egovLogger.error(egovMessageSource.getMessageArgs("fail.common.sql", args(sqle)));
-
             egovLogger.error(egovMessageSource.getMessage("fail.common.delete"));
+            error(e);
 
             result = 0;
         }
 
         // then
         assertEquals(egovMessageSource.getMessage("fail.common.delete"), 1, result);
+    }
+
+    /* default */ void error(final DataAccessException dataAccessException) {
+        egovLogger.error(egovMessageSource.getMessage("fail.common.msg"));
+
+        final SQLException sqle = (SQLException) dataAccessException.getCause();
+        egovLogger.error(egovMessageSource.getMessageArgs("fail.common.sql", args(sqle)));
     }
 
 }
