@@ -124,7 +124,12 @@
    <rule ref="category/java/documentation.xml/CommentContent"/>
    <rule ref="category/java/codestyle.xml/CommentDefaultAccessModifier"/>
    <rule ref="category/java/documentation.xml/CommentRequired"/>
-   <rule ref="category/java/documentation.xml/CommentSize"/>
+   <rule ref="category/java/documentation.xml/CommentSize">
+      <properties>
+         <property name="maxLineLength" value="800"/>
+         <property name="maxLines" value="60"/>
+      </properties>
+   </rule>
    <rule ref="category/java/errorprone.xml/CompareObjectsWithEquals"/>
    <rule ref="category/java/errorprone.xml/ComparisonWithNaN"/>
    <rule ref="category/java/codestyle.xml/ConfusingTernary"/>
@@ -271,7 +276,11 @@
    <rule ref="category/java/errorprone.xml/LoggerIsNotStaticFinal"/>
    <rule ref="category/java/design.xml/LogicInversion"/>
    <rule ref="category/java/performance.xml/LongInstantiation"/>
-   <rule ref="category/java/codestyle.xml/LongVariable"/>
+   <rule ref="category/java/codestyle.xml/LongVariable">
+      <properties>
+         <property name="minimum" value="170"/>
+      </properties>
+   </rule>
    <rule ref="category/java/bestpractices.xml/LooseCoupling"/>
    <rule ref="category/java/design.xml/LoosePackageCoupling"/>
    <rule ref="category/java/codestyle.xml/MDBAndSessionBeanNamingConvention"/>
@@ -384,7 +393,11 @@
    <rule ref="category/apex/design.xml/TooManyFields"/>
    <rule ref="category/java/design.xml/TooManyFields"/>
    <rule ref="category/plsql/design.xml/TooManyFields"/>
-   <rule ref="category/java/design.xml/TooManyMethods"/>
+   <rule ref="category/java/design.xml/TooManyMethods">
+      <properties>
+         <property name="maxmethods" value="100"/>
+      </properties>
+   </rule>
    <rule ref="category/plsql/design.xml/TooManyMethods"/>
    <rule ref="category/java/codestyle.xml/TooManyStaticImports"/>
    <rule ref="category/java/documentation.xml/UncommentedEmptyConstructor"/>
