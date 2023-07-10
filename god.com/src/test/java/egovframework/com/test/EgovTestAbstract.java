@@ -7,8 +7,6 @@ import org.junit.BeforeClass;
 import org.junit.runner.OrderWith;
 import org.junit.runner.RunWith;
 import org.junit.runner.manipulation.Alphanumeric;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.ApplicationContext;
@@ -19,6 +17,7 @@ import org.springframework.util.StopWatch;
 
 import egovframework.com.cmm.EgovMessageSource;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 
 /**
  * 테스트
@@ -41,13 +40,9 @@ import lombok.RequiredArgsConstructor;
 @Transactional
 
 @RequiredArgsConstructor
+@Slf4j
 
 public class EgovTestAbstract {
-
-    /**
-     * Logger
-     */
-    protected static final Logger LOGGER = LoggerFactory.getLogger(EgovTestAbstract.class);
 
     /**
      * BeforeClass AfterClass
@@ -85,7 +80,7 @@ public class EgovTestAbstract {
     public static void setUpBeforeClass() {
         STOP_WATCH.start();
 
-        LOGGER.debug("setUpBeforeClass start");
+        log.debug("setUpBeforeClass start");
     }
 
     /**
@@ -95,11 +90,11 @@ public class EgovTestAbstract {
     public static void tearDownAfterClass() {
         STOP_WATCH.stop();
 
-        if (LOGGER.isDebugEnabled()) {
-            LOGGER.debug("tearDownAfterClass stop");
+        if (log.isDebugEnabled()) {
+            log.debug("tearDownAfterClass stop");
 
-            LOGGER.debug("totalTimeMillis={}", STOP_WATCH.getTotalTimeMillis());
-            LOGGER.debug("totalTimeSeconds={}", STOP_WATCH.getTotalTimeSeconds());
+            log.debug("totalTimeMillis={}", STOP_WATCH.getTotalTimeMillis());
+            log.debug("totalTimeSeconds={}", STOP_WATCH.getTotalTimeSeconds());
         }
     }
 
@@ -110,14 +105,14 @@ public class EgovTestAbstract {
     public void setUp() {
         stopWatch.start();
 
-        LOGGER.debug("setUp start");
+        log.debug("setUp start");
 
         if (beanDefinitionNames == null) {
             beanDefinitionNames = context.getBeanDefinitionNames();
             for (final String beanDefinitionName : beanDefinitionNames) {
-                LOGGER.debug("beanDefinitionName={}", beanDefinitionName);
+                log.debug("beanDefinitionName={}", beanDefinitionName);
             }
-            LOGGER.debug("length={}", beanDefinitionNames.length);
+            log.debug("length={}", beanDefinitionNames.length);
         }
     }
 
@@ -128,11 +123,11 @@ public class EgovTestAbstract {
     public void tearDown() {
         stopWatch.stop();
 
-        if (LOGGER.isDebugEnabled()) {
-            LOGGER.debug("tearDown stop");
+        if (log.isDebugEnabled()) {
+            log.debug("tearDown stop");
 
-            LOGGER.debug("totalTimeMillis={}", STOP_WATCH.getTotalTimeMillis());
-            LOGGER.debug("totalTimeSeconds={}", STOP_WATCH.getTotalTimeSeconds());
+            log.debug("totalTimeMillis={}", STOP_WATCH.getTotalTimeMillis());
+            log.debug("totalTimeSeconds={}", STOP_WATCH.getTotalTimeSeconds());
         }
     }
 

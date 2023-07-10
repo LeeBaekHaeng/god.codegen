@@ -28,6 +28,7 @@ import egovframework.com.cop.cmt.service.Comment;
 import egovframework.com.cop.cmt.service.CommentVO;
 import egovframework.com.test.EgovTestAbstractDAO;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 
 /**
  * 댓글 DAO 단위 테스트
@@ -87,6 +88,7 @@ import lombok.RequiredArgsConstructor;
 )
 
 @RequiredArgsConstructor
+@Slf4j
 //@Commit
 public class EgovArticleCommentDAOTest extends EgovTestAbstractDAO {
 
@@ -149,14 +151,14 @@ public class EgovArticleCommentDAOTest extends EgovTestAbstractDAO {
         try {
             boardMaster.setBbsId(egovBBSMstrIdGnrService.getNextStringId());
         } catch (FdlException e) {
-            LOGGER.error("FdlException egovBBSMstrIdGnrService");
+            log.error("FdlException egovBBSMstrIdGnrService");
         }
         egovBBSMasterDAO.insertBBSMasterInf(boardMaster);
 
         try {
             board.setNttId(egovNttIdGnrService.getNextLongId());
         } catch (FdlException e) {
-            LOGGER.error("FdlException egovNttIdGnrService");
+            log.error("FdlException egovNttIdGnrService");
         }
         board.setBbsId(boardMaster.getBbsId());
         egovArticleDAO.insertArticle(board);
@@ -168,7 +170,7 @@ public class EgovArticleCommentDAOTest extends EgovTestAbstractDAO {
         try {
             comment.setCommentNo(String.valueOf(egovAnswerNoGnrService.getNextLongId()));
         } catch (FdlException e) {
-            LOGGER.error("FdlException egovAnswerNoGnrService");
+            log.error("FdlException egovAnswerNoGnrService");
         }
 
         comment.setNttId(board.getNttId());
@@ -197,7 +199,7 @@ public class EgovArticleCommentDAOTest extends EgovTestAbstractDAO {
         try {
             comment.setCommentNo(String.valueOf(egovAnswerNoGnrService.getNextLongId()));
         } catch (FdlException e) {
-            LOGGER.error("FdlException egovAnswerNoGnrService");
+            log.error("FdlException egovAnswerNoGnrService");
         }
 
         comment.setNttId(board.getNttId());
@@ -257,47 +259,47 @@ public class EgovArticleCommentDAOTest extends EgovTestAbstractDAO {
     }
 
     /* default */ void debug(final CommentVO result) {
-        if (LOGGER.isDebugEnabled()) {
-            LOGGER.debug("result={}", result);
+        if (log.isDebugEnabled()) {
+            log.debug("result={}", result);
 
-            LOGGER.debug("getCommentNo={}", result.getCommentNo());
-            LOGGER.debug("getNttId={}", result.getNttId());
-            LOGGER.debug("getBbsId={}", result.getBbsId());
+            log.debug("getCommentNo={}", result.getCommentNo());
+            log.debug("getNttId={}", result.getNttId());
+            log.debug("getBbsId={}", result.getBbsId());
 
-            LOGGER.debug("getWrterId={}", result.getWrterId());
-            LOGGER.debug("getWrterNm={}", result.getWrterNm());
-            LOGGER.debug("getCommentPassword={}", result.getCommentPassword());
-            LOGGER.debug("getCommentCn={}", result.getCommentCn());
+            log.debug("getWrterId={}", result.getWrterId());
+            log.debug("getWrterNm={}", result.getWrterNm());
+            log.debug("getCommentPassword={}", result.getCommentPassword());
+            log.debug("getCommentCn={}", result.getCommentCn());
 
-            LOGGER.debug("getUseAt={}", result.getUseAt());
+            log.debug("getUseAt={}", result.getUseAt());
 
-            LOGGER.debug("getFrstRegisterPnttm={}", result.getFrstRegisterPnttm());
-            LOGGER.debug("getFrstRegisterNm={}", result.getFrstRegisterNm());
+            log.debug("getFrstRegisterPnttm={}", result.getFrstRegisterPnttm());
+            log.debug("getFrstRegisterNm={}", result.getFrstRegisterNm());
         }
     }
 
     /* default */ void debug2(final CommentVO result) {
-        if (LOGGER.isDebugEnabled()) {
-            LOGGER.debug("result={}", result);
+        if (log.isDebugEnabled()) {
+            log.debug("result={}", result);
 
-            LOGGER.debug("getNttId={}", result.getNttId());
-            LOGGER.debug("getBbsId={}", result.getBbsId());
-            LOGGER.debug("getCommentNo={}", result.getCommentNo());
+            log.debug("getNttId={}", result.getNttId());
+            log.debug("getBbsId={}", result.getBbsId());
+            log.debug("getCommentNo={}", result.getCommentNo());
 
-            LOGGER.debug("getWrterId={}", result.getWrterId());
-            LOGGER.debug("getWrterNm={}", result.getWrterNm());
-            LOGGER.debug("getCommentCn={}", result.getCommentCn());
+            log.debug("getWrterId={}", result.getWrterId());
+            log.debug("getWrterNm={}", result.getWrterNm());
+            log.debug("getCommentCn={}", result.getCommentCn());
 
-            LOGGER.debug("getUseAt={}", result.getUseAt());
+            log.debug("getUseAt={}", result.getUseAt());
 
-            LOGGER.debug("getFrstRegisterPnttm={}", result.getFrstRegisterPnttm());
-            LOGGER.debug("getFrstRegisterId={}", result.getFrstRegisterId());
-            LOGGER.debug("getFrstRegisterNm={}", result.getFrstRegisterNm());
+            log.debug("getFrstRegisterPnttm={}", result.getFrstRegisterPnttm());
+            log.debug("getFrstRegisterId={}", result.getFrstRegisterId());
+            log.debug("getFrstRegisterNm={}", result.getFrstRegisterNm());
 
-            LOGGER.debug("getLastUpdusrPnttm={}", result.getLastUpdusrPnttm());
-            LOGGER.debug("getLastUpdusrId={}", result.getLastUpdusrId());
+            log.debug("getLastUpdusrPnttm={}", result.getLastUpdusrPnttm());
+            log.debug("getLastUpdusrId={}", result.getLastUpdusrId());
 
-            LOGGER.debug("getCommentPassword={}", result.getCommentPassword());
+            log.debug("getCommentPassword={}", result.getCommentPassword());
         }
     }
 
@@ -319,7 +321,7 @@ public class EgovArticleCommentDAOTest extends EgovTestAbstractDAO {
         // when
         final int totCnt = egovArticleCommentDAO.selectArticleCommentListCnt(commentVO);
 
-        LOGGER.debug("totCnt={}", totCnt);
+        log.debug("totCnt={}", totCnt);
 
         // then
         assertEquals(egovMessageSource.getMessage(FAIL_COMMON_SELECT), 1, totCnt);
