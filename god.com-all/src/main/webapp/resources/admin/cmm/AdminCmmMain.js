@@ -45,7 +45,9 @@ function fn_adminCmm_getCode() {
 function fn_adminCmm_getCode2() {
     var config = {};
     config.url = '/rest/com/cmm/v1/cmmcodedetail';
+
     config.method = 'get';
+
     config.params = {};
     config.params.codeId = 'COM001';
 
@@ -57,10 +59,11 @@ function fn_adminCmm_getCode2() {
         })
         .catch(function(error) {
             // 에러 핸들링
+            console.log(error);
             $('#test2').html(error.toJSON());
         })
         .finally(function() {
             // 항상 실행되는 영역
-            console.log('항상 실행되는 영역2');
+            console.log('항상 실행되는 영역');
         });
 }
