@@ -20,4 +20,19 @@
 <h1>test axios</h1>
 <div id="test2"></div>
 
+<div id="app">{{ message }}</div>
+
+<script>
+  const { createApp } = Vue
+
+  createApp({
+    data() {
+      return {
+        message: 'Hello Vue!'
+      }
+    }
+  }).mount('#app')
+</script>
+
+
 <script src="${pageContext.request.contextPath}/resources/admin/cmm/AdminCmmMain.js"></script>
