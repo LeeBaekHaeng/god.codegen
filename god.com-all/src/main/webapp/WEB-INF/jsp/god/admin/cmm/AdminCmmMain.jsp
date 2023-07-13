@@ -23,12 +23,20 @@
 <div id="app">
     <h1>{{ message }}</h1>
 
+    <h1>COM001</h1>
     <ul>
         <li v-for="item in items">{{ item }}, {{ item.code }}, {{ item.codeNm }}</li>
     </ul>
-
     <select>
         <option v-for="item in items" :value="item.code">{{ item.codeNm }}</option>
+    </select>
+
+    <h1>COM002</h1>
+    <ul>
+        <li v-for="item in COM002">{{ item }}, {{ item.code }}, {{ item.codeNm }}</li>
+    </ul>
+    <select>
+        <option v-for="item in COM002" :value="item.code">{{ item.codeNm }}</option>
     </select>
 
 </div>

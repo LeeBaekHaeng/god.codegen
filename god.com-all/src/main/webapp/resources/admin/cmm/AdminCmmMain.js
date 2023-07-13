@@ -81,6 +81,7 @@ function fn_adminCmm_getCode3() {
             return {
                 message: 'Hello Vue!',
                 items: [],
+                COM002: [],
             }
         },
 
@@ -111,11 +112,30 @@ function fn_adminCmm_getCode3() {
                         // 항상 실행되는 영역
                         console.log('항상 실행되는 영역');
                     });
-            }
+            },
+
+            async getCodeCOM002() {
+                var config = {};
+                config.url = '/rest/com/cmm/v1/cmmcodedetail';
+
+                config.method = 'get';
+
+                config.params = {};
+                config.params.codeId = 'COM002';
+
+                try {
+                    const response = await fn_comCmm_axios(config);
+                    console.log(response);
+                    this.COM002 = response.data;
+                } catch (error) {
+                    console.error(error);
+                }
+            },
         },
 
         mounted() {
             this.getCode();
+            this.getCodeCOM002();
         },
 
     }).mount('#app');
