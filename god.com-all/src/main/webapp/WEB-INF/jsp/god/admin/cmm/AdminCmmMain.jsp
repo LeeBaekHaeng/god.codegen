@@ -20,19 +20,17 @@
 <h1>test axios</h1>
 <div id="test2"></div>
 
-<div id="app">{{ message }}</div>
+<div id="app">
+    <h1>{{ message }}</h1>
 
-<script>
-  const { createApp } = Vue
+    <ul>
+        <li v-for="item in items">{{ item }}, {{ item.code }}, {{ item.codeNm }}</li>
+    </ul>
 
-  createApp({
-    data() {
-      return {
-        message: 'Hello Vue!'
-      }
-    }
-  }).mount('#app')
-</script>
+    <select>
+        <option v-for="item in items" :value="item.code">{{ item.codeNm }}</option>
+    </select>
 
+</div>
 
 <script src="${pageContext.request.contextPath}/resources/admin/cmm/AdminCmmMain.js"></script>
