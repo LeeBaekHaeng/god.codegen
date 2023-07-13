@@ -33,4 +33,14 @@
             $('#test').html(textStatus);
         }
     });
+
+    $(function() {
+        axios.defaults.baseURL = vr_comCmm_contextPath;
+
+        axios.get('/rest/com/cmm/v1/cmmcodedetail', {
+            params : {
+                codeId : 'COM001',
+            }
+        });
+    });
 </script>
