@@ -16,6 +16,8 @@
 
 <div id="test"></div>
 
+<div id="test2"></div>
+
 <script type="text/javascript">
     $(function() {
         var data = {
@@ -41,6 +43,10 @@
             params : {
                 codeId : 'COM001',
             }
+        }).then(function(response) {
+            // 성공 핸들링
+            console.log(response);
+            $('#test2').html(JSON.stringify(response.data));
         });
     });
 </script>
