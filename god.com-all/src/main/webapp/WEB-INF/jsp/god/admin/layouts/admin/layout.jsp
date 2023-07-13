@@ -9,6 +9,8 @@
 <link rel="icon" type="image/png" href="<c:url value="/resources/admin/favicon.png" />">
 
 <script src="${pageContext.request.contextPath}/js/egovframework/com/cmm/jquery-1.12.4.min.js"></script>
+<script src="${pageContext.request.contextPath}/resources/com/cmm/jquery.blockUI.js"></script>
+
 <script src="${pageContext.request.contextPath}/resources/com/cmm/axios.min.js"></script>
 
 <script type="text/javascript">

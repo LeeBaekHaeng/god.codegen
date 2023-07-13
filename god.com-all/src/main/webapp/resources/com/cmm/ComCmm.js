@@ -1,4 +1,6 @@
 function fn_comCmm_ajax(settings) {
+    $.blockUI();
+
     settings.url = vr_comCmm_contextPath + settings.url;
 
     return $.ajax(settings)
@@ -17,10 +19,14 @@ function fn_comCmm_ajax(settings) {
             console.log('data', data);
             console.log('textStatus', textStatus);
             console.log('jqXHR', jqXHR);
+
+            $.unblockUI();
         });
 }
 
 function fn_comCmm_axios(config) {
+    $.blockUI();
+
     axios.defaults.baseURL = vr_comCmm_contextPath;
 
     return axios(config).then(function(response) {
@@ -42,5 +48,7 @@ function fn_comCmm_axios(config) {
     }).finally(function() {
         // 항상 실행되는 영역
         console.log('항상 실행되는 영역');
-    });;
+
+        $.unblockUI();
+    });
 }
