@@ -82,6 +82,8 @@ function fn_adminCmm_getCode3() {
                 message: 'Hello Vue!',
                 items: [],
                 COM002: [],
+                COM003: [],
+                COM005: [],
             }
         },
 
@@ -131,11 +133,18 @@ function fn_adminCmm_getCode3() {
                     console.error(error);
                 }
             },
+
+            async getCodeCOM003() {
+                this.COM003 = await fn_comCmm_getCodes('COM003');
+                this.COM005 = await fn_comCmm_getCodes('COM005');
+            },
+
         },
 
         mounted() {
             this.getCode();
             this.getCodeCOM002();
+            this.getCodeCOM003();
         },
 
     }).mount('#app');

@@ -1,6 +1,8 @@
 function fn_comCmm_ajax(settings) {
     $.blockUI();
 
+    settings.async = false;
+
     settings.url = vr_comCmm_contextPath + settings.url;
 
     return $.ajax(settings)
@@ -51,4 +53,23 @@ function fn_comCmm_axios(config) {
 
         $.unblockUI();
     });
+}
+
+async function fn_comCmm_getCodes(codeId) {
+    var config = {};
+    config.url = '/rest/com/cmm/v1/cmmcodedetail';
+
+    config.method = 'get';
+
+    config.params = {};
+    config.params.codeId = codeId;
+
+    try {
+        const response = await fn_comCmm_axios(config);
+        console.log(response);
+        return response.data;
+    } catch (error) {
+        console.error(error);
+        return [];
+    }
 }

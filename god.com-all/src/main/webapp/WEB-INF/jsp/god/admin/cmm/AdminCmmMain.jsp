@@ -39,6 +39,22 @@
         <option v-for="item in COM002" :value="item.code">{{ item.codeNm }}</option>
     </select>
 
+    <h1>COM003</h1>
+    <ul>
+        <li v-for="item in COM003">{{ item }}, {{ item.code }}, {{ item.codeNm }}</li>
+    </ul>
+    <select>
+        <option v-for="item in COM003" :value="item.code">{{ item.codeNm }}</option>
+    </select>
+
+    <h1>COM005</h1>
+    <ul>
+        <li v-for="item in COM005">{{ item }}, {{ item.code }}, {{ item.codeNm }}</li>
+    </ul>
+    <select>
+        <option v-for="item in COM005" :value="item.code">{{ item.codeNm }}</option>
+    </select>
+
 </div>
 
 <script src="${pageContext.request.contextPath}/resources/admin/cmm/AdminCmmMain.js"></script>
