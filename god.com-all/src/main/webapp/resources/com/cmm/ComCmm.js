@@ -35,3 +35,9 @@ function fn_comCmm_ajaxGet(url, settings) {
 
     return jqXHR;
 }
+
+function fn_comCmm_axiosGet(config) {
+    axios.defaults.baseURL = vr_comCmm_contextPath;
+
+    return axios(config);
+}

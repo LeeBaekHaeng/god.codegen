@@ -37,13 +37,13 @@
     });
 
     $(function() {
-        axios.defaults.baseURL = vr_comCmm_contextPath;
-
-        axios.get('/rest/com/cmm/v1/cmmcodedetail', {
-            params : {
-                codeId : 'COM001',
-            }
-        }).then(function(response) {
+        var config = {};
+        config.url = '/rest/com/cmm/v1/cmmcodedetail';
+        config.method = 'get';
+        config.params = {
+            codeId : 'COM001',
+        };
+        fn_comCmm_axiosGet(config).then(function(response) {
             // 성공 핸들링
             console.log(response);
             $('#test2').html(JSON.stringify(response.data));
