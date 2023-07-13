@@ -40,10 +40,9 @@
         var config = {};
         config.url = '/rest/com/cmm/v1/cmmcodedetail';
         config.method = 'get';
-        config.params = {
-            codeId : 'COM001',
-        };
-        fn_comCmm_axiosGet(config).then(function(response) {
+        config.params = {};
+        config.params.codeId = 'COM001';
+        fn_comCmm_axios(config).then(function(response) {
             // 성공 핸들링
             console.log(response);
             $('#test2').html(JSON.stringify(response.data));
