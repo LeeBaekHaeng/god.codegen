@@ -38,7 +38,7 @@
 
     $(function() {
         var config = {};
-        config.url = '/rest/com/cmm/v1/cmmcodedetail';
+        config.url = '/rest/com/cmm/v1/cmmcodedetail-';
         config.method = 'get';
         config.params = {};
         config.params.codeId = 'COM001';
@@ -46,6 +46,15 @@
             // 성공 핸들링
             console.log(response);
             $('#test2').html(JSON.stringify(response.data));
-        });
+        })
+  .catch(function (error) {
+    // 에러 핸들링
+          $('#test2').html(error.toJSON());
+  })
+  .finally(function () {
+    // 항상 실행되는 영역
+      console.log('항상 실행되는 영역2');
+  });
+
     });
 </script>

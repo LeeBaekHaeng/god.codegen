@@ -39,5 +39,24 @@ function fn_comCmm_ajaxGet(url, settings) {
 function fn_comCmm_axios(config) {
     axios.defaults.baseURL = vr_comCmm_contextPath;
 
-    return axios(config);
+    return axios(config).then(function(response) {
+        // 성공 핸들링
+        console.log(response);
+
+        console.log(response.data);
+        console.log(response.status);
+        console.log(response.statusText);
+        console.log(response.headers);
+        console.log(response.config);
+
+        return Promise.resolve(response);
+    }).catch(function(error) {
+        // 에러 핸들링
+        console.log(error);
+
+        return Promise.reject(error);
+    }).finally(function() {
+        // 항상 실행되는 영역
+        console.log('항상 실행되는 영역');
+    });;
 }
