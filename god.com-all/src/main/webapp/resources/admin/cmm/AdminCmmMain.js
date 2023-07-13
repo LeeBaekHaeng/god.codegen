@@ -17,26 +17,26 @@ function fn_adminCmm_getCode() {
     settings.data = {};
     settings.data.codeId = 'COM001';
 
-    settings.success = fn_success;
-    settings.error = fn_error;
+    fn_comCmm_ajax(settings)
+        .done(function(data, textStatus, jqXHR) {
+            console.log('data', data);
+            console.log('textStatus', textStatus);
+            console.log('jqXHR', jqXHR);
 
-    fn_comCmm_ajax(settings);
+            $('#test').html(JSON.stringify(data));
+        }).fail(function(jqXHR, textStatus, errorThrown) {
+            console.log('jqXHR', jqXHR);
+            console.log('textStatus', textStatus);
+            console.log('errorThrown', errorThrown);
 
-    function fn_success(data, textStatus, jqXHR) {
-        console.log('data', data);
-        console.log('textStatus', textStatus);
-        console.log('jqXHR', jqXHR);
+            $('#test').html(textStatus);
+        }).always(function(data, textStatus, jqXHR) {
+            console.log('always complete');
+            console.log('data', data);
+            console.log('textStatus', textStatus);
+            console.log('jqXHR', jqXHR);
+        });;
 
-        $('#test').html(JSON.stringify(data));
-    }
-
-    function fn_error(jqXHR, textStatus, errorThrown) {
-        console.log('jqXHR', jqXHR);
-        console.log('textStatus', textStatus);
-        console.log('errorThrown', errorThrown);
-
-        $('#test').html(textStatus);
-    }
 }
 
 /**
