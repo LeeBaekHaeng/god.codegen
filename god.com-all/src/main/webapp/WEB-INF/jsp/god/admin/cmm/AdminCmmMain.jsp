@@ -55,6 +55,22 @@
         <option v-for="item in COM005" :value="item.code">{{ item.codeNm }}</option>
     </select>
 
+    <h1>COM005</h1>
+    <table border="1">
+        <tr>
+            <td>codeId</td>
+            <td>code</td>
+            <td>codeNm</td>
+            <td>codeDc</td>
+        </tr>
+        <tr v-for="item in COM005">
+            <td>{{ item.codeId }}</td>
+            <td>{{ item.code }}</td>
+            <td>{{ item.codeNm }}</td>
+            <td>{{ item.codeDc }}</td>
+        </tr>
+    </table>
+
 </div>
 
 <script src="${pageContext.request.contextPath}/resources/admin/cmm/AdminCmmMain.js"></script>
