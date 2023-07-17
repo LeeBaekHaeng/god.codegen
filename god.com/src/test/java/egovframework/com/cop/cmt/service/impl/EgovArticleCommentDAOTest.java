@@ -26,7 +26,7 @@ import egovframework.com.cop.bbs.service.impl.EgovArticleDAO;
 import egovframework.com.cop.bbs.service.impl.EgovBBSMasterDAO;
 import egovframework.com.cop.cmt.service.Comment;
 import egovframework.com.cop.cmt.service.CommentVO;
-import egovframework.com.test.TestEgovAbstractDAO;
+import egovframework.com.test.EgovTestAbstractDAO;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 
@@ -37,7 +37,7 @@ import lombok.extern.slf4j.Slf4j;
  *
  */
 
-@ContextConfiguration(classes = { TestEgovAbstractDAO.class, EgovArticleCommentDAOTest.class, })
+@ContextConfiguration(classes = { EgovTestAbstractDAO.class, EgovArticleCommentDAOTest.class, })
 
 @Configuration
 
@@ -90,7 +90,7 @@ import lombok.extern.slf4j.Slf4j;
 @RequiredArgsConstructor
 @Slf4j
 //@Commit
-public class EgovArticleCommentDAOTest extends TestEgovAbstractDAO {
+public class EgovArticleCommentDAOTest extends EgovTestAbstractDAO {
 
     /**
      * EgovArticleCommentDAO
@@ -189,7 +189,7 @@ public class EgovArticleCommentDAOTest extends TestEgovAbstractDAO {
      */
     @Test
 //    @Commit
-    public void testA10insert() {
+    public void test_a10_insert() {
         final Board board = new Board();
         final LoginVO loginVO = (LoginVO) EgovUserDetailsHelper.getAuthenticatedUser();
         testData(board, loginVO);
@@ -232,7 +232,7 @@ public class EgovArticleCommentDAOTest extends TestEgovAbstractDAO {
      * 댓글 DAO 단위 테스트: 조회(멀티건)
      */
     @Test
-    public void testA20selectList() {
+    public void test_a20_selectList() {
         final Board board = new Board();
         final LoginVO loginVO = (LoginVO) EgovUserDetailsHelper.getAuthenticatedUser();
         final Comment comment = new Comment();
@@ -307,7 +307,7 @@ public class EgovArticleCommentDAOTest extends TestEgovAbstractDAO {
      * 댓글 DAO 단위 테스트: 조회(멀티건) 총 수
      */
     @Test
-    public void testA30selectListTotCnt() {
+    public void test_a30_selectListTotCnt() {
         final Board board = new Board();
         final LoginVO loginVO = (LoginVO) EgovUserDetailsHelper.getAuthenticatedUser();
         final Comment comment = new Comment();
@@ -331,7 +331,7 @@ public class EgovArticleCommentDAOTest extends TestEgovAbstractDAO {
      * 댓글 DAO 단위 테스트: 조회(단건)
      */
     @Test
-    public void testA40select() {
+    public void test_a40_select() {
         final Board board = new Board();
         final LoginVO loginVO = (LoginVO) EgovUserDetailsHelper.getAuthenticatedUser();
         final Comment comment = new Comment();
@@ -359,7 +359,7 @@ public class EgovArticleCommentDAOTest extends TestEgovAbstractDAO {
      * 댓글 DAO 단위 테스트: 수정
      */
     @Test
-    public void testA50update() {
+    public void test_a50_update() {
         final Board board = new Board();
         final LoginVO loginVO = (LoginVO) EgovUserDetailsHelper.getAuthenticatedUser();
         final Comment comment = new Comment();
@@ -384,7 +384,7 @@ public class EgovArticleCommentDAOTest extends TestEgovAbstractDAO {
      * 댓글 DAO 단위 테스트: 삭제
      */
     @Test
-    public void testA60delete() {
+    public void test_a60_delete() {
         final Board board = new Board();
         final LoginVO loginVO = (LoginVO) EgovUserDetailsHelper.getAuthenticatedUser();
         final Comment comment = new Comment();

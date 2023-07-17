@@ -55,7 +55,7 @@ import lombok.extern.slf4j.Slf4j;
 @RequiredArgsConstructor
 @Slf4j
 
-public class Test2EgovAbstractDAO {
+public class EgovTestAbstractDAO2 {
 
     /**
      * BeforeClass AfterClass
