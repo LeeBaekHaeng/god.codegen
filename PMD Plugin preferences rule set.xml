@@ -6,7 +6,6 @@
    <description>PMD Plugin preferences rule set</description>
    <rule ref="category/java/bestpractices.xml/AbstractClassWithoutAbstractMethod"/>
    <rule ref="category/java/design.xml/AbstractClassWithoutAnyMethod"/>
-   <rule ref="category/java/codestyle.xml/AbstractNaming"/>
    <rule ref="category/java/bestpractices.xml/AccessorClassGeneration"/>
    <rule ref="category/java/bestpractices.xml/AccessorMethodGeneration"/>
    <rule ref="category/java/performance.xml/AddEmptyString"/>
@@ -356,7 +355,11 @@
    <rule ref="category/java/codestyle.xml/ShortClassName"/>
    <rule ref="category/java/performance.xml/ShortInstantiation"/>
    <rule ref="category/java/codestyle.xml/ShortMethodName"/>
-   <rule ref="category/java/codestyle.xml/ShortVariable"/>
+   <rule ref="category/java/codestyle.xml/ShortVariable">
+      <properties>
+         <property name="minimum" value="0"/>
+      </properties>
+   </rule>
    <rule ref="category/java/design.xml/SignatureDeclareThrowsException"/>
    <rule ref="category/java/errorprone.xml/SimpleDateFormatNeedsLocale"/>
    <rule ref="category/java/bestpractices.xml/SimplifiableTestAssertion"/>
