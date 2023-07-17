@@ -179,7 +179,7 @@ public class EgovArticleCommentDAOTest extends EgovTestAbstractDAO {
         comment.setCommentPassword("rhdxhd12");
         comment.setCommentCn("test 이백행 댓글 " + LocalDateTime.now());
 
-        setLoginVO(comment, loginVO);
+        test_a10_insert(comment, loginVO);
 
         egovArticleCommentDAO.insertArticleComment(comment);
     }
@@ -208,7 +208,7 @@ public class EgovArticleCommentDAOTest extends EgovTestAbstractDAO {
         comment.setCommentPassword("rhdxhd12");
         comment.setCommentCn("test 이백행 댓글 " + LocalDateTime.now());
 
-        setLoginVO(comment, loginVO);
+        test_a10_insert(comment, loginVO);
 
         // when
         egovArticleCommentDAO.insertArticleComment(comment);
@@ -217,7 +217,7 @@ public class EgovArticleCommentDAOTest extends EgovTestAbstractDAO {
         assertEquals(egovMessageSource.getMessage("fail.common.insert"), 1, 1);
     }
 
-    private void setLoginVO(final Comment comment, final LoginVO loginVO) {
+    private void test_a10_insert(final Comment comment, final LoginVO loginVO) {
         if (loginVO != null) {
             comment.setFrstRegisterId(loginVO.getUniqId());
 //            comment.setLastUpdusrId(loginVO.getUniqId());
@@ -359,6 +359,7 @@ public class EgovArticleCommentDAOTest extends EgovTestAbstractDAO {
      * 댓글 DAO 단위 테스트: 수정
      */
     @Test
+//    @Commit
     public void test_a50_update() {
         final Board board = new Board();
         final LoginVO loginVO = (LoginVO) EgovUserDetailsHelper.getAuthenticatedUser();
@@ -367,7 +368,7 @@ public class EgovArticleCommentDAOTest extends EgovTestAbstractDAO {
 
         // given
         comment.setCommentCn(comment.getCommentCn() + " > 수정 test 이백행 댓글 " + LocalDateTime.now());
-        updateArticleComment(loginVO, comment);
+        test_a50_update(loginVO, comment);
 
         // when
         egovArticleCommentDAO.updateArticleComment(comment);
@@ -376,7 +377,7 @@ public class EgovArticleCommentDAOTest extends EgovTestAbstractDAO {
         assertEquals(egovMessageSource.getMessage("fail.common.update"), 1, 1);
     }
 
-    private void updateArticleComment(final LoginVO loginVO, final Comment comment) {
+    private void test_a50_update(final LoginVO loginVO, final Comment comment) {
         comment.setLastUpdusrId(loginVO.getUniqId());
     }
 
@@ -384,6 +385,7 @@ public class EgovArticleCommentDAOTest extends EgovTestAbstractDAO {
      * 댓글 DAO 단위 테스트: 삭제
      */
     @Test
+//    @Commit
     public void test_a60_delete() {
         final Board board = new Board();
         final LoginVO loginVO = (LoginVO) EgovUserDetailsHelper.getAuthenticatedUser();
