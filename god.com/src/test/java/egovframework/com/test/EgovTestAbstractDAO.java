@@ -4,7 +4,6 @@ import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
 import org.junit.BeforeClass;
-import org.junit.Test;
 import org.junit.runner.OrderWith;
 import org.junit.runner.RunWith;
 import org.junit.runner.manipulation.Alphanumeric;
@@ -149,41 +148,5 @@ public abstract class EgovTestAbstractDAO {
             log.debug("totalTimeSeconds={}", STOP_WATCH.getTotalTimeSeconds());
         }
     }
-
-    /**
-     * 등록
-     */
-    @Test
-    public abstract void test_a10_insert();
-
-    /**
-     * 조회(멀티건)
-     */
-    @Test
-    public abstract void test_a20_selectList();
-
-    /**
-     * 조회(멀티건) 총 수
-     */
-    @Test
-    public abstract void test_a30_selectListTotCnt();
-
-    /**
-     * 조회(단건)
-     */
-    @Test
-    public abstract void test_a40_select();
-
-    /**
-     * 수정
-     */
-    @Test
-    public abstract void test_a50_update();
-
-    /**
-     * 삭제
-     */
-    @Test
-    public abstract void test_a60_delete();
 
 }
