@@ -11,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.ApplicationContext;
 import org.springframework.test.context.ActiveProfiles;
+import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.StopWatch;
@@ -20,7 +21,7 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 
 /**
- * 테스트
+ * DAO 테스트
  * 
  * @author 이백행
  */
@@ -39,10 +40,22 @@ import lombok.extern.slf4j.Slf4j;
 
 @Transactional
 
+@ContextConfiguration(locations = {
+
+//		"classpath*:egovframework/spring/com/**/context-*.xml",
+
+        "classpath*:egovframework/spring/com/context-*.xml",
+
+        "classpath*:egovframework/spring/com/idgn/context-*.xml",
+
+        "classpath*:egovframework/spring/com/scheduling/context-*.xml",
+
+})
+
 @RequiredArgsConstructor
 @Slf4j
 
-public class EgovTestAbstract {
+public class Test2EgovAbstractDAO {
 
     /**
      * BeforeClass AfterClass
