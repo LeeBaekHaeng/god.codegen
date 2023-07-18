@@ -38,11 +38,9 @@ import lombok.extern.slf4j.Slf4j;
 
 @ImportResource({
 
-        "classpath*:egovframework/spring/com/idgn/context-idgn-AnswerNo.xml",
+        "classpath*:egovframework/spring/com/idgn/context-idgn-Cmmnty.xml",
 
         "classpath*:egovframework/spring/com/idgn/context-idgn-bbs.xml",
-
-        "classpath*:egovframework/spring/com/idgn/context-idgn-Cmmnty.xml",
 
 })
 
@@ -90,27 +88,27 @@ public class EgovCommuBBSMasterDAOTest extends EgovTestAbstractDAO {
      * EgovCommuBBSMasterDAO
      */
     @Autowired
-    private transient EgovCommuBBSMasterDAO egovCommuBBSMasterDAO;
+    private EgovCommuBBSMasterDAO egovCommuBBSMasterDAO;
 
     /**
      * EgovBBSMasterDAO
      */
     @Autowired
-    private transient EgovBBSMasterDAO egovBBSMasterDAO;
+    private EgovBBSMasterDAO egovBBSMasterDAO;
 
     /**
      * egovBBSMstrIdGnrService
      */
     @Autowired
     @Qualifier("egovBBSMstrIdGnrService")
-    private transient EgovIdGnrService egovBBSMstrIdGnrService;
+    private EgovIdGnrService egovBBSMstrIdGnrService;
 
     /**
      * egovCmmntyIdGnrService
      */
     @Autowired
     @Qualifier("egovCmmntyIdGnrService")
-    private transient EgovIdGnrService egovCmmntyIdGnrService;
+    private EgovIdGnrService egovCmmntyIdGnrService;
 
     private void testData(final BoardMasterVO testData) {
         final LoginVO loginVO = (LoginVO) EgovUserDetailsHelper.getAuthenticatedUser();
