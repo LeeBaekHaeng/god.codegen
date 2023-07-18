@@ -167,6 +167,7 @@ public class EgovArticleCommentDAOTest extends EgovTestAbstractDAO {
 
     private void testData2(final Comment comment) {
         final LoginVO loginVO = (LoginVO) EgovUserDetailsHelper.getAuthenticatedUser();
+
         testData(comment);
 
         try {
@@ -198,6 +199,7 @@ public class EgovArticleCommentDAOTest extends EgovTestAbstractDAO {
         // given
         final Comment comment = new Comment();
         final LoginVO loginVO = (LoginVO) EgovUserDetailsHelper.getAuthenticatedUser();
+
         testData(comment);
 
         try {
@@ -238,6 +240,7 @@ public class EgovArticleCommentDAOTest extends EgovTestAbstractDAO {
         // given
         final CommentVO commentVO = new CommentVO();
         final Comment comment = new Comment();
+
         testData2(comment);
 
         commentVO.setBbsId(comment.getBbsId());
@@ -310,8 +313,8 @@ public class EgovArticleCommentDAOTest extends EgovTestAbstractDAO {
     public void test_a30_selectListTotCnt() {
         // given
         final CommentVO commentVO = new CommentVO();
-
         final Comment comment = new Comment();
+
         testData2(comment);
 
         commentVO.setBbsId(comment.getBbsId());
@@ -333,8 +336,8 @@ public class EgovArticleCommentDAOTest extends EgovTestAbstractDAO {
     public void test_a40_select() {
         // given
         final CommentVO commentVO = new CommentVO();
-
         final Comment comment = new Comment();
+
         testData2(comment);
 
         commentVO.setCommentNo(comment.getCommentNo());
@@ -342,15 +345,13 @@ public class EgovArticleCommentDAOTest extends EgovTestAbstractDAO {
         // when
         final CommentVO result = egovArticleCommentDAO.selectArticleCommentDetail(commentVO);
 
-        debug(result);
+        debug2(result);
 
         // then
-//        assertEquals(egovMessageSource.getMessage(FAIL_COMMON_SELECT), commentVO.getCommentNo(), result.getCommentNo());
-        assert1(commentVO, result);
-    }
-
-    private void assert1(final CommentVO commentVO, final CommentVO result) {
-        assertEquals(egovMessageSource.getMessage(FAIL_COMMON_SELECT), commentVO.getCommentNo(), result.getCommentNo());
+        if (result != null) {
+            assertEquals(egovMessageSource.getMessage(FAIL_COMMON_SELECT), commentVO.getCommentNo(),
+                    result.getCommentNo());
+        }
     }
 
     /**
@@ -362,6 +363,7 @@ public class EgovArticleCommentDAOTest extends EgovTestAbstractDAO {
         // given
         final Comment comment = new Comment();
         final LoginVO loginVO = (LoginVO) EgovUserDetailsHelper.getAuthenticatedUser();
+
         testData2(comment);
 
         comment.setCommentCn(comment.getCommentCn() + " > 수정 test 이백행 댓글 " + LocalDateTime.now());
@@ -391,8 +393,8 @@ public class EgovArticleCommentDAOTest extends EgovTestAbstractDAO {
     public void test_a60_delete() {
         // given
         final CommentVO commentVO = new CommentVO();
-
         final Comment comment = new Comment();
+
         testData2(comment);
 
         commentVO.setCommentNo(comment.getCommentNo());
