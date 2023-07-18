@@ -370,17 +370,16 @@ public class EgovArticleCommentDAOTest extends EgovTestAbstractDAO {
 
         // given
         comment.setCommentCn(comment.getCommentCn() + " > 수정 test 이백행 댓글 " + LocalDateTime.now());
-        test_a50_update(loginVO, comment);
+
+        if (loginVO != null) {
+            comment.setLastUpdusrId(loginVO.getUniqId());
+        }
 
         // when
         egovArticleCommentDAO.updateArticleComment(comment);
 
         // then
         assertEquals(egovMessageSource.getMessage("fail.common.update"), 1, 1);
-    }
-
-    private void test_a50_update(final LoginVO loginVO, final Comment comment) {
-        comment.setLastUpdusrId(loginVO.getUniqId());
     }
 
     /**
