@@ -179,7 +179,13 @@ public class EgovArticleCommentDAOTest extends EgovTestAbstractDAO {
         comment.setCommentPassword("rhdxhd12");
         comment.setCommentCn("test 이백행 댓글 " + LocalDateTime.now());
 
-        test_a10_insert(comment, loginVO);
+        if (loginVO != null) {
+            comment.setFrstRegisterId(loginVO.getUniqId());
+            comment.setLastUpdusrId(loginVO.getUniqId());
+
+            comment.setWrterId(loginVO.getUniqId());
+            comment.setWrterNm(loginVO.getName());
+        }
 
         egovArticleCommentDAO.insertArticleComment(comment);
     }
@@ -196,6 +202,7 @@ public class EgovArticleCommentDAOTest extends EgovTestAbstractDAO {
 
         // given
         final Comment comment = new Comment();
+
         try {
             comment.setCommentNo(String.valueOf(egovAnswerNoGnrService.getNextLongId()));
         } catch (FdlException e) {
@@ -208,24 +215,19 @@ public class EgovArticleCommentDAOTest extends EgovTestAbstractDAO {
         comment.setCommentPassword("rhdxhd12");
         comment.setCommentCn("test 이백행 댓글 " + LocalDateTime.now());
 
-        test_a10_insert(comment, loginVO);
+        if (loginVO != null) {
+            comment.setFrstRegisterId(loginVO.getUniqId());
+            comment.setLastUpdusrId(loginVO.getUniqId());
+
+            comment.setWrterId(loginVO.getUniqId());
+            comment.setWrterNm(loginVO.getName());
+        }
 
         // when
         egovArticleCommentDAO.insertArticleComment(comment);
 
         // then
         assertEquals(egovMessageSource.getMessage("fail.common.insert"), 1, 1);
-    }
-
-    private void test_a10_insert(final Comment comment, final LoginVO loginVO) {
-        if (loginVO != null) {
-            comment.setFrstRegisterId(loginVO.getUniqId());
-//            comment.setLastUpdusrId(loginVO.getUniqId());
-
-//            comment.setWrterId(loginVO.getId());
-            comment.setWrterId(loginVO.getUniqId());
-            comment.setWrterNm(loginVO.getName());
-        }
     }
 
     /**
