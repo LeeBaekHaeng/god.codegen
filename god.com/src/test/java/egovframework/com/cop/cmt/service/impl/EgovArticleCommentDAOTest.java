@@ -1,7 +1,6 @@
 package egovframework.com.cop.cmt.service.impl;
 
 import static org.junit.Assert.assertEquals;
-import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.log;
 
 import java.time.LocalDateTime;
 import java.util.List;
@@ -12,11 +11,12 @@ import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.ComponentScan;
+import org.springframework.context.annotation.ComponentScan.Filter;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.FilterType;
 import org.springframework.context.annotation.ImportResource;
-import org.springframework.context.annotation.ComponentScan.Filter;
 import org.springframework.dao.DataAccessException;
+import org.springframework.test.annotation.Commit;
 import org.springframework.test.context.ContextConfiguration;
 
 import egovframework.com.cmm.LoginVO;
@@ -91,7 +91,7 @@ import lombok.extern.slf4j.Slf4j;
 
 @RequiredArgsConstructor
 @Slf4j
-//@Commit
+@Commit
 public class EgovArticleCommentDAOTest extends EgovTestAbstractDAO {
 
     /**
@@ -134,15 +134,17 @@ public class EgovArticleCommentDAOTest extends EgovTestAbstractDAO {
     @Qualifier("egovNttIdGnrService")
     private EgovIdGnrService egovNttIdGnrService;
 
-    private void testData(final Board board, final LoginVO loginVO) {
+    private void testData(final Comment comment) {
         final BoardMaster boardMaster = new BoardMaster();
+        final Board board = new Board();
+        final LoginVO loginVO = (LoginVO) EgovUserDetailsHelper.getAuthenticatedUser();
 
         if (loginVO != null) {
             boardMaster.setFrstRegisterId(loginVO.getUniqId());
-//          boardMaster.setLastUpdusrId(loginVO.getUniqId());
+            boardMaster.setLastUpdusrId(loginVO.getUniqId());
 
             board.setFrstRegisterId(loginVO.getUniqId());
-//          board.setLastUpdusrId(loginVO.getUniqId());
+            board.setLastUpdusrId(loginVO.getUniqId());
         }
 
         try {
@@ -159,19 +161,20 @@ public class EgovArticleCommentDAOTest extends EgovTestAbstractDAO {
         }
         board.setBbsId(boardMaster.getBbsId());
         egovArticleDAO.insertArticle(board);
+
+        comment.setNttId(board.getNttId());
+        comment.setBbsId(board.getBbsId());
     }
 
-    private void testData(final Board board, final LoginVO loginVO, final Comment comment) {
-        testData(board, loginVO);
+    private void testData2(final Comment comment) {
+        final LoginVO loginVO = (LoginVO) EgovUserDetailsHelper.getAuthenticatedUser();
+        testData(comment);
 
         try {
             comment.setCommentNo(String.valueOf(egovAnswerNoGnrService.getNextLongId()));
         } catch (FdlException e) {
             log.error("FdlException egovAnswerNoGnrService");
         }
-
-        comment.setNttId(board.getNttId());
-        comment.setBbsId(board.getBbsId());
 
         comment.setCommentPassword("rhdxhd12");
         comment.setCommentCn("test 이백행 댓글 " + LocalDateTime.now());
@@ -193,21 +196,16 @@ public class EgovArticleCommentDAOTest extends EgovTestAbstractDAO {
     @Test
 //    @Commit
     public void test_a10_insert() {
-        final Board board = new Board();
-        final LoginVO loginVO = (LoginVO) EgovUserDetailsHelper.getAuthenticatedUser();
-        testData(board, loginVO);
-
         // given
         final Comment comment = new Comment();
+        final LoginVO loginVO = (LoginVO) EgovUserDetailsHelper.getAuthenticatedUser();
+        testData(comment);
 
         try {
             comment.setCommentNo(String.valueOf(egovAnswerNoGnrService.getNextLongId()));
         } catch (FdlException e) {
             log.error("FdlException egovAnswerNoGnrService");
         }
-
-        comment.setNttId(board.getNttId());
-        comment.setBbsId(board.getBbsId());
 
         comment.setCommentPassword("rhdxhd12");
         comment.setCommentCn("test 이백행 댓글 " + LocalDateTime.now());
@@ -238,13 +236,11 @@ public class EgovArticleCommentDAOTest extends EgovTestAbstractDAO {
      */
     @Test
     public void test_a20_selectList() {
-        final Board board = new Board();
-        final LoginVO loginVO = (LoginVO) EgovUserDetailsHelper.getAuthenticatedUser();
-        final Comment comment = new Comment();
-        testData(board, loginVO, comment);
-
         // given
         final CommentVO commentVO = new CommentVO();
+        final Comment comment = new Comment();
+        testData2(comment);
+
         commentVO.setBbsId(comment.getBbsId());
         commentVO.setNttId(comment.getNttId());
         commentVO.setSubRecordCountPerPage(1);
@@ -313,13 +309,12 @@ public class EgovArticleCommentDAOTest extends EgovTestAbstractDAO {
      */
     @Test
     public void test_a30_selectListTotCnt() {
-        final Board board = new Board();
-        final LoginVO loginVO = (LoginVO) EgovUserDetailsHelper.getAuthenticatedUser();
-        final Comment comment = new Comment();
-        testData(board, loginVO, comment);
-
         // given
         final CommentVO commentVO = new CommentVO();
+
+        final Comment comment = new Comment();
+        testData2(comment);
+
         commentVO.setBbsId(comment.getBbsId());
         commentVO.setNttId(comment.getNttId());
 
@@ -337,13 +332,12 @@ public class EgovArticleCommentDAOTest extends EgovTestAbstractDAO {
      */
     @Test
     public void test_a40_select() {
-        final Board board = new Board();
-        final LoginVO loginVO = (LoginVO) EgovUserDetailsHelper.getAuthenticatedUser();
-        final Comment comment = new Comment();
-        testData(board, loginVO, comment);
-
         // given
         final CommentVO commentVO = new CommentVO();
+
+        final Comment comment = new Comment();
+        testData2(comment);
+
         commentVO.setCommentNo(comment.getCommentNo());
 
         // when
@@ -366,12 +360,11 @@ public class EgovArticleCommentDAOTest extends EgovTestAbstractDAO {
     @Test
 //    @Commit
     public void test_a50_update() {
-        final Board board = new Board();
-        final LoginVO loginVO = (LoginVO) EgovUserDetailsHelper.getAuthenticatedUser();
-        final Comment comment = new Comment();
-        testData(board, loginVO, comment);
-
         // given
+        final Comment comment = new Comment();
+        final LoginVO loginVO = (LoginVO) EgovUserDetailsHelper.getAuthenticatedUser();
+        testData2(comment);
+
         comment.setCommentCn(comment.getCommentCn() + " > 수정 test 이백행 댓글 " + LocalDateTime.now());
 
         if (loginVO != null) {
@@ -397,13 +390,12 @@ public class EgovArticleCommentDAOTest extends EgovTestAbstractDAO {
     @Test
 //    @Commit
     public void test_a60_delete() {
-        final Board board = new Board();
-        final LoginVO loginVO = (LoginVO) EgovUserDetailsHelper.getAuthenticatedUser();
-        final Comment comment = new Comment();
-        testData(board, loginVO, comment);
-
         // given
         final CommentVO commentVO = new CommentVO();
+
+        final Comment comment = new Comment();
+        testData2(comment);
+
         commentVO.setCommentNo(comment.getCommentNo());
 
         // when
