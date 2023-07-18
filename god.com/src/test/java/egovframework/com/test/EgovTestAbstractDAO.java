@@ -94,6 +94,11 @@ public class EgovTestAbstractDAO {
     protected EgovMessageSource egovMessageSource;
 
     /**
+     * 조회에 실패하였습니다.
+     */
+    protected static final String FAIL_COMMON_SELECT = "fail.common.select";
+
+    /**
      * setUpBeforeClass
      */
     @BeforeClass
@@ -151,6 +156,11 @@ public class EgovTestAbstractDAO {
         }
     }
 
+    /**
+     * error
+     * 
+     * @param sqlException
+     */
     protected void error(final SQLException sqlException) {
         log.error(egovMessageSource.getMessageArgs("fail.common.sql",
                 new Object[] { sqlException.getErrorCode(), sqlException.getMessage() }));
