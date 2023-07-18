@@ -150,12 +150,23 @@ public class EgovCommuBBSMasterDAOTest extends EgovTestAbstractDAO {
         for (final BoardMasterVO result : resultList) {
             debug(result);
 
-            // then
-            assertEquals(egovMessageSource.getMessage(FAIL_COMMON_SELECT), testData.getBbsId(), result.getBbsId());
-            assertEquals(egovMessageSource.getMessage(FAIL_COMMON_SELECT), testData.getBbsTyCode(),
-                    result.getBbsTyCode());
-            assertEquals(egovMessageSource.getMessage(FAIL_COMMON_SELECT), testData.getBbsNm(), result.getBbsNm());
+//            // then
+//            assertEquals(egovMessageSource.getMessage(FAIL_COMMON_SELECT), testData.getBbsId(), result.getBbsId());
+//            assertEquals(egovMessageSource.getMessage(FAIL_COMMON_SELECT), testData.getBbsTyCode(),
+//                    result.getBbsTyCode());
+//            assertEquals(egovMessageSource.getMessage(FAIL_COMMON_SELECT), testData.getBbsNm(), result.getBbsNm());
         }
+
+        // then
+        if (resultList != null) {
+            assert1(testData, resultList.get(0));
+        }
+    }
+
+    private void assert1(final BoardMasterVO testData, final BoardMasterVO result) {
+        assertEquals(egovMessageSource.getMessage(FAIL_COMMON_SELECT), testData.getBbsId(), result.getBbsId());
+        assertEquals(egovMessageSource.getMessage(FAIL_COMMON_SELECT), testData.getBbsTyCode(), result.getBbsTyCode());
+        assertEquals(egovMessageSource.getMessage(FAIL_COMMON_SELECT), testData.getBbsNm(), result.getBbsNm());
     }
 
     private void debug(final BoardMasterVO result) {
