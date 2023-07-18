@@ -132,11 +132,6 @@ public class EgovArticleCommentDAOTest extends EgovTestAbstractDAO {
     @Qualifier("egovNttIdGnrService")
     private EgovIdGnrService egovNttIdGnrService;
 
-    /**
-     * 조회에 실패하였습니다.
-     */
-    private static final String FAIL_COMMON_SELECT = "fail.common.select";
-
     private void testData(final Board board, final LoginVO loginVO) {
         final BoardMaster boardMaster = new BoardMaster();
 
