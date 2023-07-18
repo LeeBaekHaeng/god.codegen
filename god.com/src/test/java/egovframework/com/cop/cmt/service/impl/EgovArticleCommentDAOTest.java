@@ -2,7 +2,6 @@ package egovframework.com.cop.cmt.service.impl;
 
 import static org.junit.Assert.assertEquals;
 
-import java.sql.SQLException;
 import java.time.LocalDateTime;
 import java.util.List;
 
@@ -227,8 +226,7 @@ public class EgovArticleCommentDAOTest extends EgovTestAbstractDAO {
         try {
             egovArticleCommentDAO.insertArticleComment(comment);
         } catch (DataAccessException e) {
-            final SQLException sqlException = (SQLException) e.getCause();
-            error(sqlException);
+            error(e);
             insert = 0;
         }
 
@@ -380,8 +378,7 @@ public class EgovArticleCommentDAOTest extends EgovTestAbstractDAO {
         try {
             egovArticleCommentDAO.updateArticleComment(comment);
         } catch (DataAccessException e) {
-            final SQLException sqlException = (SQLException) e.getCause();
-            error(sqlException);
+            error(e);
             update = 0;
         }
 
@@ -409,8 +406,7 @@ public class EgovArticleCommentDAOTest extends EgovTestAbstractDAO {
         try {
             egovArticleCommentDAO.deleteArticleComment(commentVO);
         } catch (DataAccessException e) {
-            final SQLException sqlException = (SQLException) e.getCause();
-            error(sqlException);
+            error(e);
             delete = 0;
         }
 

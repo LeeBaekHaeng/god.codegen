@@ -14,6 +14,7 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.ImportResource;
+import org.springframework.dao.DataAccessException;
 import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.transaction.annotation.Transactional;
@@ -159,13 +160,20 @@ public class EgovTestAbstractDAO {
     /**
      * error
      * 
-     * @param sqlException
+     * @param e
      */
-    protected void error(final SQLException sqlException) {
-        log.error(egovMessageSource.getMessageArgs("fail.common.sql",
-                new Object[] { sqlException.getErrorCode(), sqlException.getMessage() }));
-        log.error(egovMessageSource.getMessageArgs("fail.common.sql",
-                new Object[] { sqlException.getSQLState(), sqlException.getMessage() }));
+    protected void error(final DataAccessException e) {
+        final SQLException sqlException = (SQLException) e.getCause();
+        error(sqlException);
+    }
+
+    private void error(final SQLException sqlException) {
+        if (log.isErrorEnabled()) {
+            log.error(egovMessageSource.getMessageArgs("fail.common.sql",
+                    new Object[] { sqlException.getErrorCode(), sqlException.getMessage() }));
+            log.error(egovMessageSource.getMessageArgs("fail.common.sql",
+                    new Object[] { sqlException.getSQLState(), sqlException.getMessage() }));
+        }
     }
 
 }

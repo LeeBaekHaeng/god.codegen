@@ -2,7 +2,6 @@ package egovframework.com.cop.cmt.service.impl;
 
 import static org.junit.Assert.assertEquals;
 
-import java.sql.SQLException;
 import java.time.LocalDateTime;
 import java.util.List;
 
@@ -83,11 +82,6 @@ public class EgovArticleCommentDAO2Test extends EgovTestAbstractDAO2 {
     @Autowired
     @Qualifier("egovNttIdGnrService")
     private EgovIdGnrService egovNttIdGnrService;
-
-    /**
-     * insertArticleComment
-     */
-    private int insertArticleComment = 1;
 
     /**
      * 조회에 실패하였습니다.
@@ -177,20 +171,16 @@ public class EgovArticleCommentDAO2Test extends EgovTestAbstractDAO2 {
         setLoginVO(comment, loginVO);
 
         // when
+        int result = 1;
         try {
             egovArticleCommentDAO.insertArticleComment(comment);
         } catch (DataAccessException e) {
-            if (log.isErrorEnabled()) {
-                log.error("DataAccessException insertArticleComment");
-                log.error(egovMessageSource.getMessage("fail.common.insert"));
-            }
             error(e);
-
-            insertArticleComment = 0;
+            result = 0;
         }
 
         // then
-        assertEquals(egovMessageSource.getMessage("fail.common.insert"), 1, insertArticleComment);
+        assertEquals(egovMessageSource.getMessage("fail.common.insert"), 1, result);
     }
 
     private void setLoginVO(final Comment comment, final LoginVO loginVO) {
@@ -202,11 +192,6 @@ public class EgovArticleCommentDAO2Test extends EgovTestAbstractDAO2 {
             comment.setWrterId(loginVO.getUniqId());
             comment.setWrterNm(loginVO.getName());
         }
-    }
-
-    private Object[] args(final SQLException sqle) {
-        return new Object[] { sqle.getErrorCode(), sqle.getMessage(), sqle.getSQLState(), };
-//        return new Object[] { sqle.getErrorCode(), sqle.getSQLState(), sqle.getMessage(), };
     }
 
     /**
@@ -355,12 +340,7 @@ public class EgovArticleCommentDAO2Test extends EgovTestAbstractDAO2 {
         try {
             egovArticleCommentDAO.updateArticleComment(comment);
         } catch (DataAccessException e) {
-            if (log.isErrorEnabled()) {
-                log.error("DataAccessException updateArticleComment");
-                log.error(egovMessageSource.getMessage("fail.common.update"));
-            }
             error(e);
-
             result = 0;
         }
 
@@ -391,26 +371,12 @@ public class EgovArticleCommentDAO2Test extends EgovTestAbstractDAO2 {
         try {
             egovArticleCommentDAO.deleteArticleComment(commentVO);
         } catch (DataAccessException e) {
-            if (log.isErrorEnabled()) {
-                log.error("DataAccessException deleteArticleComment");
-                log.error(egovMessageSource.getMessage("fail.common.delete"));
-            }
             error(e);
-
             result = 0;
         }
 
         // then
         assertEquals(egovMessageSource.getMessage("fail.common.delete"), 1, result);
-    }
-
-    /* default */ void error(final DataAccessException dataAccessException) {
-        if (log.isErrorEnabled()) {
-            log.error(egovMessageSource.getMessage("fail.common.msg"));
-
-            final SQLException sqle = (SQLException) dataAccessException.getCause();
-            log.error(egovMessageSource.getMessageArgs("fail.common.sql", args(sqle)));
-        }
     }
 
 }
