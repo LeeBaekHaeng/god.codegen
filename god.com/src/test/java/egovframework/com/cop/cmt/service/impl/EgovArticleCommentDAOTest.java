@@ -375,10 +375,17 @@ public class EgovArticleCommentDAOTest extends EgovTestAbstractDAO {
         test_a50_update(loginVO, comment);
 
         // when
-        egovArticleCommentDAO.updateArticleComment(comment);
+        int update = 1;
+        try {
+            egovArticleCommentDAO.updateArticleComment(comment);
+        } catch (DataAccessException e) {
+            final SQLException sqlException = (SQLException) e.getCause();
+            error(sqlException);
+            update = 0;
+        }
 
         // then
-        assertEquals(egovMessageSource.getMessage("fail.common.update"), 1, 1);
+        assertEquals(egovMessageSource.getMessage("fail.common.update"), 1, update);
     }
 
     private void test_a50_update(final LoginVO loginVO, final Comment comment) {
@@ -401,10 +408,17 @@ public class EgovArticleCommentDAOTest extends EgovTestAbstractDAO {
         commentVO.setCommentNo(comment.getCommentNo());
 
         // when
-        egovArticleCommentDAO.deleteArticleComment(commentVO);
+        int delete = 1;
+        try {
+            egovArticleCommentDAO.deleteArticleComment(commentVO);
+        } catch (DataAccessException e) {
+            final SQLException sqlException = (SQLException) e.getCause();
+            error(sqlException);
+            delete = 0;
+        }
 
         // then
-        assertEquals(egovMessageSource.getMessage("fail.common.delete"), 1, 1);
+        assertEquals(egovMessageSource.getMessage("fail.common.delete"), 1, delete);
     }
 
 }
