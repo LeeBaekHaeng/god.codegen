@@ -257,7 +257,11 @@
    <rule ref="category/java/bestpractices.xml/JUnitAssertionsShouldIncludeMessage"/>
    <rule ref="category/java/errorprone.xml/JUnitSpelling"/>
    <rule ref="category/java/errorprone.xml/JUnitStaticSuite"/>
-   <rule ref="category/java/bestpractices.xml/JUnitTestContainsTooManyAsserts"/>
+   <rule ref="category/java/bestpractices.xml/JUnitTestContainsTooManyAsserts">
+      <properties>
+         <property name="maximumAsserts" value="100"/>
+      </properties>
+   </rule>
    <rule ref="category/java/bestpractices.xml/JUnitTestsShouldIncludeAssert"/>
    <rule ref="category/java/bestpractices.xml/JUnitUseExpected"/>
    <rule ref="category/jsp/errorprone.xml/JspEncoding"/>
