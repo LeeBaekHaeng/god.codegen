@@ -185,7 +185,7 @@ public class EgovArticleCommentDAOTest extends EgovTestAbstractDAO {
     }
 
     /**
-     * 댓글 DAO 단위 테스트: 등록
+     * 등록
      */
     @Test
 //    @Commit
@@ -229,7 +229,7 @@ public class EgovArticleCommentDAOTest extends EgovTestAbstractDAO {
     }
 
     /**
-     * 댓글 DAO 단위 테스트: 조회(멀티건)
+     * 조회(멀티건)
      */
     @Test
     public void test_a20_selectList() {
@@ -304,7 +304,7 @@ public class EgovArticleCommentDAOTest extends EgovTestAbstractDAO {
     }
 
     /**
-     * 댓글 DAO 단위 테스트: 조회(멀티건) 총 수
+     * 조회(멀티건) 총 수
      */
     @Test
     public void test_a30_selectListTotCnt() {
@@ -328,7 +328,7 @@ public class EgovArticleCommentDAOTest extends EgovTestAbstractDAO {
     }
 
     /**
-     * 댓글 DAO 단위 테스트: 조회(단건)
+     * 조회(단건)
      */
     @Test
     public void test_a40_select() {
@@ -356,7 +356,7 @@ public class EgovArticleCommentDAOTest extends EgovTestAbstractDAO {
     }
 
     /**
-     * 댓글 DAO 단위 테스트: 수정
+     * 수정
      */
     @Test
 //    @Commit
@@ -382,7 +382,7 @@ public class EgovArticleCommentDAOTest extends EgovTestAbstractDAO {
     }
 
     /**
-     * 댓글 DAO 단위 테스트: 삭제
+     * 삭제
      */
     @Test
 //    @Commit
