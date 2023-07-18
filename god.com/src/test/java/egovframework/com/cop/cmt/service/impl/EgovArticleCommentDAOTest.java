@@ -1,6 +1,7 @@
 package egovframework.com.cop.cmt.service.impl;
 
 import static org.junit.Assert.assertEquals;
+import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.log;
 
 import java.time.LocalDateTime;
 import java.util.List;
@@ -11,10 +12,11 @@ import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.ComponentScan;
-import org.springframework.context.annotation.ComponentScan.Filter;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.FilterType;
 import org.springframework.context.annotation.ImportResource;
+import org.springframework.context.annotation.ComponentScan.Filter;
+import org.springframework.dao.DataAccessException;
 import org.springframework.test.context.ContextConfiguration;
 
 import egovframework.com.cmm.LoginVO;
@@ -219,10 +221,16 @@ public class EgovArticleCommentDAOTest extends EgovTestAbstractDAO {
         }
 
         // when
-        egovArticleCommentDAO.insertArticleComment(comment);
+        int result = 1;
+        try {
+            egovArticleCommentDAO.insertArticleComment(comment);
+        } catch (DataAccessException e) {
+            result = 0;
+            error(e);
+        }
 
         // then
-        assertEquals(egovMessageSource.getMessage("fail.common.insert"), 1, 1);
+        assertEquals(egovMessageSource.getMessage("fail.common.insert"), 1, result);
     }
 
     /**
@@ -371,10 +379,16 @@ public class EgovArticleCommentDAOTest extends EgovTestAbstractDAO {
         }
 
         // when
-        egovArticleCommentDAO.updateArticleComment(comment);
+        int result = 1;
+        try {
+            egovArticleCommentDAO.updateArticleComment(comment);
+        } catch (DataAccessException e) {
+            result = 0;
+            error(e);
+        }
 
         // then
-        assertEquals(egovMessageSource.getMessage("fail.common.update"), 1, 1);
+        assertEquals(egovMessageSource.getMessage("fail.common.update"), 1, result);
     }
 
     /**
@@ -393,10 +407,16 @@ public class EgovArticleCommentDAOTest extends EgovTestAbstractDAO {
         commentVO.setCommentNo(comment.getCommentNo());
 
         // when
-        egovArticleCommentDAO.deleteArticleComment(commentVO);
+        int result = 1;
+        try {
+            egovArticleCommentDAO.deleteArticleComment(commentVO);
+        } catch (DataAccessException e) {
+            result = 0;
+            error(e);
+        }
 
         // then
-        assertEquals(egovMessageSource.getMessage("fail.common.delete"), 1, 1);
+        assertEquals(egovMessageSource.getMessage("fail.common.delete"), 1, result);
     }
 
 }
