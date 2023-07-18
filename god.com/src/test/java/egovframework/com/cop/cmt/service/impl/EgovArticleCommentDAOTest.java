@@ -2,6 +2,7 @@ package egovframework.com.cop.cmt.service.impl;
 
 import static org.junit.Assert.assertEquals;
 
+import java.sql.SQLException;
 import java.time.LocalDateTime;
 import java.util.List;
 
@@ -15,6 +16,7 @@ import org.springframework.context.annotation.ComponentScan.Filter;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.FilterType;
 import org.springframework.context.annotation.ImportResource;
+import org.springframework.dao.DataAccessException;
 import org.springframework.test.context.ContextConfiguration;
 
 import egovframework.com.cmm.LoginVO;
@@ -211,10 +213,17 @@ public class EgovArticleCommentDAOTest extends EgovTestAbstractDAO {
         test_a10_insert(comment, loginVO);
 
         // when
-        egovArticleCommentDAO.insertArticleComment(comment);
+        int insert = 1;
+        try {
+            egovArticleCommentDAO.insertArticleComment(comment);
+        } catch (DataAccessException e) {
+            final SQLException sqlException = (SQLException) e.getCause();
+            error(sqlException);
+            insert = 0;
+        }
 
         // then
-        assertEquals(egovMessageSource.getMessage("fail.common.insert"), 1, 1);
+        assertEquals(egovMessageSource.getMessage("fail.common.insert"), 1, insert);
     }
 
     private void test_a10_insert(final Comment comment, final LoginVO loginVO) {

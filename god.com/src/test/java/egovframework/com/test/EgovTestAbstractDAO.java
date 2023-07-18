@@ -1,5 +1,7 @@
 package egovframework.com.test;
 
+import java.sql.SQLException;
+
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -60,17 +62,17 @@ import lombok.extern.slf4j.Slf4j;
 @RequiredArgsConstructor
 @Slf4j
 
-public abstract class EgovTestAbstractDAO {
+public class EgovTestAbstractDAO {
 
     /**
      * BeforeClass AfterClass
      */
-    protected static final StopWatch STOP_WATCH = new StopWatch();
+    private static final StopWatch STOP_WATCH = new StopWatch();
 
     /**
      * Before After
      */
-    protected final StopWatch stopWatch = new StopWatch();
+    private final StopWatch stopWatch = new StopWatch();
 
     /**
      * beanDefinitionNames
@@ -147,6 +149,13 @@ public abstract class EgovTestAbstractDAO {
             log.debug("totalTimeMillis={}", STOP_WATCH.getTotalTimeMillis());
             log.debug("totalTimeSeconds={}", STOP_WATCH.getTotalTimeSeconds());
         }
+    }
+
+    protected void error(final SQLException sqlException) {
+        log.error(egovMessageSource.getMessageArgs("fail.common.sql",
+                new Object[] { sqlException.getErrorCode(), sqlException.getMessage() }));
+        log.error(egovMessageSource.getMessageArgs("fail.common.sql",
+                new Object[] { sqlException.getSQLState(), sqlException.getMessage() }));
     }
 
 }
