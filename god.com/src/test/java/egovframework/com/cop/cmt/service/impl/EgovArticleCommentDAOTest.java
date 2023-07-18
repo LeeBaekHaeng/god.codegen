@@ -160,6 +160,7 @@ public class EgovArticleCommentDAOTest extends EgovTestAbstractDAO {
 //          board.setLastUpdusrId(loginVO.getUniqId());
         }
 
+        // insertBBSMasterInf
         try {
             boardMaster.setBbsId(egovBBSMstrIdGnrService.getNextStringId());
         } catch (FdlException e) {
@@ -167,7 +168,7 @@ public class EgovArticleCommentDAOTest extends EgovTestAbstractDAO {
         }
         egovBBSMasterDAO.insertBBSMasterInf(boardMaster);
 
-        //
+        // insertArticle
         try {
             board.setNttId(egovNttIdGnrService.getNextLongId());
         } catch (FdlException e) {
@@ -176,7 +177,7 @@ public class EgovArticleCommentDAOTest extends EgovTestAbstractDAO {
         board.setBbsId(boardMaster.getBbsId());
         egovArticleDAO.insertArticle(board);
 
-        //
+        // insertArticleComment
         commentInsert = new Comment();
 
         try {

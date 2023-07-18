@@ -164,10 +164,6 @@ public class EgovTestAbstractDAO {
      */
     protected void error(final DataAccessException e) {
         final SQLException sqlException = (SQLException) e.getCause();
-        error(sqlException);
-    }
-
-    private void error(final SQLException sqlException) {
         if (log.isErrorEnabled()) {
             log.error(egovMessageSource.getMessageArgs("fail.common.sql",
                     new Object[] { sqlException.getErrorCode(), sqlException.getMessage() }));
