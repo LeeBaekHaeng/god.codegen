@@ -56,7 +56,6 @@
    <rule ref="category/java/errorprone.xml/AvoidFieldNameMatchingMethodName"/>
    <rule ref="category/java/errorprone.xml/AvoidFieldNameMatchingTypeName"/>
    <rule ref="category/java/performance.xml/AvoidFileStream"/>
-   <rule ref="category/java/codestyle.xml/AvoidFinalLocalVariable"/>
    <rule ref="category/apex/bestpractices.xml/AvoidGlobalModifier"/>
    <rule ref="category/apex/errorprone.xml/AvoidHardcodingId"/>
    <rule ref="category/html/bestpractices.xml/AvoidInlineStyles"/>
