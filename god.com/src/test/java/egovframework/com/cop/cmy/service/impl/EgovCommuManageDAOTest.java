@@ -101,7 +101,7 @@ public class EgovCommuManageDAOTest extends EgovTestAbstractDAO {
     @Qualifier("egovCmmntyIdGnrService")
     private EgovIdGnrService egovCmmntyIdGnrService;
 
-    private void testData(final Community communityTestData) {
+    private void communityTestData(final Community communityTestData) {
         final LoginVO loginVO = (LoginVO) EgovUserDetailsHelper.getAuthenticatedUser();
 
         if (loginVO != null) {
@@ -118,24 +118,24 @@ public class EgovCommuManageDAOTest extends EgovTestAbstractDAO {
         egovCommuMasterDAO.insertCommuMaster(communityTestData);
     }
 
-    private void testData2(final CommunityUser testData) {
+    private void communityUserTestData(final CommunityUser communityUserTestData) {
         final Community community = new Community();
-        testData(community);
+        communityTestData(community);
 
         final LoginVO loginVO = (LoginVO) EgovUserDetailsHelper.getAuthenticatedUser();
 
-        testData.setCmmntyId(community.getCmmntyId());
+        communityUserTestData.setCmmntyId(community.getCmmntyId());
 
         if (loginVO != null) {
-            testData.setEmplyrId(loginVO.getUniqId());
-            testData.setFrstRegisterId(loginVO.getUniqId());
-            testData.setLastUpdusrId(loginVO.getUniqId());
+            communityUserTestData.setEmplyrId(loginVO.getUniqId());
+            communityUserTestData.setFrstRegisterId(loginVO.getUniqId());
+            communityUserTestData.setLastUpdusrId(loginVO.getUniqId());
         }
 
-        testData.setMngrAt("Y");
-        testData.setUseAt("Y");
+        communityUserTestData.setMngrAt("Y");
+        communityUserTestData.setUseAt("Y");
 
-        egovCommuManageDAO.insertCommuUserRqst(testData);
+        egovCommuManageDAO.insertCommuUserRqst(communityUserTestData);
     }
 
     /**
@@ -144,22 +144,22 @@ public class EgovCommuManageDAOTest extends EgovTestAbstractDAO {
     @Test
     public void test_a10_selectSingleCommuUserDetail() {
         // given
-        final CommunityUser testData = new CommunityUser();
-        testData2(testData);
+        final CommunityUser communityUserTestData = new CommunityUser();
+        communityUserTestData(communityUserTestData);
 
         final CommunityUser cmmntyUser = new CommunityUser();
 
-        cmmntyUser.setEmplyrId(testData.getEmplyrId());
-        cmmntyUser.setCmmntyId(testData.getCmmntyId());
+        cmmntyUser.setEmplyrId(communityUserTestData.getEmplyrId());
+        cmmntyUser.setCmmntyId(communityUserTestData.getCmmntyId());
 
         // when
         final CommunityUser result = egovCommuManageDAO.selectSingleCommuUserDetail(cmmntyUser);
 
         // then
         if (result != null) {
-            assertEquals(egovMessageSource.getMessage(FAIL_COMMON_SELECT), testData.getMberSttus(),
+            assertEquals(egovMessageSource.getMessage(FAIL_COMMON_SELECT), communityUserTestData.getMberSttus(),
                     result.getMberSttus());
-            assertEquals(egovMessageSource.getMessage(FAIL_COMMON_SELECT), testData.getUseAt(), result.getUseAt());
+            assertEquals(egovMessageSource.getMessage(FAIL_COMMON_SELECT), communityUserTestData.getUseAt(), result.getUseAt());
         }
     }
 
@@ -170,7 +170,7 @@ public class EgovCommuManageDAOTest extends EgovTestAbstractDAO {
     public void test_a40_insertCommuUserRqst() {
         // given
         final Community communityTestData = new Community();
-        testData(communityTestData);
+        communityTestData(communityTestData);
 
         final CommunityUser cmmntyUser = new CommunityUser();
         final LoginVO loginVO = (LoginVO) EgovUserDetailsHelper.getAuthenticatedUser();
