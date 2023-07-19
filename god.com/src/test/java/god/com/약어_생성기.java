@@ -24,7 +24,7 @@ public class 약어_생성기 {
      */
     @Test
     public void test() {
-        String string = "pesticide";
+        String string = "pesticide"; // 농약
 
         if (string != null) {
             string = string.toUpperCase(Locale.getDefault());
