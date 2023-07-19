@@ -17,7 +17,6 @@ import org.springframework.test.context.ContextConfiguration;
 
 import egovframework.com.cmm.LoginVO;
 import egovframework.com.cmm.util.EgovUserDetailsHelper;
-import egovframework.com.cop.bbs.service.impl.EgovBBSMasterDAO;
 import egovframework.com.cop.cmy.service.Community;
 import egovframework.com.cop.cmy.service.CommunityUser;
 import egovframework.com.test.EgovTestAbstractDAO;
@@ -69,8 +68,6 @@ import lombok.extern.slf4j.Slf4j;
 
                                 EgovCommuMasterDAO.class,
 
-                                EgovBBSMasterDAO.class,
-
                         }
 
                 )
@@ -98,41 +95,27 @@ public class EgovCommuManageDAOTest extends EgovTestAbstractDAO {
     private EgovCommuMasterDAO egovCommuMasterDAO;
 
     /**
-     * EgovBBSMasterDAO
-     */
-    @Autowired
-    private EgovBBSMasterDAO egovBBSMasterDAO;
-
-    /**
-     * egovBBSMstrIdGnrService
-     */
-    @Autowired
-    @Qualifier("egovBBSMstrIdGnrService")
-    private EgovIdGnrService egovBBSMstrIdGnrService;
-
-    /**
      * egovCmmntyIdGnrService
      */
     @Autowired
     @Qualifier("egovCmmntyIdGnrService")
     private EgovIdGnrService egovCmmntyIdGnrService;
 
-    private void testData(final Community testData) {
+    private void testData(final Community communityTestData) {
         final LoginVO loginVO = (LoginVO) EgovUserDetailsHelper.getAuthenticatedUser();
 
         if (loginVO != null) {
-            testData.setFrstRegisterId(loginVO.getUniqId());
-            testData.setLastUpdusrId(loginVO.getUniqId());
+            communityTestData.setFrstRegisterId(loginVO.getUniqId());
+            communityTestData.setLastUpdusrId(loginVO.getUniqId());
         }
 
         try {
-//            testData.setBbsId(egovBBSMstrIdGnrService.getNextStringId());
-            testData.setCmmntyId(egovCmmntyIdGnrService.getNextStringId());
+            communityTestData.setCmmntyId(egovCmmntyIdGnrService.getNextStringId());
         } catch (FdlException e) {
-            log.error("FdlException egovBBSMstrIdGnrService");
+            log.error("FdlException egovCmmntyIdGnrService");
         }
 
-        egovCommuMasterDAO.insertCommuMaster(testData);
+        egovCommuMasterDAO.insertCommuMaster(communityTestData);
     }
 
     private void testData2(final CommunityUser testData) {
@@ -186,13 +169,13 @@ public class EgovCommuManageDAOTest extends EgovTestAbstractDAO {
     @Test
     public void test_a40_insertCommuUserRqst() {
         // given
-        final Community testData = new Community();
-        testData(testData);
+        final Community communityTestData = new Community();
+        testData(communityTestData);
 
         final CommunityUser cmmntyUser = new CommunityUser();
         final LoginVO loginVO = (LoginVO) EgovUserDetailsHelper.getAuthenticatedUser();
 
-        cmmntyUser.setCmmntyId(testData.getCmmntyId());
+        cmmntyUser.setCmmntyId(communityTestData.getCmmntyId());
 
         if (loginVO != null) {
             cmmntyUser.setEmplyrId(loginVO.getUniqId());
