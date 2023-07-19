@@ -119,12 +119,12 @@ public class EgovCommuManageDAOTest extends EgovTestAbstractDAO {
     }
 
     private void communityUserTestData(final CommunityUser communityUserTestData) {
-        final Community community = new Community();
-        communityTestData(community);
+        final Community communityTestData = new Community();
+        communityTestData(communityTestData);
 
         final LoginVO loginVO = (LoginVO) EgovUserDetailsHelper.getAuthenticatedUser();
 
-        communityUserTestData.setCmmntyId(community.getCmmntyId());
+        communityUserTestData.setCmmntyId(communityTestData.getCmmntyId());
 
         if (loginVO != null) {
             communityUserTestData.setEmplyrId(loginVO.getUniqId());
@@ -159,7 +159,8 @@ public class EgovCommuManageDAOTest extends EgovTestAbstractDAO {
         if (result != null) {
             assertEquals(egovMessageSource.getMessage(FAIL_COMMON_SELECT), communityUserTestData.getMberSttus(),
                     result.getMberSttus());
-            assertEquals(egovMessageSource.getMessage(FAIL_COMMON_SELECT), communityUserTestData.getUseAt(), result.getUseAt());
+            assertEquals(egovMessageSource.getMessage(FAIL_COMMON_SELECT), communityUserTestData.getUseAt(),
+                    result.getUseAt());
         }
     }
 
@@ -182,6 +183,9 @@ public class EgovCommuManageDAOTest extends EgovTestAbstractDAO {
             cmmntyUser.setFrstRegisterId(loginVO.getUniqId());
             cmmntyUser.setLastUpdusrId(loginVO.getUniqId());
         }
+
+        cmmntyUser.setMngrAt("Y");
+        cmmntyUser.setUseAt("Y");
 
         // when
         int result = 1;
