@@ -132,14 +132,27 @@ public class EgovCommuManageDAOTest extends EgovTestAbstractDAO {
             log.error("FdlException egovBBSMstrIdGnrService");
         }
 
-//        testData.setBbsTyCode("BBST02"); // 블로그형게시판 COM101
-//        testData.setBbsNm("test 이백행 게시판마스터 " + LocalDateTime.now());
-//
-//        testData.setUseAt("Y");
-//
-//        egovBBSMasterDAO.insertBBSMasterInf(testData);
-
         egovCommuMasterDAO.insertCommuMaster(testData);
+    }
+
+    private void testData2(final CommunityUser testData) {
+        final Community community = new Community();
+        testData(community);
+
+        final LoginVO loginVO = (LoginVO) EgovUserDetailsHelper.getAuthenticatedUser();
+
+        testData.setCmmntyId(community.getCmmntyId());
+
+        if (loginVO != null) {
+            testData.setEmplyrId(loginVO.getUniqId());
+            testData.setFrstRegisterId(loginVO.getUniqId());
+            testData.setLastUpdusrId(loginVO.getUniqId());
+        }
+
+        testData.setMngrAt("Y");
+        testData.setUseAt("Y");
+
+        egovCommuManageDAO.insertCommuUserRqst(testData);
     }
 
     /**
@@ -148,20 +161,27 @@ public class EgovCommuManageDAOTest extends EgovTestAbstractDAO {
     @Test
     public void test_a10_selectSingleCommuUserDetail() {
         // given
-//        final BoardMasterVO testData = new BoardMasterVO();
-//        testData(testData);
+        final CommunityUser testData = new CommunityUser();
+        testData2(testData);
 
         final CommunityUser cmmntyUser = new CommunityUser();
+
+        cmmntyUser.setEmplyrId(testData.getEmplyrId());
+        cmmntyUser.setCmmntyId(testData.getCmmntyId());
 
         // when
         final CommunityUser result = egovCommuManageDAO.selectSingleCommuUserDetail(cmmntyUser);
 
         // then
-        assertEquals(egovMessageSource.getMessage(FAIL_COMMON_SELECT), "", "");
+        if (result != null) {
+            assertEquals(egovMessageSource.getMessage(FAIL_COMMON_SELECT), testData.getMberSttus(),
+                    result.getMberSttus());
+            assertEquals(egovMessageSource.getMessage(FAIL_COMMON_SELECT), testData.getUseAt(), result.getUseAt());
+        }
     }
 
     /**
-     * 조회(단건)
+     * 등록
      */
     @Test
     public void test_a40_insertCommuUserRqst() {
@@ -181,16 +201,16 @@ public class EgovCommuManageDAOTest extends EgovTestAbstractDAO {
         }
 
         // when
-        boolean insert = true;
+        int result = 1;
         try {
             egovCommuManageDAO.insertCommuUserRqst(cmmntyUser);
         } catch (DataAccessException e) {
-            insert = false;
+            result = 0;
             error(e);
         }
 
         // then
-        assertEquals(egovMessageSource.getMessage("fail.common.insert"), 1, insert);
+        assertEquals(egovMessageSource.getMessage("fail.common.insert"), 1, result);
     }
 
 }
