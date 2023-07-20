@@ -133,7 +133,11 @@
    <rule ref="category/java/codestyle.xml/ConfusingTernary"/>
    <rule ref="category/modelica/bestpractices.xml/ConnectUsingNonConnector"/>
    <rule ref="category/java/performance.xml/ConsecutiveAppendsShouldReuse"/>
-   <rule ref="category/java/performance.xml/ConsecutiveLiteralAppends"/>
+   <rule ref="category/java/performance.xml/ConsecutiveLiteralAppends">
+      <properties>
+         <property name="threshold" value="10"/>
+      </properties>
+   </rule>
    <rule ref="category/ecmascript/bestpractices.xml/ConsistentReturn"/>
    <rule ref="category/java/bestpractices.xml/ConstantsInInterface"/>
    <rule ref="category/java/errorprone.xml/ConstructorCallsOverridableMethod"/>
