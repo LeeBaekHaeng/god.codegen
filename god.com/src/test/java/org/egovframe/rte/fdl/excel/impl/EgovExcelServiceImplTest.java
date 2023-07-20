@@ -46,9 +46,22 @@ public class EgovExcelServiceImplTest {
     public void test_a20_loadExcelTemplate() {
         final EgovExcelService egovExcelService = new EgovExcelServiceImpl();
 
-        final String templateName = "C:\\test\\test.xlsx";
-        final String pathname = "C:\\test\\comtccmmncode 공통코드.sql";
-        final String pathname2 = "C:\\test\\comtccmmndetailcode 공통상세코드.sql";
+//        final String project = "AAAA"; // AAAA 프로젝트
+        final String project = "AAAB"; // AAAB 프로젝트
+
+        String templateName = "C:\\test\\test.xlsx";
+        String pathname = "C:\\test\\comtccmmncode 공통코드.sql";
+        String pathname2 = "C:\\test\\comtccmmndetailcode 공통상세코드.sql";
+
+        if ("AAAA".equals(project)) {
+            templateName = "C:\\test\\test.xlsx";
+            pathname = "C:\\test\\AAAA\\comtccmmncode 공통코드.sql";
+            pathname2 = "C:\\test\\AAAA\\comtccmmndetailcode 공통상세코드.sql";
+        } else if ("AAAB".equals(project)) {
+            templateName = "C:\\test\\test.xlsx";
+            pathname = "C:\\test\\AAAB\\comtccmmncode 공통코드.sql";
+            pathname2 = "C:\\test\\AAAB\\comtccmmndetailcode 공통상세코드.sql";
+        }
 
         try (XSSFWorkbook type = egovExcelService.loadExcelTemplate(templateName, null)) {
             sheet2(type.getSheetAt(2), pathname);
