@@ -51,7 +51,11 @@
    <rule ref="category/apex/errorprone.xml/AvoidDirectAccessTriggerMap"/>
    <rule ref="category/apex/performance.xml/AvoidDmlStatementsInLoops"/>
    <rule ref="category/java/codestyle.xml/AvoidDollarSigns"/>
-   <rule ref="category/java/errorprone.xml/AvoidDuplicateLiterals"/>
+   <rule ref="category/java/errorprone.xml/AvoidDuplicateLiterals">
+      <properties>
+         <property name="maxDuplicateLiterals" value="40"/>
+      </properties>
+   </rule>
    <rule ref="category/java/errorprone.xml/AvoidEnumAsIdentifier"/>
    <rule ref="category/java/errorprone.xml/AvoidFieldNameMatchingMethodName"/>
    <rule ref="category/java/errorprone.xml/AvoidFieldNameMatchingTypeName"/>
