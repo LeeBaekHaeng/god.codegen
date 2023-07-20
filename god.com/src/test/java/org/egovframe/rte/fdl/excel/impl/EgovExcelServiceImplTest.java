@@ -47,9 +47,12 @@ public class EgovExcelServiceImplTest {
         final EgovExcelService egovExcelService = new EgovExcelServiceImpl();
 
         final String templateName = "C:\\test\\test.xlsx";
+        final String pathname = "C:\\test\\comtccmmncode 공통코드.sql";
+        final String pathname2 = "C:\\test\\comtccmmndetailcode 공통상세코드.sql";
+
         try (XSSFWorkbook type = egovExcelService.loadExcelTemplate(templateName, null)) {
-            sheet2(type.getSheetAt(2));
-            sheet3(type.getSheetAt(3));
+            sheet2(type.getSheetAt(2), pathname);
+            sheet3(type.getSheetAt(3), pathname2);
         } catch (Exception e) {
             log.error("Exception loadExcelTemplate");
         }
@@ -57,7 +60,7 @@ public class EgovExcelServiceImplTest {
         assertEquals("", "", "");
     }
 
-    private void sheet2(final Sheet sheet) {
+    private void sheet2(final Sheet sheet, final String pathname) {
         final StringBuffer delete = new StringBuffer(1600);
         final StringBuffer insert = new StringBuffer(1600);
         for (final Row row : sheet) {
@@ -114,13 +117,13 @@ public class EgovExcelServiceImplTest {
         final String data = delete.toString() + "\n" + insert.toString();
         log.debug(data);
         try {
-            FileUtils.writeStringToFile(new File("C:\\test\\comtccmmncode 공통코드.sql"), data, StandardCharsets.UTF_8);
+            FileUtils.writeStringToFile(new File(pathname), data, StandardCharsets.UTF_8);
         } catch (IOException e) {
             log.error("IOException");
         }
     }
 
-    private void sheet3(final Sheet sheet) {
+    private void sheet3(final Sheet sheet, final String pathname2) {
         final StringBuffer delete = new StringBuffer(1600);
         final StringBuffer insert = new StringBuffer(1600);
         for (final Row row : sheet) {
@@ -177,8 +180,7 @@ public class EgovExcelServiceImplTest {
         final String data = delete.toString() + "\n" + insert.toString();
         log.debug(data);
         try {
-            FileUtils.writeStringToFile(new File("C:\\test\\comtccmmndetailcode 공통상세코드.sql"), data,
-                    StandardCharsets.UTF_8);
+            FileUtils.writeStringToFile(new File(pathname2), data, StandardCharsets.UTF_8);
         } catch (IOException e) {
             log.error("IOException");
         }
