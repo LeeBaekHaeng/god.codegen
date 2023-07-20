@@ -58,7 +58,8 @@ public class EgovExcelServiceImplTest {
     }
 
     private void sheet2(final Sheet sheet) {
-        final StringBuffer sb = new StringBuffer(213);
+        final StringBuffer delete = new StringBuffer(1600);
+        final StringBuffer insert = new StringBuffer(1600);
         for (final Row row : sheet) {
             final int rowNum = row.getRowNum();
             log.debug("rowNum={}", rowNum);
@@ -95,20 +96,22 @@ public class EgovExcelServiceImplTest {
                 continue;
             }
 
-            sb.append(
+            delete.append("DELETE FROM COMTCCMMNCODE WHERE CL_CODE = '" + c + "';\n");
+
+            insert.append(
                     "INSERT INTO COMTCCMMNCODE(CL_CODE, CODE_ID, CODE_ID_NM, CODE_ID_DC, USE_AT, FRST_REGIST_PNTTM, FRST_REGISTER_ID,LAST_UPDT_PNTTM, LAST_UPDUSR_ID) VALUES (");
-            sb.append("'AAA'");
-            sb.append(", '" + c + "'");
-            sb.append(", '" + b + "'");
-            sb.append(", '" + b + "'");
-            sb.append(", 'Y'");
-            sb.append(", NOW()");
-            sb.append(", 'SYSTEM'");
-            sb.append(", NOW()");
-            sb.append(", 'SYSTEM'");
-            sb.append(");\n");
+            insert.append("'AAA'");
+            insert.append(", '" + c + "'");
+            insert.append(", '" + b + "'");
+            insert.append(", '" + b + "'");
+            insert.append(", 'Y'");
+            insert.append(", NOW()");
+            insert.append(", 'SYSTEM'");
+            insert.append(", NOW()");
+            insert.append(", 'SYSTEM'");
+            insert.append(");\n");
         }
-        final String data = sb.toString();
+        final String data = delete.toString() + "\n" + insert.toString();
         log.debug(data);
         try {
             FileUtils.writeStringToFile(new File("C:\\test\\comtccmmncode 공통코드.sql"), data, StandardCharsets.UTF_8);
@@ -118,7 +121,8 @@ public class EgovExcelServiceImplTest {
     }
 
     private void sheet3(final Sheet sheet) {
-        final StringBuffer sb = new StringBuffer(213);
+        final StringBuffer delete = new StringBuffer(1600);
+        final StringBuffer insert = new StringBuffer(1600);
         for (final Row row : sheet) {
             final int rowNum = row.getRowNum();
             log.debug("rowNum={}", rowNum);
@@ -155,20 +159,22 @@ public class EgovExcelServiceImplTest {
                 continue;
             }
 
-            sb.append(
+            delete.append("DELETE FROM COMTCCMMNDETAILCODE WHERE CL_CODE = '" + b + "' AND CODE = '" + d + "';\n");
+
+            insert.append(
                     "INSERT INTO COMTCCMMNDETAILCODE(CODE_ID, CODE, CODE_NM, CODE_DC, USE_AT, FRST_REGIST_PNTTM, FRST_REGISTER_ID, LAST_UPDT_PNTTM, LAST_UPDUSR_ID) VALUES (");
-            sb.append("'" + b + "'");
-            sb.append(", '" + d + "'");
-            sb.append(", '" + c + "'");
-            sb.append(", '" + c + "'");
-            sb.append(", 'Y'");
-            sb.append(", NOW()");
-            sb.append(", 'SYSTEM'");
-            sb.append(", NOW()");
-            sb.append(", 'SYSTEM'");
-            sb.append(");\n");
+            insert.append("'" + b + "'");
+            insert.append(", '" + d + "'");
+            insert.append(", '" + c + "'");
+            insert.append(", '" + c + "'");
+            insert.append(", 'Y'");
+            insert.append(", NOW()");
+            insert.append(", 'SYSTEM'");
+            insert.append(", NOW()");
+            insert.append(", 'SYSTEM'");
+            insert.append(");\n");
         }
-        final String data = sb.toString();
+        final String data = delete.toString() + "\n" + insert.toString();
         log.debug(data);
         try {
             FileUtils.writeStringToFile(new File("C:\\test\\comtccmmndetailcode 공통상세코드.sql"), data,
