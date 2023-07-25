@@ -26,6 +26,6 @@ hs_err_pid*
 .settings/
 EGOVFRAME-3.10.0/
 target/
-.classpath
+#.classpath
 #.project
 .pmd
