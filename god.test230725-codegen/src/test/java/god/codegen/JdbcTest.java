@@ -5,6 +5,7 @@ import static org.junit.Assert.assertEquals;
 import java.sql.Connection;
 import java.sql.DatabaseMetaData;
 import java.sql.DriverManager;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 
 import org.junit.Test;
@@ -38,19 +39,27 @@ public class JdbcTest {
             final DatabaseMetaData metaData = con.getMetaData();
             debug(metaData);
 
+            final String catalog = con.getCatalog();
+            final String schemaPattern = con.getSchema();
+            final String tableNamePattern = "%%";
+//            final String tableNamePattern = "%com%";
+//            final String tableNamePattern = "comtcadministcode";
+//            final String tableNamePattern = "COMTCADMINISTCODE";
+            final String[] types = null;
+
             if (log.isDebugEnabled()) {
                 log.debug("con={}", con);
-                log.debug("getCatalog={}", con.getCatalog());
-                log.debug("getSchema={}", con.getSchema());
+                log.debug("catalog={}", catalog);
+                log.debug("schemaPattern={}", schemaPattern);
             }
 
-//            ResultSet tables = metaData.getTables(catalog, schemaPattern, tableNamePattern, types);
-//
+            voidTables(metaData, catalog, schemaPattern, tableNamePattern, types);
+
 //            ResultSet columns = metaData.getColumns(catalog, schemaPattern, tableNamePattern, columnNamePattern);
 //
 //            ResultSet primaryKeys = metaData.getPrimaryKeys(catalog, schema, table);
         } catch (SQLException e) {
-            log.error("getConnection SQLException");
+            log.error("SQLException getConnection");
         }
 
         assertEquals("", "", "");
@@ -60,6 +69,19 @@ public class JdbcTest {
         if (log.isDebugEnabled()) {
             log.debug("getDatabaseProductName={}", metaData.getDatabaseProductName());
             log.debug("getDatabaseProductVersion={}", metaData.getDatabaseProductVersion());
+        }
+    }
+
+    private void voidTables(final DatabaseMetaData metaData, final String catalog, final String schemaPattern,
+            final String tableNamePattern, final String... types) {
+        try (ResultSet tables = metaData.getTables(catalog, schemaPattern, tableNamePattern, types)) {
+            while (tables.next()) {
+                if (log.isDebugEnabled()) {
+                    log.debug("TABLE_NAME={}", tables.getString("TABLE_NAME"));
+                }
+            }
+        } catch (SQLException e) {
+            log.error("SQLException getTables");
         }
     }
 
