@@ -23,7 +23,7 @@
             <AppenderRef ref="console" />
         </Logger>
 
-        <Logger name="god.codegen" level="DEBUG" additivity="false">
+        <Logger name="god" level="DEBUG" additivity="false">
             <AppenderRef ref="console" />
         </Logger>
 

@@ -1,28 +1,34 @@
-package god.codegen;
+package god.test.java.sql;
 
 import static org.junit.Assert.assertEquals;
 
 import java.sql.Connection;
 import java.sql.DatabaseMetaData;
-import java.sql.DriverManager;
 import java.sql.ResultSet;
+import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
 import java.util.Arrays;
 
+import org.egovframe.rte.psl.dataaccess.util.CamelUtil;
 import org.junit.Test;
 
 import lombok.NoArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 
 /**
- * JdbcTest
+ * ResultSet 메타데이터 테이블 가져오기 테스트
  * 
  * @author 이백행
- * @since 2023-07-25
+ * @since 2023-07-27
  */
 @NoArgsConstructor
 @Slf4j
-public class JdbcTest {
+public class GodTestResultSetMetaDataGetTables {
+
+    /**
+     * GodTestJavaSql
+     */
+    private final GodTestJavaSql godTestJavaSql = new GodTestJavaSql();
 
     /**
      * test
@@ -30,11 +36,6 @@ public class JdbcTest {
     @Test
     public void test() {
         log.debug("test");
-
-//      String url = "jdbc:log4jdbc:mysql://127.0.0.1:3306/com";
-        final String url = "jdbc:mysql://127.0.0.1:3306/com?useInformationSchema=true";
-        final String user = "com";
-        final String password = "com01";
 
 //        final String catalog = null;
         final String catalog = "com";
@@ -46,15 +47,15 @@ public class JdbcTest {
 //        final String tableNamePattern = "%%";
 //        final String tableNamePattern = "%com%";
 //        final String tableNamePattern = "comtcadministcode"; // 행정코드
-//        final String tableNamePattern = "COMTCADMINISTCODE";
+//        final String tableNamePattern = "COMTCADMINISTCODE"; // 행정코드
 
         final String[] types = null;
 //        final String[] types = { "TABLE", "VIEW" };
 
-        try (Connection con = DriverManager.getConnection(url, user, password)) {
+        try (Connection con = godTestJavaSql.getConnection()) {
             final DatabaseMetaData databaseMetaData = con.getMetaData();
-            debug(con, databaseMetaData);
-            debug(databaseMetaData, catalog, schemaPattern, tableNamePattern, types);
+            godTestJavaSql.debug(con, databaseMetaData);
+            tables(databaseMetaData, catalog, schemaPattern, tableNamePattern, types);
         } catch (SQLException e) {
 //            e.printStackTrace();
             log.error("SQLException getConnection");
@@ -63,21 +64,7 @@ public class JdbcTest {
         assertEquals("", "", "");
     }
 
-    private void debug(final Connection con, final DatabaseMetaData databaseMetaData) throws SQLException {
-        if (log.isDebugEnabled()) {
-            // con
-            log.debug("con={}", con);
-            log.debug("catalog={}", con.getCatalog());
-            log.debug("schemaPattern={}", con.getSchema());
-
-            // metaData
-            log.debug("databaseMetaData={}", databaseMetaData);
-            log.debug("getDatabaseProductName={}", databaseMetaData.getDatabaseProductName());
-            log.debug("getDatabaseProductVersion={}", databaseMetaData.getDatabaseProductVersion());
-        }
-    }
-
-    private void debug(final DatabaseMetaData databaseMetaData, final String catalog, final String schemaPattern,
+    private void tables(final DatabaseMetaData databaseMetaData, final String catalog, final String schemaPattern,
             final String tableNamePattern, final String... types) throws SQLException {
         if (log.isDebugEnabled()) {
             log.debug("catalog={}", catalog);
@@ -85,11 +72,48 @@ public class JdbcTest {
             log.debug("tableNamePattern={}", tableNamePattern);
             log.debug("types={}", Arrays.toString(types));
         }
-        try (ResultSet tables = databaseMetaData.getTables(catalog, schemaPattern, tableNamePattern, types)) {
-            tables(tables);
+        try (ResultSet rs = databaseMetaData.getTables(catalog, schemaPattern, tableNamePattern, types)) {
+            resultSetMetaData(rs.getMetaData());
+            tables(rs);
         } catch (SQLException e) {
 //            e.printStackTrace();
             log.error("SQLException getTables");
+        }
+    }
+
+    private void resultSetMetaData(final ResultSetMetaData resultSetMetaData) throws SQLException {
+        final int columnCount = resultSetMetaData.getColumnCount();
+        log.debug("columnCount={}", columnCount);
+
+        final StringBuffer sb = new StringBuffer(1600);
+        final StringBuffer sb2 = new StringBuffer(1600);
+
+        for (int column = 1; column < columnCount; column++) {
+            if (log.isDebugEnabled()) {
+                log.debug("column={}", column);
+
+                final String columnLabel = resultSetMetaData.getColumnLabel(column);
+//                final String columnLabel = resultSetMetaData.getColumnName(column);
+//                final String columnLabel = resultSetMetaData.getSchemaName(column);
+                final String columnLabelCcName = CamelUtil.convert2CamelCase(columnLabel);
+
+                final int columnType = resultSetMetaData.getColumnType(column);
+                final String columnTypeName = resultSetMetaData.getColumnTypeName(column);
+
+                log.debug("columnLabel={}", columnLabel);
+                log.debug("columnType={}", columnType);
+                log.debug("columnTypeName={}", columnTypeName);
+                log.debug("");
+
+                sb.append("final String " + columnLabelCcName + " = rs.getString(\"" + columnLabel + "\");\n");
+
+                sb2.append("log.debug(\"" + columnLabel + "={}\", " + columnLabelCcName + ");\n");
+            }
+        }
+
+        if (log.isDebugEnabled()) {
+            log.debug(sb.toString());
+            log.debug(sb2.toString());
         }
     }
 
