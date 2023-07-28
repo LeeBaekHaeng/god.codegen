@@ -27,7 +27,7 @@ import lombok.NoArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 
 /**
- * ResultSet 메타데이터 테이블 가져오기 테스트
+ * 테이블 가져와서 엑셀파일 생성
  * 
  * @author 이백행
  * @since 2023-07-28
