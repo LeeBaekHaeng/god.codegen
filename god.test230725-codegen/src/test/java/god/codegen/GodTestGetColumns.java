@@ -206,17 +206,22 @@ public class GodTestGetColumns {
                 final int sourceDataType = rs.getInt("SOURCE_DATA_TYPE");
                 final String sisAutoincrement = rs.getString("IS_AUTOINCREMENT");
 
-                final ColumnsVO columnsVO = ColumnsVO.builder().tableCat(tableCat).tableSchem(tableSchem)
-                        .tableName(tableName).columnName(columnName).dataType(dataType).typeName(typeName)
-                        .columnSize(columnSize).bufferLength(bufferLength).decimalDigits(decimalDigits)
-                        .numPrecRadix(numPrecRadix).nullable(nullable).remarks(remarks).columnDef(columnDef)
-                        .sqlDataType(sqlDataType).sqlDatetimeSub(sqlDatetimeSub).charOctetLength(charOctetLength)
-                        .ordinalPosition(ordinalPosition).sisNullable(sisNullable).scopeCatalog(scopeCatalog)
-                        .scopeSchema(scopeSchema).scopeTable(scopeTable).sourceDataType(sourceDataType)
-                        .sisAutoincrement(sisAutoincrement).build();
+//                final ColumnsVO columnsVO = ColumnsVO.builder().tableCat(tableCat).tableSchem(tableSchem)
+//                        .tableName(tableName).columnName(columnName).dataType(dataType).typeName(typeName)
+//                        .columnSize(columnSize).bufferLength(bufferLength).decimalDigits(decimalDigits)
+//                        .numPrecRadix(numPrecRadix).nullable(nullable).remarks(remarks).columnDef(columnDef)
+//                        .sqlDataType(sqlDataType).sqlDatetimeSub(sqlDatetimeSub).charOctetLength(charOctetLength)
+//                        .ordinalPosition(ordinalPosition).sisNullable(sisNullable).scopeCatalog(scopeCatalog)
+//                        .scopeSchema(scopeSchema).scopeTable(scopeTable).sourceDataType(sourceDataType)
+//                        .sisAutoincrement(sisAutoincrement).build();
 
-//                if (log.isDebugEnabled()) {
-//                    log.debug("i={}", i);
+                final ColumnsVO columnsVO = new ColumnsVO(tableCat, tableSchem, tableName, columnName, dataType,
+                        typeName, columnSize, bufferLength, decimalDigits, numPrecRadix, nullable, remarks, columnDef,
+                        sqlDataType, sqlDatetimeSub, charOctetLength, ordinalPosition, sisNullable, scopeCatalog,
+                        scopeSchema, scopeTable, sourceDataType, sisAutoincrement);
+
+                if (log.isDebugEnabled()) {
+                    log.debug("i={}", i);
 //
 //                    log.debug("TABLE_CAT={}", tableCat);
 //                    log.debug("TABLE_SCHEM={}", tableSchem);
@@ -242,7 +247,7 @@ public class GodTestGetColumns {
 //                    log.debug("SOURCE_DATA_TYPE={}", sourceDataType);
 //                    log.debug("IS_AUTOINCREMENT={}", sisAutoincrement);
 //                    log.debug("");
-//                }
+                }
 
                 createRow(sheet, rownum++, columnsVO);
 

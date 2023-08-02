@@ -1,5 +1,6 @@
 package god.test.java.sql;
 
+import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 
@@ -9,6 +10,7 @@ import lombok.Data;
  * @author 이백행
  * @since 2023-08-02
  */
+@AllArgsConstructor
 @Builder
 @Data
 public class ColumnsVO {
