@@ -21,6 +21,7 @@ import org.egovframe.rte.fdl.string.EgovDateUtil;
 import org.egovframe.rte.psl.dataaccess.util.CamelUtil;
 import org.junit.Test;
 
+import god.test.java.sql.ColumnsVO;
 import god.test.java.sql.GodTestJavaSql;
 import lombok.NoArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -205,39 +206,45 @@ public class GodTestGetColumns {
                 final int sourceDataType = rs.getInt("SOURCE_DATA_TYPE");
                 final String sisAutoincrement = rs.getString("IS_AUTOINCREMENT");
 
-                if (log.isDebugEnabled()) {
-                    log.debug("i={}", i);
+                final ColumnsVO columnsVO = ColumnsVO.builder().tableCat(tableCat).tableSchem(tableSchem)
+                        .tableName(tableName).columnName(columnName).dataType(dataType).typeName(typeName)
+                        .columnSize(columnSize).bufferLength(bufferLength).decimalDigits(decimalDigits)
+                        .numPrecRadix(numPrecRadix).nullable(nullable).remarks(remarks).columnDef(columnDef)
+                        .sqlDataType(sqlDataType).sqlDatetimeSub(sqlDatetimeSub).charOctetLength(charOctetLength)
+                        .ordinalPosition(ordinalPosition).sisNullable(sisNullable).scopeCatalog(scopeCatalog)
+                        .scopeSchema(scopeSchema).scopeTable(scopeTable).sourceDataType(sourceDataType)
+                        .sisAutoincrement(sisAutoincrement).build();
 
-                    log.debug("TABLE_CAT={}", tableCat);
-                    log.debug("TABLE_SCHEM={}", tableSchem);
-                    log.debug("TABLE_NAME={}", tableName);
-                    log.debug("COLUMN_NAME={}", columnName);
-                    log.debug("DATA_TYPE={}", dataType);
-                    log.debug("TYPE_NAME={}", typeName);
-                    log.debug("COLUMN_SIZE={}", columnSize);
-                    log.debug("BUFFER_LENGTH={}", bufferLength);
-                    log.debug("DECIMAL_DIGITS={}", decimalDigits);
-                    log.debug("NUM_PREC_RADIX={}", numPrecRadix);
-                    log.debug("NULLABLE={}", nullable);
-                    log.debug("REMARKS={}", remarks);
-                    log.debug("COLUMN_DEF={}", columnDef);
-                    log.debug("SQL_DATA_TYPE={}", sqlDataType);
-                    log.debug("SQL_DATETIME_SUB={}", sqlDatetimeSub);
-                    log.debug("CHAR_OCTET_LENGTH={}", charOctetLength);
-                    log.debug("ORDINAL_POSITION={}", ordinalPosition);
-                    log.debug("IS_NULLABLE={}", sisNullable);
-                    log.debug("SCOPE_CATALOG={}", scopeCatalog);
-                    log.debug("SCOPE_SCHEMA={}", scopeSchema);
-                    log.debug("SCOPE_TABLE={}", scopeTable);
-                    log.debug("SOURCE_DATA_TYPE={}", sourceDataType);
-                    log.debug("IS_AUTOINCREMENT={}", sisAutoincrement);
-                    log.debug("");
-                }
+//                if (log.isDebugEnabled()) {
+//                    log.debug("i={}", i);
+//
+//                    log.debug("TABLE_CAT={}", tableCat);
+//                    log.debug("TABLE_SCHEM={}", tableSchem);
+//                    log.debug("TABLE_NAME={}", tableName);
+//                    log.debug("COLUMN_NAME={}", columnName);
+//                    log.debug("DATA_TYPE={}", dataType);
+//                    log.debug("TYPE_NAME={}", typeName);
+//                    log.debug("COLUMN_SIZE={}", columnSize);
+//                    log.debug("BUFFER_LENGTH={}", bufferLength);
+//                    log.debug("DECIMAL_DIGITS={}", decimalDigits);
+//                    log.debug("NUM_PREC_RADIX={}", numPrecRadix);
+//                    log.debug("NULLABLE={}", nullable);
+//                    log.debug("REMARKS={}", remarks);
+//                    log.debug("COLUMN_DEF={}", columnDef);
+//                    log.debug("SQL_DATA_TYPE={}", sqlDataType);
+//                    log.debug("SQL_DATETIME_SUB={}", sqlDatetimeSub);
+//                    log.debug("CHAR_OCTET_LENGTH={}", charOctetLength);
+//                    log.debug("ORDINAL_POSITION={}", ordinalPosition);
+//                    log.debug("IS_NULLABLE={}", sisNullable);
+//                    log.debug("SCOPE_CATALOG={}", scopeCatalog);
+//                    log.debug("SCOPE_SCHEMA={}", scopeSchema);
+//                    log.debug("SCOPE_TABLE={}", scopeTable);
+//                    log.debug("SOURCE_DATA_TYPE={}", sourceDataType);
+//                    log.debug("IS_AUTOINCREMENT={}", sisAutoincrement);
+//                    log.debug("");
+//                }
 
-                createRow(sheet, rownum++, tableCat, tableSchem, tableName, columnName, dataType, typeName, columnSize,
-                        bufferLength, decimalDigits, numPrecRadix, nullable, remarks, columnDef, sqlDataType,
-                        sqlDatetimeSub, charOctetLength, ordinalPosition, sisNullable, scopeCatalog, scopeSchema,
-                        scopeTable, sourceDataType, sisAutoincrement);
+                createRow(sheet, rownum++, columnsVO);
 
                 i++;
             }
@@ -255,6 +262,10 @@ public class GodTestGetColumns {
     private void createRow(final Sheet sheet, final int rownum) {
         final Row row = sheet.createRow(rownum);
         createCell(row);
+        createCell2(row);
+        createCell3(row);
+        createCell4(row);
+        createCell5(row);
     }
 
     private void createCell(final Row row) {
@@ -282,7 +293,9 @@ public class GodTestGetColumns {
         if (cell4 != null) {
             cell4.setCellValue("DATA_TYPE");
         }
+    }
 
+    private void createCell2(final Row row) {
         final Cell cell5 = row.createCell(5);
         if (cell5 != null) {
             cell5.setCellValue("TYPE_NAME");
@@ -307,7 +320,9 @@ public class GodTestGetColumns {
         if (cell9 != null) {
             cell9.setCellValue("NUM_PREC_RADIX");
         }
+    }
 
+    private void createCell3(final Row row) {
         final Cell cell10 = row.createCell(10);
         if (cell10 != null) {
             cell10.setCellValue("NULLABLE");
@@ -332,7 +347,9 @@ public class GodTestGetColumns {
         if (cell14 != null) {
             cell14.setCellValue("SQL_DATETIME_SUB");
         }
+    }
 
+    private void createCell4(final Row row) {
         final Cell cell15 = row.createCell(15);
         if (cell15 != null) {
             cell15.setCellValue("CHAR_OCTET_LENGTH");
@@ -357,7 +374,9 @@ public class GodTestGetColumns {
         if (cell19 != null) {
             cell19.setCellValue("SCOPE_SCHEMA");
         }
+    }
 
+    private void createCell5(final Row row) {
         final Cell cell20 = row.createCell(20);
         if (cell20 != null) {
             cell20.setCellValue("SCOPE_TABLE");
@@ -374,138 +393,137 @@ public class GodTestGetColumns {
         }
     }
 
-    private void createRow(final Sheet sheet, final int rownum, final String tableCat, final String tableSchem,
-            final String tableName, final String columnName, final int dataType, final String typeName,
-            final int columnSize, final int bufferLength, final int decimalDigits, final int numPrecRadix,
-            final int nullable, final String remarks, final String columnDef, final int sqlDataType,
-            final int sqlDatetimeSub, final int charOctetLength, final int ordinalPosition, final String isNullable,
-            final String scopeCatalog, final String scopeSchema, final String scopeTable, final int sourceDataType,
-            final String isAutoincrement) {
+    private void createRow(final Sheet sheet, final int rownum, final ColumnsVO columnsVO) {
         final Row row = sheet.createRow(rownum);
-        createCell(row, tableCat, tableSchem, tableName, columnName, dataType, typeName, columnSize, bufferLength,
-                decimalDigits, numPrecRadix, nullable, remarks, columnDef, sqlDataType, sqlDatetimeSub, charOctetLength,
-                ordinalPosition, isNullable, scopeCatalog, scopeSchema, scopeTable, sourceDataType, isAutoincrement);
+        createCell(row, columnsVO);
+        createCell2(row, columnsVO);
+        createCell3(row, columnsVO);
+        createCell4(row, columnsVO);
+        createCell5(row, columnsVO);
     }
 
-    private void createCell(final Row row, final String tableCat, final String tableSchem, final String tableName,
-            final String columnName, final int dataType, final String typeName, final int columnSize,
-            final int bufferLength, final int decimalDigits, final int numPrecRadix, final int nullable,
-            final String remarks, final String columnDef, final int sqlDataType, final int sqlDatetimeSub,
-            final int charOctetLength, final int ordinalPosition, final String isNullable, final String scopeCatalog,
-            final String scopeSchema, final String scopeTable, final int sourceDataType, final String isAutoincrement) {
+    private void createCell(final Row row, final ColumnsVO columnsVO) {
         final Cell cell0 = row.createCell(0);
         if (cell0 != null) {
-            cell0.setCellValue(tableCat);
+            cell0.setCellValue(columnsVO.getTableCat());
         }
 
         final Cell cell1 = row.createCell(1);
         if (cell1 != null) {
-            cell1.setCellValue(tableSchem);
+            cell1.setCellValue(columnsVO.getTableSchem());
         }
 
         final Cell cell2 = row.createCell(2);
         if (cell2 != null) {
-            cell2.setCellValue(tableName);
+            cell2.setCellValue(columnsVO.getTableName());
         }
 
         final Cell cell3 = row.createCell(3);
         if (cell3 != null) {
-            cell3.setCellValue(columnName);
+            cell3.setCellValue(columnsVO.getColumnName());
         }
 
         final Cell cell4 = row.createCell(4);
         if (cell4 != null) {
-            cell4.setCellValue(dataType);
+            cell4.setCellValue(columnsVO.getDataType());
         }
+    }
 
+    private void createCell2(final Row row, final ColumnsVO columnsVO) {
         final Cell cell5 = row.createCell(5);
         if (cell5 != null) {
-            cell5.setCellValue(typeName);
+            cell5.setCellValue(columnsVO.getTypeName());
         }
 
         final Cell cell6 = row.createCell(6);
         if (cell6 != null) {
-            cell6.setCellValue(columnSize);
+            cell6.setCellValue(columnsVO.getColumnSize());
         }
 
         final Cell cell7 = row.createCell(7);
         if (cell7 != null) {
-            cell7.setCellValue(bufferLength);
+            cell7.setCellValue(columnsVO.getBufferLength());
         }
 
         final Cell cell8 = row.createCell(8);
         if (cell8 != null) {
-            cell8.setCellValue(decimalDigits);
+            cell8.setCellValue(columnsVO.getDecimalDigits());
         }
 
         final Cell cell9 = row.createCell(9);
         if (cell9 != null) {
-            cell9.setCellValue(numPrecRadix);
+            cell9.setCellValue(columnsVO.getNumPrecRadix());
         }
+    }
 
+    private void createCell3(final Row row, final ColumnsVO columnsVO) {
         final Cell cell10 = row.createCell(10);
         if (cell10 != null) {
-            cell10.setCellValue(nullable);
+            cell10.setCellValue(columnsVO.getNullable());
         }
 
         final Cell cell11 = row.createCell(11);
         if (cell11 != null) {
-            cell11.setCellValue(remarks);
+            cell11.setCellValue(columnsVO.getRemarks());
         }
 
         final Cell cell12 = row.createCell(12);
         if (cell12 != null) {
-            cell12.setCellValue(columnDef);
+            cell12.setCellValue(columnsVO.getColumnDef());
         }
 
         final Cell cell13 = row.createCell(13);
         if (cell13 != null) {
-            cell13.setCellValue(sqlDataType);
+            cell13.setCellValue(columnsVO.getSqlDataType());
         }
 
         final Cell cell14 = row.createCell(14);
         if (cell14 != null) {
-            cell14.setCellValue(sqlDatetimeSub);
+            cell14.setCellValue(columnsVO.getSqlDatetimeSub());
         }
+    }
 
+    private void createCell4(final Row row, final ColumnsVO columnsVO) {
         final Cell cell15 = row.createCell(15);
         if (cell15 != null) {
-            cell15.setCellValue(charOctetLength);
+            cell15.setCellValue(columnsVO.getCharOctetLength());
         }
 
         final Cell cell16 = row.createCell(16);
         if (cell16 != null) {
-            cell16.setCellValue(ordinalPosition);
+            cell16.setCellValue(columnsVO.getOrdinalPosition());
         }
 
         final Cell cell17 = row.createCell(17);
         if (cell17 != null) {
-            cell17.setCellValue(isNullable);
+            cell17.setCellValue(columnsVO.getSisNullable());
         }
 
         final Cell cell18 = row.createCell(18);
         if (cell18 != null) {
-            cell18.setCellValue(scopeCatalog);
+            cell18.setCellValue(columnsVO.getScopeCatalog());
         }
 
         final Cell cell19 = row.createCell(19);
         if (cell19 != null) {
-            cell19.setCellValue(scopeSchema);
+            cell19.setCellValue(columnsVO.getScopeSchema());
         }
+    }
 
+    private void createCell5(final Row row, final ColumnsVO columnsVO) {
         final Cell cell20 = row.createCell(20);
         if (cell20 != null) {
-            cell20.setCellValue(scopeTable);
+            cell20.setCellValue(columnsVO.getScopeTable());
         }
 
         final Cell cell21 = row.createCell(21);
         if (cell21 != null) {
-            cell21.setCellValue(sourceDataType);
+            cell21.setCellValue(columnsVO.getSourceDataType());
         }
 
         final Cell cell22 = row.createCell(22);
         if (cell22 != null) {
-            cell22.setCellValue(isAutoincrement);
+            cell22.setCellValue(columnsVO.getSisAutoincrement());
         }
     }
 

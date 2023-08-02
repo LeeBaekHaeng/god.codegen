@@ -85,6 +85,8 @@ public class GodTestResultSetMetaDataGetColumns {
 
         final StringBuffer sb = new StringBuffer(1600);
         final StringBuffer sb2 = new StringBuffer(1600);
+        final StringBuffer sb3 = new StringBuffer(1600);
+        final StringBuffer sb4 = new StringBuffer(1600);
 
         for (int column = 1; column < columnCount; column++) {
             if (log.isDebugEnabled()) {
@@ -103,19 +105,33 @@ public class GodTestResultSetMetaDataGetColumns {
                 log.debug("columnTypeName={}", columnTypeName);
                 log.debug("");
 
+                sb3.append("    /**\n");
+                sb3.append("     * ");
+                sb3.append(columnLabel);
+                sb3.append("\n");
+                sb3.append("     */\n");
+
                 if (columnType == 4 || columnType == 5) {
                     sb.append("final int " + columnLabelCcName + " = rs.getInt(\"" + columnLabel + "\");\n");
+                    sb3.append("    private int " + columnLabelCcName + ";\n");
                 } else {
                     sb.append("final String " + columnLabelCcName + " = rs.getString(\"" + columnLabel + "\");\n");
+                    sb3.append("    private String " + columnLabelCcName + ";\n");
                 }
 
                 sb2.append("log.debug(\"" + columnLabel + "={}\", " + columnLabelCcName + ");\n");
+
+                sb3.append("\n");
+
+                sb4.append("." + columnLabelCcName + "(" + columnLabelCcName + ")");
             }
         }
 
         if (log.isDebugEnabled()) {
             log.debug(sb.toString());
             log.debug(sb2.toString());
+            log.debug(sb3.toString());
+            log.debug(sb4.toString());
         }
     }
 
