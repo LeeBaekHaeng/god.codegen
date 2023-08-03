@@ -11,6 +11,7 @@ import java.util.Arrays;
 import org.junit.Test;
 
 import egovframework.dev.imp.codegen.template.model.DataModelContext;
+import egovframework.dev.imp.codegen.template.model.Entity;
 import egovframework.dev.imp.codegen.template.model.GodEntity;
 import god.test.java.sql.GodTestJavaSql;
 import lombok.NoArgsConstructor;
@@ -96,7 +97,7 @@ public class GodTestGetTablesToDataModelContext {
             final String typeName = rs.getString("TYPE_NAME");
             final String selfReferencingColName = rs.getString("SELF_REFERENCING_COL_NAME");
 
-            GodEntity entity = new GodEntity(tableName);
+            Entity entity = new Entity(tableName);
             entity.setRemarks(remarks);
             model.setEntity(entity);
 
