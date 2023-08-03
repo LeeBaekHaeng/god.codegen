@@ -1,0 +1,38 @@
+{
+    "response": {
+        "service": {
+            "name": "address",
+            "version": "2.0",
+            "operation": "getaddress",
+            "time": "11(ms)"
+        },
+        "status": "OK",
+        "input": {
+            "point": {
+                "x": "127.3768023",
+                "y": "36.3597805"
+            },
+            "crs": "epsg:4326",
+            "type": "both"
+        },
+        "result": [
+            {
+                "zipcode": "",
+                "type": "parcel",
+                "text": "대전광역시 서구 월평동 1505",
+                "structure": {
+                    "level0": "대한민국",
+                    "level1": "대전광역시",
+                    "level2": "서구",
+                    "level3": "",
+                    "level4L": "월평동",
+                    "level4LC": "3017011300",
+                    "level4A": "",
+                    "level4AC": "",
+                    "level5": "1505도",
+                    "detail": ""
+                }
+            }
+        ]
+    }
+}

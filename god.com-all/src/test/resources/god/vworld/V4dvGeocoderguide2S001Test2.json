@@ -1,0 +1,16 @@
+{
+    "response": {
+        "service": {
+            "name": "address",
+            "version": "2.0",
+            "operation": "getaddress",
+            "time": "1(ms)"
+        },
+        "status": "ERROR",
+        "error": {
+            "level": "2",
+            "code": "INVALID_KEY",
+            "text": "등록되지 않은 인증키입니다."
+        }
+    }
+}
