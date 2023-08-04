@@ -149,8 +149,7 @@ public class GodInformationSchemaTablesTest {
 //            final long maxIndexLength = rs.getLong("MAX_INDEX_LENGTH");
 
             final Entity entity = new Entity(tableName);
-            entity.setRemarks(tableComment);
-            entity.setTableComment(tableComment);
+            setEntity(tableComment, entity);
             final DataModelContext model = new DataModelContext();
             model.setEntity(entity);
             models.add(model);
@@ -199,6 +198,11 @@ public class GodInformationSchemaTablesTest {
 
             i++;
         }
+    }
+
+    private void setEntity(final String tableComment, final Entity entity) {
+        entity.setRemarks(tableComment);
+        entity.setTableComment(tableComment);
     }
 
     private void debug(final Entity entity) {
