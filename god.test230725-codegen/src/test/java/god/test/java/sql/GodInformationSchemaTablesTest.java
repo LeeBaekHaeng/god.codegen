@@ -192,18 +192,28 @@ public class GodInformationSchemaTablesTest {
             if (log.isDebugEnabled()) {
                 log.debug("i={}", i);
                 log.debug("model={}", model);
-                log.debug("getEntity={}", model.getEntity());
-                log.debug("getName={}", model.getEntity().getName());
-                log.debug("getUcName={}", model.getEntity().getUcName());
-                log.debug("getLcName={}", model.getEntity().getLcName());
-                log.debug("getCcName={}", model.getEntity().getCcName());
-                log.debug("getPcName={}", model.getEntity().getPcName());
-
-                log.debug("getRemarks={}", model.getEntity().getRemarks());
-                log.debug("getTableComment={}", model.getEntity().getTableComment());
+                final Entity entity = model.getEntity();
+                debug(entity);
+                log.debug("");
             }
 
             i++;
+        }
+    }
+
+    private void debug(final Entity entity) {
+        if (log.isDebugEnabled()) {
+            log.debug("entity={}", entity);
+
+            log.debug("getName={}", entity.getName());
+            log.debug("getUcName={}", entity.getUcName());
+            log.debug("getLcName={}", entity.getLcName());
+            log.debug("getCcName={}", entity.getCcName());
+            log.debug("getPcName={}", entity.getPcName());
+
+            log.debug("getRemarks={}", entity.getRemarks());
+            
+            log.debug("getTableComment={}", entity.getTableComment());
         }
     }
 
