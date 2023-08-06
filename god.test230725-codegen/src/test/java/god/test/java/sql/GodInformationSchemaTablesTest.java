@@ -9,6 +9,7 @@ import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 
 import org.egovframe.rte.psl.dataaccess.util.CamelUtil;
 import org.junit.Test;
@@ -47,7 +48,28 @@ public class GodInformationSchemaTablesTest {
         final StringBuffer sb = new StringBuffer(1600);
 // @formatter:off
         sb.append("SELECT\n")
-          .append("    a.*\n")
+//          .append("    a.*\n")
+          .append("    a.table_catalog,\n")
+          .append("    a.table_schema,\n")
+          .append("    a.table_name,\n")
+          .append("    a.table_type,\n")
+          .append("    a.engine,\n")
+          .append("    a.version,\n")
+          .append("    a.row_format,\n")
+          .append("    a.table_rows,\n")
+          .append("    a.avg_row_length,\n")
+          .append("    a.data_length,\n")
+          .append("    a.max_data_length,\n")
+          .append("    a.index_length,\n")
+          .append("    a.data_free,\n")
+          .append("    a.auto_increment,\n")
+          .append("    a.create_time,\n")
+          .append("    a.update_time,\n")
+          .append("    a.check_time,\n")
+          .append("    a.table_collation,\n")
+          .append("    a.checksum,\n")
+          .append("    a.create_options,\n")
+          .append("    a.table_comment\n")
           .append("FROM information_schema.tables a\n")
           .append("WHERE 1 = 1\n")
           .append("    AND a.table_schema = ?\n")
@@ -85,39 +107,50 @@ public class GodInformationSchemaTablesTest {
 
         final StringBuffer sb = new StringBuffer(1600);
         final StringBuffer sb2 = new StringBuffer(1600);
+        final StringBuffer sb3 = new StringBuffer(1600);
 
         for (int column = 1; column < columnCount; column++) {
+            final String columnLabel = resultSetMetaData.getColumnLabel(column);
+//            final String columnLabel = resultSetMetaData.getColumnName(column);
+//            final String columnLabel = resultSetMetaData.getSchemaName(column);
+            final String columnLabelCcName = CamelUtil.convert2CamelCase(columnLabel);
+            final String columnLabelLcName = getColumnLabelLcName(columnLabel);
+
+            final int columnType = resultSetMetaData.getColumnType(column);
+            final String columnTypeName = resultSetMetaData.getColumnTypeName(column);
+
+            if (columnType == 4 || columnType == 5 || columnType == -5) {
+//                sb.append("final int " + columnLabelCcName + " = rs.getInt(\"" + columnLabel + "\");\n");
+                sb.append("final long " + columnLabelCcName + " = rs.getLong(\"" + columnLabel + "\");\n");
+            } else {
+                sb.append("final String " + columnLabelCcName + " = rs.getString(\"" + columnLabel + "\");\n");
+            }
+
+            sb2.append("log.debug(\"" + columnLabel + "={}\", " + columnLabelCcName + ");\n");
+
+            sb3.append("          .append(\"    a.");
+            sb3.append(columnLabelLcName);
+            sb3.append(",\\n\")\n");
+
             if (log.isDebugEnabled()) {
                 log.debug("column={}", column);
-
-                final String columnLabel = resultSetMetaData.getColumnLabel(column);
-//                final String columnLabel = resultSetMetaData.getColumnName(column);
-//                final String columnLabel = resultSetMetaData.getSchemaName(column);
-                final String columnLabelCcName = CamelUtil.convert2CamelCase(columnLabel);
-
-                final int columnType = resultSetMetaData.getColumnType(column);
-                final String columnTypeName = resultSetMetaData.getColumnTypeName(column);
 
                 log.debug("columnLabel={}", columnLabel);
                 log.debug("columnType={}", columnType);
                 log.debug("columnTypeName={}", columnTypeName);
                 log.debug("");
-
-                if (columnType == 4 || columnType == 5 || columnType == -5) {
-//                    sb.append("final int " + columnLabelCcName + " = rs.getInt(\"" + columnLabel + "\");\n");
-                    sb.append("final long " + columnLabelCcName + " = rs.getLong(\"" + columnLabel + "\");\n");
-                } else {
-                    sb.append("final String " + columnLabelCcName + " = rs.getString(\"" + columnLabel + "\");\n");
-                }
-
-                sb2.append("log.debug(\"" + columnLabel + "={}\", " + columnLabelCcName + ");\n");
             }
         }
 
         if (log.isDebugEnabled()) {
             log.debug(sb.toString());
             log.debug(sb2.toString());
+            log.debug(sb3.toString());
         }
+    }
+
+    private String getColumnLabelLcName(final String columnLabel) {
+        return columnLabel.toLowerCase(Locale.getDefault());
     }
 
     private void debug(final ResultSet rs) throws SQLException {
@@ -216,7 +249,7 @@ public class GodInformationSchemaTablesTest {
             log.debug("getPcName={}", entity.getPcName());
 
             log.debug("getRemarks={}", entity.getRemarks());
-            
+
             log.debug("getTableComment={}", entity.getTableComment());
         }
     }
