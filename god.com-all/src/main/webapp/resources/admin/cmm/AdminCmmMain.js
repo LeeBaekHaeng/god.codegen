@@ -1,8 +1,8 @@
 $(function() {
 
     fn_adminCmm_getCode();
-    fn_adminCmm_getCode2();
-    fn_adminCmm_getCode3();
+    /*fn_adminCmm_getCode2();
+    fn_adminCmm_getCode3();*/
 
 });
 
@@ -25,12 +25,17 @@ function fn_adminCmm_getCode() {
             console.log('jqXHR', jqXHR);
 
             $('#test').html(JSON.stringify(data));
+
+            alert('요청처리가 성공적으로 수행되었습니다.');
         }).fail(function(jqXHR, textStatus, errorThrown) {
             console.log('jqXHR', jqXHR);
             console.log('textStatus', textStatus);
             console.log('errorThrown', errorThrown);
 
             $('#test').html(textStatus);
+
+            //alert('에러가 발생했습니다!');
+            alert('요청처리를 실패하였습니다.');
         }).always(function(data, textStatus, jqXHR) {
             console.log('always complete');
             console.log('data', data);

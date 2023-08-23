@@ -16,6 +16,8 @@ function fn_comCmm_ajax(settings) {
             console.log('jqXHR', jqXHR);
             console.log('textStatus', textStatus);
             console.log('errorThrown', errorThrown);
+            alert('에러가 발생했습니다!');
+            //alert('요청처리를 실패하였습니다.');
         }).always(function(data, textStatus, jqXHR) {
             console.log('always complete');
             console.log('data', data);
