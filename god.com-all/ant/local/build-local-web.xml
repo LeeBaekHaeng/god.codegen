@@ -47,8 +47,10 @@
         <gzip destfile="${dist}/web-${TSTAMP}.tar.gz" src="${dist}/web-${TSTAMP}.tar" />-->
         <!--<tar destfile="${dist}/web-${TODAY}.tar" basedir="${build}" />
         <gzip destfile="${dist}/web-${TODAY}.tar.gz" src="${dist}/web-${TODAY}.tar" />-->
-        <tar destfile="${dist}/web-${TODAY_KR}.tar" basedir="${build}" />
-        <gzip destfile="${dist}/web-${TODAY_KR}.tar.gz" src="${dist}/web-${TODAY_KR}.tar" />
+        <!--<tar destfile="${dist}/web-${TODAY_KR}.tar" basedir="${build}" />
+        <gzip destfile="${dist}/web-${TODAY_KR}.tar.gz" src="${dist}/web-${TODAY_KR}.tar" />-->
+        <tar destfile="${dist}/com-web.tar" basedir="${build}" />
+        <gzip destfile="${dist}/com-web.tar.gz" src="${dist}/com-web.tar" />
     </target>
 
     <target name="clean" description="clean up">
