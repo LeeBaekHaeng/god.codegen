@@ -33,6 +33,19 @@ public class GodTestJavaSql {
     }
 
     /**
+     * postgres 연결하기
+     * 
+     * @throws SQLException
+     */
+    public Connection getConnectionPostgres() throws SQLException {
+        String url = "jdbc:postgresql://127.0.0.1:5432/com";
+        final String user = "com";
+        final String password = "com01";
+
+        return DriverManager.getConnection(url, user, password);
+    }
+
+    /**
      * Connection, DatabaseMetaData debug
      * 
      * @param con
