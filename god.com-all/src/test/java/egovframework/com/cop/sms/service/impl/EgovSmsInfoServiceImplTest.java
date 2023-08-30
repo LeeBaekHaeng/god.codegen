@@ -12,7 +12,6 @@ import org.springframework.context.annotation.ComponentScan.Filter;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.FilterType;
 import org.springframework.context.annotation.ImportResource;
-import org.springframework.test.annotation.Commit;
 import org.springframework.test.context.ContextConfiguration;
 
 import egovframework.com.cmm.LoginVO;
@@ -84,7 +83,7 @@ public class EgovSmsInfoServiceImplTest extends EgovTestAbstractDAO {
      * 문자메시지를 전송(등록)한다.
      */
     @Test
-    @Commit
+//    @Commit
     public void insertSmsInf() {
         // given
         final Sms sms = new Sms();
