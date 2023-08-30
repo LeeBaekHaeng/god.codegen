@@ -13,7 +13,8 @@ import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
-import lombok.NoArgsConstructor;
+import egovframework.com.god.util.GetAddressVO.Response;
+import lombok.experimental.UtilityClass;
 import lombok.extern.slf4j.Slf4j;
 
 /**
@@ -22,8 +23,9 @@ import lombok.extern.slf4j.Slf4j;
  * @author 이백행
  * @since 2023-08-30
  */
-@NoArgsConstructor
+//@NoArgsConstructor
 @Slf4j
+@UtilityClass
 public class VworldUtils {
 
     /**
@@ -68,6 +70,8 @@ public class VworldUtils {
      * @param point
      */
     public static GetAddressVO getAddress(final String point, final String type) {
+        GetAddressVO getAddressVO;
+
 //        final String apikey = "[인증키]";
         final String apikey = "B39D552C-5843-33E4-B394-906CC9F51C75";
 //        final String searchType = "road";
@@ -93,15 +97,24 @@ public class VworldUtils {
 
         final String spec = sb.toString();
 
-        URL url = null;
+        URL url;
         try {
             url = new URL(spec);
         } catch (MalformedURLException e) {
 //            e.printStackTrace();
             log.error("MalformedURLException URL");
+
+            getAddressVO = new GetAddressVO();
+            final Response response = new Response();
+            response.setStatus(GET_ADDRESS_STATUS_ERROR);
+            final egovframework.com.god.util.GetAddressVO.Error error = new egovframework.com.god.util.GetAddressVO.Error();
+            error.setText(e.getMessage());
+            response.setError(error);
+            getAddressVO.setResponse(response);
+            return getAddressVO;
         }
 
-        String s = null;
+        String s;
 
         URLConnection urlConnection;
         try {
@@ -115,9 +128,17 @@ public class VworldUtils {
         } catch (IOException e) {
 //            e.printStackTrace();
             log.error("IOException openConnection getInputStream toString");
+
+            getAddressVO = new GetAddressVO();
+            final Response response = new Response();
+            response.setStatus(GET_ADDRESS_STATUS_ERROR);
+            final egovframework.com.god.util.GetAddressVO.Error error = new egovframework.com.god.util.GetAddressVO.Error();
+            error.setText(e.getMessage());
+            response.setError(error);
+            getAddressVO.setResponse(response);
+            return getAddressVO;
         }
 
-        GetAddressVO getAddressVO = null;
         final ObjectMapper mapper = new ObjectMapper();
 //        final XmlMapper mapper = new XmlMapper();
 //        final ObjectMapper mapper = new XmlMapper();
@@ -127,9 +148,27 @@ public class VworldUtils {
         } catch (JsonMappingException e) {
 //            e.printStackTrace();
             log.error("JsonMappingException readValue");
+
+            getAddressVO = new GetAddressVO();
+            final Response response = new Response();
+            response.setStatus(GET_ADDRESS_STATUS_ERROR);
+            final egovframework.com.god.util.GetAddressVO.Error error = new egovframework.com.god.util.GetAddressVO.Error();
+            error.setText(e.getMessage());
+            response.setError(error);
+            getAddressVO.setResponse(response);
+            return getAddressVO;
         } catch (JsonProcessingException e) {
 //            e.printStackTrace();
             log.error("JsonProcessingException readValue");
+
+            getAddressVO = new GetAddressVO();
+            final Response response = new Response();
+            response.setStatus(GET_ADDRESS_STATUS_ERROR);
+            final egovframework.com.god.util.GetAddressVO.Error error = new egovframework.com.god.util.GetAddressVO.Error();
+            error.setText(e.getMessage());
+            response.setError(error);
+            getAddressVO.setResponse(response);
+            return getAddressVO;
         }
 
         return getAddressVO;

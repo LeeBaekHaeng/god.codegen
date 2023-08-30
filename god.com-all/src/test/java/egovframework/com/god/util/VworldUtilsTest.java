@@ -37,19 +37,24 @@ public class VworldUtilsTest {
                 log.debug("getStatus={}", getAddressVO.getResponse().getStatus());
                 log.debug("getText={}", getAddressVO.getResponse().getResult().get(0).getText());
             }
+
+            assertEquals("에러가 발생했습니다!", VworldUtils.GET_ADDRESS_STATUS_OK, getAddressVO.getResponse().getStatus());
         } else if (VworldUtils.GET_ADDRESS_STATUS_NOT_FOUND.equals(getAddressVO.getResponse().getStatus())) {
             if (log.isDebugEnabled()) {
                 log.debug("getStatus={}", getAddressVO.getResponse().getStatus());
             }
+
+            assertEquals("에러가 발생했습니다!", VworldUtils.GET_ADDRESS_STATUS_NOT_FOUND,
+                    getAddressVO.getResponse().getStatus());
         } else if (VworldUtils.GET_ADDRESS_STATUS_ERROR.equals(getAddressVO.getResponse().getStatus())
                 && log.isDebugEnabled()) {
             log.debug("getStatus={}", getAddressVO.getResponse().getStatus());
             log.debug("getLevel={}", getAddressVO.getResponse().getError().getLevel());
             log.debug("getCode={}", getAddressVO.getResponse().getError().getCode());
             log.debug("getText={}", getAddressVO.getResponse().getError().getText());
-        }
 
-        assertEquals("에러가 발생했습니다!", VworldUtils.GET_ADDRESS_STATUS_ERROR, getAddressVO.getResponse().getStatus());
+            assertEquals("에러가 발생했습니다!", VworldUtils.GET_ADDRESS_STATUS_ERROR, getAddressVO.getResponse().getStatus());
+        }
     }
 
 }
