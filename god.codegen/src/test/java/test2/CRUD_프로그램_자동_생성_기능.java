@@ -171,7 +171,8 @@ public class CRUD_프로그램_자동_생성_기능 {
     }
 
     private void sql(final DataModelContext dataModel) {
-        final String templateFile = eGovFrameTemplates + "resource/pkg/sql.vm";
+//        final String templateFile = eGovFrameTemplates + "resource/pkg/sql.vm";
+        final String templateFile = eGovFrameTemplates + "resource/pkg/sql2.vm";
         final String pathname = "/test/" + dataModel.getEntity().getName() + "/" + dataModel.getEntity().getName() + " "
                 + dataModel.getEntity().getRemarks() + ".sql";
         writeStringToFile(dataModel, templateFile, pathname);
