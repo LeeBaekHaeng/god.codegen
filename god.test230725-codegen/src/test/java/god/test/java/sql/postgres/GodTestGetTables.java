@@ -44,6 +44,7 @@ public class GodTestGetTables {
         try (Connection con = DriverManager.getConnection("jdbc:postgresql://127.0.0.1:5432/com", "com", "com01")) {
             final DatabaseMetaData dmd = con.getMetaData();
             try (ResultSet rs = dmd.getTables(null, "public", null, new String[] { "TABLE", "VIEW" })) {
+                ResultSetMetaDataUtils.debug(rs.getMetaData());
                 int i = 1;
                 while (rs.next()) {
                     final String tableSchem = rs.getString("TABLE_SCHEM");

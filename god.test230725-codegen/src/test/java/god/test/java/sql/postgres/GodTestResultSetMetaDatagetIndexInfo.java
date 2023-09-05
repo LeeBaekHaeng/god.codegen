@@ -19,7 +19,7 @@ import lombok.extern.slf4j.Slf4j;
  * GodTestResultSetMetaDatagetIndexInfo
  * 
  * @author 이백행
- * @since 2023-09-25
+ * @since 2023-09-05
  */
 @NoArgsConstructor
 @Slf4j
