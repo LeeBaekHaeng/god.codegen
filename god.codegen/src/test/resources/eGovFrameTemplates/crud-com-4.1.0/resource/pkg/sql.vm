@@ -1,0 +1,152 @@
+##
+#set($voPackage="${voPackage}")
+#set($voClassName="${model.entity.pcName}VO")
+#set($defaultVoClassName="${model.entity.pcName}DefaultVO")
+#set($searchVOAlias="${model.entity.ccName}SerarchVO")
+#set($mapperPackage="${mapperPackage}")
+#set($mapperClassName="${model.entity.pcName}Mapper")
+#set($mapperName="${model.entity.ccName}Mapper")
+#set($mapperInstanceName="${model.entity.ccName}Mapper")
+##
+##
+#set($vender="$model.vender")
+#set($namespace="${mapperPackage}.${mapperClassName}")
+#set($resultMapId="resultMap${model.entity.pcName}")
+#set($resultMapClass="${voPackage}.${voClassName}")
+##
+##
+#set($insertQueryId="insert${model.entity.pcName}")
+#set($updateQueryId="update${model.entity.pcName}")
+#set($deleteQueryId="delete${model.entity.pcName}")
+#set($selectQueryId="select${model.entity.pcName}")
+#set($selectListQueryId="select${model.entity.pcName}List")
+#set($selectListTotCntQueryId="select${model.entity.pcName}ListTotCnt")
+##
+##
+## ##################################################################################################
+/* ${model.author} ${model.entity.name} 등록 */
+INSERT INTO
+##    ${model.entity.name}
+    ${model.entity.tableName} /* ${model.entity.remarks} */
+(
+#set($i=0)
+#foreach($attribute in $model.attributes)
+#if($i == 0)
+    ${attribute.name}, /* ${attribute.remarks} */
+#elseif($i == $model.attributes.size() - 1)
+    ${attribute.name} /* ${attribute.remarks} */
+#else
+    ${attribute.name}, /* ${attribute.remarks} */
+#end
+#set($i=$i+1)
+#end
+) VALUES (
+##
+#set($i=0)
+#foreach($attribute in $model.attributes)
+#if($i == 0)
+    null, /* ${attribute.remarks} */
+#elseif($i == $model.attributes.size() - 1)
+    null /* ${attribute.remarks} */
+#else
+    null, /* ${attribute.remarks} */
+#end
+#set($i=$i+1)
+#end
+)
+;
+
+## ##################################################################################################
+/* ${model.author} ${model.entity.name} 수정 */
+UPDATE
+##    ${model.entity.name}
+    ${model.entity.tableName} /* ${model.entity.remarks} */
+SET
+#set($i=0)
+#foreach($attribute in $model.attributes)
+#if($i == 0)
+    ${attribute.name} = null, /* ${attribute.remarks} */
+#elseif($i == $model.attributes.size() - 1)
+    ${attribute.name} = null /* ${attribute.remarks} */
+#else
+    ${attribute.name} = null, /* ${attribute.remarks} */
+#end
+#set($i=$i+1)
+#end
+##
+#if(!${model.primaryKeys} == [])
+WHERE
+    ${model.attributes.get(0).name} = #{${model.attributes.get(0).ccName}}
+#else
+#set($i=0)
+#foreach($attribute in $model.primaryKeys)
+#if($i == 0)
+WHERE
+    ${attribute.name} = null /* ${attribute.remarks} */
+#else
+    AND ${attribute.name} = null /* ${attribute.remarks} */
+#end
+#set($i=$i+1)
+#end
+#end
+;
+
+## ##################################################################################################
+/* ${model.author} ${model.entity.name} 삭제 */
+DELETE FROM
+##    ${model.entity.name}
+    ${model.entity.tableName} /* ${model.entity.remarks} */
+#if(!${model.primaryKeys} == [])
+WHERE
+    ${model.attributes.get(0).name} = #{${model.attributes.get(0).ccName}}
+#else
+#set($i=0)
+#foreach($attribute in $model.primaryKeys)
+#if($i == 0)
+WHERE
+    ${attribute.name} = null /* ${attribute.remarks} */
+#else
+    AND ${attribute.name} = null /* ${attribute.remarks} */
+#end
+#set($i=$i+1)
+#end
+#end
+;
+
+## ##################################################################################################
+/* ${model.author} ${model.entity.name} 조회(단건) */
+SELECT
+#set($i=0)
+#foreach($attribute in $model.attributes)
+#if($i == 0)
+    ${attribute.name}, /* ${attribute.remarks} */
+#elseif($i == $model.attributes.size() - 1)
+    ${attribute.name} /* ${attribute.remarks} */
+#else
+    ${attribute.name}, /* ${attribute.remarks} */
+#end
+#set($i=$i+1)
+#end
+FROM
+##    ${model.entity.name}
+    ${model.entity.tableName} /* ${model.entity.remarks} */
+#if(!${model.primaryKeys} == [])
+WHERE
+    ${model.attributes.get(0).name} = #{${model.attributes.get(0).ccName}}
+#else
+#set($i=0)
+#foreach($attribute in $model.primaryKeys)
+#if($i == 0)
+WHERE 1 = 1
+    AND ${attribute.name} = null /* ${attribute.remarks} */
+#else
+    AND ${attribute.name} = null /* ${attribute.remarks} */
+#end
+#set($i=$i+1)
+#end
+#end
+--
+#foreach($attribute in $model.attributes)
+    AND ${attribute.name} = null /* ${attribute.remarks} */
+#end
+;
