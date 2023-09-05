@@ -17,25 +17,26 @@ package egovframework.dev.imp.codegen.template.model;
 
 /**
  * 
- * 어트리뷰트 정보 클래스 
- * <p><b>NOTE:</b> 어트리뷰트(데이터베이스 특정 테이블의 컬럼) 정보를 담기위한 모델 클래스 
+ * 어트리뷰트 정보 클래스
+ * <p>
+ * <b>NOTE:</b> 어트리뷰트(데이터베이스 특정 테이블의 컬럼) 정보를 담기위한 모델 클래스
  * 
  * @author 개발환경 개발팀 이흥주
  * @since 2009.08.03
  * @version 1.0
  * @see
  *
- * <pre>
+ *      <pre>
  *  == 개정이력(Modification Information) ==
  *   
  *   수정일      수정자           수정내용
  *  -------    --------    ---------------------------
  *   2009.08.03  이흥주          최초 생성
  *
- * </pre>
+ *      </pre>
  */
 public class Attribute extends DbModelElement {
-    
+
     /**
      * 
      * 생성자
@@ -48,31 +49,36 @@ public class Attribute extends DbModelElement {
 
     /** 데이터 타입 */
     private String type;
-    
+
     /** 자바 타입 */
     private String javaType;
-    
+
     /** 프라이머리 키 여부 */
     private boolean isPrimaryKey;
 
+    private String remarks;
+
     /**
      * 필수 키 여부 가져오기
+     * 
      * @return
      */
     public boolean getIsPrimaryKey() {
         return isPrimaryKey;
     }
-    
+
     /**
      * 필수 키 여부 가져오기
+     * 
      * @return
      */
     public boolean isPrimaryKey() {
         return isPrimaryKey;
-    }    
+    }
 
     /**
      * 필수키 여부 세팅하기
+     * 
      * @param isPrimaryKey
      */
     public void setPrimaryKey(boolean isPrimaryKey) {
@@ -81,6 +87,7 @@ public class Attribute extends DbModelElement {
 
     /**
      * 자바 타입 가져오기
+     * 
      * @return
      */
     public String getJavaType() {
@@ -89,6 +96,7 @@ public class Attribute extends DbModelElement {
 
     /**
      * 자바 타입 세팅하기
+     * 
      * @param javaType
      */
     public void setJavaType(String javaType) {
@@ -97,6 +105,7 @@ public class Attribute extends DbModelElement {
 
     /**
      * 타입 가져오기
+     * 
      * @return
      */
     public String getType() {
@@ -105,9 +114,19 @@ public class Attribute extends DbModelElement {
 
     /**
      * 타입 세팅하기
+     * 
      * @param type
      */
     public void setType(String type) {
         this.type = type;
     }
+
+    public String getRemarks() {
+        return remarks;
+    }
+
+    public void setRemarks(String remarks) {
+        this.remarks = remarks;
+    }
+
 }

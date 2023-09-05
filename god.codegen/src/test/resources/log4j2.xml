@@ -27,6 +27,10 @@
             <AppenderRef ref="console" />
         </Logger>
 
+        <Logger name="test2" level="DEBUG" additivity="false">
+            <AppenderRef ref="console" />
+        </Logger>
+
         <Root level="INFO">
             <AppenderRef ref="console" />
         </Root>
