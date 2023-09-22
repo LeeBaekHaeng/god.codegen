@@ -202,3 +202,16 @@ Option 1: configure Driver class name and JDBC URL
 
 You can either configure your DataSource to use the log4jdbc-log4j2 driver (net.sf.log4jdbc.sql.jdbcapi.DriverSpy), and to use the modified JDBC URL (prepending jdbc:log4 to the normal JDBC URL).
 - log4jdbc-log4j2 드라이버(net.sf.log4jdbc.sql.jdbcapi.DriverSpy)를 사용하고 수정된 JDBC URL(일반 JDBC URL 앞에 jdbc:log4 추가)을 사용하도록 DataSource를 구성할 수 있습니다.
+
+## 배치
+
+- eGovFrame Boot Batch Template Project
+
+```
+god.test-batch-file-scheduler
+god.test-batch-file-cli
+god.test-batch-file-web
+god.test-batch-db-scheduler
+god.test-batch-db-cli
+god.test-batch-db-web
+```
