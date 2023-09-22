@@ -215,3 +215,23 @@ god.test-batch-db-scheduler
 god.test-batch-db-cli
 god.test-batch-db-web
 ```
+
+groupId, artifactId, name
+```
+egov.batch.sam-scheduler
+egov.batch.sam-commandline
+egov.batch.sam-web
+egov.batch.db-scheduler
+egov.batch.db-commandline
+egov.batch.db-web
+```
+
+finalName
+```
+egovframework.example.bat.template.sam.scheduler
+egovframework.example.bat.template.sam.commandline
+egovframework.example.bat.template.sam.web
+egovframework.example.bat.template.db.scheduler
+egovframework.example.bat.template.db.commandline
+egovframework.example.bat.template.db.web-webapp
+```
