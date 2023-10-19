@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:p="http://www.springframework.org/schema/p"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.0.xsd
+			http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.0.xsd
+			http://www.springframework.org/schema/batch http://www.springframework.org/schema/batch/spring-batch-3.0.xsd">
+
+	<import resource="classpath:/egovframework/batch/context-batch-datasource.xml" />
+	<import resource="classpath:/egovframework/batch/context-batch-mapper.xml" />
+
+	<bean id="eGovBatchRunner" class="org.egovframe.rte.bat.core.launch.support.EgovBatchRunner">
+		<constructor-arg ref="jobOperator" />
+		<constructor-arg ref="jobExplorer" />
+		<constructor-arg ref="jobRepository" />
+	</bean>
+	
+	<bean id="jobLauncher" class="org.springframework.batch.core.launch.support.SimpleJobLauncher">
+		<property name="jobRepository" ref="jobRepository" />
+	</bean>
+
+	<bean class="org.springframework.batch.core.configuration.support.JobRegistryBeanPostProcessor">
+		<property name="jobRegistry" ref="jobRegistry" />
+	</bean>
+
+	<bean id="jobRepository" class="org.springframework.batch.core.repository.support.JobRepositoryFactoryBean"
+		p:dataSource-ref="dataSource" p:transactionManager-ref="transactionManager"
+		p:lobHandler-ref="lobHandler" />
+ 
+	 <!-- tibero 사용시 주석해제-->
+	 <!-- 
+	<bean id="jobRepository" class="org.springframework.batch.core.repository.support.JobRepositoryFactoryBean"
+		p:dataSource-ref="dataSource" p:transactionManager-ref="transactionManager"
+		p:lobHandler-ref="lobHandler" p:databaseType="oracle" />
+	 -->
+	<!-- altibase/oracle 사용시 주석해제-->
+	<!-- 
+	<bean id="jobRepository" class="org.springframework.batch.core.repository.support.JobRepositoryFactoryBean"
+		p:dataSource-ref="dataSource" p:transactionManager-ref="transactionManager"
+		p:lobHandler-ref="lobHandler" p:isolationLevelForCreate="ISOLATION_DEFAULT"/>
+	-->
+	
+	<!-- cubrid 사용시 주석해제 -->
+	<!-- 
+	<bean id="jobRepository"
+		class="org.springframework.batch.core.repository.support.JobRepositoryFactoryBean"
+		p:dataSource-ref="dataSource" p:transactionManager-ref="transactionManager" p:lobHandler-ref="lobHandler"
+		p:incrementerFactory-ref="cubridDatabaseTypeFactory" p:databaseType="oracle" />
+ 
+	<bean id="cubridDatabaseTypeFactory" class="egovframework.example.bat.jdbc.cubrid.incrementer.CubridDataFieldMaxValueIncrementerFactory">
+		<constructor-arg index="0" ref="dataSource"/>
+	</bean> 
+	 -->
+
+	<bean id="jobOperator" class="org.springframework.batch.core.launch.support.SimpleJobOperator"
+		p:jobLauncher-ref="jobLauncher" p:jobExplorer-ref="jobExplorer"
+		p:jobRepository-ref="jobRepository" p:jobRegistry-ref="jobRegistry" />
+
+	<bean id="jobExplorer" class="org.springframework.batch.core.explore.support.JobExplorerFactoryBean"
+		p:dataSource-ref="dataSource" />
+
+	<bean id="jobRegistry" class="org.springframework.batch.core.configuration.support.MapJobRegistry" />
+
+	<bean id="jdbcTemplate" class="org.springframework.jdbc.core.JdbcTemplate">
+		<property name="dataSource" ref="dataSource" />
+	</bean>
+	
+</beans>

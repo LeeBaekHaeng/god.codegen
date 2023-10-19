@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.0.xsd
+		http://www.springframework.org/schema/batch http://www.springframework.org/schema/batch/spring-batch-3.0.xsd">
+		
+	<import resource="abstract/eGovBase.xml" />
+
+	<job id="mybatisToFixedLengthJob" parent="eGovBaseJob" xmlns="http://www.springframework.org/schema/batch">
+		<step id="mybatisToFixedLengthStep" parent="eGovBaseStep">
+			<tasklet>
+				<chunk reader="mybatisToFixedLengthJob.mybatisToFixedLengthStep.mybatisItemReader"
+					processor="mybatisToFixedLengthJob.mybatisToFixedLengthStep.itemProcessor"
+					writer="mybatisToFixedLengthJob.mybatisToFixedLengthStep.formatItemWriter"
+					commit-interval="2" />
+			</tasklet>
+		</step>
+	</job>
+
+	<!-- <bean id="ibatisToFixedLengthJob.ibatisToFixedLengthStep.ibatisItemReader" class="org.springframework.batch.item.database.IbatisPagingItemReader">
+		<property name="queryId" value="getAllCustomerCredits" />
+		<property name="sqlMapClient" ref="sqlMapClient" />
+		<property name="dataSource" ref="dataSource" />
+	</bean> -->
+	<bean id="mybatisToFixedLengthJob.mybatisToFixedLengthStep.mybatisItemReader" class="org.egovframe.rte.bat.core.item.database.EgovMyBatisPagingItemReader" scope="step">
+		<property name="sqlSessionFactory" ref="egov.sqlSession" />
+		<property name="queryId" value="Customer.getAllCustomerCredits" />
+		<property name="pageSize" value="#{100}" />
+	</bean>
+	
+	<bean id="mybatisToFixedLengthJob.mybatisToFixedLengthStep.formatItemWriter" class="org.springframework.batch.item.file.FlatFileItemWriter" scope="step">
+		<property name="resource" value="#{jobParameters[outputFile]}" />
+		<property name="lineAggregator">
+			<bean class="org.egovframe.rte.bat.core.item.file.transform.EgovFixedLengthLineAggregator">
+				<property name="fieldExtractor">
+					<bean class="org.egovframe.rte.bat.core.item.file.transform.EgovFieldExtractor">
+						<property name="names" value="name,credit" />
+					</bean>
+				</property>
+				<property name="fieldRanges" value="9,9" />
+			</bean>
+		</property>
+	</bean>
+
+	<bean id="mybatisToFixedLengthJob.mybatisToFixedLengthStep.itemProcessor" class="egovframework.example.bat.domain.trade.CustomerCreditIncreaseProcessor" />
+
+</beans>

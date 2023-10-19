@@ -29,3 +29,5 @@ target/
 #.classpath
 #.project
 .pmd
+egov.batch.db-web/.classpath
+egov.batch.db-web/.project

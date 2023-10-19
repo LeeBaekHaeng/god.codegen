@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.0.xsd
+		http://www.springframework.org/schema/batch http://www.springframework.org/schema/batch/spring-batch-3.0.xsd">
+		
+	<import resource="abstract/eGovBase.xml" />
+
+	<job id="jdbcToJdbcJob" parent="eGovBaseJob" xmlns="http://www.springframework.org/schema/batch">
+		<step id="jdbcToJdbcStep" parent="eGovBaseStep">
+			<tasklet>
+				<chunk reader="jdbcToJdbcJob.jdbcToJdbcStep.jdbcItemReader"
+					processor="jdbcToJdbcJob.jdbcToJdbcStep.itemProcessor"
+                    writer="jdbcToJdbcJob.jdbcToJdbcStep.ibatisItemWriter"
+					commit-interval="2" />
+			</tasklet>
+		</step>
+	</job>
+
+	<bean id="jdbcToJdbcJob.jdbcToJdbcStep.jdbcItemReader" class="org.springframework.batch.item.database.JdbcCursorItemReader" scope="step">
+		<property name="dataSource" ref="dataSource" />
+		<property name="sql" value="select ID, NAME, CREDIT from CUSTOMER" />
+		<property name="verifyCursorPosition" value="true" />
+		<property name="rowMapper">
+			<bean class="egovframework.example.bat.domain.trade.CustomerCreditRowMapper" />
+		</property>
+	</bean>
+
+	<bean id="jdbcToJdbcJob.jdbcToJdbcStep.ibatisItemWriter" class="org.egovframe.rte.bat.core.item.database.EgovJdbcBatchItemWriter">
+		<property name="assertUpdates" value="true" />
+		<property name="itemPreparedStatementSetter">
+			<bean class="org.egovframe.rte.bat.core.item.database.support.EgovMethodMapItemPreparedStatementSetter" />
+		</property>
+		<property name="sql" value="UPDATE CUSTOMER set credit =? where name =?" />
+		<property name="params" value="credit,name" />
+		<property name="dataSource" ref="dataSource" />
+	</bean>
+
+	<bean id="jdbcToJdbcJob.jdbcToJdbcStep.itemProcessor" class="egovframework.example.bat.domain.trade.CustomerCreditIncreaseProcessor" />
+</beans>

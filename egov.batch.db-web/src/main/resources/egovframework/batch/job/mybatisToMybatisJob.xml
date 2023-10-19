@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.0.xsd
+		http://www.springframework.org/schema/batch http://www.springframework.org/schema/batch/spring-batch-3.0.xsd">
+		
+	<import resource="abstract/eGovBase.xml" />
+
+	<job id="mybatisToMybatisJob" parent="eGovBaseJob" xmlns="http://www.springframework.org/schema/batch">
+		<step id="mybatisToMybatisStep" parent="eGovBaseStep">
+			<tasklet>
+				<chunk reader="mybatisToIbatisJob.mybatisToIbatisStep.mybatisItemReader"
+                    processor="mybatisToIbatisJob.mybatisToIbatisStep.itemProcessor"
+					writer="mybatisToIbatisJob.mybatisToIbatisStep.mybatisItemWriter"
+                    commit-interval="2" />
+			</tasklet>
+		</step>
+	</job>
+	<!-- <bean id="ibatisToIbatisJob.ibatisToIbatisStep.ibatisItemReader" class="org.springframework.batch.item.database.IbatisPagingItemReader">
+		<property name="queryId" value="getAllCustomerCredits" />
+		<property name="sqlMapClient" ref="sqlMapClient" />
+		<property name="dataSource" ref="dataSource" />
+	</bean> -->
+	<bean id="mybatisToIbatisJob.mybatisToIbatisStep.mybatisItemReader" class="org.egovframe.rte.bat.core.item.database.EgovMyBatisPagingItemReader" scope="step">
+		<property name="sqlSessionFactory" ref="egov.sqlSession" />
+		<property name="queryId" value="Customer.getAllCustomerCredits" />
+		<property name="pageSize" value="#{100}" />
+	</bean>
+
+	<!-- <bean id="ibatisToIbatisJob.ibatisToIbatisStep.ibatisItemWriter" class="org.springframework.batch.item.database.IbatisBatchItemWriter">
+		<property name="statementId" value="updateCredit" />
+		<property name="sqlMapClient" ref="sqlMapClient" />
+		<property name="dataSource" ref="dataSource" />
+	</bean> -->
+	<bean id="mybatisToIbatisJob.mybatisToIbatisStep.mybatisItemWriter" class="org.egovframe.rte.bat.core.item.database.EgovMyBatisBatchItemWriter">
+		<property name="sqlSessionFactory" ref="egov.sqlSession" />
+		<property name="statementId" value="Customer.updateCredit" />
+	</bean>
+
+	<bean id="mybatisToIbatisJob.mybatisToIbatisStep.itemProcessor" class="egovframework.example.bat.domain.trade.CustomerCreditIncreaseProcessor" />
+
+</beans>

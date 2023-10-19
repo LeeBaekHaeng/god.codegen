@@ -1,0 +1,29 @@
+
+# Server port settings
+server:
+  port: 9300
+
+spring:
+  application:
+    name: templateBatchSAMWeb
+  mvc:
+    view:
+      prefix: /WEB-INF/jsp/egovframework/example/
+      suffix: .jsp
+
+# Overwrite the bins created from the Spring Framework 5.* - When you try to register bins with the same name - BeanDefinitionOverrideException occurs, setting that eliminates this.
+  main:
+    allow-bean-definition-overriding: true
+
+  batch:
+    job:
+      enabled: false
+
+#eureka:
+#  client:
+#    serviceUrl:
+#      defaultZone: http://localhost:8761/eureka/
+#  instance:
+#    prefer-ip-address: true
+
+

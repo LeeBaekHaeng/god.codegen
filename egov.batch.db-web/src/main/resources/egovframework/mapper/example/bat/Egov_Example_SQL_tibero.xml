@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="Customer">
+
+  <resultMap id="result" type="egovframework.example.bat.domain.trade.CustomerCredit">
+    <result property="name" column="NAME" />
+    <result property="credit" column="CREDIT" />
+  </resultMap>
+
+  <select id="getAllCustomerCreditIds" resultType="int">
+    select ID from CUSTOMER
+  </select>
+
+  <select id="getAllCustomerCredits" resultMap="result">
+ 	select ID, NAME, CREDIT from CUSTOMER 
+  </select>
+  
+  <select id="getCustomerCreditById" parameterType="int" resultMap="result">
+  	select NAME, CREDIT from CUSTOMER where ID = #{value}
+  </select>
+  
+  <update id="updateCredit" parameterType="egovframework.example.bat.domain.trade.CustomerCredit" >
+  	update CUSTOMER set CREDIT = #{credit} where NAME = #{name}
+  </update>
+
+</mapper>
