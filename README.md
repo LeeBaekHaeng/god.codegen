@@ -235,3 +235,29 @@ egovframework.example.bat.template.db.scheduler
 egovframework.example.bat.template.db.commandline
 egovframework.example.bat.template.db.web-webapp
 ```
+
+egov.batch.db-web 임포트
+- Import
+  - Maven
+    - Existing Maven Projects
+
+egov.batch.db-web 실행
+- Boot Dashboard
+  - local
+    - egov.batch.db-web
+
+egov.batch.db-web URL
+- 포트: Tomcat started on port(s): 9300 (http) with context path ''
+- URL: http://localhost:9300/
+
+@Repository("hsqlManager") 주석
+- /egov.batch.db-web/src/main/java/egovframework/example/bat/database/SpringContainerHsqlManager.java
+```java
+//@Repository("hsqlManager")
+```
+
+context:component-scan god 추가
+- /egov.batch.db-web/src/main/resources/egovframework/batch/context-servlet.xml
+```xml
+<context:component-scan base-package="egovframework,god">
+```
