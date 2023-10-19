@@ -12,7 +12,7 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
 
-@Repository("hsqlManager")
+//@Repository("hsqlManager")
 public class SpringContainerHsqlManager {
 
 	private static final Logger LOGGER = LoggerFactory.getLogger(SpringContainerHsqlManager.class);
