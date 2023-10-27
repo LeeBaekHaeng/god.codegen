@@ -7,6 +7,8 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.Import;
 import org.springframework.context.annotation.ImportResource;
 
+import god.api.cmm.service.ApiGlobals;
+
 /**
  * @author 배치실행개발팀
  * @since 2021. 11.25
@@ -36,6 +38,7 @@ public class EgovBootApplication {
                 .headless(false)
                 .bannerMode(Banner.Mode.CONSOLE)
                 .run(args);
+		ApiGlobals.createApiGlobals(context.getEnvironment());
 		/*
 		SpringApplication springApplication = new SpringApplication(EgovBootApplication.class);
 		springApplication.setBannerMode(Banner.Mode.OFF);
