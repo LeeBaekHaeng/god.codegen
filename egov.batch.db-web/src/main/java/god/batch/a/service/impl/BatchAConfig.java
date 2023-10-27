@@ -17,18 +17,17 @@ import org.springframework.batch.repeat.RepeatStatus;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
+import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
+
 @Configuration
+@Slf4j
+@RequiredArgsConstructor
 public class BatchAConfig {
 
     private final JobBuilderFactory jobs;
 
     private final StepBuilderFactory steps;
-
-    public BatchAConfig(JobBuilderFactory jobs, StepBuilderFactory steps) {
-        super();
-        this.jobs = jobs;
-        this.steps = steps;
-    }
 
     @Bean
     public Job batchAJob(Step batchAStep1, Step batchAStep2) {
@@ -40,6 +39,8 @@ public class BatchAConfig {
         return steps.get("batchAStep1").tasklet(new Tasklet() {
             @Override
             public RepeatStatus execute(StepContribution contribution, ChunkContext chunkContext) throws Exception {
+                log.debug("batchAStep1");
+
                 System.out.println(this);
                 System.out.println("batchAStep1");
 
