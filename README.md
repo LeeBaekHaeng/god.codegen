@@ -261,3 +261,11 @@ context:component-scan god 추가
 ```xml
 <context:component-scan base-package="egovframework,god">
 ```
+
+/egov.batch.db-web/src/main/java/com/springboot/main/EgovBootApplication.java
+
+@EnableBatchProcessing
+
+https://docs.spring.io/spring-batch/docs/4.3.9/reference/html/job.html#javaConfig
+
+AppConfig

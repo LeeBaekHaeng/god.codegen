@@ -1,5 +1,8 @@
 package com.springboot.main;
 
+import java.util.Arrays;
+
+import org.springframework.batch.core.configuration.annotation.EnableBatchProcessing;
 import org.springframework.boot.Banner;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.builder.SpringApplicationBuilder;
@@ -25,8 +28,9 @@ import god.api.cmm.service.ApiGlobals;
  */
 
 @SpringBootApplication
-@ImportResource({"classpath*:/egovframework/batch/context-*.xml","classpath*:/egovframework/batch/job/*.xml"})
+@ImportResource({"classpath*:/egovframework/batch/context-*.xml"})
 @Import(EgovBootInitialization.class)
+@EnableBatchProcessing
 public class EgovBootApplication {
 
 	public static void main(String[] args) {
@@ -39,6 +43,11 @@ public class EgovBootApplication {
                 .bannerMode(Banner.Mode.CONSOLE)
                 .run(args);
 		ApiGlobals.createApiGlobals(context.getEnvironment());
+        String[] beanDefinitionNames = context.getBeanDefinitionNames();
+//        for (int i = 0; i < beanDefinitionNames.length; i++) {
+//            System.out.println(beanDefinitionNames[i]);
+//        }
+        Arrays.stream(beanDefinitionNames).forEach(System.out::println);
 		/*
 		SpringApplication springApplication = new SpringApplication(EgovBootApplication.class);
 		springApplication.setBannerMode(Banner.Mode.OFF);
