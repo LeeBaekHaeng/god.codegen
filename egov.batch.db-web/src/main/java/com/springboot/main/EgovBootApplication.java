@@ -11,6 +11,7 @@ import org.springframework.context.annotation.Import;
 import org.springframework.context.annotation.ImportResource;
 
 import god.api.cmm.service.ApiGlobals;
+import lombok.extern.slf4j.Slf4j;
 
 /**
  * @author 배치실행개발팀
@@ -31,6 +32,7 @@ import god.api.cmm.service.ApiGlobals;
 @ImportResource({"classpath*:/egovframework/batch/context-*.xml"})
 @Import(EgovBootInitialization.class)
 @EnableBatchProcessing
+@Slf4j
 public class EgovBootApplication {
 
 	public static void main(String[] args) {
@@ -47,7 +49,8 @@ public class EgovBootApplication {
 //        for (int i = 0; i < beanDefinitionNames.length; i++) {
 //            System.out.println(beanDefinitionNames[i]);
 //        }
-        Arrays.stream(beanDefinitionNames).forEach(System.out::println);
+//        Arrays.stream(beanDefinitionNames).forEach(System.out::println);
+        Arrays.stream(beanDefinitionNames).forEach(log::debug);
 		/*
 		SpringApplication springApplication = new SpringApplication(EgovBootApplication.class);
 		springApplication.setBannerMode(Banner.Mode.OFF);

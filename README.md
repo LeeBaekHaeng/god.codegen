@@ -279,3 +279,17 @@ AppConfig
             <scope>provided</scope>
         </dependency>
 ```
+
+/egov.batch.db-web/src/main/resources/application.yml
+
+```xml
+logging:
+  level:
+    root: "error"
+    com.springboot.main: "debug"
+    egovframework: "debug"
+    god: "debug"
+    org.hibernate: "error"
+```
+
+https://docs.spring.io/spring-boot/docs/2.7.17/reference/html/features.html#features.logging.log-levels

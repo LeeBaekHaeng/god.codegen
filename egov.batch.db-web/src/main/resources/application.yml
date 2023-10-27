@@ -26,4 +26,10 @@ spring:
 #  instance:
 #    prefer-ip-address: true
 
-
+logging:
+  level:
+    root: "error"
+    com.springboot.main: "debug"
+    egovframework: "debug"
+    god: "debug"
+    org.hibernate: "error"

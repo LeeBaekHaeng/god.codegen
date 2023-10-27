@@ -41,13 +41,13 @@ public class BatchAConfig {
             public RepeatStatus execute(StepContribution contribution, ChunkContext chunkContext) throws Exception {
                 log.debug("batchAStep1");
 
-                System.out.println(this);
-                System.out.println("batchAStep1");
+                log.debug("{}", this);
+                log.debug("batchAStep1");
 
                 List<String> readLines = FileUtils.readLines(new File("target/classes/db/sampledb.script"),
                         StandardCharsets.UTF_8);
                 for (String readLine : readLines) {
-                    System.out.println(readLine);
+                    log.debug(readLine);
                     contribution.incrementReadCount();
                     contribution.incrementWriteCount(1);
                     contribution.incrementReadSkipCount();
@@ -56,15 +56,15 @@ public class BatchAConfig {
                 }
 
                 Map<String, Object> jobParameters = chunkContext.getStepContext().getJobParameters();
-                jobParameters.keySet().forEach(System.out::println);
-                System.out.println(jobParameters.get("timestamp"));
-                System.out.println(jobParameters.get("timestamp").getClass().getName());
+                jobParameters.keySet().forEach(log::debug);
+                log.debug("{}", jobParameters.get("timestamp"));
+                log.debug(jobParameters.get("timestamp").getClass().getName());
 
-                System.out.println("jobParameters key value");
+                log.debug("jobParameters key value");
                 jobParameters.forEach((key, value) -> {
-                    System.out.println(key);
-                    System.out.println(value);
-                    System.out.println();
+                    log.debug(key);
+                    log.debug("{}", value);
+                    log.debug("");
                 });
 
                 return RepeatStatus.FINISHED;
@@ -77,8 +77,8 @@ public class BatchAConfig {
         return steps.get("batchAStep2").tasklet(new Tasklet() {
             @Override
             public RepeatStatus execute(StepContribution contribution, ChunkContext chunkContext) throws Exception {
-                System.out.println(this);
-                System.out.println("batchAStep2");
+                log.debug("{}", this);
+                log.debug("batchAStep2");
                 return RepeatStatus.FINISHED;
             }
         }).build();

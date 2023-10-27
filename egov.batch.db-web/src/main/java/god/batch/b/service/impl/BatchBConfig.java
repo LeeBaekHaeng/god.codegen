@@ -14,8 +14,10 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 import egovframework.example.bat.domain.trade.CustomerCredit;
+import lombok.extern.slf4j.Slf4j;
 
 @Configuration
+@Slf4j
 public class BatchBConfig {
 
     private final JobBuilderFactory jobs;
@@ -41,14 +43,14 @@ public class BatchBConfig {
         return steps.get("batchBStep1").tasklet(new Tasklet() {
             @Override
             public RepeatStatus execute(StepContribution contribution, ChunkContext chunkContext) throws Exception {
-                System.out.println(this);
-                System.out.println("BatchBStep1");
+                log.debug("{}", this);
+                log.debug("BatchBStep1");
 
                 CustomerCredit customerCredit = new CustomerCredit();
                 List<Integer> allCustomerCreditIds = batchBDAO.getAllCustomerCreditIds(customerCredit);
 
                 for (Integer allCustomerCreditId : allCustomerCreditIds) {
-                    System.out.println(allCustomerCreditId);
+                    log.debug("allCustomerCreditId={}", allCustomerCreditId);
                     contribution.incrementReadCount();
 //                    contribution.incrementWriteCount(1);
 //                    contribution.incrementReadSkipCount();
@@ -56,7 +58,9 @@ public class BatchBConfig {
 //                    contribution.incrementWriteSkipCount();
                 }
 
-                allCustomerCreditIds.forEach(System.out::println);
+                allCustomerCreditIds.forEach(a -> {
+                    log.debug("a={}", a);
+                });
 
                 return RepeatStatus.FINISHED;
             }
