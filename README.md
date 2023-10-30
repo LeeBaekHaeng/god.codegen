@@ -315,3 +315,17 @@ https://docs.spring.io/spring-boot/docs/2.7.17/reference/html/application-proper
 
 ${LOG_FILE}.%d{yyyy-MM-dd}.%i.gz
 
+spring-boot-maven-plugin
+
+/egov.batch.db-web/pom.xml
+
+```xml
+            <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+            </plugin>
+        </plugins>
+    </build>
+```
+
+<finalName>egovframework.example.bat.template.db.web-webapp</finalName>
