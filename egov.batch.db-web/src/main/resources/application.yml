@@ -27,9 +27,14 @@ spring:
 #    prefer-ip-address: true
 
 logging:
+  file:
+    name: /home/god/my/log/my.log
   level:
     root: "error"
     com.springboot.main: "debug"
     egovframework: "debug"
     god: "debug"
     org.hibernate: "error"
+  logback:
+    rollingpolicy:
+      file-name-pattern: my.log.%d{yyyy-MM-dd}.%i.gz

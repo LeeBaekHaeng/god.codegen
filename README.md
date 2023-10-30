@@ -293,3 +293,25 @@ logging:
 ```
 
 https://docs.spring.io/spring-boot/docs/2.7.17/reference/html/features.html#features.logging.log-levels
+
+4. Logging
+
+https://docs.spring.io/spring-boot/docs/2.7.17/reference/html/features.html#features.logging
+
+By default, if you use the “Starters”, Logback is used for logging. Appropriate Logback routing is also included to ensure that dependent libraries that use Java Util Logging, Commons Logging, Log4J, or SLF4J all work correctly.
+- 기본적으로 "Starters"를 사용하면 Logback이 로깅에 사용됩니다. Java Util Logging, Commons Logging, Log4J 또는 SLF4J를 사용하는 종속 라이브러리가 모두 올바르게 작동하도록 적절한 로그백 라우팅도 포함되어 있습니다.
+
+4.3. File Output
+
+logging.file.name
+
+my.log
+
+4.4. File Rotation
+
+logging.logback.rollingpolicy.file-name-pattern
+
+https://docs.spring.io/spring-boot/docs/2.7.17/reference/html/application-properties.html#application-properties.core.logging.logback.rollingpolicy.file-name-pattern
+
+${LOG_FILE}.%d{yyyy-MM-dd}.%i.gz
+
