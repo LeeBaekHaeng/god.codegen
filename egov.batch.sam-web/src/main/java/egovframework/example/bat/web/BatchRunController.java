@@ -44,8 +44,12 @@ public class BatchRunController {
 
 	@RequestMapping(value = "/batchList.do", method = RequestMethod.GET)
 	public String getBatchList(ModelMap model) {
-
 		model.addAttribute("jobList", egovBatchRunner.getJobNames());
+		LOGGER.trace("model={}", model);
+		LOGGER.debug("model={}", model);
+		LOGGER.info("model={}", model);
+		LOGGER.warn("model={}", model);
+		LOGGER.error("model={}", model);
 
 		return "bat/web/EgovBatchList";
 	}

@@ -329,3 +329,46 @@ spring-boot-maven-plugin
 ```
 
 <finalName>egovframework.example.bat.template.db.web-webapp</finalName>
+
+## egov.batch.sam-web
+
+logback-spring.xml
+
+```xml
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration scan="true" scanPeriod="30 seconds">
+    <include resource="org/springframework/boot/logging/logback/base.xml" />
+
+    <appender name="file" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>logs/application.log</file>
+        <encoder>
+            <pattern>%d{yyyy-MM-dd HH:mm:ss} [%thread] %-5level %logger{36} - %msg%n</pattern>
+        </encoder>
+        <rollingPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">
+            <fileNamePattern>logs/application.%d{yyyy-MM-dd}.%i.log</fileNamePattern>
+            <maxFileSize>10MB</maxFileSize>
+            <maxHistory>7</maxHistory>
+        </rollingPolicy>
+    </appender>
+
+    <logger name="com.example" level="DEBUG" additivity="false">
+        <appender-ref ref="file" />
+    </logger>
+
+    <root level="INFO">
+        <appender-ref ref="file" />
+    </root>
+</configuration>
+```
+
+RollingFileAppender
+
+https://logback.qos.ch/manual/appenders.html#RollingFileAppender
+
+```java
+LOGGER.trace("model={}", model);
+LOGGER.debug("model={}", model);
+LOGGER.info("model={}", model);
+LOGGER.warn("model={}", model);
+LOGGER.error("model={}", model);
+```
