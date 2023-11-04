@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.0.xsd
+		http://www.springframework.org/schema/batch http://www.springframework.org/schema/batch/spring-batch-3.0.xsd">
+		
+	<import resource="abstract/eGovBase.xml" />
+
+	<job id="fixedLengthToMybatisJob" parent="eGovBaseJob" xmlns="http://www.springframework.org/schema/batch">
+		<step id="fixedLengthToMybatisStep" parent="eGovBaseStep">
+			<tasklet>
+				<chunk reader="fixedLengthToMybatisJob.fixedLengthToMybatisStep.fixedLengthItemReader"
+					processor="fixedLengthToMybatisJob.fixedLengthToMybatisStep.itemProcessor"
+					writer="fixedLengthToMybatisJob.fixedLengthToMybatisStep.mybatisItemWriter"
+					commit-interval="2" />
+			</tasklet>
+		</step>
+	</job>
+
+	<bean id="fixedLengthToMybatisJob.fixedLengthToMybatisStep.fixedLengthItemReader"
+		class="org.springframework.batch.item.file.FlatFileItemReader" scope="step">
+		<property name="resource" value="#{jobParameters[inputFile]}" />
+		<property name="lineMapper">
+			<bean class="org.egovframe.rte.bat.core.item.file.mapping.EgovDefaultLineMapper">
+				<property name="lineTokenizer">
+					<bean class="org.egovframe.rte.bat.core.item.file.transform.EgovFixedLengthTokenizer">
+						<property name="columns" value="1-9,10-11" />
+					</bean>
+				</property>
+				<property name="objectMapper">
+					<bean class="org.egovframe.rte.bat.core.item.file.mapping.EgovObjectMapper">
+						<property name="type" value="egovframework.example.bat.domain.trade.CustomerCredit" />
+						<property name="names" value="name,credit" />
+					</bean>
+				</property>
+			</bean>
+		</property>
+	</bean>
+
+	<!-- <bean id="fixedLengthToIbatisJob.fixedLengthToIbatisStep.ibatisItemWriter"
+		class="org.springframework.batch.item.database.IbatisBatchItemWriter">
+		<property name="statementId" value="updateCredit" />
+		<property name="sqlMapClient" ref="sqlMapClient" />
+		<property name="dataSource" ref="dataSource" />
+	</bean> -->
+    <bean id="fixedLengthToMybatisJob.fixedLengthToMybatisStep.mybatisItemWriter" class="org.egovframe.rte.bat.core.item.database.EgovMyBatisBatchItemWriter">
+		<property name="sqlSessionFactory" ref="egov.sqlSession" />
+		<property name="statementId" value="Customer.updateCredit" />
+	</bean>
+
+	<bean id="fixedLengthToMybatisJob.fixedLengthToMybatisStep.itemProcessor"
+		class="egovframework.example.bat.domain.trade.CustomerCreditIncreaseProcessor" />
+
+</beans>

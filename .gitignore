@@ -31,3 +31,5 @@ target/
 .pmd
 egov.batch.db-web/.classpath
 egov.batch.db-web/.project
+egov.batch.sam-web/.classpath
+egov.batch.sam-web/.project
