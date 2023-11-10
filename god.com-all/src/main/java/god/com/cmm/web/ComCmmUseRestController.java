@@ -70,7 +70,7 @@ public class ComCmmUseRestController {
      *
      */
     @Data
-    private static class GetV1CmmCodeDetailListRequestDto {
+    public static class GetV1CmmCodeDetailListRequestDto {
         /**
          * 코드 ID
          */
@@ -84,7 +84,7 @@ public class ComCmmUseRestController {
      *
      */
     @Data
-    private static class GetV1CmmCodeDetailListResponseDto {
+    public static class GetV1CmmCodeDetailListResponseDto {
         /**
          * 코드ID
          */
