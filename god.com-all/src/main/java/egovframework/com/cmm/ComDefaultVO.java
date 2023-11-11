@@ -19,10 +19,11 @@ import org.apache.commons.lang3.builder.ToStringBuilder;
  *  @see 
  *  
  */
-@SuppressWarnings("serial")
 public class ComDefaultVO implements Serializable {
-	
-	/** 검색조건 */
+
+    private static final long serialVersionUID = -6062858939907510631L;
+
+    /** 검색조건 */
     private String searchCondition = "";
     
     /** 검색Keyword */

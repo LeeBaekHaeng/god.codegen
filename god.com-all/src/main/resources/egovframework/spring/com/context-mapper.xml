@@ -16,6 +16,7 @@
                 <value>classpath:/god/mapper/admin2/**/*_${Globals.DbType}.xml</value>
                 <value>classpath:/god/mapper/user/**/*_${Globals.DbType}.xml</value>
                 <value>classpath:/god/mapper/user2/**/*_${Globals.DbType}.xml</value>
+                <value>classpath:/god/mapper/test/**/*_${Globals.DbType}.xml</value>
             </list>
         </property>
     </bean>

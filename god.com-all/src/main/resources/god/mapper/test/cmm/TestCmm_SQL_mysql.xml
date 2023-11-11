@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?><!--Converted at: Wed May 11 15:49:38 KST 2016 -->
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="TestCmmDAO">
+
+    <insert id="insertTestCmm" parameterType="god.test.cmm.service.TestCmmVO">
+<![CDATA[
+/* TestCmmDAO.insertTestCmm */
+/* 행정코드 등록 */
+INSERT INTO comtcadministcode /* 행정코드 */ (
+    ADMINIST_ZONE_SE /* 행정구역구분 char(1) NOT NULL */
+    , ADMINIST_ZONE_CODE /* 행정구역코드 varchar(10) NOT NULL */
+    , USE_AT /* 사용여부 char(1) NOT NULL */
+) VALUES (
+    #{administZoneSe} /* 행정구역구분 char(1) NOT NULL */
+    , #{administZoneCode} /* 행정구역코드 varchar(10) NOT NULL */
+    , 'Y' /* 사용여부 char(1) NOT NULL */
+)
+]]>
+    </insert>
+
+
+</mapper>

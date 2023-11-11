@@ -8,8 +8,11 @@
 <title>Insert title here</title>
 </head>
 <body>
-    <form:form modelAttribute="comDefaultVO" action="${pageContext.request.contextPath}/do/test/cmm/insertTestCmm.do" onsubmit="return fn_saveTestCmmRegist()">
+    <form:form modelAttribute="testCmmVO" action="${pageContext.request.contextPath}/do/test/cmm/insertTestCmm.do" onsubmit="return fn_saveTestCmmRegist()">
         <ol>
+            <li>행정구역구분: <form:input path="administZoneSe" /></li>
+            <li>행정구역코드: <form:input path="administZoneCode" /></li>
+
             <li>searchCondition: <form:input path="searchCondition" /></li>
             <li>searchKeyword: <form:input path="searchKeyword" /></li>
             <li>searchUseYn: <form:input path="searchUseYn" /></li>

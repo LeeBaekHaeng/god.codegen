@@ -17,6 +17,7 @@
             <li>result: <c:out value="${result}" /></li>
 
             <li><a href="<c:url value="/do/test/cmm/selectTestCmmList.do" />" onclick="return fn_listTestCmmList(this)">목록</a></li>
+            <li><a href="<c:url value="/do/test/cmm/insertTestCmmView.do" />">등록</a></li>
             <li><a href="<c:url value="/do/test/cmm/selectTestCmm.do" />" onclick="return fn_detailTestCmmList(this)">상세</a></li>
             <li><button type="submit">검색</button></li>
         </ol>
