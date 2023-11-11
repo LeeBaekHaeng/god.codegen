@@ -28,6 +28,13 @@ public class TestCmmController {
 
     @GetMapping("/do/test/cmm/selectTestCmmList.do")
     public String selectTestCmmList(final ComDefaultVO comDefaultVO, final ModelMap model) {
+        log.debug(egovMessageSource.getMessage("fail.common.msg"));
+        log.debug(egovMessageSource.getMessage("fail.common.sql"));
+        log.debug(egovMessageSource.getMessageArgs("fail.common.msg",
+                new Object[] { "test 이백행 2023-11-11 에러 코드", "test 이백행 2023-11-11 오류 메시지" }));
+        log.debug(egovMessageSource.getMessageArgs("fail.common.sql",
+                new Object[] { "test 이백행 2023-11-11 에러 코드", "test 이백행 2023-11-11 오류 메시지" }));
+
         if (!"Y".equals(comDefaultVO.getSearchUseYn())) {
             comDefaultVO.setSearchCondition("01");
             comDefaultVO.setSearchKeyword("test 이백행 " + LocalDateTime.now() + " 검색어");
