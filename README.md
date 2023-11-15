@@ -384,6 +384,6 @@ LOGGER.error("model={}", model);
 <c:url value="/cmm/fms/selectFileInfsForUpdate.do" var="url">
 	<c:param name="param_atchFileId">${egovc:encrypt(result.atchFileId)}</c:param>
 </c:url>
-<a href="${url}" target="/cmm/fms/selectFileInfsForUpdate.do" onclick="window.open('${url}', '/cmm/fms/selectFileInfs.do'); return false;">파일 수정</a>
+<a href="${url}" target="/cmm/fms/selectFileInfsForUpdate.do" onclick="window.open('${url}', '/cmm/fms/selectFileInfsForUpdate.do'); return false;">파일 수정</a>
 
 ```
