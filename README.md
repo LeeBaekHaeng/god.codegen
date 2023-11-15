@@ -373,7 +373,7 @@ LOGGER.warn("model={}", model);
 LOGGER.error("model={}", model);
 ```
 
-## 파일 다운로드, 파일 수정
+## 파일 다운로드, 파일 삭제
 
 ```jsp
 <c:url value="/cmm/fms/selectFileInfs.do" var="url">
@@ -384,6 +384,6 @@ LOGGER.error("model={}", model);
 <c:url value="/cmm/fms/selectFileInfsForUpdate.do" var="url">
 	<c:param name="param_atchFileId">${egovc:encrypt(result.atchFileId)}</c:param>
 </c:url>
-<a href="${url}" target="/cmm/fms/selectFileInfsForUpdate.do" onclick="window.open('${url}', '/cmm/fms/selectFileInfsForUpdate.do'); return false;">파일 수정</a>
+<a href="${url}" target="/cmm/fms/selectFileInfsForUpdate.do" onclick="window.open('${url}', '/cmm/fms/selectFileInfsForUpdate.do'); return false;">파일 삭제</a>
 
 ```
