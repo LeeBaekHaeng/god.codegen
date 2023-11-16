@@ -373,17 +373,16 @@ LOGGER.warn("model={}", model);
 LOGGER.error("model={}", model);
 ```
 
-## 파일 다운로드, 파일 삭제
+## 상세 화면 파일 다운로드, 수정 화면 파일 삭제
 
 ```jsp
 <c:url value="/cmm/fms/selectFileInfs.do" var="url">
 	<c:param name="param_atchFileId">${egovc:encrypt(result.atchFileId)}</c:param>
 </c:url>
-<a href="${url}" target="/cmm/fms/selectFileInfs.do" onclick="window.open('${url}', '/cmm/fms/selectFileInfs.do'); return false;">파일 다운로드</a>
+<a href="${url}" target="/cmm/fms/selectFileInfs.do" onclick="window.open('${url}', '/cmm/fms/selectFileInfs.do', 'left=100,top=100,width=320,height=320'); return false;">파일 다운로드</a>
 
 <c:url value="/cmm/fms/selectFileInfsForUpdate.do" var="url">
 	<c:param name="param_atchFileId">${egovc:encrypt(result.atchFileId)}</c:param>
 </c:url>
-<a href="${url}" target="/cmm/fms/selectFileInfsForUpdate.do" onclick="window.open('${url}', '/cmm/fms/selectFileInfsForUpdate.do'); return false;">파일 삭제</a>
-
+<a href="${url}" target="/cmm/fms/selectFileInfsForUpdate.do" onclick="window.open('${url}', '/cmm/fms/selectFileInfsForUpdate.do', 'left=200,top=200,width=320,height=320'); return false;">파일 삭제</a>
 ```
