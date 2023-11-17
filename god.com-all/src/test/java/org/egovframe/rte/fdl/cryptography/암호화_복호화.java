@@ -121,6 +121,18 @@ public class 암호화_복호화 {
      */
     @Test
     public void test3() {
+        // 일방향(해시 함수) 암호화 저장
+        // 비밀번호
+
+        // 암호화 저장
+        // 주민등록번호
+        // 여권번호
+        // 운전면허번호
+        // 외국인등록번호
+        // 신용카드번호
+        // 계좌번호
+        // 바이오정보
+
         test3("rhdxhd12");
         test3("rhdxhd12rhdxhd12");
         test3("rhdxhd12rhdxhd12rhdxhd12");
