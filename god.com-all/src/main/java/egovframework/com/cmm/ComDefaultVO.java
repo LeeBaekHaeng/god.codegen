@@ -61,9 +61,44 @@ public class ComDefaultVO implements Serializable {
     /** 검색KeywordTo */
     private String searchKeywordTo = "";
 
+    /**
+     * 최초등록시점
+     * 
+     * <pre>
+     * maria FRST_REGIST_PNTTM datetime 최초등록시점
+     * mysql FRST_REGIST_PNTTM datetime 최초등록시점
+     * </pre>
+     */
     private LocalDateTime frstRegistPnttm;
+
+    /**
+     * 최초등록자ID
+     * 
+     * <pre>
+     * maria FRST_REGISTER_ID varchar(20) 최초등록자ID
+     * mysql FRST_REGISTER_ID varchar(20) 최초등록자ID
+     * </pre>
+     */
     private String frstRegisterId;
+
+    /**
+     * 최종수정시점
+     * 
+     * <pre>
+     * maria LAST_UPDT_PNTTM datetime 최종수정시점
+     * mysql LAST_UPDT_PNTTM datetime 최종수정시점
+     * </pre>
+     */
     private LocalDateTime lastUpdtPnttm;
+
+    /**
+     * 최종수정자ID
+     * 
+     * <pre>
+     * maria LAST_UPDUSR_ID varchar(20) 최종수정자ID
+     * mysql LAST_UPDUSR_ID varchar(20) 최종수정자ID
+     * </pre>
+     */
     private String lastUpdusrId;
 
     public int getFirstIndex() {
@@ -179,34 +214,114 @@ public class ComDefaultVO implements Serializable {
         this.searchKeywordTo = searchKeywordTo;
     }
 
+    /**
+     * 최초등록시점 값읽기
+     * 
+     * <pre>
+     * maria FRST_REGIST_PNTTM datetime 최초등록시점
+     * mysql FRST_REGIST_PNTTM datetime 최초등록시점
+     * </pre>
+     * 
+     * @return
+     */
     public LocalDateTime getFrstRegistPnttm() {
         return frstRegistPnttm;
     }
 
+    /**
+     * 최초등록시점 값설정
+     * 
+     * <pre>
+     * maria FRST_REGIST_PNTTM datetime 최초등록시점
+     * mysql FRST_REGIST_PNTTM datetime 최초등록시점
+     * </pre>
+     * 
+     * @param frstRegistPnttm
+     */
     public void setFrstRegistPnttm(LocalDateTime frstRegistPnttm) {
         this.frstRegistPnttm = frstRegistPnttm;
     }
 
+    /**
+     * 최초등록자ID 값읽기
+     * 
+     * <pre>
+     * maria FRST_REGISTER_ID varchar(20) 최초등록자ID
+     * mysql FRST_REGISTER_ID varchar(20) 최초등록자ID
+     * </pre>
+     * 
+     * @return
+     */
     public String getFrstRegisterId() {
         return frstRegisterId;
     }
 
+    /**
+     * 최초등록자ID 값설정
+     * 
+     * <pre>
+     * maria FRST_REGISTER_ID varchar(20) 최초등록자ID
+     * mysql FRST_REGISTER_ID varchar(20) 최초등록자ID
+     * </pre>
+     * 
+     * @param frstRegisterId
+     */
     public void setFrstRegisterId(String frstRegisterId) {
         this.frstRegisterId = frstRegisterId;
     }
 
+    /**
+     * 최종수정시점 값읽기
+     * 
+     * <pre>
+     * maria LAST_UPDT_PNTTM datetime 최종수정시점
+     * mysql LAST_UPDT_PNTTM datetime 최종수정시점
+     * </pre>
+     * 
+     * @return
+     */
     public LocalDateTime getLastUpdtPnttm() {
         return lastUpdtPnttm;
     }
 
+    /**
+     * 최종수정시점 값설정
+     * 
+     * <pre>
+     * maria LAST_UPDT_PNTTM datetime 최종수정시점
+     * mysql LAST_UPDT_PNTTM datetime 최종수정시점
+     * </pre>
+     * 
+     * @param lastUpdtPnttm
+     */
     public void setLastUpdtPnttm(LocalDateTime lastUpdtPnttm) {
         this.lastUpdtPnttm = lastUpdtPnttm;
     }
 
+    /**
+     * 최종수정자ID 값읽기
+     * 
+     * <pre>
+     * maria LAST_UPDUSR_ID varchar(20) 최종수정자ID
+     * mysql LAST_UPDUSR_ID varchar(20) 최종수정자ID
+     * </pre>
+     * 
+     * @return
+     */
     public String getLastUpdusrId() {
         return lastUpdusrId;
     }
 
+    /**
+     * 최종수정자ID 값설정
+     * 
+     * <pre>
+     * maria LAST_UPDUSR_ID varchar(20) 최종수정자ID
+     * mysql LAST_UPDUSR_ID varchar(20) 최종수정자ID
+     * </pre>
+     * 
+     * @param lastUpdusrId
+     */
     public void setLastUpdusrId(String lastUpdusrId) {
         this.lastUpdusrId = lastUpdusrId;
     }
