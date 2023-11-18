@@ -1,4 +1,4 @@
-package god.test.a.a.a.service.impl;
+package god.test.a.a.b.service.impl;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
@@ -19,7 +19,7 @@ import org.springframework.context.annotation.ImportResource;
 import org.springframework.test.context.ContextConfiguration;
 
 import egovframework.com.test.EgovTestAbstractDAO;
-import god.test.a.a.a.service.GodTestAAAVO;
+import god.test.a.a.b.service.GodTestAabVO;
 import lombok.NoArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 
@@ -28,7 +28,7 @@ import lombok.extern.slf4j.Slf4j;
  * @author LeeBaekHaeng
  *
  */
-@ContextConfiguration(classes = { GodTestAAADAOTest.class, EgovTestAbstractDAO.class, })
+@ContextConfiguration(classes = { GodTestAabDAOTest.class, EgovTestAbstractDAO.class, })
 
 @Configuration
 
@@ -44,7 +44,7 @@ import lombok.extern.slf4j.Slf4j;
 
         basePackages = {
 
-                "god.test.a.a.a.service.impl",
+                "god.test.a.a.b.service.impl",
 
         },
 
@@ -56,7 +56,7 @@ import lombok.extern.slf4j.Slf4j;
 
                         classes = {
 
-                                GodTestAAADAO.class,
+                                GodTestAabDAO.class,
 
                         }
 
@@ -68,13 +68,13 @@ import lombok.extern.slf4j.Slf4j;
 
 @NoArgsConstructor
 @Slf4j
-public class GodTestAAADAOTest extends EgovTestAbstractDAO {
+public class GodTestAabDAOTest extends EgovTestAbstractDAO {
 
     /**
      * 
      */
     @Autowired
-    private GodTestAAADAO godTestAAADAO;
+    private GodTestAabDAO godTestAabDAO;
 
     /**
      * 
@@ -89,7 +89,7 @@ public class GodTestAAADAOTest extends EgovTestAbstractDAO {
     @Test
     public void insert() {
         // given
-        final GodTestAAAVO vo = new GodTestAAAVO();
+        final GodTestAabVO vo = new GodTestAabVO();
         vo.setAdministZoneSe("1");
         vo.setAdministZoneCode("0000000001");
 
@@ -109,7 +109,7 @@ public class GodTestAAADAOTest extends EgovTestAbstractDAO {
         }
 
         // when
-        final int result = godTestAAADAO.insert(vo);
+        final int result = godTestAabDAO.insert(vo);
 //        final int result2 = GodTestAAADAO.insert2(vo);
 
         // then
@@ -126,7 +126,7 @@ public class GodTestAAADAOTest extends EgovTestAbstractDAO {
 //    @Test
 //    public void insert2() {
 //        // given
-//        final GodTestAAAVO vo = new GodTestAAAVO();
+//        final GodTestAabVO vo = new GodTestAabVO();
 //        vo.setAdministZoneSe("1");
 //        vo.setAdministZoneCode("0000000001");
 //
@@ -146,7 +146,7 @@ public class GodTestAAADAOTest extends EgovTestAbstractDAO {
 //        }
 //
 //        // when
-//        final int result = godTestAAADAO.insert2(vo);
+//        final int result = godTestAabDAO.insert2(vo);
 //
 //        // then
 //        log.debug("result={}", result);
@@ -158,7 +158,7 @@ public class GodTestAAADAOTest extends EgovTestAbstractDAO {
      * 
      * @param testData
      */
-    private void testData(final GodTestAAAVO testData) {
+    private void testData(final GodTestAabVO testData) {
         // given
         testData.setAdministZoneSe("1");
         testData.setAdministZoneCode("0000000001");
@@ -179,7 +179,7 @@ public class GodTestAAADAOTest extends EgovTestAbstractDAO {
         }
 
         // when
-        final int result = godTestAAADAO.insert(testData);
+        final int result = godTestAabDAO.insert(testData);
 
         // then
         log.debug("result={}", result);
@@ -193,23 +193,26 @@ public class GodTestAAADAOTest extends EgovTestAbstractDAO {
     @Test
     public void select() {
         // given
-        final GodTestAAAVO testData = new GodTestAAAVO();
+        final GodTestAabVO testData = new GodTestAabVO();
         testData(testData);
 
-        final GodTestAAAVO vo = new GodTestAAAVO();
+        final GodTestAabVO vo = new GodTestAabVO();
         vo.setAdministZoneSe(testData.getAdministZoneSe());
         vo.setAdministZoneCode(testData.getAdministZoneCode());
 
         // when
-        final GodTestAAAVO result = godTestAAADAO.select(vo);
+        final GodTestAabVO result = godTestAabDAO.select(vo);
+        final GodTestAabVO result2 = godTestAabDAO.select(vo);
 
         // then
         log.debug("result={}", result);
+        log.debug("result2={}", result2);
 
         assertSelect(testData, result);
+        assertSelect(testData, result2);
     }
 
-    private void assertSelect(final GodTestAAAVO testData, final GodTestAAAVO result) {
+    private void assertSelect(final GodTestAabVO testData, final GodTestAabVO result) {
         if (log.isDebugEnabled()) {
             log.debug("getAdministZoneSe={}, {}", testData.getAdministZoneSe(), result.getAdministZoneSe());
             log.debug("getAdministZoneCode={}, {}", testData.getAdministZoneCode(), result.getAdministZoneCode());
@@ -227,15 +230,15 @@ public class GodTestAAADAOTest extends EgovTestAbstractDAO {
 //    @Test
 //    public void select2() {
 //        // given
-//        final GodTestAAAVO testData = new GodTestAAAVO();
+//        final GodTestAabVO testData = new GodTestAabVO();
 //        testData(testData);
 //
-//        final GodTestAAAVO vo = new GodTestAAAVO();
+//        final GodTestAabVO vo = new GodTestAabVO();
 //        vo.setAdministZoneSe(testData.getAdministZoneSe());
 //        vo.setAdministZoneCode(testData.getAdministZoneCode());
 //
 //        // when
-//        final GodTestAAAVO result = godTestAAADAO.select2(vo);
+//        final GodTestAabVO result = godTestAabDAO.select2(vo);
 //
 //        // then
 //        log.debug("result={}", result);
@@ -249,10 +252,10 @@ public class GodTestAAADAOTest extends EgovTestAbstractDAO {
     @Test
     public void selectList() {
         // given
-        final GodTestAAAVO testData = new GodTestAAAVO();
+        final GodTestAabVO testData = new GodTestAabVO();
         testData(testData);
 
-        final GodTestAAAVO vo = new GodTestAAAVO();
+        final GodTestAabVO vo = new GodTestAabVO();
         vo.setFirstIndex(0);
         vo.setRecordCountPerPage(10);
 
@@ -260,7 +263,7 @@ public class GodTestAAADAOTest extends EgovTestAbstractDAO {
         vo.setSearchKeyword("test 이백행 2023-11-18");
 
         // when
-        final List<GodTestAAAVO> resultList = godTestAAADAO.selectList(vo);
+        final List<GodTestAabVO> resultList = godTestAabDAO.selectList(vo);
 
         // then
         log.debug("resultList={}", resultList);
@@ -268,13 +271,13 @@ public class GodTestAAADAOTest extends EgovTestAbstractDAO {
         assertSelectList(testData, resultList);
     }
 
-    private void assertSelectList(final GodTestAAAVO testData, final List<GodTestAAAVO> resultList) {
+    private void assertSelectList(final GodTestAabVO testData, final List<GodTestAabVO> resultList) {
 //        assertFalse(egovMessageSource.getMessage("fail.common.select"), resultList.isEmpty());
         assertTrue(egovMessageSource.getMessage("fail.common.select"), resultList.size() > -1);
 
         int i = 1;
 
-        for (final GodTestAAAVO result : resultList) {
+        for (final GodTestAabVO result : resultList) {
             if (log.isDebugEnabled()) {
                 log.debug("i={}", i);
 
@@ -295,13 +298,13 @@ public class GodTestAAADAOTest extends EgovTestAbstractDAO {
     @Test
     public void selectListTotCnt() {
         // given
-        final GodTestAAAVO testData = new GodTestAAAVO();
+        final GodTestAabVO testData = new GodTestAabVO();
         testData(testData);
 
-        final GodTestAAAVO vo = new GodTestAAAVO();
+        final GodTestAabVO vo = new GodTestAabVO();
 
         // when
-        final int totCnt = godTestAAADAO.selectListTotCnt(vo);
+        final int totCnt = godTestAabDAO.selectListTotCnt(vo);
 
         // then
         log.debug("totCnt={}", totCnt);
@@ -315,17 +318,17 @@ public class GodTestAAADAOTest extends EgovTestAbstractDAO {
     @Test
     public void update() {
         // given
-        final GodTestAAAVO testData = new GodTestAAAVO();
+        final GodTestAabVO testData = new GodTestAabVO();
         testData(testData);
 
-        final GodTestAAAVO vo = new GodTestAAAVO();
+        final GodTestAabVO vo = new GodTestAabVO();
         vo.setAdministZoneSe(testData.getAdministZoneSe());
         vo.setAdministZoneCode(testData.getAdministZoneCode());
 
         vo.setUseAt("Y");
 
         // when
-        final int result = godTestAAADAO.update(vo);
+        final int result = godTestAabDAO.update(vo);
 
         // then
         log.debug("result={}", result);
@@ -339,17 +342,17 @@ public class GodTestAAADAOTest extends EgovTestAbstractDAO {
 //    @Test
 //    public void update2() {
 //        // given
-//        final GodTestAAAVO testData = new GodTestAAAVO();
+//        final GodTestAabVO testData = new GodTestAabVO();
 //        testData(testData);
 //
-//        final GodTestAAAVO vo = new GodTestAAAVO();
+//        final GodTestAabVO vo = new GodTestAabVO();
 //        vo.setAdministZoneSe(testData.getAdministZoneSe());
 //        vo.setAdministZoneCode(testData.getAdministZoneCode());
 //
 //        vo.setUseAt("Y");
 //
 //        // when
-//        final int result = godTestAAADAO.update2(vo);
+//        final int result = godTestAabDAO.update2(vo);
 //
 //        // then
 //        log.debug("result={}", result);
@@ -363,15 +366,15 @@ public class GodTestAAADAOTest extends EgovTestAbstractDAO {
     @Test
     public void delete() {
         // given
-        final GodTestAAAVO testData = new GodTestAAAVO();
+        final GodTestAabVO testData = new GodTestAabVO();
         testData(testData);
 
-        final GodTestAAAVO vo = new GodTestAAAVO();
+        final GodTestAabVO vo = new GodTestAabVO();
         vo.setAdministZoneSe(testData.getAdministZoneSe());
         vo.setAdministZoneCode(testData.getAdministZoneCode());
 
         // when
-        final int result = godTestAAADAO.delete(vo);
+        final int result = godTestAabDAO.delete(vo);
 
         // then
         log.debug("result={}", result);
@@ -385,15 +388,15 @@ public class GodTestAAADAOTest extends EgovTestAbstractDAO {
 //    @Test
 //    public void delete2() {
 //        // given
-//        final GodTestAAAVO testData = new GodTestAAAVO();
+//        final GodTestAabVO testData = new GodTestAabVO();
 //        testData(testData);
 //
-//        final GodTestAAAVO vo = new GodTestAAAVO();
+//        final GodTestAabVO vo = new GodTestAabVO();
 //        vo.setAdministZoneSe(testData.getAdministZoneSe());
 //        vo.setAdministZoneCode(testData.getAdministZoneCode());
 //
 //        // when
-//        final int result = godTestAAADAO.delete2(vo);
+//        final int result = godTestAabDAO.delete2(vo);
 //
 //        // then
 //        log.debug("result={}", result);
