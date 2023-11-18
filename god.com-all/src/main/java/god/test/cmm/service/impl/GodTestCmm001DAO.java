@@ -4,7 +4,7 @@ import java.util.List;
 
 import org.springframework.stereotype.Repository;
 
-import god.com.cmm.service.impl.GodDAOServiceImpl;
+import god.com.cmm.service.impl.GodComCmmDAOImpl;
 import god.test.cmm.service.GodTestCmm001VO;
 import lombok.extern.slf4j.Slf4j;
 
@@ -16,7 +16,7 @@ import lombok.extern.slf4j.Slf4j;
  */
 @Repository
 @Slf4j
-public class GodTestCmm001DAO extends GodDAOServiceImpl<GodTestCmm001VO, GodTestCmm001VO> {
+public class GodTestCmm001DAO extends GodComCmmDAOImpl<GodTestCmm001VO, GodTestCmm001VO> {
 
     /**
      * mapperNamespace 값설정

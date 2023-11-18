@@ -3,7 +3,7 @@
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="GodTestCmm002DAO">
 
-    <insert id="insert" parameterType="god.test.cmm.service.GodTestCmm001VO">
+    <insert id="insert" parameterType="god.test.cmm.service.GodTestCmm002VO">
 <![CDATA[
 /* GodTestCmm002DAO.insert */
 /* 행정코드 등록 */
@@ -19,7 +19,7 @@ INSERT INTO comtcadministcode /* 행정코드 */ (
 ]]>
     </insert>
 
-    <insert id="insert2" parameterType="god.test.cmm.service.GodTestCmm001VO">
+    <insert id="insert2" parameterType="god.test.cmm.service.GodTestCmm002VO">
 <![CDATA[
 /* GodTestCmm002DAO.insert2 */
 /* 행정코드 등록 */
@@ -35,7 +35,7 @@ INSERT INTO comtcadministcode /* 행정코드 */ (
 ]]>
     </insert>
 
-    <select id="select" parameterType="god.test.cmm.service.GodTestCmm001VO" resultType="god.test.cmm.service.GodTestCmm001VO">
+    <select id="select" parameterType="god.test.cmm.service.GodTestCmm002VO" resultType="god.test.cmm.service.GodTestCmm002VO">
 <![CDATA[
 /* GodTestCmm002DAO.select */
 /* 행정코드 조회(단건) */
@@ -49,5 +49,75 @@ WHERE A.ADMINIST_ZONE_SE = #{administZoneSe} /* ADMINIST_ZONE_SE char(1) NOT NUL
     AND A.ADMINIST_ZONE_CODE = #{administZoneCode} /* ADMINIST_ZONE_CODE varchar(10) NOT NULL 행정구역코드 */
 ]]>
     </select>
+
+
+    <sql id="selectListFromWhere">
+<![CDATA[
+FROM COMTCADMINISTCODE /* 행정코드 */ A
+WHERE 1 = 1
+]]>
+
+        <if test="@egovframework.com.cmm.util.EgovMybatisUtil@isNotEmpty(searchKeyword)">
+            <choose>
+                <when test="@egovframework.com.cmm.util.EgovMybatisUtil@isEquals(searchCondition, '0')">
+<![CDATA[
+    AND ADMINIST_ZONE_SE = #{searchKeyword} /* ADMINIST_ZONE_SE char(1) NOT NULL 행정구역구분 */
+]]>
+                </when>
+                <otherwise>
+<![CDATA[
+    /* search otherwise */
+]]>
+                </otherwise>
+            </choose>
+        </if>
+
+    </sql>
+
+    <select id="selectList" parameterType="god.test.cmm.service.GodTestCmm002VO" resultType="god.test.cmm.service.GodTestCmm002VO">
+<![CDATA[
+/* GodTestCmm002DAO.selectList */
+/* 행정코드 조회(멀티건) */
+SELECT
+    A.ADMINIST_ZONE_SE /* ADMINIST_ZONE_SE char(1) NOT NULL 행정구역구분 */
+    , A.ADMINIST_ZONE_CODE /* ADMINIST_ZONE_CODE varchar(10) NOT NULL 행정구역코드 */
+    , A.USE_AT /* USE_AT char(1) NOT NULL 사용여부 */
+]]>
+        <include refid="selectListFromWhere" />
+<![CDATA[
+LIMIT #{recordCountPerPage} OFFSET #{firstIndex}
+]]>
+    </select>
+
+    <select id="selectListTotCnt" parameterType="god.test.cmm.service.GodTestCmm002VO" resultType="int">
+<![CDATA[
+/* GodTestCmm002DAO.selectListTotCnt */
+/* 행정코드 조회(멀티건) 전체 건수 */
+SELECT
+    COUNT(*)
+]]>
+        <include refid="selectListFromWhere" />
+    </select>
+
+    <update id="update" parameterType="god.test.cmm.service.GodTestCmm002VO">
+<![CDATA[
+/* GodTestCmm002DAO.update */
+/* 행정코드 수정 */
+UPDATE comtcadministcode /* 행정코드 */ SET
+    USE_AT = #{useAt} /* USE_AT char(1) NOT NULL 사용여부 */
+WHERE ADMINIST_ZONE_SE = #{administZoneSe} /* ADMINIST_ZONE_SE char(1) NOT NULL 행정구역구분 */
+    AND ADMINIST_ZONE_CODE = #{administZoneCode} /* ADMINIST_ZONE_CODE varchar(10) NOT NULL 행정구역코드 */
+]]>
+    </update>
+
+    <delete id="delete" parameterType="god.test.cmm.service.GodTestCmm002VO">
+<![CDATA[
+/* GodTestCmm002DAO.delete */
+/* 행정코드 삭제 */
+DELETE FROM comtcadministcode /* 행정코드 */
+WHERE ADMINIST_ZONE_SE = #{administZoneSe} /* ADMINIST_ZONE_SE char(1) NOT NULL 행정구역구분 */
+    AND ADMINIST_ZONE_CODE = #{administZoneCode} /* ADMINIST_ZONE_CODE varchar(10) NOT NULL 행정구역코드 */
+]]>
+    </delete>
 
 </mapper>

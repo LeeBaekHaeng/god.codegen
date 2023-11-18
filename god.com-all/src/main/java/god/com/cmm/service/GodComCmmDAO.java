@@ -9,7 +9,7 @@ import java.util.List;
  * @param <T>
  * @param <R>
  */
-public interface GodDAOService<T, R> {
+public interface GodComCmmDAO<T, R> {
 
     /**
      * 등록

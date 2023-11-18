@@ -7,7 +7,7 @@ import org.egovframe.rte.psl.dataaccess.EgovAbstractMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 
-import god.com.cmm.service.GodDAOService;
+import god.com.cmm.service.GodComCmmDAO;
 import lombok.NoArgsConstructor;
 
 /**
@@ -18,7 +18,7 @@ import lombok.NoArgsConstructor;
  * @param <R>
  */
 @NoArgsConstructor
-public class GodDAOServiceImpl<T, R> extends EgovAbstractMapper implements GodDAOService<T, R> {
+public class GodComCmmDAOImpl<T, R> extends EgovAbstractMapper implements GodComCmmDAO<T, R> {
 
     /**
      * 
@@ -36,7 +36,7 @@ public class GodDAOServiceImpl<T, R> extends EgovAbstractMapper implements GodDA
      * 
      * @param mapperNamespace
      */
-    public GodDAOServiceImpl(final String mapperNamespace) {
+    public GodComCmmDAOImpl(final String mapperNamespace) {
         super();
         this.mapperNamespace = mapperNamespace;
     }

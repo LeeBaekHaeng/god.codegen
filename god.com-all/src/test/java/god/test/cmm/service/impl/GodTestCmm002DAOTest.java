@@ -19,7 +19,7 @@ import org.springframework.context.annotation.ImportResource;
 import org.springframework.test.context.ContextConfiguration;
 
 import egovframework.com.test.EgovTestAbstractDAO;
-import god.test.cmm.service.GodTestCmm001VO;
+import god.test.cmm.service.GodTestCmm002VO;
 import lombok.NoArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 
@@ -28,7 +28,7 @@ import lombok.extern.slf4j.Slf4j;
  * @author LeeBaekHaeng
  *
  */
-@ContextConfiguration(classes = { GodTestCmm001DAOTest.class, EgovTestAbstractDAO.class, })
+@ContextConfiguration(classes = { GodTestCmm002DAOTest.class, EgovTestAbstractDAO.class, })
 
 @Configuration
 
@@ -56,7 +56,7 @@ import lombok.extern.slf4j.Slf4j;
 
                         classes = {
 
-                                GodTestCmm001DAO.class,
+                                GodTestCmm002DAO.class,
 
                         }
 
@@ -68,13 +68,13 @@ import lombok.extern.slf4j.Slf4j;
 
 @NoArgsConstructor
 @Slf4j
-public class GodTestCmm001DAOTest extends EgovTestAbstractDAO {
+public class GodTestCmm002DAOTest extends EgovTestAbstractDAO {
 
     /**
      * 
      */
     @Autowired
-    private GodTestCmm001DAO godTestCmm001DAO;
+    private GodTestCmm002DAO godTestCmm002DAO;
 
     /**
      * 
@@ -89,7 +89,7 @@ public class GodTestCmm001DAOTest extends EgovTestAbstractDAO {
     @Test
     public void insert() {
         // given
-        final GodTestCmm001VO vo = new GodTestCmm001VO();
+        final GodTestCmm002VO vo = new GodTestCmm002VO();
         vo.setAdministZoneSe("1");
         vo.setAdministZoneCode("0000000001");
 
@@ -109,15 +109,12 @@ public class GodTestCmm001DAOTest extends EgovTestAbstractDAO {
         }
 
         // when
-        final int result = godTestCmm001DAO.insert(vo);
-//        final int result2 = godTestCmm001DAO.insert2(vo);
+        final int result = godTestCmm002DAO.insert(vo);
 
         // then
         log.debug("result={}", result);
-//        log.debug("result2={}", result2);
 
         assertEquals(egovMessageSource.getMessage("fail.common.insert"), 1, result);
-//        assertEquals(egovMessageSource.getMessage("fail.common.insert"), 1, result2);
     }
 
     /**
@@ -126,7 +123,7 @@ public class GodTestCmm001DAOTest extends EgovTestAbstractDAO {
     @Test
     public void insert2() {
         // given
-        final GodTestCmm001VO vo = new GodTestCmm001VO();
+        final GodTestCmm002VO vo = new GodTestCmm002VO();
         vo.setAdministZoneSe("1");
         vo.setAdministZoneCode("0000000001");
 
@@ -146,7 +143,7 @@ public class GodTestCmm001DAOTest extends EgovTestAbstractDAO {
         }
 
         // when
-        final int result = godTestCmm001DAO.insert2(vo);
+        final int result = godTestCmm002DAO.insert2(vo);
 
         // then
         log.debug("result={}", result);
@@ -158,7 +155,7 @@ public class GodTestCmm001DAOTest extends EgovTestAbstractDAO {
      * 
      * @param testData
      */
-    private void testData(final GodTestCmm001VO testData) {
+    private void testData(final GodTestCmm002VO testData) {
         // given
         testData.setAdministZoneSe("1");
         testData.setAdministZoneCode("0000000001");
@@ -179,7 +176,7 @@ public class GodTestCmm001DAOTest extends EgovTestAbstractDAO {
         }
 
         // when
-        final int result = godTestCmm001DAO.insert(testData);
+        final int result = godTestCmm002DAO.insert(testData);
 
         // then
         log.debug("result={}", result);
@@ -193,16 +190,16 @@ public class GodTestCmm001DAOTest extends EgovTestAbstractDAO {
     @Test
     public void select() {
         // given
-        final GodTestCmm001VO testData = new GodTestCmm001VO();
+        final GodTestCmm002VO testData = new GodTestCmm002VO();
         testData(testData);
 
-        final GodTestCmm001VO vo = new GodTestCmm001VO();
+        final GodTestCmm002VO vo = new GodTestCmm002VO();
         vo.setAdministZoneSe(testData.getAdministZoneSe());
         vo.setAdministZoneCode(testData.getAdministZoneCode());
 
         // when
-        final GodTestCmm001VO result = godTestCmm001DAO.select(vo);
-        final GodTestCmm001VO result2 = godTestCmm001DAO.select(vo);
+        final GodTestCmm002VO result = godTestCmm002DAO.select(vo);
+        final GodTestCmm002VO result2 = godTestCmm002DAO.select(vo);
 
         // then
         log.debug("result={}", result);
@@ -212,7 +209,7 @@ public class GodTestCmm001DAOTest extends EgovTestAbstractDAO {
         assertSelect(testData, result2);
     }
 
-    private void assertSelect(final GodTestCmm001VO testData, final GodTestCmm001VO result) {
+    private void assertSelect(final GodTestCmm002VO testData, final GodTestCmm002VO result) {
         if (log.isDebugEnabled()) {
             log.debug("getAdministZoneSe={}, {}", testData.getAdministZoneSe(), result.getAdministZoneSe());
             log.debug("getAdministZoneCode={}, {}", testData.getAdministZoneCode(), result.getAdministZoneCode());
@@ -224,27 +221,30 @@ public class GodTestCmm001DAOTest extends EgovTestAbstractDAO {
                 result.getAdministZoneCode());
     }
 
-    /**
-     * 
-     */
-    @Test
-    public void select2() {
-        // given
-        final GodTestCmm001VO testData = new GodTestCmm001VO();
-        testData(testData);
-
-        final GodTestCmm001VO vo = new GodTestCmm001VO();
-        vo.setAdministZoneSe(testData.getAdministZoneSe());
-        vo.setAdministZoneCode(testData.getAdministZoneCode());
-
-        // when
-        final GodTestCmm001VO result = godTestCmm001DAO.select2(vo);
-
-        // then
-        log.debug("result={}", result);
-
-        assertSelect(testData, result);
-    }
+//    /**
+//     * 
+//     */
+//    @Test
+//    public void select2() {
+//        // given
+//        final GodTestCmm002VO testData = new GodTestCmm002VO();
+//        testData(testData);
+//
+//        final GodTestCmm002VO vo = new GodTestCmm002VO();
+//        vo.setAdministZoneSe(testData.getAdministZoneSe());
+//        vo.setAdministZoneCode(testData.getAdministZoneCode());
+//
+//        // when
+//        final GodTestCmm002VO result = godTestCmm002DAO.select2(vo);
+//        final GodTestCmm002VO result2 = godTestCmm002DAO.select2(vo);
+//
+//        // then
+//        log.debug("result={}", result);
+//        log.debug("result2={}", result2);
+//
+//        assertSelect(testData, result);
+//        assertSelect(testData, result2);
+//    }
 
     /**
      * 
@@ -252,10 +252,10 @@ public class GodTestCmm001DAOTest extends EgovTestAbstractDAO {
     @Test
     public void selectList() {
         // given
-        final GodTestCmm001VO testData = new GodTestCmm001VO();
+        final GodTestCmm002VO testData = new GodTestCmm002VO();
         testData(testData);
 
-        final GodTestCmm001VO vo = new GodTestCmm001VO();
+        final GodTestCmm002VO vo = new GodTestCmm002VO();
         vo.setFirstIndex(0);
         vo.setRecordCountPerPage(10);
 
@@ -263,7 +263,7 @@ public class GodTestCmm001DAOTest extends EgovTestAbstractDAO {
         vo.setSearchKeyword("test 이백행 2023-11-18");
 
         // when
-        final List<GodTestCmm001VO> resultList = godTestCmm001DAO.selectList(vo);
+        final List<GodTestCmm002VO> resultList = godTestCmm002DAO.selectList(vo);
 
         // then
         log.debug("resultList={}", resultList);
@@ -271,13 +271,13 @@ public class GodTestCmm001DAOTest extends EgovTestAbstractDAO {
         assertSelectList(testData, resultList);
     }
 
-    private void assertSelectList(final GodTestCmm001VO testData, final List<GodTestCmm001VO> resultList) {
+    private void assertSelectList(final GodTestCmm002VO testData, final List<GodTestCmm002VO> resultList) {
 //        assertFalse(egovMessageSource.getMessage("fail.common.select"), resultList.isEmpty());
         assertTrue(egovMessageSource.getMessage("fail.common.select"), resultList.size() > -1);
 
         int i = 1;
 
-        for (final GodTestCmm001VO result : resultList) {
+        for (final GodTestCmm002VO result : resultList) {
             if (log.isDebugEnabled()) {
                 log.debug("i={}", i);
 
@@ -298,13 +298,13 @@ public class GodTestCmm001DAOTest extends EgovTestAbstractDAO {
     @Test
     public void selectListTotCnt() {
         // given
-        final GodTestCmm001VO testData = new GodTestCmm001VO();
+        final GodTestCmm002VO testData = new GodTestCmm002VO();
         testData(testData);
 
-        final GodTestCmm001VO vo = new GodTestCmm001VO();
+        final GodTestCmm002VO vo = new GodTestCmm002VO();
 
         // when
-        final int totCnt = godTestCmm001DAO.selectListTotCnt(vo);
+        final int totCnt = godTestCmm002DAO.selectListTotCnt(vo);
 
         // then
         log.debug("totCnt={}", totCnt);
@@ -318,17 +318,17 @@ public class GodTestCmm001DAOTest extends EgovTestAbstractDAO {
     @Test
     public void update() {
         // given
-        final GodTestCmm001VO testData = new GodTestCmm001VO();
+        final GodTestCmm002VO testData = new GodTestCmm002VO();
         testData(testData);
 
-        final GodTestCmm001VO vo = new GodTestCmm001VO();
+        final GodTestCmm002VO vo = new GodTestCmm002VO();
         vo.setAdministZoneSe(testData.getAdministZoneSe());
         vo.setAdministZoneCode(testData.getAdministZoneCode());
 
         vo.setUseAt("Y");
 
         // when
-        final int result = godTestCmm001DAO.update(vo);
+        final int result = godTestCmm002DAO.update(vo);
 
         // then
         log.debug("result={}", result);
@@ -336,29 +336,29 @@ public class GodTestCmm001DAOTest extends EgovTestAbstractDAO {
         assertEquals(egovMessageSource.getMessage("fail.common.update"), 1, result);
     }
 
-    /**
-     * 
-     */
-    @Test
-    public void update2() {
-        // given
-        final GodTestCmm001VO testData = new GodTestCmm001VO();
-        testData(testData);
-
-        final GodTestCmm001VO vo = new GodTestCmm001VO();
-        vo.setAdministZoneSe(testData.getAdministZoneSe());
-        vo.setAdministZoneCode(testData.getAdministZoneCode());
-
-        vo.setUseAt("Y");
-
-        // when
-        final int result = godTestCmm001DAO.update2(vo);
-
-        // then
-        log.debug("result={}", result);
-
-        assertEquals(egovMessageSource.getMessage("fail.common.update"), 1, result);
-    }
+//    /**
+//     * 
+//     */
+//    @Test
+//    public void update2() {
+//        // given
+//        final GodTestCmm002VO testData = new GodTestCmm002VO();
+//        testData(testData);
+//
+//        final GodTestCmm002VO vo = new GodTestCmm002VO();
+//        vo.setAdministZoneSe(testData.getAdministZoneSe());
+//        vo.setAdministZoneCode(testData.getAdministZoneCode());
+//
+//        vo.setUseAt("Y");
+//
+//        // when
+//        final int result = godTestCmm002DAO.update2(vo);
+//
+//        // then
+//        log.debug("result={}", result);
+//
+//        assertEquals(egovMessageSource.getMessage("fail.common.update"), 1, result);
+//    }
 
     /**
      * 
@@ -366,15 +366,15 @@ public class GodTestCmm001DAOTest extends EgovTestAbstractDAO {
     @Test
     public void delete() {
         // given
-        final GodTestCmm001VO testData = new GodTestCmm001VO();
+        final GodTestCmm002VO testData = new GodTestCmm002VO();
         testData(testData);
 
-        final GodTestCmm001VO vo = new GodTestCmm001VO();
+        final GodTestCmm002VO vo = new GodTestCmm002VO();
         vo.setAdministZoneSe(testData.getAdministZoneSe());
         vo.setAdministZoneCode(testData.getAdministZoneCode());
 
         // when
-        final int result = godTestCmm001DAO.delete(vo);
+        final int result = godTestCmm002DAO.delete(vo);
 
         // then
         log.debug("result={}", result);
@@ -382,26 +382,26 @@ public class GodTestCmm001DAOTest extends EgovTestAbstractDAO {
         assertEquals(egovMessageSource.getMessage("fail.common.delete"), 1, result);
     }
 
-    /**
-     * 
-     */
-    @Test
-    public void delete2() {
-        // given
-        final GodTestCmm001VO testData = new GodTestCmm001VO();
-        testData(testData);
-
-        final GodTestCmm001VO vo = new GodTestCmm001VO();
-        vo.setAdministZoneSe(testData.getAdministZoneSe());
-        vo.setAdministZoneCode(testData.getAdministZoneCode());
-
-        // when
-        final int result = godTestCmm001DAO.delete2(vo);
-
-        // then
-        log.debug("result={}", result);
-
-        assertEquals(egovMessageSource.getMessage("fail.common.delete"), 1, result);
-    }
+//    /**
+//     * 
+//     */
+//    @Test
+//    public void delete2() {
+//        // given
+//        final GodTestCmm002VO testData = new GodTestCmm002VO();
+//        testData(testData);
+//
+//        final GodTestCmm002VO vo = new GodTestCmm002VO();
+//        vo.setAdministZoneSe(testData.getAdministZoneSe());
+//        vo.setAdministZoneCode(testData.getAdministZoneCode());
+//
+//        // when
+//        final int result = godTestCmm002DAO.delete2(vo);
+//
+//        // then
+//        log.debug("result={}", result);
+//
+//        assertEquals(egovMessageSource.getMessage("fail.common.delete"), 1, result);
+//    }
 
 }

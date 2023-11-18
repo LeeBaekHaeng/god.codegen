@@ -2,8 +2,8 @@ package god.test.cmm.service.impl;
 
 import org.springframework.stereotype.Repository;
 
-import god.com.cmm.service.impl.GodDAOServiceImpl;
-import god.test.cmm.service.GodTestCmm001VO;
+import god.com.cmm.service.impl.GodComCmmDAOImpl;
+import god.test.cmm.service.GodTestCmm002VO;
 import lombok.extern.slf4j.Slf4j;
 
 /**
@@ -14,7 +14,7 @@ import lombok.extern.slf4j.Slf4j;
  */
 @Repository
 @Slf4j
-public class GodTestCmm002DAO extends GodDAOServiceImpl<GodTestCmm001VO, GodTestCmm001VO> {
+public class GodTestCmm002DAO extends GodComCmmDAOImpl<GodTestCmm002VO, GodTestCmm002VO> {
 
     /**
      * mapperNamespace 값설정
@@ -24,22 +24,22 @@ public class GodTestCmm002DAO extends GodDAOServiceImpl<GodTestCmm001VO, GodTest
     }
 
     @Override
-    public int insert(final GodTestCmm001VO vo) {
+    public int insert(final GodTestCmm002VO vo) {
         log.debug("vo={}", vo);
         return super.insert(vo);
     }
 
-    public int insert2(final GodTestCmm001VO vo) {
+    public int insert2(final GodTestCmm002VO vo) {
         log.debug("vo={}", vo);
         return super.insert(getMapperNamespace() + ".insert2", vo);
     }
 
     @Override
-    public GodTestCmm001VO select(GodTestCmm001VO vo) {
+    public GodTestCmm002VO select(GodTestCmm002VO vo) {
         return super.select(vo);
     }
 
-    public GodTestCmm001VO select2(GodTestCmm001VO vo) {
+    public GodTestCmm002VO select2(GodTestCmm002VO vo) {
         return super.selectOne(getMapperNamespace() + ".select2", vo);
     }
 
