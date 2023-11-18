@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?><!--Converted at: Wed May 11 15:49:38 KST 2016 -->
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="GodTestCmm002DAO">
+
+    <select id="select2" parameterType="god.test.cmm.service.GodTestCmm001VO" resultType="god.test.cmm.service.GodTestCmm001VO">
+<![CDATA[
+/* GodTestCmm002DAO.select2 */
+/* 행정코드 조회(단건) */
+SELECT
+    A.ADMINIST_ZONE_SE /* ADMINIST_ZONE_SE char(1) NOT NULL 행정구역구분 */
+    , A.ADMINIST_ZONE_CODE /* ADMINIST_ZONE_CODE varchar(10) NOT NULL 행정구역코드 */
+    , A.USE_AT /* USE_AT char(1) NOT NULL 사용여부 */
+FROM 
+    COMTCADMINISTCODE /* 행정코드 */ A
+WHERE A.ADMINIST_ZONE_SE = #{administZoneSe} /* ADMINIST_ZONE_SE char(1) NOT NULL 행정구역구분 */
+    AND A.ADMINIST_ZONE_CODE = #{administZoneCode} /* ADMINIST_ZONE_CODE varchar(10) NOT NULL 행정구역코드 */
+]]>
+    </select>
+
+</mapper>
