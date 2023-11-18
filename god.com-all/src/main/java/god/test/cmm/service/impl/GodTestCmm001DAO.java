@@ -57,9 +57,19 @@ public class GodTestCmm001DAO extends GodDAOServiceImpl<GodTestCmm001VO, GodTest
         return super.update(vo);
     }
 
+    public int update2(final GodTestCmm001VO vo) {
+        log.debug("vo={}", vo);
+        return super.update(super.getMapperNamespace() + ".update2", vo);
+    }
+
     @Override
     public int delete(GodTestCmm001VO vo) {
         return super.delete(vo);
+    }
+
+    public int delete2(final GodTestCmm001VO vo) {
+        log.debug("vo={}", vo);
+        return super.update(super.getMapperNamespace() + ".delete2", vo);
     }
 
     @Override

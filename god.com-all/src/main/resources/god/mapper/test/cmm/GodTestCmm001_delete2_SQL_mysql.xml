@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?><!--Converted at: Wed May 11 15:49:38 KST 2016 -->
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="GodTestCmm001DAO">
+
+    <delete id="delete2" parameterType="god.test.cmm.service.GodTestCmm001VO">
+<![CDATA[
+/* GodTestCmm001DAO.delete2 */
+/* 행정코드 삭제 */
+DELETE FROM comtcadministcode /* 행정코드 */
+WHERE ADMINIST_ZONE_SE = #{administZoneSe} /* ADMINIST_ZONE_SE char(1) NOT NULL 행정구역구분 */
+    AND ADMINIST_ZONE_CODE = #{administZoneCode} /* ADMINIST_ZONE_CODE varchar(10) NOT NULL 행정구역코드 */
+]]>
+    </delete>
+
+</mapper>
