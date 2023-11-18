@@ -11,10 +11,20 @@ INSERT INTO comtcadministcode /* 행정코드 */ (
     ADMINIST_ZONE_SE /* ADMINIST_ZONE_SE char(1) NOT NULL 행정구역구분 */
     , ADMINIST_ZONE_CODE /* ADMINIST_ZONE_CODE varchar(10) NOT NULL 행정구역코드 */
     , USE_AT /* USE_AT char(1) NOT NULL 사용여부 */
+
+    , FRST_REGIST_PNTTM /* `FRST_REGIST_PNTTM` datetime DEFAULT NULL COMMENT '최초등록시점', */
+    , FRST_REGISTER_ID /* `FRST_REGISTER_ID` varchar(20) DEFAULT NULL COMMENT '최초등록자ID', */
+    , LAST_UPDT_PNTTM /* `LAST_UPDT_PNTTM` datetime DEFAULT NULL COMMENT '최종수정시점', */
+    , LAST_UPDUSR_ID /* `LAST_UPDUSR_ID` varchar(20) DEFAULT NULL COMMENT '최종수정자ID', */
 ) VALUES (
     #{administZoneSe} /* ADMINIST_ZONE_SE char(1) NOT NULL 행정구역구분 */
     , #{administZoneCode} /* ADMINIST_ZONE_CODE varchar(10) NOT NULL 행정구역코드 */
     , 'Y' /* USE_AT char(1) NOT NULL 사용여부 */
+
+    , #{frstRegistPnttm} /* `FRST_REGIST_PNTTM` datetime DEFAULT NULL COMMENT '최초등록시점', */
+    , #{frstRegisterId} /* `FRST_REGISTER_ID` varchar(20) DEFAULT NULL COMMENT '최초등록자ID', */
+    , #{lastUpdtPnttm} /* `LAST_UPDT_PNTTM` datetime DEFAULT NULL COMMENT '최종수정시점', */
+    , #{lastUpdusrId} /* `LAST_UPDUSR_ID` varchar(20) DEFAULT NULL COMMENT '최종수정자ID', */
 )
 ]]>
     </insert>

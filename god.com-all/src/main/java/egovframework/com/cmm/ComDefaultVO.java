@@ -1,6 +1,7 @@
 package egovframework.com.cmm;
 
 import java.io.Serializable;
+import java.time.LocalDateTime;
 
 import org.apache.commons.lang3.builder.ToStringBuilder;
 
@@ -8,16 +9,20 @@ import org.apache.commons.lang3.builder.ToStringBuilder;
  * @Class Name : ComDefaultVO.java
  * @Description : ComDefaultVO class
  * @Modification Information
- * @
- * @  수정일         수정자                   수정내용
- * @ -------    --------    ---------------------------
- * @ 2009.02.01    조재영         최초 생성
+ * 
+ *               <pre>
+ * &#64;
+ * &#64;  수정일         수정자                   수정내용
+ * &#64; -------    --------    ---------------------------
+ * &#64; 2009.02.01    조재영         최초 생성
+ *               </pre>
  *
- *  @author 공통서비스 개발팀 조재영
- *  @since 2009.02.01
- *  @version 1.0
- *  @see 
- *  
+ *
+ * @author 공통서비스 개발팀 조재영
+ * @since 2009.02.01
+ * @version 1.0
+ * @see
+ * 
  */
 public class ComDefaultVO implements Serializable {
 
@@ -25,19 +30,19 @@ public class ComDefaultVO implements Serializable {
 
     /** 검색조건 */
     private String searchCondition = "";
-    
+
     /** 검색Keyword */
     private String searchKeyword = "";
-    
+
     /** 검색사용여부 */
     private String searchUseYn = "";
-    
+
     /** 현재페이지 */
     private int pageIndex = 1;
-    
+
     /** 페이지개수 */
     private int pageUnit = 10;
-    
+
     /** 페이지사이즈 */
     private int pageSize = 10;
 
@@ -49,38 +54,43 @@ public class ComDefaultVO implements Serializable {
 
     /** recordCountPerPage */
     private int recordCountPerPage = 10;
-    
+
     /** 검색KeywordFrom */
-    private String searchKeywordFrom = "";    
+    private String searchKeywordFrom = "";
 
-	/** 검색KeywordTo */
-    private String searchKeywordTo = "";  
-    
-	public int getFirstIndex() {
-		return firstIndex;
-	}
+    /** 검색KeywordTo */
+    private String searchKeywordTo = "";
 
-	public void setFirstIndex(int firstIndex) {
-		this.firstIndex = firstIndex;
-	}
+    private LocalDateTime frstRegistPnttm;
+    private String frstRegisterId;
+    private LocalDateTime lastUpdtPnttm;
+    private String lastUpdusrId;
 
-	public int getLastIndex() {
-		return lastIndex;
-	}
+    public int getFirstIndex() {
+        return firstIndex;
+    }
 
-	public void setLastIndex(int lastIndex) {
-		this.lastIndex = lastIndex;
-	}
+    public void setFirstIndex(int firstIndex) {
+        this.firstIndex = firstIndex;
+    }
 
-	public int getRecordCountPerPage() {
-		return recordCountPerPage;
-	}
+    public int getLastIndex() {
+        return lastIndex;
+    }
 
-	public void setRecordCountPerPage(int recordCountPerPage) {
-		this.recordCountPerPage = recordCountPerPage;
-	}
+    public void setLastIndex(int lastIndex) {
+        this.lastIndex = lastIndex;
+    }
 
-	public String getSearchCondition() {
+    public int getRecordCountPerPage() {
+        return recordCountPerPage;
+    }
+
+    public void setRecordCountPerPage(int recordCountPerPage) {
+        this.recordCountPerPage = recordCountPerPage;
+    }
+
+    public String getSearchCondition() {
         return searchCondition;
     }
 
@@ -128,40 +138,81 @@ public class ComDefaultVO implements Serializable {
         this.pageSize = pageSize;
     }
 
+    @Override
     public String toString() {
         return ToStringBuilder.reflectionToString(this);
     }
 
-    
     /**
-	 * searchKeywordFrom attribute를 리턴한다.
-	 * @return String
-	 */
-	public String getSearchKeywordFrom() {
-		return searchKeywordFrom;
-	}
+     * searchKeywordFrom attribute를 리턴한다.
+     * 
+     * @return String
+     */
+    public String getSearchKeywordFrom() {
+        return searchKeywordFrom;
+    }
 
-	/**
-	 * searchKeywordFrom attribute 값을 설정한다.
-	 * @param searchKeywordFrom String
-	 */
-	public void setSearchKeywordFrom(String searchKeywordFrom) {
-		this.searchKeywordFrom = searchKeywordFrom;
-	}
+    /**
+     * searchKeywordFrom attribute 값을 설정한다.
+     * 
+     * @param searchKeywordFrom String
+     */
+    public void setSearchKeywordFrom(String searchKeywordFrom) {
+        this.searchKeywordFrom = searchKeywordFrom;
+    }
 
-	/**
-	 * searchKeywordTo attribute를 리턴한다.
-	 * @return String
-	 */
-	public String getSearchKeywordTo() {
-		return searchKeywordTo;
-	}
+    /**
+     * searchKeywordTo attribute를 리턴한다.
+     * 
+     * @return String
+     */
+    public String getSearchKeywordTo() {
+        return searchKeywordTo;
+    }
 
-	/**
-	 * searchKeywordTo attribute 값을 설정한다.
-	 * @param searchKeywordTo String
-	 */
-	public void setSearchKeywordTo(String searchKeywordTo) {
-		this.searchKeywordTo = searchKeywordTo;
-	}
+    /**
+     * searchKeywordTo attribute 값을 설정한다.
+     * 
+     * @param searchKeywordTo String
+     */
+    public void setSearchKeywordTo(String searchKeywordTo) {
+        this.searchKeywordTo = searchKeywordTo;
+    }
+
+    public LocalDateTime getFrstRegistPnttm() {
+        return frstRegistPnttm;
+    }
+
+    public void setFrstRegistPnttm(LocalDateTime frstRegistPnttm) {
+        this.frstRegistPnttm = frstRegistPnttm;
+    }
+
+    public String getFrstRegisterId() {
+        return frstRegisterId;
+    }
+
+    public void setFrstRegisterId(String frstRegisterId) {
+        this.frstRegisterId = frstRegisterId;
+    }
+
+    public LocalDateTime getLastUpdtPnttm() {
+        return lastUpdtPnttm;
+    }
+
+    public void setLastUpdtPnttm(LocalDateTime lastUpdtPnttm) {
+        this.lastUpdtPnttm = lastUpdtPnttm;
+    }
+
+    public String getLastUpdusrId() {
+        return lastUpdusrId;
+    }
+
+    public void setLastUpdusrId(String lastUpdusrId) {
+        this.lastUpdusrId = lastUpdusrId;
+    }
+
+    public static long getSerialversionuid() {
+        return serialVersionUID;
+    }
+
 }

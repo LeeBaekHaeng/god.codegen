@@ -3,6 +3,7 @@ package god.test.a.a.b.service.impl;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 import org.egovframe.rte.fdl.cmmn.exception.BaseRuntimeException;
@@ -18,6 +19,8 @@ import org.springframework.context.annotation.FilterType;
 import org.springframework.context.annotation.ImportResource;
 import org.springframework.test.context.ContextConfiguration;
 
+import egovframework.com.cmm.LoginVO;
+import egovframework.com.cmm.util.EgovUserDetailsHelper;
 import egovframework.com.test.EgovTestAbstractDAO;
 import god.test.a.a.b.service.GodTestAabVO;
 import lombok.NoArgsConstructor;
@@ -106,6 +109,18 @@ public class GodTestAabDAOTest extends EgovTestAbstractDAO {
 
         if (log.isDebugEnabled()) {
             log.debug("getOpertSn={}", vo.getOpertSn());
+        }
+
+        final LoginVO loginVO = (LoginVO) EgovUserDetailsHelper.getAuthenticatedUser();
+
+        vo.setFrstRegistPnttm(LocalDateTime.now());
+//        vo.setFrstRegisterId(loginVO.getUniqId());
+        vo.setLastUpdtPnttm(vo.getFrstRegistPnttm());
+//        vo.setLastUpdusrId(loginVO.getUniqId());
+
+        if (loginVO != null) {
+            vo.setFrstRegisterId(loginVO.getUniqId());
+            vo.setLastUpdusrId(loginVO.getUniqId());
         }
 
         // when
