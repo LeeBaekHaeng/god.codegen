@@ -36,6 +36,14 @@ public interface GodDAOService<T, R> {
     List<R> selectList(T vo);
 
     /**
+     * 조회(멀티건) 전체 건수
+     * 
+     * @param vo
+     * @return
+     */
+    int selectListTotCnt(T vo);
+
+    /**
      * 등록
      * 
      * @param vo

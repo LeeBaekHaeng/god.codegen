@@ -53,6 +53,11 @@ public class GodTestCmm001DAO extends GodDAOServiceImpl<GodTestCmm001VO, GodTest
     }
 
     @Override
+    public int selectListTotCnt(GodTestCmm001VO vo) {
+        return super.selectListTotCnt(vo);
+    }
+
+    @Override
     public int update(GodTestCmm001VO vo) {
         return super.update(vo);
     }

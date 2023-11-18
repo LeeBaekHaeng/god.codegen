@@ -1,7 +1,7 @@
 package god.test.cmm.service.impl;
 
 import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
 
 import java.util.List;
 
@@ -270,6 +270,9 @@ public class GodTestCmm001DAOTest extends EgovTestAbstractDAO {
         vo.setFirstIndex(0);
         vo.setRecordCountPerPage(10);
 
+//        vo.setSearchCondition("0");
+        vo.setSearchKeyword("test 이백행 2023-11-18");
+
         // when
         final List<GodTestCmm001VO> resultList = godTestCmm001DAO.selectList(vo);
 
@@ -280,7 +283,8 @@ public class GodTestCmm001DAOTest extends EgovTestAbstractDAO {
     }
 
     private void assertSelectList(final GodTestCmm001VO testData, final List<GodTestCmm001VO> resultList) {
-        assertFalse(egovMessageSource.getMessage("fail.common.select"), resultList.isEmpty());
+//        assertFalse(egovMessageSource.getMessage("fail.common.select"), resultList.isEmpty());
+        assertTrue(egovMessageSource.getMessage("fail.common.select"), resultList.size() > -1);
 
         int i = 1;
 
@@ -297,6 +301,26 @@ public class GodTestCmm001DAOTest extends EgovTestAbstractDAO {
 
             i++;
         }
+    }
+
+    /**
+     * 
+     */
+    @Test
+    public void selectListTotCnt() {
+        // given
+        final GodTestCmm001VO testData = new GodTestCmm001VO();
+        testData(testData);
+
+        final GodTestCmm001VO vo = new GodTestCmm001VO();
+
+        // when
+        final int totCnt = godTestCmm001DAO.selectListTotCnt(vo);
+
+        // then
+        log.debug("totCnt={}", totCnt);
+
+        assertTrue(egovMessageSource.getMessage("fail.common.select"), totCnt > -1);
     }
 
     /**

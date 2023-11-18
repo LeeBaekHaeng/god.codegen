@@ -33,21 +33,52 @@ WHERE A.ADMINIST_ZONE_SE = #{administZoneSe} /* ADMINIST_ZONE_SE char(1) NOT NUL
 ]]>
     </select>
 
-    <select id="selectList" parameterType="god.test.cmm.service.GodTestCmm001VO" resultType="god.test.cmm.service.GodTestCmm001VO">
+    <sql id="selectListFromWhere">
 <![CDATA[
-/* GodTestCmm001DAO.selectList */
-/* 행정코드 조회(단건) */
-SELECT
-    A.ADMINIST_ZONE_SE /* ADMINIST_ZONE_SE char(1) NOT NULL 행정구역구분 */
-    , A.ADMINIST_ZONE_CODE /* ADMINIST_ZONE_CODE varchar(10) NOT NULL 행정구역코드 */
-    , A.USE_AT /* USE_AT char(1) NOT NULL 사용여부 */
 FROM COMTCADMINISTCODE /* 행정코드 */ A
 WHERE 1 = 1
 ]]>
 
+        <if test="@egovframework.com.cmm.util.EgovMybatisUtil@isNotEmpty(searchKeyword)">
+            <choose>
+                <when test="@egovframework.com.cmm.util.EgovMybatisUtil@isEquals(searchCondition, '0')">
+<![CDATA[
+    AND ADMINIST_ZONE_SE = #{searchKeyword} /* ADMINIST_ZONE_SE char(1) NOT NULL 행정구역구분 */
+]]>
+                </when>
+                <otherwise>
+<![CDATA[
+    /* search otherwise */
+]]>
+                </otherwise>
+            </choose>
+        </if>
+
+    </sql>
+
+    <select id="selectList" parameterType="god.test.cmm.service.GodTestCmm001VO" resultType="god.test.cmm.service.GodTestCmm001VO">
+<![CDATA[
+/* GodTestCmm001DAO.selectList */
+/* 행정코드 조회(멀티건) */
+SELECT
+    A.ADMINIST_ZONE_SE /* ADMINIST_ZONE_SE char(1) NOT NULL 행정구역구분 */
+    , A.ADMINIST_ZONE_CODE /* ADMINIST_ZONE_CODE varchar(10) NOT NULL 행정구역코드 */
+    , A.USE_AT /* USE_AT char(1) NOT NULL 사용여부 */
+]]>
+        <include refid="selectListFromWhere" />
 <![CDATA[
 LIMIT #{recordCountPerPage} OFFSET #{firstIndex}
 ]]>
+    </select>
+
+    <select id="selectListTotCnt" parameterType="god.test.cmm.service.GodTestCmm001VO" resultType="int">
+<![CDATA[
+/* GodTestCmm001DAO.selectListTotCnt */
+/* 행정코드 조회(멀티건) 전체 건수 */
+SELECT
+    COUNT(*)
+]]>
+        <include refid="selectListFromWhere" />
     </select>
 
     <update id="update" parameterType="god.test.cmm.service.GodTestCmm001VO">

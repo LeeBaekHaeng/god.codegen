@@ -61,6 +61,11 @@ public class GodDAOServiceImpl<T, R> extends EgovAbstractMapper implements GodDA
     }
 
     @Override
+    public int selectListTotCnt(T vo) {
+        return super.selectOne(getMapperNamespace() + ".selectListTotCnt", vo);
+    }
+
+    @Override
     public int update(T vo) {
         return super.insert(getMapperNamespace() + ".update", vo);
     }
