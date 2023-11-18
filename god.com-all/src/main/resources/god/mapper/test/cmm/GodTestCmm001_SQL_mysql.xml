@@ -43,11 +43,31 @@ SELECT
     A.ADMINIST_ZONE_SE /* ADMINIST_ZONE_SE char(1) NOT NULL 행정구역구분 */
     , A.ADMINIST_ZONE_CODE /* ADMINIST_ZONE_CODE varchar(10) NOT NULL 행정구역코드 */
     , A.USE_AT /* USE_AT char(1) NOT NULL 사용여부 */
-FROM 
-    COMTCADMINISTCODE /* 행정코드 */ A
+FROM COMTCADMINISTCODE /* 행정코드 */ A
 WHERE A.ADMINIST_ZONE_SE = #{administZoneSe} /* ADMINIST_ZONE_SE char(1) NOT NULL 행정구역구분 */
     AND A.ADMINIST_ZONE_CODE = #{administZoneCode} /* ADMINIST_ZONE_CODE varchar(10) NOT NULL 행정구역코드 */
 ]]>
     </select>
+
+    <update id="update" parameterType="god.test.cmm.service.GodTestCmm001VO">
+<![CDATA[
+/* GodTestCmm001DAO.update */
+/* 행정코드 수정 */
+UPDATE comtcadministcode /* 행정코드 */ SET
+    USE_AT = #{useAt} /* USE_AT char(1) NOT NULL 사용여부 */
+WHERE ADMINIST_ZONE_SE = #{administZoneSe} /* ADMINIST_ZONE_SE char(1) NOT NULL 행정구역구분 */
+    AND ADMINIST_ZONE_CODE = #{administZoneCode} /* ADMINIST_ZONE_CODE varchar(10) NOT NULL 행정구역코드 */
+]]>
+    </update>
+
+    <delete id="delete" parameterType="god.test.cmm.service.GodTestCmm001VO">
+<![CDATA[
+/* GodTestCmm001DAO.delete */
+/* 행정코드 삭제 */
+DELETE FROM comtcadministcode /* 행정코드 */
+WHERE ADMINIST_ZONE_SE = #{administZoneSe} /* ADMINIST_ZONE_SE char(1) NOT NULL 행정구역구분 */
+    AND ADMINIST_ZONE_CODE = #{administZoneCode} /* ADMINIST_ZONE_CODE varchar(10) NOT NULL 행정구역코드 */
+]]>
+    </delete>
 
 </mapper>

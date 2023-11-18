@@ -11,6 +11,8 @@ public class GodTestCmm001VO extends GodTestCmm001DefaultVO {
 
     private String administZoneCode;
 
+    private String useAt;
+
     public String getAdministZoneSe() {
         return administZoneSe;
     }
@@ -25,6 +27,14 @@ public class GodTestCmm001VO extends GodTestCmm001DefaultVO {
 
     public void setAdministZoneCode(String administZoneCode) {
         this.administZoneCode = administZoneCode;
+    }
+
+    public String getUseAt() {
+        return useAt;
+    }
+
+    public void setUseAt(String useAt) {
+        this.useAt = useAt;
     }
 
     public static long getSerialversionuid() {

@@ -1,8 +1,10 @@
 package god.test.cmm.service.impl;
 
+import java.util.List;
+
 import org.springframework.stereotype.Repository;
 
-import god.com.cmm.service.impl.GodAbstractDAO;
+import god.com.cmm.service.impl.GodDAOServiceImpl;
 import god.test.cmm.service.GodTestCmm001VO;
 import lombok.extern.slf4j.Slf4j;
 
@@ -14,27 +16,24 @@ import lombok.extern.slf4j.Slf4j;
  */
 @Repository
 @Slf4j
-public class GodTestCmm001DAO extends GodAbstractDAO<GodTestCmm001VO, GodTestCmm001VO> {
+public class GodTestCmm001DAO extends GodDAOServiceImpl<GodTestCmm001VO, GodTestCmm001VO> {
 
     /**
      * mapperNamespace 값설정
      */
     public GodTestCmm001DAO() {
-        super();
-        setMapperNamespace("GodTestCmm001DAO");
+        super("GodTestCmm001DAO");
     }
 
     @Override
     public int insert(final GodTestCmm001VO vo) {
         log.debug("vo={}", vo);
         return super.insert(vo);
-//        return insert(getMapperNamespace() + ".insert2", vo);
     }
 
-    @Override
     public int insert2(final GodTestCmm001VO vo) {
         log.debug("vo={}", vo);
-        return super.insert2(vo);
+        return super.insert(getMapperNamespace() + ".insert2", vo);
     }
 
     @Override
@@ -43,11 +42,34 @@ public class GodTestCmm001DAO extends GodAbstractDAO<GodTestCmm001VO, GodTestCmm
         return super.select(vo);
     }
 
-    @Override
     public GodTestCmm001VO select2(final GodTestCmm001VO vo) {
         log.debug("vo={}", vo);
-//        return super.select2(vo);
-        return super.selectOne(getMapperNamespace() + ".select2", vo);
+        return super.selectOne(super.getMapperNamespace() + ".select2", vo);
+    }
+
+    @Override
+    public List<GodTestCmm001VO> selectList(GodTestCmm001VO vo) {
+        return super.selectList(vo);
+    }
+
+    @Override
+    public int update(GodTestCmm001VO vo) {
+        return super.update(vo);
+    }
+
+    @Override
+    public int delete(GodTestCmm001VO vo) {
+        return super.delete(vo);
+    }
+
+    @Override
+    public int merge(GodTestCmm001VO vo) {
+        return super.merge(vo);
+    }
+
+    @Override
+    public int multi(GodTestCmm001VO vo) {
+        return super.multi(vo);
     }
 
 }
