@@ -31,7 +31,7 @@ public class GodTestCmm002DAO extends GodComCmmDAOImpl<GodTestCmm002VO, GodTestC
 
     public int insert2(final GodTestCmm002VO vo) {
         log.debug("vo={}", vo);
-        return super.insert(getMapperNamespace() + ".insert2", vo);
+        return super.insert(getMapperNamespace() + "insert2", vo);
     }
 
     @Override
@@ -40,7 +40,7 @@ public class GodTestCmm002DAO extends GodComCmmDAOImpl<GodTestCmm002VO, GodTestC
     }
 
     public GodTestCmm002VO select2(GodTestCmm002VO vo) {
-        return super.selectOne(getMapperNamespace() + ".select2", vo);
+        return super.selectOne(getMapperNamespace() + "select2", vo);
     }
 
 }

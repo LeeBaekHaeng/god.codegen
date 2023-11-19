@@ -38,7 +38,7 @@ public class GodComCmmDAOImpl<T, R> extends EgovAbstractMapper implements GodCom
      */
     public GodComCmmDAOImpl(final String mapperNamespace) {
         super();
-        this.mapperNamespace = mapperNamespace;
+        this.mapperNamespace = mapperNamespace + ".";
     }
 
     public String getMapperNamespace() {
@@ -47,42 +47,42 @@ public class GodComCmmDAOImpl<T, R> extends EgovAbstractMapper implements GodCom
 
     @Override
     public int insert(final T vo) {
-        return super.insert(getMapperNamespace() + ".insert", vo);
+        return super.insert(getMapperNamespace() + "insert", vo);
     }
 
     @Override
     public R select(final T vo) {
-        return super.selectOne(getMapperNamespace() + ".select", vo);
+        return super.selectOne(getMapperNamespace() + "select", vo);
     }
 
     @Override
     public List<R> selectList(T vo) {
-        return super.selectList(getMapperNamespace() + ".selectList", vo);
+        return super.selectList(getMapperNamespace() + "selectList", vo);
     }
 
     @Override
     public int selectListTotCnt(T vo) {
-        return super.selectOne(getMapperNamespace() + ".selectListTotCnt", vo);
+        return super.selectOne(getMapperNamespace() + "selectListTotCnt", vo);
     }
 
     @Override
     public int update(T vo) {
-        return super.insert(getMapperNamespace() + ".update", vo);
+        return super.insert(getMapperNamespace() + "update", vo);
     }
 
     @Override
     public int delete(T vo) {
-        return super.insert(getMapperNamespace() + ".delete", vo);
+        return super.insert(getMapperNamespace() + "delete", vo);
     }
 
     @Override
     public int merge(T vo) {
-        return super.insert(getMapperNamespace() + ".merge", vo);
+        return super.insert(getMapperNamespace() + "merge", vo);
     }
 
     @Override
     public int multi(T vo) {
-        return super.insert(getMapperNamespace() + ".multi", vo);
+        return super.insert(getMapperNamespace() + "multi", vo);
     }
 
 }

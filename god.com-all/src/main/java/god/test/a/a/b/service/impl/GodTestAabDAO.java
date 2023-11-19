@@ -33,7 +33,7 @@ public class GodTestAabDAO extends GodComCmmDAOImpl<GodTestAabVO, GodTestAabVO> 
 
     public int insert2(final GodTestAabVO vo) {
         log.debug("vo={}", vo);
-        return super.insert(getMapperNamespace() + ".insert2", vo);
+        return super.insert(getMapperNamespace() + "insert2", vo);
     }
 
     @Override
@@ -44,7 +44,7 @@ public class GodTestAabDAO extends GodComCmmDAOImpl<GodTestAabVO, GodTestAabVO> 
 
     public GodTestAabVO select2(final GodTestAabVO vo) {
         log.debug("vo={}", vo);
-        return super.selectOne(super.getMapperNamespace() + ".select2", vo);
+        return super.selectOne(super.getMapperNamespace() + "select2", vo);
     }
 
     @Override
@@ -64,7 +64,7 @@ public class GodTestAabDAO extends GodComCmmDAOImpl<GodTestAabVO, GodTestAabVO> 
 
     public int update2(final GodTestAabVO vo) {
         log.debug("vo={}", vo);
-        return super.update(super.getMapperNamespace() + ".update2", vo);
+        return super.update(super.getMapperNamespace() + "update2", vo);
     }
 
     @Override
@@ -74,7 +74,7 @@ public class GodTestAabDAO extends GodComCmmDAOImpl<GodTestAabVO, GodTestAabVO> 
 
     public int delete2(final GodTestAabVO vo) {
         log.debug("vo={}", vo);
-        return super.update(super.getMapperNamespace() + ".delete2", vo);
+        return super.update(super.getMapperNamespace() + "delete2", vo);
     }
 
     @Override
