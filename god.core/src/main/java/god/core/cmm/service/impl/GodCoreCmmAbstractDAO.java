@@ -50,7 +50,7 @@ public abstract class GodCoreCmmAbstractDAO<T, R> extends EgovAbstractMapper imp
 
     @Override
     public int insert(final T vo) {
-        return insert(namespace + "insert", vo);
+        return super.insert(namespace + "insert", vo);
     }
 
     @Override

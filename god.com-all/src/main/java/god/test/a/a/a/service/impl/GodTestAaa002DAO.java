@@ -38,7 +38,7 @@ public class GodTestAaa002DAO extends GodCoreCmmAbstractDAO<GodTestAaa002VO, God
      * @return
      */
     public GodTestAaa002VO select2(final GodTestAaa002VO vo) {
-        return super.select(vo);
+        return selectOne(getNamespace() + "select2", vo);
     }
 
     /**
@@ -47,7 +47,7 @@ public class GodTestAaa002DAO extends GodCoreCmmAbstractDAO<GodTestAaa002VO, God
      * @return
      */
     public List<GodTestAaa002VO> select2List(final GodTestAaa002VO vo) {
-        return super.selectList(vo);
+        return selectList(getNamespace() + "select2List", vo);
     }
 
     /**
@@ -56,7 +56,7 @@ public class GodTestAaa002DAO extends GodCoreCmmAbstractDAO<GodTestAaa002VO, God
      * @return
      */
     public int update2(final GodTestAaa002VO vo) {
-        return super.update(vo);
+        return insert(getNamespace() + "update2", vo);
     }
 
     /**
@@ -65,7 +65,7 @@ public class GodTestAaa002DAO extends GodCoreCmmAbstractDAO<GodTestAaa002VO, God
      * @return
      */
     public int delete2(final GodTestAaa002VO vo) {
-        return super.delete(vo);
+        return insert(getNamespace() + "delete2", vo);
     }
 
     /**
@@ -74,7 +74,7 @@ public class GodTestAaa002DAO extends GodCoreCmmAbstractDAO<GodTestAaa002VO, God
      * @return
      */
     public int merge2(final GodTestAaa002VO vo) {
-        return super.merge(vo);
+        return insert(getNamespace() + "merge2", vo);
     }
 
     /**
@@ -83,7 +83,7 @@ public class GodTestAaa002DAO extends GodCoreCmmAbstractDAO<GodTestAaa002VO, God
      * @return
      */
     public int multi2(final GodTestAaa002VO vo) {
-        return super.multi(vo);
+        return insert(getNamespace() + "multi2", vo);
     }
 
     /**
@@ -92,7 +92,7 @@ public class GodTestAaa002DAO extends GodCoreCmmAbstractDAO<GodTestAaa002VO, God
      * @return
      */
     public int select2ListTotCnt(final GodTestAaa002VO vo) {
-        return super.selectListTotCnt(vo);
+        return selectOne(getNamespace() + "select2ListTotCnt", vo);
     }
 
 }

@@ -125,27 +125,6 @@ public class GodTestAaa002DAOTest extends EgovTestAbstractDAO {
 
     /**
      * 
-     */
-    @Test
-    public void insert2() {
-        // given
-        final GodTestAaa002VO vo = new GodTestAaa002VO();
-        vo.setAdministZoneSe("1");
-        vo.setAdministZoneCode("0000000001");
-
-        setOpertSn(vo);
-
-        // when
-        final int result = dao.insert2(vo);
-
-        // then
-        log.debug("result={}", result);
-
-        assertEquals(egovMessageSource.getMessage("fail.common.insert"), 1, result);
-    }
-
-    /**
-     * 
      * @param testData
      */
     private void testData(final GodTestAaa002VO testData) {
@@ -202,28 +181,6 @@ public class GodTestAaa002DAOTest extends EgovTestAbstractDAO {
      * 
      */
     @Test
-    public void select2() {
-        // given
-        final GodTestAaa002VO testData = new GodTestAaa002VO();
-        testData(testData);
-
-        final GodTestAaa002VO vo = new GodTestAaa002VO();
-        vo.setAdministZoneSe(testData.getAdministZoneSe());
-        vo.setAdministZoneCode(testData.getAdministZoneCode());
-
-        // when
-        final GodTestAaa002VO result = dao.select2(vo);
-
-        // then
-        log.debug("result={}", result);
-
-        assertSelect(testData, result);
-    }
-
-    /**
-     * 
-     */
-    @Test
     public void selectList() {
         // given
         final GodTestAaa002VO testData = new GodTestAaa002VO();
@@ -270,71 +227,6 @@ public class GodTestAaa002DAOTest extends EgovTestAbstractDAO {
      * 
      */
     @Test
-    public void selectListTotCnt() {
-        // given
-        final GodTestAaa002VO testData = new GodTestAaa002VO();
-        testData(testData);
-
-        final GodTestAaa002VO vo = new GodTestAaa002VO();
-
-        // when
-        final int totCnt = dao.selectListTotCnt(vo);
-
-        // then
-        log.debug("totCnt={}", totCnt);
-
-        assertTrue(egovMessageSource.getMessage("fail.common.select"), totCnt > -1);
-    }
-
-    /**
-     * 
-     */
-    @Test
-    public void select2List() {
-        // given
-        final GodTestAaa002VO testData = new GodTestAaa002VO();
-        testData(testData);
-
-        final GodTestAaa002VO vo = new GodTestAaa002VO();
-        vo.setFirstIndex(0);
-        vo.setRecordCountPerPage(10);
-
-//        vo.setSearchCondition("0");
-        vo.setSearchKeyword("test 이백행 2023-11-18");
-
-        // when
-        final List<GodTestAaa002VO> resultList = dao.select2List(vo);
-
-        // then
-        log.debug("resultList={}", resultList);
-
-        assertSelectList(testData, resultList);
-    }
-
-    /**
-     * 
-     */
-    @Test
-    public void select2ListTotCnt() {
-        // given
-        final GodTestAaa002VO testData = new GodTestAaa002VO();
-        testData(testData);
-
-        final GodTestAaa002VO vo = new GodTestAaa002VO();
-
-        // when
-        final int totCnt = dao.selectListTotCnt(vo);
-
-        // then
-        log.debug("totCnt={}", totCnt);
-
-        assertTrue(egovMessageSource.getMessage("fail.common.select"), totCnt > -1);
-    }
-
-    /**
-     * 
-     */
-    @Test
     public void update() {
         // given
         final GodTestAaa002VO testData = new GodTestAaa002VO();
@@ -348,30 +240,6 @@ public class GodTestAaa002DAOTest extends EgovTestAbstractDAO {
 
         // when
         final int result = dao.update(vo);
-
-        // then
-        log.debug("result={}", result);
-
-        assertEquals(egovMessageSource.getMessage("fail.common.update"), 1, result);
-    }
-
-    /**
-     * 
-     */
-    @Test
-    public void update2() {
-        // given
-        final GodTestAaa002VO testData = new GodTestAaa002VO();
-        testData(testData);
-
-        final GodTestAaa002VO vo = new GodTestAaa002VO();
-        vo.setAdministZoneSe(testData.getAdministZoneSe());
-        vo.setAdministZoneCode(testData.getAdministZoneCode());
-
-        vo.setUseAt("Y");
-
-        // when
-        final int result = dao.update2(vo);
 
         // then
         log.debug("result={}", result);
@@ -405,28 +273,6 @@ public class GodTestAaa002DAOTest extends EgovTestAbstractDAO {
      * 
      */
     @Test
-    public void delete2() {
-        // given
-        final GodTestAaa002VO testData = new GodTestAaa002VO();
-        testData(testData);
-
-        final GodTestAaa002VO vo = new GodTestAaa002VO();
-        vo.setAdministZoneSe(testData.getAdministZoneSe());
-        vo.setAdministZoneCode(testData.getAdministZoneCode());
-
-        // when
-        final int result = dao.delete2(vo);
-
-        // then
-        log.debug("result={}", result);
-
-        assertEquals(egovMessageSource.getMessage("fail.common.delete"), 1, result);
-    }
-
-    /**
-     * 
-     */
-    @Test
     public void merge() {
         // given
         final GodTestAaa002VO vo = new GodTestAaa002VO();
@@ -437,27 +283,6 @@ public class GodTestAaa002DAOTest extends EgovTestAbstractDAO {
 
         // when
         final int result = dao.merge(vo);
-
-        // then
-        log.debug("result={}", result);
-
-        assertEquals(egovMessageSource.getMessage("fail.common.insert"), 1, result);
-    }
-
-    /**
-     * 
-     */
-    @Test
-    public void merge2() {
-        // given
-        final GodTestAaa002VO vo = new GodTestAaa002VO();
-        vo.setAdministZoneSe("1");
-        vo.setAdministZoneCode("0000000001");
-
-        setOpertSn(vo);
-
-        // when
-        final int result = dao.merge2(vo);
 
         // then
         log.debug("result={}", result);
@@ -490,6 +315,161 @@ public class GodTestAaa002DAOTest extends EgovTestAbstractDAO {
      * 
      */
     @Test
+    public void selectListTotCnt() {
+        // given
+        final GodTestAaa002VO testData = new GodTestAaa002VO();
+        testData(testData);
+
+        final GodTestAaa002VO vo = new GodTestAaa002VO();
+
+        // when
+        final int totCnt = dao.selectListTotCnt(vo);
+
+        // then
+        log.debug("totCnt={}", totCnt);
+
+        assertTrue(egovMessageSource.getMessage("fail.common.select"), totCnt > -1);
+    }
+
+    /**
+     * 
+     */
+    @Test
+    public void insert2() {
+        // given
+        final GodTestAaa002VO vo = new GodTestAaa002VO();
+        vo.setAdministZoneSe("1");
+        vo.setAdministZoneCode("0000000001");
+
+        setOpertSn(vo);
+
+        // when
+        final int result = dao.insert2(vo);
+
+        // then
+        log.debug("result={}", result);
+
+        assertEquals(egovMessageSource.getMessage("fail.common.insert"), 1, result);
+    }
+
+    /**
+     * 
+     */
+    @Test
+    public void select2() {
+        // given
+        final GodTestAaa002VO testData = new GodTestAaa002VO();
+        testData(testData);
+
+        final GodTestAaa002VO vo = new GodTestAaa002VO();
+        vo.setAdministZoneSe(testData.getAdministZoneSe());
+        vo.setAdministZoneCode(testData.getAdministZoneCode());
+
+        // when
+        final GodTestAaa002VO result = dao.select2(vo);
+
+        // then
+        log.debug("result={}", result);
+
+        assertSelect(testData, result);
+    }
+
+    /**
+         * 
+         */
+    @Test
+    public void select2List() {
+        // given
+        final GodTestAaa002VO testData = new GodTestAaa002VO();
+        testData(testData);
+
+        final GodTestAaa002VO vo = new GodTestAaa002VO();
+        vo.setFirstIndex(0);
+        vo.setRecordCountPerPage(10);
+
+        // vo.setSearchCondition("0");
+        vo.setSearchKeyword("test 이백행 2023-11-18");
+
+        // when
+        final List<GodTestAaa002VO> resultList = dao.select2List(vo);
+
+        // then
+        log.debug("resultList={}", resultList);
+
+        assertSelectList(testData, resultList);
+    }
+
+    /**
+     * 
+     */
+    @Test
+    public void update2() {
+        // given
+        final GodTestAaa002VO testData = new GodTestAaa002VO();
+        testData(testData);
+
+        final GodTestAaa002VO vo = new GodTestAaa002VO();
+        vo.setAdministZoneSe(testData.getAdministZoneSe());
+        vo.setAdministZoneCode(testData.getAdministZoneCode());
+
+        vo.setUseAt("Y");
+
+        // when
+        final int result = dao.update2(vo);
+
+        // then
+        log.debug("result={}", result);
+
+        assertEquals(egovMessageSource.getMessage("fail.common.update"), 1, result);
+    }
+
+    /**
+     * 
+     */
+    @Test
+    public void delete2() {
+        // given
+        final GodTestAaa002VO testData = new GodTestAaa002VO();
+        testData(testData);
+
+        final GodTestAaa002VO vo = new GodTestAaa002VO();
+        vo.setAdministZoneSe(testData.getAdministZoneSe());
+        vo.setAdministZoneCode(testData.getAdministZoneCode());
+
+        // when
+        final int result = dao.delete2(vo);
+
+        // then
+        log.debug("result={}", result);
+
+        assertEquals(egovMessageSource.getMessage("fail.common.delete"), 1, result);
+    }
+
+    /**
+     * 
+     */
+    @Test
+    public void merge2() {
+        // given
+        final GodTestAaa002VO vo = new GodTestAaa002VO();
+        vo.setAdministZoneSe("1");
+        vo.setAdministZoneCode("0000000001");
+
+        setOpertSn(vo);
+
+        // when
+        final int result = dao.merge2(vo);
+
+        // then
+        log.debug("result={}", result);
+
+        assertEquals(egovMessageSource.getMessage("fail.common.insert"), 1, result);
+    }
+
+    /**
+     * 
+     */
+    @Test
     public void multi2() {
         // given
         final GodTestAaa002VO vo = new GodTestAaa002VO();
@@ -505,6 +485,26 @@ public class GodTestAaa002DAOTest extends EgovTestAbstractDAO {
         log.debug("result={}", result);
 
         assertEquals(egovMessageSource.getMessage("fail.common.insert"), 1, result);
+    }
+
+    /**
+     * 
+     */
+    @Test
+    public void select2ListTotCnt() {
+        // given
+        final GodTestAaa002VO testData = new GodTestAaa002VO();
+        testData(testData);
+
+        final GodTestAaa002VO vo = new GodTestAaa002VO();
+
+        // when
+        final int totCnt = dao.selectListTotCnt(vo);
+
+        // then
+        log.debug("totCnt={}", totCnt);
+
+        assertTrue(egovMessageSource.getMessage("fail.common.select"), totCnt > -1);
     }
 
 }
