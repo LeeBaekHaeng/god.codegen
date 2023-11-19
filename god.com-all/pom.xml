@@ -682,6 +682,12 @@
             <version>3.1.5</version>
         </dependency>
 
+        <dependency>
+            <groupId>god</groupId>
+            <artifactId>core</artifactId>
+            <version>1.0.0</version>
+        </dependency>
+
     </dependencies>
 
     <build>
