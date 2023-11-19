@@ -24,4 +24,8 @@ public class GodTestAaa001DAO extends GodComCmm001DAOImpl<GodTestAaa001VO, GodTe
         log.debug("getMapperNamespace={}", getMapperNamespace());
     }
 
+    public int insert3(final GodTestAaa001VO vo) {
+        return super.insert(getMapperNamespace() + "insert3", vo);
+    }
+
 }

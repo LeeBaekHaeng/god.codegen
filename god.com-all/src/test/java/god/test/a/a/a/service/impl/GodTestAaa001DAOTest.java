@@ -93,6 +93,18 @@ public class GodTestAaa001DAOTest extends EgovTestAbstractDAO {
         vo.setAdministZoneSe("1");
         vo.setAdministZoneCode("0000000001");
 
+        setOpertSn(vo);
+
+        // when
+        final int result = dao.insert(vo);
+
+        // then
+        log.debug("result={}", result);
+
+        assertEquals(egovMessageSource.getMessage("fail.common.insert"), 1, result);
+    }
+
+    private void setOpertSn(final GodTestAaa001VO vo) {
         try {
             vo.setOpertSn(egovAdministCodeRecptnIdGnrService.getNextLongId());
         } catch (FdlException e) {
@@ -107,14 +119,6 @@ public class GodTestAaa001DAOTest extends EgovTestAbstractDAO {
         if (log.isDebugEnabled()) {
             log.debug("getOpertSn={}", vo.getOpertSn());
         }
-
-        // when
-        final int result = dao.insert(vo);
-
-        // then
-        log.debug("result={}", result);
-
-        assertEquals(egovMessageSource.getMessage("fail.common.insert"), 1, result);
     }
 
     /**
@@ -127,23 +131,31 @@ public class GodTestAaa001DAOTest extends EgovTestAbstractDAO {
         vo.setAdministZoneSe("1");
         vo.setAdministZoneCode("0000000001");
 
-        try {
-            vo.setOpertSn(egovAdministCodeRecptnIdGnrService.getNextLongId());
-        } catch (FdlException e) {
-            log.error("FdlException egovAdministCodeRecptnIdGnrService");
-//        } catch (BaseRuntimeException e) {
-//            log.error("BaseRuntimeException egovAdministCodeRecptnIdGnrService");
-//        } catch (Exception e) {
-//            log.error("Exception egovAdministCodeRecptnIdGnrService");
-            throw new BaseRuntimeException(e);
-        }
-
-        if (log.isDebugEnabled()) {
-            log.debug("getOpertSn={}", vo.getOpertSn());
-        }
+        setOpertSn(vo);
 
         // when
         final int result = dao.insert2(vo);
+
+        // then
+        log.debug("result={}", result);
+
+        assertEquals(egovMessageSource.getMessage("fail.common.insert"), 1, result);
+    }
+
+    /**
+     * 
+     */
+    @Test
+    public void insert3() {
+        // given
+        final GodTestAaa001VO vo = new GodTestAaa001VO();
+        vo.setAdministZoneSe("1");
+        vo.setAdministZoneCode("0000000001");
+
+        setOpertSn(vo);
+
+        // when
+        final int result = dao.insert3(vo);
 
         // then
         log.debug("result={}", result);
@@ -160,20 +172,7 @@ public class GodTestAaa001DAOTest extends EgovTestAbstractDAO {
         testData.setAdministZoneSe("1");
         testData.setAdministZoneCode("0000000001");
 
-        try {
-            testData.setOpertSn(egovAdministCodeRecptnIdGnrService.getNextLongId());
-        } catch (FdlException e) {
-            log.error("FdlException egovAdministCodeRecptnIdGnrService");
-            // } catch (BaseRuntimeException e) {
-            // log.error("BaseRuntimeException egovAdministCodeRecptnIdGnrService");
-            // } catch (Exception e) {
-            // log.error("Exception egovAdministCodeRecptnIdGnrService");
-            throw new BaseRuntimeException(e);
-        }
-
-        if (log.isDebugEnabled()) {
-            log.debug("getOpertSn={}", testData.getOpertSn());
-        }
+        setOpertSn(testData);
 
         // when
         final int result = dao.insert(testData);
@@ -453,20 +452,7 @@ public class GodTestAaa001DAOTest extends EgovTestAbstractDAO {
         vo.setAdministZoneSe("1");
         vo.setAdministZoneCode("0000000001");
 
-        try {
-            vo.setOpertSn(egovAdministCodeRecptnIdGnrService.getNextLongId());
-        } catch (FdlException e) {
-            log.error("FdlException egovAdministCodeRecptnIdGnrService");
-//        } catch (BaseRuntimeException e) {
-//            log.error("BaseRuntimeException egovAdministCodeRecptnIdGnrService");
-//        } catch (Exception e) {
-//            log.error("Exception egovAdministCodeRecptnIdGnrService");
-            throw new BaseRuntimeException(e);
-        }
-
-        if (log.isDebugEnabled()) {
-            log.debug("getOpertSn={}", vo.getOpertSn());
-        }
+        setOpertSn(vo);
 
         // when
         final int result = dao.merge(vo);
@@ -487,20 +473,7 @@ public class GodTestAaa001DAOTest extends EgovTestAbstractDAO {
         vo.setAdministZoneSe("1");
         vo.setAdministZoneCode("0000000001");
 
-        try {
-            vo.setOpertSn(egovAdministCodeRecptnIdGnrService.getNextLongId());
-        } catch (FdlException e) {
-            log.error("FdlException egovAdministCodeRecptnIdGnrService");
-//        } catch (BaseRuntimeException e) {
-//            log.error("BaseRuntimeException egovAdministCodeRecptnIdGnrService");
-//        } catch (Exception e) {
-//            log.error("Exception egovAdministCodeRecptnIdGnrService");
-            throw new BaseRuntimeException(e);
-        }
-
-        if (log.isDebugEnabled()) {
-            log.debug("getOpertSn={}", vo.getOpertSn());
-        }
+        setOpertSn(vo);
 
         // when
         final int result = dao.merge2(vo);
@@ -521,20 +494,7 @@ public class GodTestAaa001DAOTest extends EgovTestAbstractDAO {
         vo.setAdministZoneSe("1");
         vo.setAdministZoneCode("0000000001");
 
-        try {
-            vo.setOpertSn(egovAdministCodeRecptnIdGnrService.getNextLongId());
-        } catch (FdlException e) {
-            log.error("FdlException egovAdministCodeRecptnIdGnrService");
-//        } catch (BaseRuntimeException e) {
-//            log.error("BaseRuntimeException egovAdministCodeRecptnIdGnrService");
-//        } catch (Exception e) {
-//            log.error("Exception egovAdministCodeRecptnIdGnrService");
-            throw new BaseRuntimeException(e);
-        }
-
-        if (log.isDebugEnabled()) {
-            log.debug("getOpertSn={}", vo.getOpertSn());
-        }
+        setOpertSn(vo);
 
         // when
         final int result = dao.multi(vo);
@@ -555,20 +515,7 @@ public class GodTestAaa001DAOTest extends EgovTestAbstractDAO {
         vo.setAdministZoneSe("1");
         vo.setAdministZoneCode("0000000001");
 
-        try {
-            vo.setOpertSn(egovAdministCodeRecptnIdGnrService.getNextLongId());
-        } catch (FdlException e) {
-            log.error("FdlException egovAdministCodeRecptnIdGnrService");
-//        } catch (BaseRuntimeException e) {
-//            log.error("BaseRuntimeException egovAdministCodeRecptnIdGnrService");
-//        } catch (Exception e) {
-//            log.error("Exception egovAdministCodeRecptnIdGnrService");
-            throw new BaseRuntimeException(e);
-        }
-
-        if (log.isDebugEnabled()) {
-            log.debug("getOpertSn={}", vo.getOpertSn());
-        }
+        setOpertSn(vo);
 
         // when
         final int result = dao.multi2(vo);
