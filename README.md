@@ -1,5 +1,11 @@
 # god.codegen
+
 코드생성
+
+## 목차
+
+- [파일 업로드](#파일-업로드)
+- [maven 다중 모듈 프로젝트에 대해](#maven-다중-모듈-프로젝트에-대해)
 
 ## egovframe-development 4.0.0
 
@@ -385,4 +391,131 @@ LOGGER.error("model={}", model);
 	<c:param name="param_atchFileId">${egovc:encrypt(result.atchFileId)}</c:param>
 </c:url>
 <a href="${url}" target="/cmm/fms/selectFileInfsForUpdate.do" onclick="window.open('${url}', '/cmm/fms/selectFileInfsForUpdate.do', 'left=200,top=200,width=320,height=320'); return false;">파일 삭제</a>
+```
+
+## 파일 업로드
+
+[표준프레임워크 실행환경 4.1](https://www.egovframe.go.kr/wiki/doku.php?id=egovframework:rte4.1)
+- [File Upload/Download](https://www.egovframe.go.kr/wiki/doku.php?id=egovframework:rte2:fdl:file_upload_download)
+    - [file_upload](https://www.egovframe.go.kr/wiki/doku.php?id=egovframework:rte2:fdl:file_upload)
+    - [file_download](https://www.egovframe.go.kr/wiki/doku.php?id=egovframework:rte2:fdl:file_download)
+[표준프레임워크 공통컴포넌트 4.1 가이드](https://www.egovframe.go.kr/wiki/doku.php?id=egovframework:com:v4.1:init)
+    - [공통컴포넌트별 가이드(Index)](https://www.egovframe.go.kr/wiki/doku.php?id=egovframework:com:v4.1:init_guide)
+        - [파일업로드(공통컴포넌트 1.0 매뉴얼 참조)](https://www.egovframe.go.kr/wiki/doku.php?id=egovframework:%ED%8C%8C%EC%9D%BC%EC%97%85%EB%A1%9C%EB%93%9C)
+
+파일 업로드 경로(경로 설정은 반드시 절대경로를 사용해야함, 경로 뒤에 /를 붙여 주어야함.)
+- /god.com-all/src/main/resources/egovframework/egovProps/globals.properties
+```
+# 파일 업로드 경로(경로 설정은 반드시 절대경로를 사용해야함, 경로 뒤에 /를 붙여 주어야함.)
+Globals.fileStorePath =  C:/egovframework/upload/
+
+# 파일 업로드 경로 테스트
+Globals.fileStorePath.test=/egovframework/upload_test/
+
+# 파일 업로드 경로 aaa
+Globals.fileStorePath.aaa=/egovframework/upload_aaa/
+
+# 파일 업로드 경로 aab
+Globals.fileStorePath.aab=/egovframework/upload_aab/
+```
+
+파일 조회, 삭제, 다운로드 처리를 위한 컨트롤러 클래스
+- /god.com-all/src/main/java/egovframework/com/cmm/web/EgovFileMngController.java
+
+파일 업로드 추가
+- /god.com-all/src/main/java/egovframework/com/cmm/web/EgovFileUploadController.java
+    - /cmm/fms/uploadFile.do
+- /god.com-all/src/main/webapp/WEB-INF/jsp/egovframework/com/cmm/fms/EgovFileUpload.jsp
+
+파일 업로드 URL
+- http://localhost:8080/egovframework-all-in-one/cmm/fms/uploadFile.do
+- http://localhost:8080/egovframework-all-in-one/cmm/fms/uploadFile.do?param_atchFileId=oO3rGEfD8twsMG5pYVeQOvXRVZDYkZMlAF88rDkQ48k%3D
+- FILE_000000000000071
+- oO3rGEfD8twsMG5pYVeQOvXRVZDYkZMlAF88rDkQ48k%3D
+
+## maven 다중 모듈 프로젝트에 대해
+
+maven war plugin attachclasses
+- https://maven.apache.org/plugins/maven-war-plugin/war-mojo.html
+- <classifier>classes</classifier>
+
+```xml
+<dependency>
+  <groupId>myGroup</groupId>
+  <artifactId>myArtifact</artifactId>
+  <version>myVersion</myVersion>
+  <classifier>classes</classifier>
+</dependency>
+```
+
+- https://m.blog.naver.com/PostView.naver?isHttpsRedirect=true&blogId=seban21&logNo=220735237546
+- 다중 웹 모듈 간 자원 공유하기
+
+```xml
+    <build>
+        <finalName>basem</finalName>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-war-plugin</artifactId>
+                <version>2.1.1</version>
+                <configuration>
+                    <attachClasses>true</attachClasses>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+</project>
+```
+
+core
+```xml
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-war-plugin</artifactId>
+                    <version>3.3.2</version>
+                    <configuration>
+                        <failOnMissingWebXml>false</failOnMissingWebXml>
+                        <attachClasses>true</attachClasses>
+                    </configuration>
+                </plugin>
+```
+
+mvn clean install
+- core-1.0.0.war
+- core-1.0.0-classes.jar
+
+parent
+```xml
+        <dependency>
+            <groupId>god</groupId>
+            <artifactId>core</artifactId>
+            <version>1.0.0</version>
+            <type>war</type>
+        </dependency>
+        <dependency>
+            <groupId>god</groupId>
+            <artifactId>core</artifactId>
+            <version>1.0.0</version>
+            <classifier>classes</classifier>
+            <scope>provided</scope>
+        </dependency>
+```
+
+```xml
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-war-plugin</artifactId>
+                    <version>3.3.2</version>
+                    <configuration>
+                        <failOnMissingWebXml>false</failOnMissingWebXml>
+                        <overlays>
+                            <overlay />
+                            <overlay>
+                                <groupId>god</groupId>
+                                <artifactId>core</artifactId>
+                            </overlay>
+                        </overlays>
+                    </configuration>
+                </plugin>
 ```

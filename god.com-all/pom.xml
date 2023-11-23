@@ -686,6 +686,14 @@
             <groupId>god</groupId>
             <artifactId>core</artifactId>
             <version>1.0.0</version>
+            <type>war</type>
+        </dependency>
+        <dependency>
+            <groupId>god</groupId>
+            <artifactId>core</artifactId>
+            <version>1.0.0</version>
+            <classifier>classes</classifier>
+            <scope>provided</scope>
         </dependency>
 
     </dependencies>
@@ -726,6 +734,13 @@
                     <version>3.3.2</version>
                     <configuration>
                         <failOnMissingWebXml>false</failOnMissingWebXml>
+                        <overlays>
+                            <overlay />
+                            <overlay>
+                                <groupId>god</groupId>
+                                <artifactId>core</artifactId>
+                            </overlay>
+                        </overlays>
                     </configuration>
                 </plugin>
                 <plugin>
