@@ -6,6 +6,7 @@
 
 - [파일 업로드](#파일-업로드)
 - [maven 다중 모듈 프로젝트에 대해](#maven-다중-모듈-프로젝트에-대해)
+- [EgovSpringSecurityLoginFilter](#egovspringsecurityloginfilter)
 
 ## egovframe-development 4.0.0
 
@@ -518,4 +519,51 @@ parent
                         </overlays>
                     </configuration>
                 </plugin>
+```
+
+## EgovSpringSecurityLoginFilter
+
+EgovSpringSecurityLoginFilter
+- http://localhost:8080/com
+- https://github.com/LeeBaekHaeng/god.codegen/blob/main/god.com/src/main/java/egovframework/com/sec/security/filter/EgovSpringSecurityLoginFilter.java
+
+EgovWebApplicationInitializer
+- https://github.com/LeeBaekHaeng/god.codegen/blob/main/god.com/src/main/java/egovframework/com/cmm/config/EgovWebApplicationInitializer.java
+
+```java
+if("security".equals(EgovProperties.getProperty("Globals.Auth").trim())) {
+```
+
+globals
+
+- https://github.com/LeeBaekHaeng/god.codegen/blob/main/god.com/src/main/resources/egovframework/egovProps/globals.properties
+
+```properties
+# session : 세션 방식으로 사용자 권한을 인증함
+# security : spring security 방식으로 사용자 권한을 인증함
+#Globals.Auth = session
+Globals.Auth=security
+```
+
+comvnusermaster.USER_SE
+```
+USR
+GNR
+ENT
+USR
+```
+
+업무사용자
+
+일반사용자
+- http://localhost:8080/com/uat/uia/actionLogin.do?id=USER&password=rhdxhd12&userSe=GNR
+
+기업사용자
+
+
+select
+
+```sql
+select * from comvnusermaster
+;
 ```
