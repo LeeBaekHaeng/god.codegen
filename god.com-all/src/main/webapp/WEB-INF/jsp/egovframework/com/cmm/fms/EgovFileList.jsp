@@ -81,7 +81,7 @@
 		objDelTr.parentNode.removeChild(objDelTr);
 		//fn_egov_multi_selector_update_delete();
 		//console.log('egov_file_view_table delete!!');
-
+        location.reload();
 	}
 
 	function fn_egov_check_file(flag) {
