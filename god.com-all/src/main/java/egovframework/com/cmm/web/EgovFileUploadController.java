@@ -93,8 +93,8 @@ public class EgovFileUploadController {
 	@PostMapping("/cmm/fms/uploadFile.do")
 	public String uploadFile(final MultipartHttpServletRequest multiRequest,
 			final @RequestParam(name = "param_atchFileId", required = false) String encAtchFileId, final String keyStr,
-			final String storePath, final @ModelAttribute("searchVO") FileVO fileVO, final ModelMap model)
-			throws Exception {
+			final String storePath, final String fn, final @ModelAttribute("searchVO") FileVO fileVO,
+			final ModelMap model) throws Exception {
 
 		log.debug("encAtchFileId={}", encAtchFileId);
 
@@ -132,6 +132,7 @@ public class EgovFileUploadController {
 
 		model.addAttribute("keyStr", keyStr);
 		model.addAttribute("storePath", storePath);
+		model.addAttribute("fn", fn);
 
 		return "redirect:/cmm/fms/uploadFile.do";
 	}

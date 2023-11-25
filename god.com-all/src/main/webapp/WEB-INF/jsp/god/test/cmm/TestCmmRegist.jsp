@@ -26,11 +26,12 @@
 
 
         <h2>등록 화면</h2>
-        <input type="text" id="atchFileId1">
+        <input type="text" id="atchFileId">
         <c:url value="/cmm/fms/uploadFile.do" var="url">
             <c:param name="param_atchFileId"></c:param>
             <c:param name="keyStr"></c:param>
             <c:param name="storePath"></c:param>
+            <c:param name="fn">fn_regist_setAtchFileId</c:param>
         </c:url>
         <a href="${url}" target="/cmm/fms/uploadFile.do" onclick="window.open('${url}', '/cmm/fms/uploadFile.do', 'left=100,top=100,width=800,height=600'); return false;">파일 업로드</a>
 
@@ -41,6 +42,7 @@
             <c:param name="keyStr">CMM_</c:param>
             <%--             <c:param name="storePath">Globals.fileStorePath</c:param> --%>
             <c:param name="storePath">Globals.fileStorePath.test</c:param>
+            <c:param name="fn">fn_regist_setAtchFileId2</c:param>
         </c:url>
         <a href="${url}" target="/cmm/fms/uploadFile.do" onclick="window.open('${url}', '/cmm/fms/uploadFile.do', 'left=100,top=100,width=800,height=600'); return false;">파일 업로드</a>
 

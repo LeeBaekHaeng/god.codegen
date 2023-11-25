@@ -60,6 +60,17 @@
     function fn_egov_updt_article(form) {
         form.submit();
     }
+
+    function fn_button_create() {
+        if (!opener) {
+            console.log('opener=', opener);
+        } else {
+            //             opener.document.getElementById('atchFileId2').value = document.getElementById('atchFileId2').value;
+            opener.<c:out value="${param.fn}" />({
+                atchFileId : document.getElementById('atchFileId2').value,
+            });
+        }
+    }
 </script>
 </head>
 <body onLoad="fn_egov_init();">
@@ -130,17 +141,22 @@
             <div class="btn">
                 <input type="submit" class="s_submit" value="${pageTitle}" title="${pageTitle}" />
                 <!-- 수정 -->
+
+                <button onclick="fn_button_create()">
+                    <spring:message code="button.create" />
+                </button>
             </div>
             <div style="clear: both;"></div>
 
         </div>
         <input type="text" name="param_atchFileId" value="<c:out value="${param.param_atchFileId}" />">
-        <input type="text" id="body_onclose_atchFileId" value="<c:out value="${searchVO.atchFileId}" />">
+        <input type="text" id="atchFileId2" value="<c:out value="${searchVO.atchFileId}" />">
         <input type="text" value="<c:out value="${egovc:encrypt(searchVO.atchFileId)}" />">
         <%--         <input type="text" value="<c:out value="${egovc:encrypt('FILE_000000000000071')}" />"> --%>
 
         <input type="text" name="keyStr" value="<c:out value="${param.keyStr}" />">
         <input type="text" name="storePath" value="<c:out value="${param.storePath}" />">
+        <input type="text" name="fn" value="<c:out value="${param.fn}" />">
 
     </form:form>
 

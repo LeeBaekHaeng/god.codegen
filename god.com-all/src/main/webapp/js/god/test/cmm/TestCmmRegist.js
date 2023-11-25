@@ -10,3 +10,11 @@ function fn_saveTestCmmRegist() {
     }
     return true;
 }
+
+function fn_regist_setAtchFileId(data) {
+    document.getElementById('atchFileId').value = data.atchFileId;
+}
+
+function fn_regist_setAtchFileId2(data) {
+    document.getElementById('atchFileId2').value = data.atchFileId;
+}
