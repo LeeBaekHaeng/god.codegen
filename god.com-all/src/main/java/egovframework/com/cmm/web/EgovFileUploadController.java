@@ -92,8 +92,9 @@ public class EgovFileUploadController {
 	 */
 	@PostMapping("/cmm/fms/uploadFile.do")
 	public String uploadFile(final MultipartHttpServletRequest multiRequest,
-			final @RequestParam(name = "param_atchFileId", required = false) String encAtchFileId,
-			final @ModelAttribute("searchVO") FileVO fileVO, final ModelMap model) throws Exception {
+			final @RequestParam(name = "param_atchFileId", required = false) String encAtchFileId, final String keyStr,
+			final String storePath, final @ModelAttribute("searchVO") FileVO fileVO, final ModelMap model)
+			throws Exception {
 
 		log.debug("encAtchFileId={}", encAtchFileId);
 
@@ -112,7 +113,7 @@ public class EgovFileUploadController {
 		final List<MultipartFile> files = multiRequest.getFiles("file_1");
 		if (!files.isEmpty()) {
 			if (atchFileId == null || "".equals(atchFileId)) {
-				final List<FileVO> result = fileUtil.parseFileInf(files, "CMM_", 0, atchFileId, "");
+				final List<FileVO> result = fileUtil.parseFileInf(files, keyStr, 0, atchFileId, storePath);
 				atchFileId = fileMngService.insertFileInfs(result);
 				if (EgovMybatisUtil.isNotEmpty(atchFileId)) {
 					model.addAttribute("param_atchFileId", cryptoService.encrypt(atchFileId));
@@ -123,11 +124,14 @@ public class EgovFileUploadController {
 				final FileVO fvo = new FileVO();
 				fvo.setAtchFileId(atchFileId);
 				final int cnt = fileMngService.getMaxFileSN(fvo);
-				final List<FileVO> _result = fileUtil.parseFileInf(files, "CMM_", cnt, atchFileId, "");
+				final List<FileVO> _result = fileUtil.parseFileInf(files, keyStr, cnt, atchFileId, storePath);
 				fileMngService.updateFileInfs(_result);
 				model.addAttribute("param_atchFileId", encAtchFileId);
 			}
 		}
+
+		model.addAttribute("keyStr", keyStr);
+		model.addAttribute("storePath", storePath);
 
 		return "redirect:/cmm/fms/uploadFile.do";
 	}

@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
+<%@ taglib prefix="egovc" uri="/WEB-INF/tlds/egovc.tld"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -22,6 +23,27 @@
             <li><a href="<c:url value="/do/test/cmm/selectTestCmmList.do" />" onclick="return fn_listTestCmmRegist(this)">목록</a></li>
             <li><button type="submit">저장</button></li>
         </ol>
+
+
+        <h2>등록 화면</h2>
+        <input type="text" id="atchFileId1">
+        <c:url value="/cmm/fms/uploadFile.do" var="url">
+            <c:param name="param_atchFileId"></c:param>
+            <c:param name="keyStr"></c:param>
+            <c:param name="storePath"></c:param>
+        </c:url>
+        <a href="${url}" target="/cmm/fms/uploadFile.do" onclick="window.open('${url}', '/cmm/fms/uploadFile.do', 'left=100,top=100,width=800,height=600'); return false;">파일 업로드</a>
+
+        <h2>수정 화면</h2>
+        <input type="text" id="atchFileId2">
+        <c:url value="/cmm/fms/uploadFile.do" var="url">
+            <c:param name="param_atchFileId">${egovc:encrypt('FILE_000000000000071')}</c:param>
+            <c:param name="keyStr">CMM_</c:param>
+            <%--             <c:param name="storePath">Globals.fileStorePath</c:param> --%>
+            <c:param name="storePath">Globals.fileStorePath.test</c:param>
+        </c:url>
+        <a href="${url}" target="/cmm/fms/uploadFile.do" onclick="window.open('${url}', '/cmm/fms/uploadFile.do', 'left=100,top=100,width=800,height=600'); return false;">파일 업로드</a>
+
     </form:form>
     <script type="text/javascript" src="${pageContext.request.contextPath}/js/god/test/cmm/TestCmmRegist.js"></script>
 </body>

@@ -25,12 +25,12 @@
 <%@ taglib prefix="ckeditor" uri="http://ckeditor.com"%>
 <%@ taglib prefix="egovc" uri="/WEB-INF/tlds/egovc.tld"%>
 <c:set var="pageTitle">
-    <spring:message code="comCopBbs.articleVO.title" />
+    파일 업로드
 </c:set>
 <!DOCTYPE html>
 <html>
 <head>
-<title>${pageTitle }<spring:message code="title.update" /></title>
+<title>${pageTitle}</title>
 <!-- 게시글 답글 수정-->
 <meta http-equiv="content-type" content="text/html; charset=utf-8">
 <link type="text/css" rel="stylesheet" href="<c:url value='/css/egovframework/com/com.css' />">
@@ -72,9 +72,7 @@
     <!-- 상단타이틀 -->
     <form:form modelAttribute="searchVO" action="${pageContext.request.contextPath}/cmm/fms/uploadFile.do" method="post" onSubmit="fn_egov_updt_article(document.forms[0]); return false;" enctype="multipart/form-data">
         <div class="wTableFrm">
-            <h2>${pageTitle}
-                <spring:message code="title.update" />
-            </h2>
+            <h2>${pageTitle}</h2>
             <!-- 게시글 답글 수정-->
 
             <!-- 수정폼 -->
@@ -130,16 +128,19 @@
 
             <!-- 하단 버튼 -->
             <div class="btn">
-                <input type="submit" class="s_submit" value="<spring:message code="button.update" />" title="<spring:message code="button.update" /> <spring:message code="input.button" />" />
+                <input type="submit" class="s_submit" value="${pageTitle}" title="${pageTitle}" />
                 <!-- 수정 -->
             </div>
             <div style="clear: both;"></div>
 
         </div>
         <input type="text" name="param_atchFileId" value="<c:out value="${param.param_atchFileId}" />">
-        <input type="text" value="<c:out value="${searchVO.atchFileId}" />">
+        <input type="text" id="body_onclose_atchFileId" value="<c:out value="${searchVO.atchFileId}" />">
         <input type="text" value="<c:out value="${egovc:encrypt(searchVO.atchFileId)}" />">
         <%--         <input type="text" value="<c:out value="${egovc:encrypt('FILE_000000000000071')}" />"> --%>
+
+        <input type="text" name="keyStr" value="<c:out value="${param.keyStr}" />">
+        <input type="text" name="storePath" value="<c:out value="${param.storePath}" />">
 
     </form:form>
 
