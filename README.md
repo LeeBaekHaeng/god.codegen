@@ -7,6 +7,7 @@
 - [파일 업로드](#파일-업로드)
 - [maven 다중 모듈 프로젝트에 대해](#maven-다중-모듈-프로젝트에-대해)
 - [EgovSpringSecurityLoginFilter](#egovspringsecurityloginfilter)
+- [throws Exception 제거](#throws-exception-제거)
 
 ## egovframe-development 4.0.0
 
@@ -567,3 +568,39 @@ select
 select * from comvnusermaster
 ;
 ```
+
+## throws Exception 제거
+
+```java
+) throws Exception {
+```
+
+/god.com/src/main/java/egovframework/com/cop/bbs/service/impl/EgovArticleServiceImpl.java
+
+https://github.com/LeeBaekHaeng/god.codegen/blob/main/god.com/src/main/java/egovframework/com/cop/bbs/service/impl/EgovArticleServiceImpl.java
+
+http://localhost:8080/com/cop/bbs/selectArticleList.do?bbsId=BBSMSTR_000000000541BhxDdtekTR
+
+http://localhost:8080/com/cop/bbs/selectArticleList.do?bbsId=-BBSMSTR_000000000541BhxDdtekTR
+
+비즈니스로직처리 에러
+
+비즈니스 로직 처리 중 발생했습니다!
+
+비즈니스로직처리 에러
+
+```
+[log4j]2023-11-28 05:57:48,514 ERROR [egovframework.com.cmm.EgovComOthersExcepHndlr] egovframework.com.cop.bbs.service.impl.EgovBBSMasterServiceImpl.selectBBSMasterInf
+org.egovframe.rte.fdl.cmmn.exception.EgovBizException: 해당 데이터가 없습니다.
+	at org.egovframe.rte.fdl.cmmn.EgovAbstractServiceImpl$1.createBizException(EgovAbstractServiceImpl.java:124) ~[org.egovframe.rte.fdl.cmmn-4.1.0.jar:?]
+	at org.egovframe.rte.fdl.cmmn.EgovAbstractServiceImpl.processException(EgovAbstractServiceImpl.java:130) ~[org.egovframe.rte.fdl.cmmn-4.1.0.jar:?]
+	at org.egovframe.rte.fdl.cmmn.EgovAbstractServiceImpl.processException(EgovAbstractServiceImpl.java:107) ~[org.egovframe.rte.fdl.cmmn-4.1.0.jar:?]
+	at org.egovframe.rte.fdl.cmmn.EgovAbstractServiceImpl.processException(EgovAbstractServiceImpl.java:95) ~[org.egovframe.rte.fdl.cmmn-4.1.0.jar:?]
+	at org.egovframe.rte.fdl.cmmn.EgovAbstractServiceImpl.processException(EgovAbstractServiceImpl.java:84) ~[org.egovframe.rte.fdl.cmmn-4.1.0.jar:?]
+	at org.egovframe.rte.fdl.cmmn.EgovAbstractServiceImpl.processException(EgovAbstractServiceImpl.java:64) ~[org.egovframe.rte.fdl.cmmn-4.1.0.jar:?]
+	at egovframework.com.cop.bbs.service.impl.EgovBBSMasterServiceImpl.selectBBSMasterInf(EgovBBSMasterServiceImpl.java:67) ~[classes/:?]
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method) ~[?:1.8.0_242]
+```
+
+EgovBizException
+

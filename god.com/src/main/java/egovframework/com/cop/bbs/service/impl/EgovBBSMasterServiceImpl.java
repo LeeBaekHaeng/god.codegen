@@ -16,6 +16,7 @@ import egovframework.com.cop.bbs.service.Blog;
 import egovframework.com.cop.bbs.service.BlogUser;
 import egovframework.com.cop.bbs.service.BlogVO;
 import org.egovframe.rte.fdl.cmmn.EgovAbstractServiceImpl;
+import org.egovframe.rte.fdl.cmmn.exception.EgovBizException;
 import org.egovframe.rte.fdl.cmmn.exception.FdlException;
 import org.egovframe.rte.fdl.idgnr.EgovIdGnrService;
 import org.apache.commons.lang3.RandomStringUtils;
@@ -61,7 +62,7 @@ public class EgovBBSMasterServiceImpl extends EgovAbstractServiceImpl implements
 	}
 
 	@Override
-	public BoardMasterVO selectBBSMasterInf(BoardMasterVO boardMasterVO) throws Exception {
+	public BoardMasterVO selectBBSMasterInf(BoardMasterVO boardMasterVO) throws EgovBizException {
 		BoardMasterVO resultVO = egovBBSMasterDao.selectBBSMasterDetail(boardMasterVO);
         if (resultVO == null)
             throw processException("info.nodata.msg");

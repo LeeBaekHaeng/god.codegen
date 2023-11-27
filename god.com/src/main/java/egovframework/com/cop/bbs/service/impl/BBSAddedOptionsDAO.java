@@ -4,6 +4,7 @@ import egovframework.com.cmm.service.impl.EgovComAbstractDAO;
 import egovframework.com.cop.bbs.service.BoardMaster;
 import egovframework.com.cop.bbs.service.BoardMasterVO;
 
+import org.egovframe.rte.fdl.cmmn.exception.EgovBizException;
 import org.springframework.stereotype.Repository;
 
 /**
@@ -39,7 +40,7 @@ public class BBSAddedOptionsDAO extends EgovComAbstractDAO {
      * 
      * @param BoardMasterVO
      */
-    public BoardMasterVO selectAddedOptionsInf(BoardMaster vo) throws Exception {
+    public BoardMasterVO selectAddedOptionsInf(BoardMaster vo) throws EgovBizException {
 	return (BoardMasterVO)selectOne("BBSAddedOptions.selectAddedOptionsInf", vo);
     }
     

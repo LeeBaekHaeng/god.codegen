@@ -40,6 +40,8 @@ import egovframework.com.cop.cmt.service.CommentVO;
 import egovframework.com.cop.cmt.service.EgovArticleCommentService;
 import egovframework.com.cop.tpl.service.EgovTemplateManageService;
 import egovframework.com.cop.tpl.service.TemplateInfVO;
+
+import org.egovframe.rte.fdl.cmmn.exception.EgovBizException;
 import org.egovframe.rte.fdl.property.EgovPropertyService;
 import egovframework.com.utl.fcc.service.EgovStringUtil;
 import org.egovframe.rte.ptl.mvc.tags.ui.pagination.PaginationInfo;
@@ -147,7 +149,7 @@ public class EgovArticleController {
      * @throws Exception
      */
     @RequestMapping("/cop/bbs/selectArticleList.do")
-    public String selectArticleList(@ModelAttribute("searchVO") BoardVO boardVO, ModelMap model) throws Exception {
+    public String selectArticleList(@ModelAttribute("searchVO") BoardVO boardVO, ModelMap model) throws EgovBizException {
 		LoginVO user = (LoginVO)EgovUserDetailsHelper.getAuthenticatedUser();
 		
 		Boolean isAuthenticated = EgovUserDetailsHelper.isAuthenticated();	//KISA 보안취약점 조치 (2018-12-10, 이정은)

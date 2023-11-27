@@ -3,6 +3,7 @@ package egovframework.com.cop.bbs.service;
 import java.util.List;
 import java.util.Map;
 
+import org.egovframe.rte.fdl.cmmn.exception.EgovBizException;
 import org.egovframe.rte.fdl.cmmn.exception.FdlException;
 
 public interface EgovBBSMasterService {
@@ -13,7 +14,7 @@ public interface EgovBBSMasterService {
 
 	void updateBBSMasterInf(BoardMaster boardMaster) throws Exception;
 
-	BoardMasterVO selectBBSMasterInf(BoardMasterVO boardMasterVO) throws Exception;
+	BoardMasterVO selectBBSMasterInf(BoardMasterVO boardMasterVO) throws EgovBizException;
 
 	Map<String, Object> selectBBSMasterInfs(BoardMasterVO boardMasterVO);
 	
