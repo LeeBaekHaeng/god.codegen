@@ -1,3 +1,6 @@
+<%@page import="java.util.List"%>
+<%@page import="egovframework.com.cmm.LoginVO"%>
+<%@page import="egovframework.com.cmm.util.EgovUserDetailsHelper"%>
 <%@ page contentType="text/html; charset=utf-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="ui" uri="http://egovframework.gov/ctl/ui"%>
@@ -228,6 +231,18 @@ function fnOnepassLogin() {
 </script>
 </head>
 <body onLoad="fnInit();">
+
+<%
+LoginVO loginVO = (LoginVO) EgovUserDetailsHelper.getAuthenticatedUser();
+List<String> authorities = EgovUserDetailsHelper.getAuthorities();
+Boolean isAuthenticated = EgovUserDetailsHelper.isAuthenticated();
+%>
+
+test 이백행 2023-11-28<br>
+
+getUniqId=<%//=loginVO.getUniqId()%><br>
+authorities=<%=authorities%><br>
+isAuthenticated=<%=isAuthenticated%><br>
 
 <!-- javascript warning tag  -->
 <noscript class="noScriptTitle"><spring:message code="common.noScriptTitle.msg" /></noscript>
