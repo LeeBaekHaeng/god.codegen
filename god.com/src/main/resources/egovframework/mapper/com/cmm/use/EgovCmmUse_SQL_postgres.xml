@@ -1,58 +1,88 @@
-<?xml version="1.0" encoding="UTF-8"?><!--Converted at: Wed May 11 15:49:39 KST 2016-->
+<?xml version="1.0" encoding="UTF-8"?><!--Converted at: Wed May 11 15:49:39 KST 2016 -->
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="CmmUseDAO">
 
-	<resultMap id="CmmCodeDetail" type="egovframework.com.cmm.service.CmmnDetailCode">
-		<result property="codeId" column="CODE_ID"/>
-		<result property="code" column="CODE"/>
-		<result property="codeNm" column="CODE_NM"/>
-		<result property="codeDc" column="CODE_DC"/>
-	</resultMap>
+    <resultMap id="CmmCodeDetail" type="egovframework.com.cmm.service.CmmnDetailCode">
+        <result property="codeId" column="CODE_ID" />
+        <result property="code" column="CODE" />
+        <result property="codeNm" column="CODE_NM" />
+        <result property="codeDc" column="CODE_DC" />
+    </resultMap>
 
-	<select id="selectCmmCodeDetail" parameterType="ComDefaultCodeVO" resultMap="CmmCodeDetail">
-		 
-			SELECT 
-			CODE_ID, CODE, CODE_NM, CODE_DC
-			FROM 
-			COMTCCMMNDETAILCODE
-			WHERE
-			USE_AT = 'Y'
-			AND CODE_ID = #{codeId}
-		
-	</select>
+    <select id="selectCmmCodeDetail" parameterType="ComDefaultCodeVO" resultMap="CmmCodeDetail">
+
+        SELECT
+        CODE_ID, CODE, CODE_NM, CODE_DC
+        FROM
+        COMTCCMMNDETAILCODE
+        WHERE
+        USE_AT = 'Y'
+        AND CODE_ID = #{codeId}
+
+    </select>
 
     <select id="selectOgrnztIdDetail" parameterType="ComDefaultCodeVO" resultMap="CmmCodeDetail">
-             
-            SELECT 
-                #{tableNm}     CODE_ID, 
-                ORGNZT_ID     CODE, 
-                ORGNZT_NM     CODE_NM, 
-                ORGNZT_DC     CODE_DC
-            FROM 
-                COMTNORGNZTINFO
-            WHERE 1=1
-            
-            <if test='haveDetailCondition == "Y"'>AND
-                ORGNZT_ID  LIKE  #{detailCondition}
-            </if>
+
+        SELECT
+        #{tableNm} CODE_ID,
+        ORGNZT_ID CODE,
+        ORGNZT_NM CODE_NM,
+        ORGNZT_DC CODE_DC
+        FROM
+        COMTNORGNZTINFO
+        WHERE 1=1
+
+        <if test='haveDetailCondition == "Y"'>AND
+            ORGNZT_ID LIKE #{detailCondition}
+        </if>
     </select>
-    
+
     <select id="selectGroupIdDetail" parameterType="ComDefaultCodeVO" resultMap="CmmCodeDetail">
-             
-            SELECT 
-                #{tableNm}     CODE_ID, 
-                GROUP_ID     CODE, 
-                GROUP_NM     CODE_NM, 
-                GROUP_DC     CODE_DC
-            FROM 
-                COMTNAUTHORGROUPINFO
-            WHERE 1=1
-            
-            <if test='haveDetailCondition == "Y"'>AND
-                GROUP_ID  LIKE  #{detailCondition}
-            </if>
+
+        SELECT
+        #{tableNm} CODE_ID,
+        GROUP_ID CODE,
+        GROUP_NM CODE_NM,
+        GROUP_DC CODE_DC
+        FROM
+        COMTNAUTHORGROUPINFO
+        WHERE 1=1
+
+        <if test='haveDetailCondition == "Y"'>AND
+            GROUP_ID LIKE #{detailCondition}
+        </if>
     </select>
-    
+
+    <select id="selectMenuList" parameterType="egovframework.com.cmm.ComDefaultVO" resultType="org.egovframe.rte.psl.dataaccess.util.EgovMap">
+<![CDATA[
+WITH RECURSIVE search_graph(menu_no, menu_ordr, menu_nm, depth, is_cycle, path
+, path2
+, upper_menu_no, menu_dc, relate_image_path, relate_image_nm, progrm_file_nm
+) AS (
+    SELECT g.menu_no, g.menu_ordr, g.menu_nm, 0,
+      false,
+      ARRAY[g.menu_ordr::numeric]
+, ARRAY[g.menu_nm::varchar]
+, g.upper_menu_no, g.menu_dc, g.relate_image_path, g.relate_image_nm, g.progrm_file_nm
+    FROM comtnmenuinfo g
+WHERE g.menu_no = 0
+  UNION ALL
+    SELECT g.menu_no, g.menu_ordr, g.menu_nm, sg.depth + 1,
+      g.menu_no = ANY(path),
+      path || g.menu_ordr
+, path2 || g.menu_nm
+, g.upper_menu_no, g.menu_dc, g.relate_image_path, g.relate_image_nm, g.progrm_file_nm
+    FROM comtnmenuinfo g, search_graph sg
+--    WHERE g.menu_no = sg.upper_menu_no AND NOT is_cycle
+    WHERE g.upper_menu_no = sg.menu_no AND NOT is_cycle
+and g.menu_no > 0
+--and g.menu_no >= 101000000
+)
+SELECT * FROM search_graph a
+left outer join COMTNPROGRMLIST b /* 프로그램목록 */ on b.progrm_file_nm = a.progrm_file_nm
+order by path
+]]>
+    </select>
 
 </mapper>

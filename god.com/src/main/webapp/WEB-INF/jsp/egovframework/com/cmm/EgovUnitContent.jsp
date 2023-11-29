@@ -67,6 +67,32 @@
 </script>
 </head>
 <body>
+
+<ul>
+    <c:forEach items="${COM_CMM_MENUS}" var="menu" varStatus="status">
+        <c:if test="${menu.upperMenuNo == 0 and menu.menuNo > 0}">
+            <li><c:out value="${menu.menuNm}" />
+                <ul>
+                    <c:forEach items="${COM_CMM_MENUS}" var="menu2" varStatus="status2">
+                        <c:if test="${menu2.upperMenuNo == menu.menuNo}">
+                            <li><a href="<c:url value="${menu2.url}" />"><c:out value="${menu2.menuNm}" /></a>
+                                <ul>
+                                    <c:forEach items="${COM_CMM_MENUS}" var="menu3" varStatus="status3">
+                                        <c:if test="${menu3.upperMenuNo == menu2.menuNo}">
+                                            <li><c:out value="${menu3.menuNm}" />
+                                            </li>
+                                        </c:if>
+                                    </c:forEach>
+                                </ul>
+                            </li>
+                        </c:if>
+                    </c:forEach>
+                </ul>
+            </li>
+        </c:if>
+    </c:forEach>
+</ul>
+
 	<c:if test="${loginVO != null}">
 		${loginVO.name}(${loginVO.id})<spring:message code="comCmm.unitContent.2"/> <a href="${pageContext.request.contextPath }/uat/uia/actionLogout.do"><spring:message code="comCmm.unitContent.3"/></a>
 		<!--

@@ -44,14 +44,18 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import egovframework.com.cmm.ComDefaultVO;
 import egovframework.com.cmm.IncludedCompInfoVO;
 import egovframework.com.cmm.LoginVO;
 import egovframework.com.cmm.annotation.IncludedInfo;
+import egovframework.com.cmm.service.EgovCmmUseService;
 import egovframework.com.cmm.service.EgovProperties;
 import egovframework.com.cmm.util.EgovUserDetailsHelper;
 import egovframework.com.uat.uia.service.EgovLoginService;
+import lombok.RequiredArgsConstructor;
 
 @Controller
+@RequiredArgsConstructor
 public class EgovComIndexController {
 
 	@Autowired
@@ -62,6 +66,11 @@ public class EgovComIndexController {
 	/** EgovLoginService */
 	@Resource(name = "loginService")
 	private EgovLoginService loginService;
+
+	/**
+	 * 공통코드등 전체 업무에서 공용해서 사용해야 하는 서비스를 정의하기 위한 서비스 인터페이스
+	 */
+	private final EgovCmmUseService egovCmmUseService;
 
 	@RequestMapping("/index.do")
 	public String index(ModelMap model) {
@@ -83,11 +92,11 @@ public class EgovComIndexController {
 
 		// 설정된 비밀번호 유효기간을 가져온다. ex) 180이면 비밀번호 변경후 만료일이 앞으로 180일
 		String propertyExpirePwdDay = EgovProperties.getProperty("Globals.ExpirePwdDay");
-		int expirePwdDay = 0 ;
+		int expirePwdDay = 0;
 		try {
-			expirePwdDay =  Integer.parseInt(propertyExpirePwdDay);
+			expirePwdDay = Integer.parseInt(propertyExpirePwdDay);
 		} catch (NumberFormatException Nfe) {
-			LOGGER.debug("convert expirePwdDay Err : "+Nfe.getMessage());
+			LOGGER.debug("convert expirePwdDay Err : " + Nfe.getMessage());
 		}
 
 		model.addAttribute("expirePwdDay", expirePwdDay);
@@ -96,18 +105,21 @@ public class EgovComIndexController {
 		LoginVO loginVO = (LoginVO) EgovUserDetailsHelper.getAuthenticatedUser();
 		model.addAttribute("loginVO", loginVO);
 		int passedDayChangePWD = 0;
-		if ( loginVO != null ) {
-			LOGGER.debug("===>>> loginVO.getId() = "+loginVO.getId());
-			LOGGER.debug("===>>> loginVO.getUniqId() = "+loginVO.getUniqId());
-			LOGGER.debug("===>>> loginVO.getUserSe() = "+loginVO.getUserSe());
+		if (loginVO != null) {
+			LOGGER.debug("===>>> loginVO.getId() = " + loginVO.getId());
+			LOGGER.debug("===>>> loginVO.getUniqId() = " + loginVO.getUniqId());
+			LOGGER.debug("===>>> loginVO.getUserSe() = " + loginVO.getUserSe());
 			// 비밀번호 변경후 경과한 일수
 			passedDayChangePWD = loginService.selectPassedDayChangePWD(loginVO);
-			LOGGER.debug("===>>> passedDayChangePWD = "+passedDayChangePWD);
+			LOGGER.debug("===>>> passedDayChangePWD = " + passedDayChangePWD);
 			model.addAttribute("passedDay", passedDayChangePWD);
 		}
 
 		// 만료일자로부터 경과한 일수 => ex)1이면 만료일에서 1일 경과
 		model.addAttribute("elapsedTimeExpiration", passedDayChangePWD - expirePwdDay);
+
+		ComDefaultVO comDefaultVO = new ComDefaultVO();
+		model.addAttribute("COM_CMM_MENUS", egovCmmUseService.selectMenuList(comDefaultVO));
 
 		return "egovframework/com/cmm/EgovUnitContent";
 	}
@@ -150,7 +162,7 @@ public class EgovComIndexController {
 		}
 		/* 여기까지 AOP Proxy로 인한 코드 */
 
-		/*@Controller Annotation 처리된 클래스를 모두 찾는다.*/
+		/* @Controller Annotation 처리된 클래스를 모두 찾는다. */
 		Map<String, Object> myZoos = applicationContext.getBeansWithAnnotation(Controller.class);
 		LOGGER.debug("How many Controllers : ", myZoos.size());
 		for (final Object myZoo : myZoos.values()) {
@@ -162,7 +174,7 @@ public class EgovComIndexController {
 				annotation = methods[i].getAnnotation(IncludedInfo.class);
 
 				if (annotation != null) {
-					//LOG.debug("Found @IncludedInfo Method : " + methods[i] );
+					// LOG.debug("Found @IncludedInfo Method : " + methods[i] );
 					zooVO = new IncludedCompInfoVO();
 					zooVO.setName(annotation.name());
 					zooVO.setOrder(annotation.order());
