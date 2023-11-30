@@ -44,11 +44,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import egovframework.com.cmm.ComDefaultVO;
 import egovframework.com.cmm.IncludedCompInfoVO;
 import egovframework.com.cmm.LoginVO;
 import egovframework.com.cmm.annotation.IncludedInfo;
-import egovframework.com.cmm.service.EgovCmmUseService;
 import egovframework.com.cmm.service.EgovProperties;
 import egovframework.com.cmm.util.EgovUserDetailsHelper;
 import egovframework.com.uat.uia.service.EgovLoginService;
@@ -66,11 +64,6 @@ public class EgovComIndexController {
 	/** EgovLoginService */
 	@Resource(name = "loginService")
 	private EgovLoginService loginService;
-
-	/**
-	 * 공통코드등 전체 업무에서 공용해서 사용해야 하는 서비스를 정의하기 위한 서비스 인터페이스
-	 */
-	private final EgovCmmUseService egovCmmUseService;
 
 	@RequestMapping("/index.do")
 	public String index(ModelMap model) {
@@ -117,9 +110,6 @@ public class EgovComIndexController {
 
 		// 만료일자로부터 경과한 일수 => ex)1이면 만료일에서 1일 경과
 		model.addAttribute("elapsedTimeExpiration", passedDayChangePWD - expirePwdDay);
-
-		ComDefaultVO comDefaultVO = new ComDefaultVO();
-		model.addAttribute("COM_CMM_MENUS", egovCmmUseService.selectMenuList(comDefaultVO));
 
 		return "egovframework/com/cmm/EgovUnitContent";
 	}

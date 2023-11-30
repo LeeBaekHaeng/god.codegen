@@ -18,8 +18,8 @@ import org.springframework.web.servlet.DispatcherServlet;
 import egovframework.com.cmm.ComDefaultVO;
 import egovframework.com.cmm.filter.HTMLTagFilter;
 import egovframework.com.cmm.filter.SessionTimeoutCookieFilter;
+import egovframework.com.cmm.service.EgovCmmUseService;
 import egovframework.com.cmm.service.EgovProperties;
-import egovframework.com.cmm.service.impl.CmmUseDAO;
 import egovframework.com.sec.security.filter.EgovSpringSecurityLoginFilter;
 import egovframework.com.sec.security.filter.EgovSpringSecurityLogoutFilter;
 import egovframework.com.uat.uap.filter.EgovLoginPolicyFilter;
@@ -190,22 +190,11 @@ public class EgovWebApplicationInitializer implements WebApplicationInitializer 
 
 		LOGGER.debug("EgovWebApplicationInitializer END-============================================");
 
-//		selectMenuList(servletContext, xmlWebApplicationContext);
+		selectMenuList(servletContext, rootContext);
 	}
 
 	private void selectMenuList(ServletContext servletContext, XmlWebApplicationContext rootContext) {
-//		try {
-//			Thread.sleep(10000);
-//		} catch (InterruptedException e) {
-//			throw new BaseRuntimeException(e);
-//		}
-//
-//		rootContext.refresh();
-
-//		final EgovCmmUseService egovCmmUseService = rootContext.getBean(EgovCmmUseService.class);
-//		final CmmUseDAO egovCmmUseService = rootContext.getBean(CmmUseDAO.class);
-		final CmmUseDAO egovCmmUseService = (CmmUseDAO) rootContext.getBean("cmmUseDAO");
-
+		final EgovCmmUseService egovCmmUseService = rootContext.getBean(EgovCmmUseService.class);
 		ComDefaultVO comDefaultVO = new ComDefaultVO();
 		servletContext.setAttribute("COM_CMM_MENUS", egovCmmUseService.selectMenuList(comDefaultVO));
 	}
