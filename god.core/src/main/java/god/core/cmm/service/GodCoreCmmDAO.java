@@ -38,7 +38,7 @@ public interface GodCoreCmmDAO<T, R> {
     List<R> selectList(T vo);
 
     /**
-     * 등록
+     * 수정
      * 
      * @param vo
      * @return
@@ -46,7 +46,7 @@ public interface GodCoreCmmDAO<T, R> {
     int update(T vo);
 
     /**
-     * 등록
+     * 삭제
      * 
      * @param vo
      * @return
