@@ -13,7 +13,7 @@ import org.springframework.ui.ModelMap;
  * @param <T>
  * @param <R>
  */
-public interface GodCoreCmmService<T, R> {
+public interface GodCoreCmmAbstractService<T, R> {
 
 	/**
 	 * 등록
