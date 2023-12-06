@@ -6,7 +6,6 @@ import org.egovframe.rte.fdl.cmmn.EgovAbstractServiceImpl;
 import org.springframework.ui.ModelMap;
 
 import god.core.cmm.service.GodCoreCmmAbstractService;
-import lombok.RequiredArgsConstructor;
 
 /**
  * data 처리관련(ServiceImpl 공통)
@@ -17,13 +16,26 @@ import lombok.RequiredArgsConstructor;
  * @param <T>
  * @param <R>
  */
-@RequiredArgsConstructor
 public class GodCoreCmmAbstractServiceImpl<T, R> extends EgovAbstractServiceImpl
 		implements GodCoreCmmAbstractService<T, R> {
 
+	/**
+	 * data 처리관련(DAO 공통)
+	 */
+	private GodCoreCmmAbstractDAOImpl<T, R> dao;
+
+	/**
+	 * dao 주입
+	 * 
+	 * @param service
+	 */
+	protected void postConstruct(final GodCoreCmmAbstractDAOImpl<T, R> dao) {
+		this.dao = dao;
+	}
+
 	@Override
-	public int insert(T vo) {
-		return 0;
+	public int insert(final T vo) {
+		return dao.insert(vo);
 	}
 
 	@Override
