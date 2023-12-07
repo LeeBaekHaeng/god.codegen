@@ -202,7 +202,7 @@ public class EgovTestAbstractDAO {
 	}
 
 	/**
-	 * Debug Int TotCnt
+	 * Debug TotCnt
 	 * 
 	 * @param totCnt
 	 */
