@@ -24,14 +24,14 @@ public class GodCoreCmmAbstractServiceImpl<T, R> extends EgovAbstractServiceImpl
 	/**
 	 * data 처리관련(DAO 공통)
 	 */
-	private GodCoreCmmAbstractDAOImpl<T, R> dao;
+	private GodCoreCmmAbstractDAO<T, R> dao;
 
 	/**
 	 * dao 주입
 	 * 
 	 * @param service
 	 */
-	protected void postConstruct(final GodCoreCmmAbstractDAOImpl<T, R> dao) {
+	protected void postConstruct(final GodCoreCmmAbstractDAO<T, R> dao) {
 		this.dao = dao;
 	}
 

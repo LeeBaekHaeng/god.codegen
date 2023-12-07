@@ -7,7 +7,6 @@ import org.egovframe.rte.psl.dataaccess.EgovAbstractMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 
-import god.core.cmm.service.GodCoreCmmAbstractDAO;
 import lombok.NoArgsConstructor;
 
 /**
@@ -20,8 +19,7 @@ import lombok.NoArgsConstructor;
  * @param <R>
  */
 @NoArgsConstructor
-public abstract class GodCoreCmmAbstractDAOImpl<T, R> extends EgovAbstractMapper
-		implements GodCoreCmmAbstractDAO<T, R> {
+public abstract class GodCoreCmmAbstractDAO<T, R> extends EgovAbstractMapper {
 
 	/**
 	 * 네임스페이스
@@ -33,12 +31,11 @@ public abstract class GodCoreCmmAbstractDAOImpl<T, R> extends EgovAbstractMapper
 	 * 
 	 * @param namespace
 	 */
-	public GodCoreCmmAbstractDAOImpl(final String namespace) {
+	public GodCoreCmmAbstractDAO(final String namespace) {
 		super();
 		this.namespace = namespace + ".";
 	}
 
-	@Override
 	@Autowired
 	@Qualifier("egov.sqlSession")
 	public void setSqlSessionFactory(final SqlSessionFactory sqlSession) {
@@ -49,43 +46,78 @@ public abstract class GodCoreCmmAbstractDAOImpl<T, R> extends EgovAbstractMapper
 		return namespace;
 	}
 
-	@Override
+	/**
+	 * 등록
+	 * 
+	 * @param vo
+	 * @return
+	 */
 	public int insert(final T vo) {
 		return insert(namespace + "insert", vo);
 	}
 
-	@Override
+	/**
+	 * 조회(단건)
+	 * 
+	 * @param vo
+	 * @return
+	 */
 	public R select(final T vo) {
 		return selectOne(namespace + "select", vo);
 	}
 
-	@Override
+	/**
+	 * 조회(멀티건)
+	 * 
+	 * @param vo
+	 * @return
+	 */
 	public List<R> selectList(final T vo) {
 		return selectList(namespace + "selectList", vo);
 	}
 
-	@Override
+	/**
+	 * 수정
+	 * 
+	 * @param vo
+	 * @return
+	 */
 	public int update(final T vo) {
 		return update(namespace + "update", vo);
 	}
 
-	@Override
+	/**
+	 * 삭제
+	 * 
+	 * @param vo
+	 * @return
+	 */
 	public int delete(final T vo) {
 		return delete(namespace + "delete", vo);
 	}
 
-	@Override
+	/**
+	 * 등록/수정
+	 * 
+	 * @param vo
+	 * @return
+	 */
 	public int merge(final T vo) {
 		return insert(namespace + "merge", vo);
 	}
 
-	@Override
+	/**
+	 * 등록/수정/삭제
+	 * 
+	 * @param vo
+	 * @return
+	 */
 	public int multi(final T vo) {
 		return insert(namespace + "multi", vo);
 	}
 
 	/**
-	 * 조회(멀티건) 전체 건수
+	 * 조회(단건) 전체 건수
 	 * 
 	 * @param vo
 	 * @return

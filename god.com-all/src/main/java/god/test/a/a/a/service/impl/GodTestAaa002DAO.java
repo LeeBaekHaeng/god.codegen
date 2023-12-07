@@ -4,7 +4,7 @@ import java.util.List;
 
 import org.springframework.stereotype.Repository;
 
-import god.core.cmm.service.impl.GodCoreCmmAbstractDAOImpl;
+import god.core.cmm.service.impl.GodCoreCmmAbstractDAO;
 import god.test.a.a.a.service.GodTestAaa002VO;
 
 /**
@@ -14,7 +14,7 @@ import god.test.a.a.a.service.GodTestAaa002VO;
  * @since 2023-11-19
  */
 @Repository
-public class GodTestAaa002DAO extends GodCoreCmmAbstractDAOImpl<GodTestAaa002VO, GodTestAaa002VO> {
+public class GodTestAaa002DAO extends GodCoreCmmAbstractDAO<GodTestAaa002VO, GodTestAaa002VO> {
 
 	/**
 	 * 
