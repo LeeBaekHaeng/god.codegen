@@ -32,7 +32,7 @@ public class GodTestAaa002ServiceImpl extends GodCoreCmmAbstractServiceImpl<GodT
 	 * 포스트 구성
 	 */
 	@PostConstruct
-	public void postConstruct() {
+	protected void postConstruct() {
 		super.postConstruct(dao);
 	}
 
@@ -43,21 +43,9 @@ public class GodTestAaa002ServiceImpl extends GodCoreCmmAbstractServiceImpl<GodT
 	}
 
 	@Override
-	public void insert(final GodTestAaa002VO vo, final ModelMap model) {
-		log.debug("vo={}", vo);
-		super.insert(vo, model);
-	}
-
-	@Override
 	public GodTestAaa002VO select(final GodTestAaa002VO vo) {
 		log.debug("vo={}", vo);
 		return super.select(vo);
-	}
-
-	@Override
-	public void select(final GodTestAaa002VO vo, final ModelMap model) {
-		log.debug("vo={}", vo);
-		super.select(vo, model);
 	}
 
 	@Override
@@ -67,21 +55,9 @@ public class GodTestAaa002ServiceImpl extends GodCoreCmmAbstractServiceImpl<GodT
 	}
 
 	@Override
-	public void selectList(final GodTestAaa002VO vo, final ModelMap model) {
-		log.debug("vo={}", vo);
-		super.selectList(vo, model);
-	}
-
-	@Override
 	public int update(final GodTestAaa002VO vo) {
 		log.debug("vo={}", vo);
 		return super.update(vo);
-	}
-
-	@Override
-	public void update(final GodTestAaa002VO vo, final ModelMap model) {
-		log.debug("vo={}", vo);
-		super.update(vo, model);
 	}
 
 	@Override
@@ -91,21 +67,9 @@ public class GodTestAaa002ServiceImpl extends GodCoreCmmAbstractServiceImpl<GodT
 	}
 
 	@Override
-	public void delete(final GodTestAaa002VO vo, final ModelMap model) {
-		log.debug("vo={}", vo);
-		super.delete(vo, model);
-	}
-
-	@Override
 	public int merge(final GodTestAaa002VO vo) {
 		log.debug("vo={}", vo);
 		return super.merge(vo);
-	}
-
-	@Override
-	public void merge(final GodTestAaa002VO vo, final ModelMap model) {
-		log.debug("vo={}", vo);
-		super.merge(vo, model);
 	}
 
 	@Override
@@ -115,15 +79,51 @@ public class GodTestAaa002ServiceImpl extends GodCoreCmmAbstractServiceImpl<GodT
 	}
 
 	@Override
-	public void multi(final GodTestAaa002VO vo, final ModelMap model) {
-		log.debug("vo={}", vo);
-		super.multi(vo, model);
-	}
-
-	@Override
 	public int selectListTotCnt(final GodTestAaa002VO vo) {
 		log.debug("vo={}", vo);
 		return super.selectListTotCnt(vo);
+	}
+
+	@Override
+	public void insert(final GodTestAaa002VO vo, final ModelMap model) {
+		log.debug("vo={}", vo);
+		super.insert(vo, model);
+	}
+
+	@Override
+	public void select(final GodTestAaa002VO vo, final ModelMap model) {
+		log.debug("vo={}", vo);
+		super.select(vo, model);
+	}
+
+	@Override
+	public void selectList(final GodTestAaa002VO vo, final ModelMap model) {
+		log.debug("vo={}", vo);
+		super.selectList(vo, model);
+	}
+
+	@Override
+	public void update(final GodTestAaa002VO vo, final ModelMap model) {
+		log.debug("vo={}", vo);
+		super.update(vo, model);
+	}
+
+	@Override
+	public void delete(final GodTestAaa002VO vo, final ModelMap model) {
+		log.debug("vo={}", vo);
+		super.delete(vo, model);
+	}
+
+	@Override
+	public void merge(final GodTestAaa002VO vo, final ModelMap model) {
+		log.debug("vo={}", vo);
+		super.merge(vo, model);
+	}
+
+	@Override
+	public void multi(final GodTestAaa002VO vo, final ModelMap model) {
+		log.debug("vo={}", vo);
+		super.multi(vo, model);
 	}
 
 	@Override
@@ -132,18 +132,8 @@ public class GodTestAaa002ServiceImpl extends GodCoreCmmAbstractServiceImpl<GodT
 	}
 
 	@Override
-	public void insert2(final GodTestAaa002VO vo, final ModelMap model) {
-		model.addAttribute("result", dao.insert2(vo));
-	}
-
-	@Override
 	public GodTestAaa002VO select2(final GodTestAaa002VO vo) {
 		return dao.select2(vo);
-	}
-
-	@Override
-	public void select2(final GodTestAaa002VO vo, final ModelMap model) {
-		model.addAttribute("result", dao.select2(vo));
 	}
 
 	@Override
@@ -152,18 +142,8 @@ public class GodTestAaa002ServiceImpl extends GodCoreCmmAbstractServiceImpl<GodT
 	}
 
 	@Override
-	public void select2List(final GodTestAaa002VO vo, final ModelMap model) {
-		model.addAttribute("resultList", dao.select2List(vo));
-	}
-
-	@Override
 	public int update2(final GodTestAaa002VO vo) {
 		return dao.update2(vo);
-	}
-
-	@Override
-	public void update2(final GodTestAaa002VO vo, final ModelMap model) {
-		model.addAttribute("result", dao.update2(vo));
 	}
 
 	@Override
@@ -172,18 +152,8 @@ public class GodTestAaa002ServiceImpl extends GodCoreCmmAbstractServiceImpl<GodT
 	}
 
 	@Override
-	public void delete2(final GodTestAaa002VO vo, final ModelMap model) {
-		model.addAttribute("result", dao.delete2(vo));
-	}
-
-	@Override
 	public int merge2(final GodTestAaa002VO vo) {
 		return dao.merge2(vo);
-	}
-
-	@Override
-	public void merge2(final GodTestAaa002VO vo, final ModelMap model) {
-		model.addAttribute("result", dao.merge2(vo));
 	}
 
 	@Override
@@ -192,13 +162,43 @@ public class GodTestAaa002ServiceImpl extends GodCoreCmmAbstractServiceImpl<GodT
 	}
 
 	@Override
-	public void multi2(final GodTestAaa002VO vo, final ModelMap model) {
-		model.addAttribute("result", dao.multi2(vo));
+	public int select2ListTotCnt(final GodTestAaa002VO vo) {
+		return dao.select2ListTotCnt(vo);
 	}
 
 	@Override
-	public int select2ListTotCnt(final GodTestAaa002VO vo) {
-		return dao.select2ListTotCnt(vo);
+	public void insert2(final GodTestAaa002VO vo, final ModelMap model) {
+		model.addAttribute("result", dao.insert2(vo));
+	}
+
+	@Override
+	public void select2(final GodTestAaa002VO vo, final ModelMap model) {
+		model.addAttribute("result", dao.select2(vo));
+	}
+
+	@Override
+	public void select2List(final GodTestAaa002VO vo, final ModelMap model) {
+		model.addAttribute("resultList", dao.select2List(vo));
+	}
+
+	@Override
+	public void update2(final GodTestAaa002VO vo, final ModelMap model) {
+		model.addAttribute("result", dao.update2(vo));
+	}
+
+	@Override
+	public void delete2(final GodTestAaa002VO vo, final ModelMap model) {
+		model.addAttribute("result", dao.delete2(vo));
+	}
+
+	@Override
+	public void merge2(final GodTestAaa002VO vo, final ModelMap model) {
+		model.addAttribute("result", dao.merge2(vo));
+	}
+
+	@Override
+	public void multi2(final GodTestAaa002VO vo, final ModelMap model) {
+		model.addAttribute("result", dao.multi2(vo));
 	}
 
 }

@@ -18,20 +18,68 @@ import god.core.cmm.service.GodCoreCmmAbstractService;
 public interface GodTestAaa002Service extends GodCoreCmmAbstractService<GodTestAaa002VO, GodTestAaa002VO> {
 
 	/**
-	 * 조회(단건) 전체 건수
-	 * 
-	 * @param vo
-	 * @return
-	 */
-	int selectListTotCnt(GodTestAaa002VO vo);
-
-	/**
 	 * 등록
 	 * 
 	 * @param vo
-	 * @return
+	 * @return result
 	 */
 	int insert2(GodTestAaa002VO vo);
+
+	/**
+	 * 조회(단건)
+	 * 
+	 * @param vo
+	 * @return result
+	 */
+	GodTestAaa002VO select2(GodTestAaa002VO vo);
+
+	/**
+	 * 조회(멀티건)
+	 * 
+	 * @param vo
+	 * @return resultList
+	 */
+	List<GodTestAaa002VO> select2List(GodTestAaa002VO vo);
+
+	/**
+	 * 수정
+	 * 
+	 * @param vo
+	 * @return result
+	 */
+	int update2(GodTestAaa002VO vo);
+
+	/**
+	 * 삭제
+	 * 
+	 * @param vo
+	 * @return result
+	 */
+	int delete2(GodTestAaa002VO vo);
+
+	/**
+	 * 등록/수정
+	 * 
+	 * @param vo
+	 * @return result
+	 */
+	int merge2(GodTestAaa002VO vo);
+
+	/**
+	 * 등록/수정/삭제
+	 * 
+	 * @param vo
+	 * @return result
+	 */
+	int multi2(GodTestAaa002VO vo);
+
+	/**
+	 * 조회(단건) 전체 건수
+	 * 
+	 * @param vo
+	 * @return totCnt
+	 */
+	int select2ListTotCnt(GodTestAaa002VO vo);
 
 	/**
 	 * 등록
@@ -45,25 +93,9 @@ public interface GodTestAaa002Service extends GodCoreCmmAbstractService<GodTestA
 	 * 조회(단건)
 	 * 
 	 * @param vo
-	 * @return
-	 */
-	GodTestAaa002VO select2(GodTestAaa002VO vo);
-
-	/**
-	 * 조회(단건)
-	 * 
-	 * @param vo
 	 * @param model
 	 */
 	void select2(GodTestAaa002VO vo, ModelMap model);
-
-	/**
-	 * 조회(멀티건)
-	 * 
-	 * @param vo
-	 * @return
-	 */
-	List<GodTestAaa002VO> select2List(GodTestAaa002VO vo);
 
 	/**
 	 * 조회(멀티건)
@@ -77,25 +109,9 @@ public interface GodTestAaa002Service extends GodCoreCmmAbstractService<GodTestA
 	 * 수정
 	 * 
 	 * @param vo
-	 * @return
-	 */
-	int update2(GodTestAaa002VO vo);
-
-	/**
-	 * 수정
-	 * 
-	 * @param vo
 	 * @param model
 	 */
 	void update2(GodTestAaa002VO vo, ModelMap model);
-
-	/**
-	 * 삭제
-	 * 
-	 * @param vo
-	 * @return
-	 */
-	int delete2(GodTestAaa002VO vo);
 
 	/**
 	 * 삭제
@@ -109,14 +125,6 @@ public interface GodTestAaa002Service extends GodCoreCmmAbstractService<GodTestA
 	 * 등록/수정
 	 * 
 	 * @param vo
-	 * @return
-	 */
-	int merge2(GodTestAaa002VO vo);
-
-	/**
-	 * 등록/수정
-	 * 
-	 * @param vo
 	 * @param model
 	 */
 	void merge2(GodTestAaa002VO vo, ModelMap model);
@@ -125,24 +133,8 @@ public interface GodTestAaa002Service extends GodCoreCmmAbstractService<GodTestA
 	 * 등록/수정/삭제
 	 * 
 	 * @param vo
-	 * @return
-	 */
-	int multi2(GodTestAaa002VO vo);
-
-	/**
-	 * 등록/수정/삭제
-	 * 
-	 * @param vo
 	 * @param model
 	 */
 	void multi2(GodTestAaa002VO vo, ModelMap model);
-
-	/**
-	 * 조회(단건) 전체 건수
-	 * 
-	 * @param vo
-	 * @return
-	 */
-	int select2ListTotCnt(GodTestAaa002VO vo);
 
 }

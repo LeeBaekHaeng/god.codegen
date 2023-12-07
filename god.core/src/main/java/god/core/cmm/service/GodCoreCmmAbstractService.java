@@ -19,9 +19,65 @@ public interface GodCoreCmmAbstractService<T, R> {
 	 * 등록
 	 * 
 	 * @param vo
-	 * @return
+	 * @return result
 	 */
 	int insert(T vo);
+
+	/**
+	 * 조회(단건)
+	 * 
+	 * @param vo
+	 * @return result
+	 */
+	R select(T vo);
+
+	/**
+	 * 조회(멀티건)
+	 * 
+	 * @param vo
+	 * @return result
+	 */
+	List<R> selectList(T vo);
+
+	/**
+	 * 수정
+	 * 
+	 * @param vo
+	 * @return result
+	 */
+	int update(T vo);
+
+	/**
+	 * 삭제
+	 * 
+	 * @param vo
+	 * @return result
+	 */
+	int delete(T vo);
+
+	/**
+	 * 등록/수정
+	 * 
+	 * @param vo
+	 * @return result
+	 */
+	int merge(T vo);
+
+	/**
+	 * 등록/수정/삭제
+	 * 
+	 * @param vo
+	 * @return result
+	 */
+	int multi(T vo);
+
+	/**
+	 * 조회(단건) 전체 건수
+	 * 
+	 * @param vo
+	 * @return totCnt
+	 */
+	int selectListTotCnt(final T vo);
 
 	/**
 	 * 등록
@@ -35,25 +91,9 @@ public interface GodCoreCmmAbstractService<T, R> {
 	 * 조회(단건)
 	 * 
 	 * @param vo
-	 * @return
-	 */
-	R select(T vo);
-
-	/**
-	 * 조회(단건)
-	 * 
-	 * @param vo
 	 * @param model
 	 */
 	void select(T vo, ModelMap model);
-
-	/**
-	 * 조회(멀티건)
-	 * 
-	 * @param vo
-	 * @return
-	 */
-	List<R> selectList(T vo);
 
 	/**
 	 * 조회(멀티건)
@@ -67,25 +107,9 @@ public interface GodCoreCmmAbstractService<T, R> {
 	 * 수정
 	 * 
 	 * @param vo
-	 * @return
-	 */
-	int update(T vo);
-
-	/**
-	 * 수정
-	 * 
-	 * @param vo
 	 * @param model
 	 */
 	void update(T vo, ModelMap model);
-
-	/**
-	 * 삭제
-	 * 
-	 * @param vo
-	 * @return
-	 */
-	int delete(T vo);
 
 	/**
 	 * 삭제
@@ -99,25 +123,9 @@ public interface GodCoreCmmAbstractService<T, R> {
 	 * 등록/수정
 	 * 
 	 * @param vo
-	 * @return
-	 */
-	int merge(T vo);
-
-	/**
-	 * 등록/수정
-	 * 
-	 * @param vo
 	 * @param model
 	 */
 	void merge(T vo, ModelMap model);
-
-	/**
-	 * 등록/수정/삭제
-	 * 
-	 * @param vo
-	 * @return
-	 */
-	int multi(T vo);
 
 	/**
 	 * 등록/수정/삭제
