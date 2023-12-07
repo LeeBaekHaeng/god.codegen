@@ -86,6 +86,11 @@ public class GodTestAaa002DAOTest extends EgovTestAbstractDAO {
 	private EgovIdGnrService egovAdministCodeRecptnIdGnrService;
 
 	/**
+	 * `ADMINIST_ZONE_CODE` varchar(10) NOT NULL COMMENT '행정구역코드',
+	 */
+	private String administZoneCode = "0000000001";
+
+	/**
 	 * 행정코드 등록 테스트
 	 */
 	@Test
@@ -93,19 +98,17 @@ public class GodTestAaa002DAOTest extends EgovTestAbstractDAO {
 		// given
 		final GodTestAaa002VO vo = new GodTestAaa002VO();
 		vo.setAdministZoneSe("1");
-		vo.setAdministZoneCode("0000000001");
+		vo.setAdministZoneCode(administZoneCode);
 
 		setOpertSn(vo);
 
 		// when
 		final int result = dao.insert(vo);
 
-		if (log.isDebugEnabled()) {
-			log.debug("result={}", result);
-		}
+		debugIntResult(result);
 
 		// then
-		assertEquals(egovMessageSource.getMessage("fail.common.insert"), 1, result);
+		assertEquals(egovMessageSource.getMessage(FAIL_COMMON_INSERT), 1, result);
 	}
 
 	private void setOpertSn(final GodTestAaa002VO vo) {
@@ -129,19 +132,17 @@ public class GodTestAaa002DAOTest extends EgovTestAbstractDAO {
 	private void testData(final GodTestAaa002VO testData) {
 		// given
 		testData.setAdministZoneSe("1");
-		testData.setAdministZoneCode("0000000001");
+		testData.setAdministZoneCode(administZoneCode);
 
 		setOpertSn(testData);
 
 		// when
 		final int result = dao.insert(testData);
 
-		if (log.isDebugEnabled()) {
-			log.debug("result={}", result);
-		}
+		debugIntResult(result);
 
 		// then
-		assertEquals(egovMessageSource.getMessage("fail.common.insert"), 1, result);
+		assertEquals(egovMessageSource.getMessage(FAIL_COMMON_INSERT), 1, result);
 	}
 
 	/**
@@ -174,9 +175,9 @@ public class GodTestAaa002DAOTest extends EgovTestAbstractDAO {
 			log.debug("getAdministZoneCode={}, {}", testData.getAdministZoneCode(), result.getAdministZoneCode());
 		}
 
-		assertEquals(egovMessageSource.getMessage("fail.common.select"), testData.getAdministZoneCode(),
+		assertEquals(egovMessageSource.getMessage(FAIL_COMMON_SELECT), testData.getAdministZoneCode(),
 				result.getAdministZoneCode());
-		assertEquals(egovMessageSource.getMessage("fail.common.select"), testData.getAdministZoneCode(),
+		assertEquals(egovMessageSource.getMessage(FAIL_COMMON_SELECT), testData.getAdministZoneCode(),
 				result.getAdministZoneCode());
 	}
 
@@ -208,8 +209,8 @@ public class GodTestAaa002DAOTest extends EgovTestAbstractDAO {
 	}
 
 	private void assertSelectList(final GodTestAaa002VO testData, final List<GodTestAaa002VO> resultList) {
-//        assertFalse(egovMessageSource.getMessage("fail.common.select"), resultList.isEmpty());
-		assertTrue(egovMessageSource.getMessage("fail.common.select"), resultList.size() > -1);
+//        assertFalse(egovMessageSource.getMessage(FAIL_COMMON_SELECT), resultList.isEmpty());
+		assertTrue(egovMessageSource.getMessage(FAIL_COMMON_SELECT), resultList.size() > -1);
 
 		int i = 1;
 
@@ -246,12 +247,10 @@ public class GodTestAaa002DAOTest extends EgovTestAbstractDAO {
 		// when
 		final int result = dao.update(vo);
 
-		if (log.isDebugEnabled()) {
-			log.debug("result={}", result);
-		}
+		debugIntResult(result);
 
 		// then
-		assertEquals(egovMessageSource.getMessage("fail.common.update"), 1, result);
+		assertEquals(egovMessageSource.getMessage(FAIL_COMMON_UPDATE), 1, result);
 	}
 
 	/**
@@ -270,12 +269,10 @@ public class GodTestAaa002DAOTest extends EgovTestAbstractDAO {
 		// when
 		final int result = dao.delete(vo);
 
-		if (log.isDebugEnabled()) {
-			log.debug("result={}", result);
-		}
+		debugIntResult(result);
 
 		// then
-		assertEquals(egovMessageSource.getMessage("fail.common.delete"), 1, result);
+		assertEquals(egovMessageSource.getMessage(FAIL_COMMON_DELETE), 1, result);
 	}
 
 	/**
@@ -286,19 +283,17 @@ public class GodTestAaa002DAOTest extends EgovTestAbstractDAO {
 		// given
 		final GodTestAaa002VO vo = new GodTestAaa002VO();
 		vo.setAdministZoneSe("1");
-		vo.setAdministZoneCode("0000000001");
+		vo.setAdministZoneCode(administZoneCode);
 
 		setOpertSn(vo);
 
 		// when
 		final int result = dao.merge(vo);
 
-		if (log.isDebugEnabled()) {
-			log.debug("result={}", result);
-		}
+		debugIntResult(result);
 
 		// then
-		assertEquals(egovMessageSource.getMessage("fail.common.insert"), 1, result);
+		assertEquals(egovMessageSource.getMessage(FAIL_COMMON_INSERT), 1, result);
 	}
 
 	/**
@@ -309,19 +304,17 @@ public class GodTestAaa002DAOTest extends EgovTestAbstractDAO {
 		// given
 		final GodTestAaa002VO vo = new GodTestAaa002VO();
 		vo.setAdministZoneSe("1");
-		vo.setAdministZoneCode("0000000001");
+		vo.setAdministZoneCode(administZoneCode);
 
 		setOpertSn(vo);
 
 		// when
 		final int result = dao.multi(vo);
 
-		if (log.isDebugEnabled()) {
-			log.debug("result={}", result);
-		}
+		debugIntResult(result);
 
 		// then
-		assertEquals(egovMessageSource.getMessage("fail.common.insert"), 1, result);
+		assertEquals(egovMessageSource.getMessage(FAIL_COMMON_INSERT), 1, result);
 	}
 
 	/**
@@ -343,7 +336,7 @@ public class GodTestAaa002DAOTest extends EgovTestAbstractDAO {
 		}
 
 		// then
-		assertTrue(egovMessageSource.getMessage("fail.common.select"), totCnt > -1);
+		assertTrue(egovMessageSource.getMessage(FAIL_COMMON_SELECT), totCnt > -1);
 	}
 
 	/**
@@ -354,19 +347,17 @@ public class GodTestAaa002DAOTest extends EgovTestAbstractDAO {
 		// given
 		final GodTestAaa002VO vo = new GodTestAaa002VO();
 		vo.setAdministZoneSe("1");
-		vo.setAdministZoneCode("0000000001");
+		vo.setAdministZoneCode(administZoneCode);
 
 		setOpertSn(vo);
 
 		// when
 		final int result = dao.insert2(vo);
 
-		if (log.isDebugEnabled()) {
-			log.debug("result={}", result);
-		}
+		debugIntResult(result);
 
 		// then
-		assertEquals(egovMessageSource.getMessage("fail.common.insert"), 1, result);
+		assertEquals(egovMessageSource.getMessage(FAIL_COMMON_INSERT), 1, result);
 	}
 
 	/**
@@ -438,12 +429,10 @@ public class GodTestAaa002DAOTest extends EgovTestAbstractDAO {
 		// when
 		final int result = dao.update2(vo);
 
-		if (log.isDebugEnabled()) {
-			log.debug("result={}", result);
-		}
+		debugIntResult(result);
 
 		// then
-		assertEquals(egovMessageSource.getMessage("fail.common.update"), 1, result);
+		assertEquals(egovMessageSource.getMessage(FAIL_COMMON_UPDATE), 1, result);
 	}
 
 	/**
@@ -462,12 +451,10 @@ public class GodTestAaa002DAOTest extends EgovTestAbstractDAO {
 		// when
 		final int result = dao.delete2(vo);
 
-		if (log.isDebugEnabled()) {
-			log.debug("result={}", result);
-		}
+		debugIntResult(result);
 
 		// then
-		assertEquals(egovMessageSource.getMessage("fail.common.delete"), 1, result);
+		assertEquals(egovMessageSource.getMessage(FAIL_COMMON_DELETE), 1, result);
 	}
 
 	/**
@@ -478,19 +465,17 @@ public class GodTestAaa002DAOTest extends EgovTestAbstractDAO {
 		// given
 		final GodTestAaa002VO vo = new GodTestAaa002VO();
 		vo.setAdministZoneSe("1");
-		vo.setAdministZoneCode("0000000001");
+		vo.setAdministZoneCode(administZoneCode);
 
 		setOpertSn(vo);
 
 		// when
 		final int result = dao.merge2(vo);
 
-		if (log.isDebugEnabled()) {
-			log.debug("result={}", result);
-		}
+		debugIntResult(result);
 
 		// then
-		assertEquals(egovMessageSource.getMessage("fail.common.insert"), 1, result);
+		assertEquals(egovMessageSource.getMessage(FAIL_COMMON_INSERT), 1, result);
 	}
 
 	/**
@@ -501,19 +486,17 @@ public class GodTestAaa002DAOTest extends EgovTestAbstractDAO {
 		// given
 		final GodTestAaa002VO vo = new GodTestAaa002VO();
 		vo.setAdministZoneSe("1");
-		vo.setAdministZoneCode("0000000001");
+		vo.setAdministZoneCode(administZoneCode);
 
 		setOpertSn(vo);
 
 		// when
 		final int result = dao.multi2(vo);
 
-		if (log.isDebugEnabled()) {
-			log.debug("result={}", result);
-		}
+		debugIntResult(result);
 
 		// then
-		assertEquals(egovMessageSource.getMessage("fail.common.insert"), 1, result);
+		assertEquals(egovMessageSource.getMessage(FAIL_COMMON_INSERT), 1, result);
 	}
 
 	/**
@@ -535,7 +518,7 @@ public class GodTestAaa002DAOTest extends EgovTestAbstractDAO {
 		}
 
 		// then
-		assertTrue(egovMessageSource.getMessage("fail.common.select"), totCnt > -1);
+		assertTrue(egovMessageSource.getMessage(FAIL_COMMON_SELECT), totCnt > -1);
 	}
 
 }
