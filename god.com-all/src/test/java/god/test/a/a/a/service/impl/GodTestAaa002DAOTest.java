@@ -163,6 +163,8 @@ public class GodTestAaa002DAOTest extends EgovTestAbstractDAO {
 
 		if (log.isDebugEnabled()) {
 			log.debug("result={}", result);
+			log.debug("getAdministZoneSe={}, {}", testData.getAdministZoneSe(), result.getAdministZoneSe());
+			log.debug("getAdministZoneCode={}, {}", testData.getAdministZoneCode(), result.getAdministZoneCode());
 		}
 
 		// then
@@ -170,11 +172,6 @@ public class GodTestAaa002DAOTest extends EgovTestAbstractDAO {
 	}
 
 	private void assertSelect(final GodTestAaa002VO testData, final GodTestAaa002VO result) {
-		if (log.isDebugEnabled()) {
-			log.debug("getAdministZoneSe={}, {}", testData.getAdministZoneSe(), result.getAdministZoneSe());
-			log.debug("getAdministZoneCode={}, {}", testData.getAdministZoneCode(), result.getAdministZoneCode());
-		}
-
 		assertEquals(egovMessageSource.getMessage(FAIL_COMMON_SELECT), testData.getAdministZoneCode(),
 				result.getAdministZoneCode());
 		assertEquals(egovMessageSource.getMessage(FAIL_COMMON_SELECT), testData.getAdministZoneCode(),
@@ -200,22 +197,17 @@ public class GodTestAaa002DAOTest extends EgovTestAbstractDAO {
 		// when
 		final List<GodTestAaa002VO> resultList = dao.selectList(vo);
 
-		if (log.isDebugEnabled()) {
-			log.debug("resultList={}", resultList);
-		}
-
 		// then
 		assertSelectList(testData, resultList);
 	}
 
 	private void assertSelectList(final GodTestAaa002VO testData, final List<GodTestAaa002VO> resultList) {
-//        assertFalse(egovMessageSource.getMessage(FAIL_COMMON_SELECT), resultList.isEmpty());
-		assertTrue(egovMessageSource.getMessage(FAIL_COMMON_SELECT), resultList.size() > -1);
+		if (log.isDebugEnabled()) {
+			log.debug("resultList={}", resultList);
 
-		int i = 1;
+			int i = 1;
 
-		for (final GodTestAaa002VO result : resultList) {
-			if (log.isDebugEnabled()) {
+			for (final GodTestAaa002VO result : resultList) {
 				log.debug("i={}", i);
 
 				log.debug("getAdministZoneSe={}, {}", testData.getAdministZoneSe(), result.getAdministZoneSe());
@@ -223,10 +215,13 @@ public class GodTestAaa002DAOTest extends EgovTestAbstractDAO {
 
 				log.debug("getUseAt={}, {}", testData.getUseAt(), result.getUseAt());
 				log.debug("");
-			}
 
-			i++;
+				i++;
+			}
 		}
+
+//        assertFalse(egovMessageSource.getMessage(FAIL_COMMON_SELECT), resultList.isEmpty());
+		assertTrue(egovMessageSource.getMessage(FAIL_COMMON_SELECT), resultList.size() > -1);
 	}
 
 	/**
