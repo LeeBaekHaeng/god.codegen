@@ -86,7 +86,7 @@ public class GodTestAaa002DAOTest extends EgovTestAbstractDAO {
 	private EgovIdGnrService egovAdministCodeRecptnIdGnrService;
 
 	/**
-	 * 등록
+	 * 행정코드 등록 테스트
 	 */
 	@Test
 	public void a01insert() {
@@ -145,7 +145,7 @@ public class GodTestAaa002DAOTest extends EgovTestAbstractDAO {
 	}
 
 	/**
-	 * 조회(단건)
+	 * 행정코드 조회(단건) 테스트
 	 */
 	@Test
 	public void a02select() {
@@ -181,7 +181,7 @@ public class GodTestAaa002DAOTest extends EgovTestAbstractDAO {
 	}
 
 	/**
-	 * 조회(멀티건)
+	 * 행정코드 조회(멀티건) 테스트
 	 */
 	@Test
 	public void a03selectList() {
@@ -229,7 +229,7 @@ public class GodTestAaa002DAOTest extends EgovTestAbstractDAO {
 	}
 
 	/**
-	 * 수정
+	 * 행정코드 수정 테스트
 	 */
 	@Test
 	public void a04update() {
@@ -255,7 +255,7 @@ public class GodTestAaa002DAOTest extends EgovTestAbstractDAO {
 	}
 
 	/**
-	 * 삭제
+	 * 행정코드 삭제 테스트
 	 */
 	@Test
 	public void a05delete() {
@@ -279,7 +279,7 @@ public class GodTestAaa002DAOTest extends EgovTestAbstractDAO {
 	}
 
 	/**
-	 * 등록/수정
+	 * 행정코드 등록/수정 테스트
 	 */
 	@Test
 	public void a06merge() {
@@ -302,7 +302,7 @@ public class GodTestAaa002DAOTest extends EgovTestAbstractDAO {
 	}
 
 	/**
-	 * 등록/수정/삭제
+	 * 행정코드 등록/수정/삭제 테스트
 	 */
 	@Test
 	public void a07multi() {
@@ -325,7 +325,7 @@ public class GodTestAaa002DAOTest extends EgovTestAbstractDAO {
 	}
 
 	/**
-	 * 조회(단건) 전체 건수
+	 * 행정코드 조회(단건) 전체 건수 테스트
 	 */
 	@Test
 	public void a08selectListTotCnt() {
@@ -347,7 +347,7 @@ public class GodTestAaa002DAOTest extends EgovTestAbstractDAO {
 	}
 
 	/**
-	 * 등록
+	 * 행정코드 등록 테스트
 	 */
 	@Test
 	public void b01insert2() {
@@ -370,7 +370,7 @@ public class GodTestAaa002DAOTest extends EgovTestAbstractDAO {
 	}
 
 	/**
-	 * 조회(단건)
+	 * 행정코드 조회(단건) 테스트
 	 */
 	@Test
 	public void b02select2() {
@@ -394,7 +394,7 @@ public class GodTestAaa002DAOTest extends EgovTestAbstractDAO {
 	}
 
 	/**
-	 * 조회(멀티건)
+	 * 행정코드 조회(멀티건) 테스트
 	 */
 	@Test
 	public void b03select2List() {
@@ -421,7 +421,7 @@ public class GodTestAaa002DAOTest extends EgovTestAbstractDAO {
 	}
 
 	/**
-	 * 수정
+	 * 행정코드 수정 테스트
 	 */
 	@Test
 	public void b04update2() {
@@ -447,7 +447,7 @@ public class GodTestAaa002DAOTest extends EgovTestAbstractDAO {
 	}
 
 	/**
-	 * 삭제
+	 * 행정코드 삭제 테스트
 	 */
 	@Test
 	public void b05delete2() {
@@ -471,7 +471,7 @@ public class GodTestAaa002DAOTest extends EgovTestAbstractDAO {
 	}
 
 	/**
-	 * 등록/수정
+	 * 행정코드 등록/수정 테스트
 	 */
 	@Test
 	public void b06merge2() {
@@ -494,7 +494,7 @@ public class GodTestAaa002DAOTest extends EgovTestAbstractDAO {
 	}
 
 	/**
-	 * 등록/수정/삭제
+	 * 행정코드 등록/수정/삭제 테스트
 	 */
 	@Test
 	public void b07multi2() {
@@ -517,7 +517,7 @@ public class GodTestAaa002DAOTest extends EgovTestAbstractDAO {
 	}
 
 	/**
-	 * 조회(단건) 전체 건수
+	 * 행정코드 조회(단건) 전체 건수 테스트
 	 */
 	@Test
 	public void b08select2ListTotCnt() {

@@ -30,6 +30,12 @@ public class GodTestAaa002DAO extends GodCoreCmmAbstractDAO<GodTestAaa002VO, God
 		super.postConstruct(GodTestAaa002DAO.class.getSimpleName());
 	}
 
+	/**
+	 * 행정코드 등록
+	 * 
+	 * @param vo
+	 * @return result
+	 */
 	@Override
 	public int insert(final GodTestAaa002VO vo) {
 		if (log.isDebugEnabled()) {
@@ -38,6 +44,12 @@ public class GodTestAaa002DAO extends GodCoreCmmAbstractDAO<GodTestAaa002VO, God
 		return super.insert(vo);
 	}
 
+	/**
+	 * 행정코드 조회(단건)
+	 * 
+	 * @param vo
+	 * @return result
+	 */
 	@Override
 	public GodTestAaa002VO select(final GodTestAaa002VO vo) {
 		if (log.isDebugEnabled()) {
@@ -46,6 +58,12 @@ public class GodTestAaa002DAO extends GodCoreCmmAbstractDAO<GodTestAaa002VO, God
 		return super.select(vo);
 	}
 
+	/**
+	 * 행정코드 조회(멀티건)
+	 * 
+	 * @param vo
+	 * @return resultList
+	 */
 	@Override
 	public List<GodTestAaa002VO> selectList(final GodTestAaa002VO vo) {
 		if (log.isDebugEnabled()) {
@@ -54,6 +72,12 @@ public class GodTestAaa002DAO extends GodCoreCmmAbstractDAO<GodTestAaa002VO, God
 		return super.selectList(vo);
 	}
 
+	/**
+	 * 행정코드 수정
+	 * 
+	 * @param vo
+	 * @return result
+	 */
 	@Override
 	public int update(final GodTestAaa002VO vo) {
 		if (log.isDebugEnabled()) {
@@ -62,6 +86,12 @@ public class GodTestAaa002DAO extends GodCoreCmmAbstractDAO<GodTestAaa002VO, God
 		return super.update(vo);
 	}
 
+	/**
+	 * 행정코드 삭제
+	 * 
+	 * @param vo
+	 * @return result
+	 */
 	@Override
 	public int delete(final GodTestAaa002VO vo) {
 		if (log.isDebugEnabled()) {
@@ -70,6 +100,12 @@ public class GodTestAaa002DAO extends GodCoreCmmAbstractDAO<GodTestAaa002VO, God
 		return super.delete(vo);
 	}
 
+	/**
+	 * 행정코드 등록/수정
+	 * 
+	 * @param vo
+	 * @return result
+	 */
 	@Override
 	public int merge(final GodTestAaa002VO vo) {
 		if (log.isDebugEnabled()) {
@@ -78,6 +114,12 @@ public class GodTestAaa002DAO extends GodCoreCmmAbstractDAO<GodTestAaa002VO, God
 		return super.merge(vo);
 	}
 
+	/**
+	 * 행정코드 등록/수정/삭제
+	 * 
+	 * @param vo
+	 * @return result
+	 */
 	@Override
 	public int multi(final GodTestAaa002VO vo) {
 		if (log.isDebugEnabled()) {
@@ -86,6 +128,12 @@ public class GodTestAaa002DAO extends GodCoreCmmAbstractDAO<GodTestAaa002VO, God
 		return super.multi(vo);
 	}
 
+	/**
+	 * 행정코드 조회(단건) 전체 건수
+	 * 
+	 * @param vo
+	 * @return totCnt
+	 */
 	@Override
 	public int selectListTotCnt(final GodTestAaa002VO vo) {
 		if (log.isDebugEnabled()) {
@@ -95,7 +143,7 @@ public class GodTestAaa002DAO extends GodCoreCmmAbstractDAO<GodTestAaa002VO, God
 	}
 
 	/**
-	 * 등록
+	 * 행정코드 등록
 	 * 
 	 * @param vo
 	 * @return result
@@ -105,7 +153,7 @@ public class GodTestAaa002DAO extends GodCoreCmmAbstractDAO<GodTestAaa002VO, God
 	}
 
 	/**
-	 * 조회(단건)
+	 * 행정코드 조회(단건)
 	 * 
 	 * @param vo
 	 * @return result
@@ -115,7 +163,7 @@ public class GodTestAaa002DAO extends GodCoreCmmAbstractDAO<GodTestAaa002VO, God
 	}
 
 	/**
-	 * 조회(멀티건)
+	 * 행정코드 조회(멀티건)
 	 * 
 	 * @param vo
 	 * @return resultList
@@ -125,7 +173,7 @@ public class GodTestAaa002DAO extends GodCoreCmmAbstractDAO<GodTestAaa002VO, God
 	}
 
 	/**
-	 * 수정
+	 * 행정코드 수정
 	 * 
 	 * @param vo
 	 * @return result
@@ -135,7 +183,7 @@ public class GodTestAaa002DAO extends GodCoreCmmAbstractDAO<GodTestAaa002VO, God
 	}
 
 	/**
-	 * 삭제
+	 * 행정코드 삭제
 	 * 
 	 * @param vo
 	 * @return result
@@ -145,7 +193,7 @@ public class GodTestAaa002DAO extends GodCoreCmmAbstractDAO<GodTestAaa002VO, God
 	}
 
 	/**
-	 * 등록/수정
+	 * 행정코드 등록/수정
 	 * 
 	 * @param vo
 	 * @return result
@@ -155,7 +203,7 @@ public class GodTestAaa002DAO extends GodCoreCmmAbstractDAO<GodTestAaa002VO, God
 	}
 
 	/**
-	 * 등록/수정/삭제
+	 * 행정코드 등록/수정/삭제
 	 * 
 	 * @param vo
 	 * @return result
@@ -165,7 +213,7 @@ public class GodTestAaa002DAO extends GodCoreCmmAbstractDAO<GodTestAaa002VO, God
 	}
 
 	/**
-	 * 조회(단건) 전체 건수
+	 * 행정코드 조회(단건) 전체 건수
 	 * 
 	 * @param vo
 	 * @return result
