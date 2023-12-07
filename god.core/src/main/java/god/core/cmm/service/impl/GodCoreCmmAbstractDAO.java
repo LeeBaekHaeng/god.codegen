@@ -27,21 +27,29 @@ public abstract class GodCoreCmmAbstractDAO<T, R> extends EgovAbstractMapper {
 	private String namespace;
 
 	/**
-	 * 네임스페이스 값설정
-	 * 
-	 * @param namespace
+	 * egov.sqlSession
 	 */
-	public GodCoreCmmAbstractDAO(final String namespace) {
-		super();
-		this.namespace = namespace + ".";
-	}
-
 	@Autowired
 	@Qualifier("egov.sqlSession")
+	@Override
 	public void setSqlSessionFactory(final SqlSessionFactory sqlSession) {
 		super.setSqlSessionFactory(sqlSession);
 	}
 
+	/**
+	 * 네임스페이스 값설정
+	 * 
+	 * @param namespace
+	 */
+	protected void postConstruct(final String namespace) {
+		this.namespace = namespace + ".";
+	}
+
+	/**
+	 * 네임스페이스 값읽기
+	 * 
+	 * @return
+	 */
 	public String getNamespace() {
 		return namespace;
 	}

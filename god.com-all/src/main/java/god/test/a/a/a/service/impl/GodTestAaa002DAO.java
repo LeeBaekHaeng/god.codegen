@@ -2,6 +2,8 @@ package god.test.a.a.a.service.impl;
 
 import java.util.List;
 
+import javax.annotation.PostConstruct;
+
 import org.springframework.stereotype.Repository;
 
 import god.core.cmm.service.impl.GodCoreCmmAbstractDAO;
@@ -17,10 +19,11 @@ import god.test.a.a.a.service.GodTestAaa002VO;
 public class GodTestAaa002DAO extends GodCoreCmmAbstractDAO<GodTestAaa002VO, GodTestAaa002VO> {
 
 	/**
-	 * 
+	 * 포스트 구성
 	 */
-	public GodTestAaa002DAO() {
-		super(GodTestAaa002DAO.class.getSimpleName());
+	@PostConstruct
+	public void postConstruct() {
+		super.postConstruct(GodTestAaa002DAO.class.getSimpleName());
 	}
 
 	/**
