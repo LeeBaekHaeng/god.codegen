@@ -73,23 +73,23 @@ import lombok.extern.slf4j.Slf4j;
 public class GodTestAaa002DAOTest extends EgovTestAbstractDAO {
 
 	/**
-	 * 
+	 * 행정코드 DAO
 	 */
 	@Autowired
 	private GodTestAaa002DAO dao;
 
 	/**
-	 * 
+	 * egovAdministCodeRecptnIdGnrService
 	 */
 	@Autowired
 	@Qualifier("egovAdministCodeRecptnIdGnrService")
 	private EgovIdGnrService egovAdministCodeRecptnIdGnrService;
 
 	/**
-	 * 
+	 * 등록
 	 */
 	@Test
-	public void insert() {
+	public void a01insert() {
 		// given
 		final GodTestAaa002VO vo = new GodTestAaa002VO();
 		vo.setAdministZoneSe("1");
@@ -100,9 +100,11 @@ public class GodTestAaa002DAOTest extends EgovTestAbstractDAO {
 		// when
 		final int result = dao.insert(vo);
 
-		// then
-		log.debug("result={}", result);
+		if (log.isDebugEnabled()) {
+			log.debug("result={}", result);
+		}
 
+		// then
 		assertEquals(egovMessageSource.getMessage("fail.common.insert"), 1, result);
 	}
 
@@ -110,12 +112,8 @@ public class GodTestAaa002DAOTest extends EgovTestAbstractDAO {
 		try {
 			vo.setOpertSn(egovAdministCodeRecptnIdGnrService.getNextLongId());
 		} catch (FdlException e) {
-			log.error("FdlException egovAdministCodeRecptnIdGnrService");
-//        } catch (BaseRuntimeException e) {
-//            log.error("BaseRuntimeException egovAdministCodeRecptnIdGnrService");
-//        } catch (Exception e) {
-//            log.error("Exception egovAdministCodeRecptnIdGnrService");
-			throw new BaseRuntimeException(e);
+			throw new BaseRuntimeException("FdlException egovAdministCodeRecptnIdGnrService "
+					+ egovMessageSource.getMessage("fail.common.msg"), e);
 		}
 
 		if (log.isDebugEnabled()) {
@@ -124,6 +122,7 @@ public class GodTestAaa002DAOTest extends EgovTestAbstractDAO {
 	}
 
 	/**
+	 * 테스트 데이터
 	 * 
 	 * @param testData
 	 */
@@ -137,17 +136,19 @@ public class GodTestAaa002DAOTest extends EgovTestAbstractDAO {
 		// when
 		final int result = dao.insert(testData);
 
-		// then
-		log.debug("result={}", result);
+		if (log.isDebugEnabled()) {
+			log.debug("result={}", result);
+		}
 
+		// then
 		assertEquals(egovMessageSource.getMessage("fail.common.insert"), 1, result);
 	}
 
 	/**
-	 * 
+	 * 조회(단건)
 	 */
 	@Test
-	public void select() {
+	public void a02select() {
 		// given
 		final GodTestAaa002VO testData = new GodTestAaa002VO();
 		testData(testData);
@@ -159,9 +160,11 @@ public class GodTestAaa002DAOTest extends EgovTestAbstractDAO {
 		// when
 		final GodTestAaa002VO result = dao.select(vo);
 
-		// then
-		log.debug("result={}", result);
+		if (log.isDebugEnabled()) {
+			log.debug("result={}", result);
+		}
 
+		// then
 		assertSelect(testData, result);
 	}
 
@@ -178,10 +181,10 @@ public class GodTestAaa002DAOTest extends EgovTestAbstractDAO {
 	}
 
 	/**
-	 * 
+	 * 조회(멀티건)
 	 */
 	@Test
-	public void selectList() {
+	public void a03selectList() {
 		// given
 		final GodTestAaa002VO testData = new GodTestAaa002VO();
 		testData(testData);
@@ -196,9 +199,11 @@ public class GodTestAaa002DAOTest extends EgovTestAbstractDAO {
 		// when
 		final List<GodTestAaa002VO> resultList = dao.selectList(vo);
 
-		// then
-		log.debug("resultList={}", resultList);
+		if (log.isDebugEnabled()) {
+			log.debug("resultList={}", resultList);
+		}
 
+		// then
 		assertSelectList(testData, resultList);
 	}
 
@@ -224,10 +229,10 @@ public class GodTestAaa002DAOTest extends EgovTestAbstractDAO {
 	}
 
 	/**
-	 * 
+	 * 수정
 	 */
 	@Test
-	public void update() {
+	public void a04update() {
 		// given
 		final GodTestAaa002VO testData = new GodTestAaa002VO();
 		testData(testData);
@@ -241,17 +246,19 @@ public class GodTestAaa002DAOTest extends EgovTestAbstractDAO {
 		// when
 		final int result = dao.update(vo);
 
-		// then
-		log.debug("result={}", result);
+		if (log.isDebugEnabled()) {
+			log.debug("result={}", result);
+		}
 
+		// then
 		assertEquals(egovMessageSource.getMessage("fail.common.update"), 1, result);
 	}
 
 	/**
-	 * 
+	 * 삭제
 	 */
 	@Test
-	public void delete() {
+	public void a05delete() {
 		// given
 		final GodTestAaa002VO testData = new GodTestAaa002VO();
 		testData(testData);
@@ -263,17 +270,19 @@ public class GodTestAaa002DAOTest extends EgovTestAbstractDAO {
 		// when
 		final int result = dao.delete(vo);
 
-		// then
-		log.debug("result={}", result);
+		if (log.isDebugEnabled()) {
+			log.debug("result={}", result);
+		}
 
+		// then
 		assertEquals(egovMessageSource.getMessage("fail.common.delete"), 1, result);
 	}
 
 	/**
-	 * 
+	 * 등록/수정
 	 */
 	@Test
-	public void merge() {
+	public void a06merge() {
 		// given
 		final GodTestAaa002VO vo = new GodTestAaa002VO();
 		vo.setAdministZoneSe("1");
@@ -284,17 +293,19 @@ public class GodTestAaa002DAOTest extends EgovTestAbstractDAO {
 		// when
 		final int result = dao.merge(vo);
 
-		// then
-		log.debug("result={}", result);
+		if (log.isDebugEnabled()) {
+			log.debug("result={}", result);
+		}
 
+		// then
 		assertEquals(egovMessageSource.getMessage("fail.common.insert"), 1, result);
 	}
 
 	/**
-	 * 
+	 * 등록/수정/삭제
 	 */
 	@Test
-	public void multi() {
+	public void a07multi() {
 		// given
 		final GodTestAaa002VO vo = new GodTestAaa002VO();
 		vo.setAdministZoneSe("1");
@@ -305,17 +316,19 @@ public class GodTestAaa002DAOTest extends EgovTestAbstractDAO {
 		// when
 		final int result = dao.multi(vo);
 
-		// then
-		log.debug("result={}", result);
+		if (log.isDebugEnabled()) {
+			log.debug("result={}", result);
+		}
 
+		// then
 		assertEquals(egovMessageSource.getMessage("fail.common.insert"), 1, result);
 	}
 
 	/**
-	 * 
+	 * 조회(단건) 전체 건수
 	 */
 	@Test
-	public void selectListTotCnt() {
+	public void a08selectListTotCnt() {
 		// given
 		final GodTestAaa002VO testData = new GodTestAaa002VO();
 		testData(testData);
@@ -325,17 +338,19 @@ public class GodTestAaa002DAOTest extends EgovTestAbstractDAO {
 		// when
 		final int totCnt = dao.selectListTotCnt(vo);
 
-		// then
-		log.debug("totCnt={}", totCnt);
+		if (log.isDebugEnabled()) {
+			log.debug("totCnt={}", totCnt);
+		}
 
+		// then
 		assertTrue(egovMessageSource.getMessage("fail.common.select"), totCnt > -1);
 	}
 
 	/**
-	 * 
+	 * 등록
 	 */
 	@Test
-	public void insert2() {
+	public void b01insert2() {
 		// given
 		final GodTestAaa002VO vo = new GodTestAaa002VO();
 		vo.setAdministZoneSe("1");
@@ -346,17 +361,19 @@ public class GodTestAaa002DAOTest extends EgovTestAbstractDAO {
 		// when
 		final int result = dao.insert2(vo);
 
-		// then
-		log.debug("result={}", result);
+		if (log.isDebugEnabled()) {
+			log.debug("result={}", result);
+		}
 
+		// then
 		assertEquals(egovMessageSource.getMessage("fail.common.insert"), 1, result);
 	}
 
 	/**
-	 * 
+	 * 조회(단건)
 	 */
 	@Test
-	public void select2() {
+	public void b02select2() {
 		// given
 		final GodTestAaa002VO testData = new GodTestAaa002VO();
 		testData(testData);
@@ -368,17 +385,19 @@ public class GodTestAaa002DAOTest extends EgovTestAbstractDAO {
 		// when
 		final GodTestAaa002VO result = dao.select2(vo);
 
-		// then
-		log.debug("result={}", result);
+		if (log.isDebugEnabled()) {
+			log.debug("result={}", result);
+		}
 
+		// then
 		assertSelect(testData, result);
 	}
 
 	/**
-	     * 
-	     */
+	 * 조회(멀티건)
+	 */
 	@Test
-	public void select2List() {
+	public void b03select2List() {
 		// given
 		final GodTestAaa002VO testData = new GodTestAaa002VO();
 		testData(testData);
@@ -393,17 +412,19 @@ public class GodTestAaa002DAOTest extends EgovTestAbstractDAO {
 		// when
 		final List<GodTestAaa002VO> resultList = dao.select2List(vo);
 
-		// then
-		log.debug("resultList={}", resultList);
+		if (log.isDebugEnabled()) {
+			log.debug("resultList={}", resultList);
+		}
 
+		// then
 		assertSelectList(testData, resultList);
 	}
 
 	/**
-	 * 
+	 * 수정
 	 */
 	@Test
-	public void update2() {
+	public void b04update2() {
 		// given
 		final GodTestAaa002VO testData = new GodTestAaa002VO();
 		testData(testData);
@@ -417,17 +438,19 @@ public class GodTestAaa002DAOTest extends EgovTestAbstractDAO {
 		// when
 		final int result = dao.update2(vo);
 
-		// then
-		log.debug("result={}", result);
+		if (log.isDebugEnabled()) {
+			log.debug("result={}", result);
+		}
 
+		// then
 		assertEquals(egovMessageSource.getMessage("fail.common.update"), 1, result);
 	}
 
 	/**
-	 * 
+	 * 삭제
 	 */
 	@Test
-	public void delete2() {
+	public void b05delete2() {
 		// given
 		final GodTestAaa002VO testData = new GodTestAaa002VO();
 		testData(testData);
@@ -439,17 +462,19 @@ public class GodTestAaa002DAOTest extends EgovTestAbstractDAO {
 		// when
 		final int result = dao.delete2(vo);
 
-		// then
-		log.debug("result={}", result);
+		if (log.isDebugEnabled()) {
+			log.debug("result={}", result);
+		}
 
+		// then
 		assertEquals(egovMessageSource.getMessage("fail.common.delete"), 1, result);
 	}
 
 	/**
-	 * 
+	 * 등록/수정
 	 */
 	@Test
-	public void merge2() {
+	public void b06merge2() {
 		// given
 		final GodTestAaa002VO vo = new GodTestAaa002VO();
 		vo.setAdministZoneSe("1");
@@ -460,17 +485,19 @@ public class GodTestAaa002DAOTest extends EgovTestAbstractDAO {
 		// when
 		final int result = dao.merge2(vo);
 
-		// then
-		log.debug("result={}", result);
+		if (log.isDebugEnabled()) {
+			log.debug("result={}", result);
+		}
 
+		// then
 		assertEquals(egovMessageSource.getMessage("fail.common.insert"), 1, result);
 	}
 
 	/**
-	 * 
+	 * 등록/수정/삭제
 	 */
 	@Test
-	public void multi2() {
+	public void b07multi2() {
 		// given
 		final GodTestAaa002VO vo = new GodTestAaa002VO();
 		vo.setAdministZoneSe("1");
@@ -481,17 +508,19 @@ public class GodTestAaa002DAOTest extends EgovTestAbstractDAO {
 		// when
 		final int result = dao.multi2(vo);
 
-		// then
-		log.debug("result={}", result);
+		if (log.isDebugEnabled()) {
+			log.debug("result={}", result);
+		}
 
+		// then
 		assertEquals(egovMessageSource.getMessage("fail.common.insert"), 1, result);
 	}
 
 	/**
-	 * 
+	 * 조회(단건) 전체 건수
 	 */
 	@Test
-	public void select2ListTotCnt() {
+	public void b08select2ListTotCnt() {
 		// given
 		final GodTestAaa002VO testData = new GodTestAaa002VO();
 		testData(testData);
@@ -501,9 +530,11 @@ public class GodTestAaa002DAOTest extends EgovTestAbstractDAO {
 		// when
 		final int totCnt = dao.selectListTotCnt(vo);
 
-		// then
-		log.debug("totCnt={}", totCnt);
+		if (log.isDebugEnabled()) {
+			log.debug("totCnt={}", totCnt);
+		}
 
+		// then
 		assertTrue(egovMessageSource.getMessage("fail.common.select"), totCnt > -1);
 	}
 
