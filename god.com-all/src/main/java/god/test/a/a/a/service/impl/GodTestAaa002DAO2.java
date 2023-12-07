@@ -22,7 +22,7 @@ public class GodTestAaa002DAO2 extends GodCoreCmmAbstractDAO<GodTestAaa002VO, Go
 	 * 포스트 구성
 	 */
 	@PostConstruct
-	public void postConstruct() {
+	private void postConstruct() {
 		super.postConstruct(GodTestAaa002DAO.class.getSimpleName());
 	}
 
