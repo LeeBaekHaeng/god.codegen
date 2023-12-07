@@ -58,7 +58,7 @@ public abstract class GodCoreCmmAbstractDAO<T, R> extends EgovAbstractMapper {
 	 * 등록
 	 * 
 	 * @param vo
-	 * @return
+	 * @return result
 	 */
 	public int insert(final T vo) {
 		return insert(namespace + "insert", vo);
@@ -68,7 +68,7 @@ public abstract class GodCoreCmmAbstractDAO<T, R> extends EgovAbstractMapper {
 	 * 조회(단건)
 	 * 
 	 * @param vo
-	 * @return
+	 * @return result
 	 */
 	public R select(final T vo) {
 		return selectOne(namespace + "select", vo);
@@ -78,7 +78,7 @@ public abstract class GodCoreCmmAbstractDAO<T, R> extends EgovAbstractMapper {
 	 * 조회(멀티건)
 	 * 
 	 * @param vo
-	 * @return
+	 * @return resultList
 	 */
 	public List<R> selectList(final T vo) {
 		return selectList(namespace + "selectList", vo);
@@ -88,7 +88,7 @@ public abstract class GodCoreCmmAbstractDAO<T, R> extends EgovAbstractMapper {
 	 * 수정
 	 * 
 	 * @param vo
-	 * @return
+	 * @return result
 	 */
 	public int update(final T vo) {
 		return update(namespace + "update", vo);
@@ -98,7 +98,7 @@ public abstract class GodCoreCmmAbstractDAO<T, R> extends EgovAbstractMapper {
 	 * 삭제
 	 * 
 	 * @param vo
-	 * @return
+	 * @return result
 	 */
 	public int delete(final T vo) {
 		return delete(namespace + "delete", vo);
@@ -108,7 +108,7 @@ public abstract class GodCoreCmmAbstractDAO<T, R> extends EgovAbstractMapper {
 	 * 등록/수정
 	 * 
 	 * @param vo
-	 * @return
+	 * @return result
 	 */
 	public int merge(final T vo) {
 		return insert(namespace + "merge", vo);
@@ -118,7 +118,7 @@ public abstract class GodCoreCmmAbstractDAO<T, R> extends EgovAbstractMapper {
 	 * 등록/수정/삭제
 	 * 
 	 * @param vo
-	 * @return
+	 * @return result
 	 */
 	public int multi(final T vo) {
 		return insert(namespace + "multi", vo);
@@ -128,7 +128,7 @@ public abstract class GodCoreCmmAbstractDAO<T, R> extends EgovAbstractMapper {
 	 * 조회(단건) 전체 건수
 	 * 
 	 * @param vo
-	 * @return
+	 * @return totCnt
 	 */
 	public int selectListTotCnt(final T vo) {
 		return selectOne(namespace + "selectListTotCnt", vo);

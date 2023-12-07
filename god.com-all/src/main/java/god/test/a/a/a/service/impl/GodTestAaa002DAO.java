@@ -95,72 +95,80 @@ public class GodTestAaa002DAO extends GodCoreCmmAbstractDAO<GodTestAaa002VO, God
 	}
 
 	/**
+	 * 등록
 	 * 
 	 * @param vo
-	 * @return
+	 * @return result
 	 */
 	public int insert2(final GodTestAaa002VO vo) {
 		return insert(super.getNamespace() + "insert2", vo);
 	}
 
 	/**
+	 * 조회(단건)
 	 * 
 	 * @param vo
-	 * @return
+	 * @return result
 	 */
 	public GodTestAaa002VO select2(final GodTestAaa002VO vo) {
 		return selectOne(super.getNamespace() + "select2", vo);
 	}
 
 	/**
+	 * 조회(멀티건)
 	 * 
 	 * @param vo
-	 * @return
+	 * @return resultList
 	 */
 	public List<GodTestAaa002VO> select2List(final GodTestAaa002VO vo) {
 		return selectList(super.getNamespace() + "select2List", vo);
 	}
 
 	/**
+	 * 수정
 	 * 
 	 * @param vo
-	 * @return
+	 * @return result
 	 */
 	public int update2(final GodTestAaa002VO vo) {
 		return insert(super.getNamespace() + "update2", vo);
 	}
 
 	/**
+	 * 삭제
 	 * 
 	 * @param vo
-	 * @return
+	 * @return result
 	 */
 	public int delete2(final GodTestAaa002VO vo) {
 		return insert(super.getNamespace() + "delete2", vo);
 	}
 
 	/**
+	 * 등록/수정
 	 * 
 	 * @param vo
-	 * @return
+	 * @return result
 	 */
 	public int merge2(final GodTestAaa002VO vo) {
 		return insert(super.getNamespace() + "merge2", vo);
 	}
 
 	/**
+	 * 등록/수정/삭제
 	 * 
 	 * @param vo
-	 * @return
+	 * @return result
 	 */
 	public int multi2(final GodTestAaa002VO vo) {
 		return insert(super.getNamespace() + "multi2", vo);
 	}
 
 	/**
+	 * 조회(단건) 전체 건수
 	 * 
 	 * @param vo
-	 * @return
+	 * @return result
 	 */
 	public int select2ListTotCnt(final GodTestAaa002VO vo) {
 		return selectOne(super.getNamespace() + "select2ListTotCnt", vo);
