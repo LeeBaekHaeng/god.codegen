@@ -1,8 +1,8 @@
 package god.test.a.a.a.service.impl;
 
 import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertTrue;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 import org.egovframe.rte.fdl.cmmn.exception.BaseRuntimeException;
@@ -105,10 +105,10 @@ public class GodTestAaa002DAOTest extends EgovTestAbstractDAO {
 		// when
 		final int result = dao.insert(vo);
 
-		debugIntResult(result);
+		debugResult(result);
 
 		// then
-		assertEquals(egovMessageSource.getMessage(FAIL_COMMON_INSERT), 1, result);
+		assertEqualsInsert(result);
 	}
 
 	private void setOpertSn(final GodTestAaa002VO vo) {
@@ -139,10 +139,10 @@ public class GodTestAaa002DAOTest extends EgovTestAbstractDAO {
 		// when
 		final int result = dao.insert(testData);
 
-		debugIntResult(result);
+		debugResult(result);
 
 		// then
-		assertEquals(egovMessageSource.getMessage(FAIL_COMMON_INSERT), 1, result);
+		assertEqualsInsert(result);
 	}
 
 	/**
@@ -161,17 +161,17 @@ public class GodTestAaa002DAOTest extends EgovTestAbstractDAO {
 		// when
 		final GodTestAaa002VO result = dao.select(vo);
 
+		// then
+		assertSelect(testData, result);
+	}
+
+	private void assertSelect(final GodTestAaa002VO testData, final GodTestAaa002VO result) {
 		if (log.isDebugEnabled()) {
 			log.debug("result={}", result);
 			log.debug("getAdministZoneSe={}, {}", testData.getAdministZoneSe(), result.getAdministZoneSe());
 			log.debug("getAdministZoneCode={}, {}", testData.getAdministZoneCode(), result.getAdministZoneCode());
 		}
 
-		// then
-		assertSelect(testData, result);
-	}
-
-	private void assertSelect(final GodTestAaa002VO testData, final GodTestAaa002VO result) {
 		assertEquals(egovMessageSource.getMessage(FAIL_COMMON_SELECT), testData.getAdministZoneCode(),
 				result.getAdministZoneCode());
 		assertEquals(egovMessageSource.getMessage(FAIL_COMMON_SELECT), testData.getAdministZoneCode(),
@@ -192,7 +192,7 @@ public class GodTestAaa002DAOTest extends EgovTestAbstractDAO {
 		vo.setRecordCountPerPage(10);
 
 //        vo.setSearchCondition("0");
-		vo.setSearchKeyword("test 이백행 2023-11-18");
+		vo.setSearchKeyword("test 이백행 검색어 " + LocalDateTime.now());
 
 		// when
 		final List<GodTestAaa002VO> resultList = dao.selectList(vo);
@@ -220,8 +220,7 @@ public class GodTestAaa002DAOTest extends EgovTestAbstractDAO {
 			}
 		}
 
-//        assertFalse(egovMessageSource.getMessage(FAIL_COMMON_SELECT), resultList.isEmpty());
-		assertTrue(egovMessageSource.getMessage(FAIL_COMMON_SELECT), resultList.size() > -1);
+		assertTrueResultListSize(resultList.size());
 	}
 
 	/**
@@ -242,10 +241,10 @@ public class GodTestAaa002DAOTest extends EgovTestAbstractDAO {
 		// when
 		final int result = dao.update(vo);
 
-		debugIntResult(result);
+		debugResult(result);
 
 		// then
-		assertEquals(egovMessageSource.getMessage(FAIL_COMMON_UPDATE), 1, result);
+		assertEqualsUpdate(result);
 	}
 
 	/**
@@ -264,10 +263,10 @@ public class GodTestAaa002DAOTest extends EgovTestAbstractDAO {
 		// when
 		final int result = dao.delete(vo);
 
-		debugIntResult(result);
+		debugResult(result);
 
 		// then
-		assertEquals(egovMessageSource.getMessage(FAIL_COMMON_DELETE), 1, result);
+		assertEqualsDelete(result);
 	}
 
 	/**
@@ -285,10 +284,10 @@ public class GodTestAaa002DAOTest extends EgovTestAbstractDAO {
 		// when
 		final int result = dao.merge(vo);
 
-		debugIntResult(result);
+		debugResult(result);
 
 		// then
-		assertEquals(egovMessageSource.getMessage(FAIL_COMMON_INSERT), 1, result);
+		assertEqualsInsert(result);
 	}
 
 	/**
@@ -306,10 +305,10 @@ public class GodTestAaa002DAOTest extends EgovTestAbstractDAO {
 		// when
 		final int result = dao.multi(vo);
 
-		debugIntResult(result);
+		debugResult(result);
 
 		// then
-		assertEquals(egovMessageSource.getMessage(FAIL_COMMON_INSERT), 1, result);
+		assertEqualsInsert(result);
 	}
 
 	/**
@@ -326,12 +325,10 @@ public class GodTestAaa002DAOTest extends EgovTestAbstractDAO {
 		// when
 		final int totCnt = dao.selectListTotCnt(vo);
 
-		if (log.isDebugEnabled()) {
-			log.debug("totCnt={}", totCnt);
-		}
+		debugTotCnt(totCnt);
 
 		// then
-		assertTrue(egovMessageSource.getMessage(FAIL_COMMON_SELECT), totCnt > -1);
+		assertTrueTotCnt(totCnt);
 	}
 
 	/**
@@ -349,10 +346,10 @@ public class GodTestAaa002DAOTest extends EgovTestAbstractDAO {
 		// when
 		final int result = dao.insert2(vo);
 
-		debugIntResult(result);
+		debugResult(result);
 
 		// then
-		assertEquals(egovMessageSource.getMessage(FAIL_COMMON_INSERT), 1, result);
+		assertEqualsInsert(result);
 	}
 
 	/**
@@ -393,14 +390,10 @@ public class GodTestAaa002DAOTest extends EgovTestAbstractDAO {
 		vo.setRecordCountPerPage(10);
 
 		// vo.setSearchCondition("0");
-		vo.setSearchKeyword("test 이백행 2023-11-18");
+		vo.setSearchKeyword("test 이백행 검색어 " + LocalDateTime.now());
 
 		// when
 		final List<GodTestAaa002VO> resultList = dao.select2List(vo);
-
-		if (log.isDebugEnabled()) {
-			log.debug("resultList={}", resultList);
-		}
 
 		// then
 		assertSelectList(testData, resultList);
@@ -424,10 +417,10 @@ public class GodTestAaa002DAOTest extends EgovTestAbstractDAO {
 		// when
 		final int result = dao.update2(vo);
 
-		debugIntResult(result);
+		debugResult(result);
 
 		// then
-		assertEquals(egovMessageSource.getMessage(FAIL_COMMON_UPDATE), 1, result);
+		assertEqualsUpdate(result);
 	}
 
 	/**
@@ -446,10 +439,10 @@ public class GodTestAaa002DAOTest extends EgovTestAbstractDAO {
 		// when
 		final int result = dao.delete2(vo);
 
-		debugIntResult(result);
+		debugResult(result);
 
 		// then
-		assertEquals(egovMessageSource.getMessage(FAIL_COMMON_DELETE), 1, result);
+		assertEqualsDelete(result);
 	}
 
 	/**
@@ -467,10 +460,10 @@ public class GodTestAaa002DAOTest extends EgovTestAbstractDAO {
 		// when
 		final int result = dao.merge2(vo);
 
-		debugIntResult(result);
+		debugResult(result);
 
 		// then
-		assertEquals(egovMessageSource.getMessage(FAIL_COMMON_INSERT), 1, result);
+		assertEqualsInsert(result);
 	}
 
 	/**
@@ -488,10 +481,10 @@ public class GodTestAaa002DAOTest extends EgovTestAbstractDAO {
 		// when
 		final int result = dao.multi2(vo);
 
-		debugIntResult(result);
+		debugResult(result);
 
 		// then
-		assertEquals(egovMessageSource.getMessage(FAIL_COMMON_INSERT), 1, result);
+		assertEqualsInsert(result);
 	}
 
 	/**
@@ -508,12 +501,10 @@ public class GodTestAaa002DAOTest extends EgovTestAbstractDAO {
 		// when
 		final int totCnt = dao.selectListTotCnt(vo);
 
-		if (log.isDebugEnabled()) {
-			log.debug("totCnt={}", totCnt);
-		}
+		debugTotCnt(totCnt);
 
 		// then
-		assertTrue(egovMessageSource.getMessage(FAIL_COMMON_SELECT), totCnt > -1);
+		assertTrueTotCnt(totCnt);
 	}
 
 }

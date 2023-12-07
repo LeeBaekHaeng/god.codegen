@@ -1,5 +1,8 @@
 package egovframework.com.test;
 
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
+
 import java.sql.SQLException;
 
 import org.junit.After;
@@ -192,10 +195,66 @@ public class EgovTestAbstractDAO {
 	 * 
 	 * @param result
 	 */
-	protected void debugIntResult(final int result) {
+	protected void debugResult(final int result) {
 		if (log.isDebugEnabled()) {
 			log.debug("result={}", result);
 		}
+	}
+
+	/**
+	 * Debug Int TotCnt
+	 * 
+	 * @param totCnt
+	 */
+	protected void debugTotCnt(final int totCnt) {
+		if (log.isDebugEnabled()) {
+			log.debug("totCnt={}", totCnt);
+		}
+	}
+
+	/**
+	 * assertEquals Insert
+	 * 
+	 * @param totCnt
+	 */
+	protected void assertEqualsInsert(final int result) {
+		assertEquals(egovMessageSource.getMessage(FAIL_COMMON_INSERT), 1, result);
+	}
+
+	/**
+	 * assertEquals Update
+	 * 
+	 * @param totCnt
+	 */
+	protected void assertEqualsUpdate(final int result) {
+		assertEquals(egovMessageSource.getMessage(FAIL_COMMON_UPDATE), 1, result);
+	}
+
+	/**
+	 * assertEquals Delete
+	 * 
+	 * @param totCnt
+	 */
+	protected void assertEqualsDelete(final int result) {
+		assertEquals(egovMessageSource.getMessage(FAIL_COMMON_DELETE), 1, result);
+	}
+
+	/**
+	 * assertTrue ResultList Size
+	 * 
+	 * @param resultListSize
+	 */
+	protected void assertTrueResultListSize(final int resultListSize) {
+		assertTrue(egovMessageSource.getMessage(FAIL_COMMON_SELECT), resultListSize > -1);
+	}
+
+	/**
+	 * assertTrue TotCnt
+	 * 
+	 * @param totCnt
+	 */
+	protected void assertTrueTotCnt(final int totCnt) {
+		assertTrue(egovMessageSource.getMessage(FAIL_COMMON_SELECT), totCnt > -1);
 	}
 
 }
