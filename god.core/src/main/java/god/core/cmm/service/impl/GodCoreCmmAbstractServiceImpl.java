@@ -6,6 +6,7 @@ import org.egovframe.rte.fdl.cmmn.EgovAbstractServiceImpl;
 import org.springframework.ui.ModelMap;
 
 import god.core.cmm.service.GodCoreCmmAbstractService;
+import lombok.RequiredArgsConstructor;
 
 /**
  * data 처리관련(ServiceImpl 공통)
@@ -16,6 +17,7 @@ import god.core.cmm.service.GodCoreCmmAbstractService;
  * @param <T>
  * @param <R>
  */
+@RequiredArgsConstructor
 public class GodCoreCmmAbstractServiceImpl<T, R> extends EgovAbstractServiceImpl
 		implements GodCoreCmmAbstractService<T, R> {
 
@@ -39,81 +41,79 @@ public class GodCoreCmmAbstractServiceImpl<T, R> extends EgovAbstractServiceImpl
 	}
 
 	@Override
-	public void insert(T vo, ModelMap model) {
-		// TODO Auto-generated method stub
-
+	public void insert(final T vo, final ModelMap model) {
+		model.addAttribute("result", dao.insert(vo));
 	}
 
 	@Override
-	public R select(T vo) {
-		// TODO Auto-generated method stub
-		return null;
+	public R select(final T vo) {
+		return dao.select(vo);
 	}
 
 	@Override
-	public void select(T vo, ModelMap model) {
-		// TODO Auto-generated method stub
-
+	public void select(final T vo, final ModelMap model) {
+		model.addAttribute("result", dao.select(vo));
 	}
 
 	@Override
-	public List<R> selectList(T vo) {
-		// TODO Auto-generated method stub
-		return null;
+	public List<R> selectList(final T vo) {
+		return dao.selectList(vo);
 	}
 
 	@Override
-	public void selectList(T vo, ModelMap model) {
-		// TODO Auto-generated method stub
-
+	public void selectList(final T vo, final ModelMap model) {
+		model.addAttribute("resultList", dao.selectList(vo));
+		model.addAttribute("totCnt", dao.selectListTotCnt(vo));
 	}
 
 	@Override
-	public int update(T vo) {
-		// TODO Auto-generated method stub
-		return 0;
+	public int update(final T vo) {
+		return dao.update(vo);
 	}
 
 	@Override
-	public void update(T vo, ModelMap model) {
-		// TODO Auto-generated method stub
-
+	public void update(final T vo, final ModelMap model) {
+		model.addAttribute("result", dao.update(vo));
 	}
 
 	@Override
-	public int delete(T vo) {
-		// TODO Auto-generated method stub
-		return 0;
+	public int delete(final T vo) {
+		return dao.delete(vo);
 	}
 
 	@Override
-	public void delete(T vo, ModelMap model) {
-		// TODO Auto-generated method stub
-
+	public void delete(final T vo, final ModelMap model) {
+		model.addAttribute("result", dao.delete(vo));
 	}
 
 	@Override
-	public int merge(T vo) {
-		// TODO Auto-generated method stub
-		return 0;
+	public int merge(final T vo) {
+		return dao.merge(vo);
 	}
 
 	@Override
-	public void merge(T vo, ModelMap model) {
-		// TODO Auto-generated method stub
-
+	public void merge(final T vo, final ModelMap model) {
+		model.addAttribute("result", dao.merge(vo));
 	}
 
 	@Override
-	public int multi(T vo) {
-		// TODO Auto-generated method stub
-		return 0;
+	public int multi(final T vo) {
+		return dao.multi(vo);
 	}
 
 	@Override
-	public void multi(T vo, ModelMap model) {
-		// TODO Auto-generated method stub
+	public void multi(final T vo, final ModelMap model) {
+		model.addAttribute("result", dao.multi(vo));
+	}
 
+	/**
+	 * 조회(단건) 전체 건수
+	 * 
+	 * @param vo
+	 * @return
+	 */
+	public int selectListTotCnt(final T vo) {
+		return dao.selectListTotCnt(vo);
 	}
 
 }
