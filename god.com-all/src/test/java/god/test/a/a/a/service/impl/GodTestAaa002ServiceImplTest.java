@@ -386,7 +386,8 @@ public class GodTestAaa002ServiceImplTest extends EgovTestAbstractDAO {
 		// when
 		service.selectList(vo, model);
 
-		final List<GodTestAaa002VO> resultList = (List<GodTestAaa002VO>) model.get("resultList");
+		@SuppressWarnings("unchecked")
+		final List<GodTestAaa002VO> resultList = (List<GodTestAaa002VO>) model.getAttribute("resultList");
 		final PaginationInfo paginationInfo = (PaginationInfo) model.get("paginationInfo");
 
 		debugPaginationInfo(paginationInfo);
