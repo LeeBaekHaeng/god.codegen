@@ -8,6 +8,7 @@ import java.util.List;
 import org.egovframe.rte.fdl.cmmn.exception.BaseRuntimeException;
 import org.egovframe.rte.fdl.cmmn.exception.FdlException;
 import org.egovframe.rte.fdl.idgnr.EgovIdGnrService;
+import org.egovframe.rte.ptl.mvc.tags.ui.pagination.PaginationInfo;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -339,7 +340,7 @@ public class GodTestAaa002ServiceImplTest extends EgovTestAbstractDAO {
 	 * 행정코드 등록 테스트
 	 */
 	@Test
-	public void aa01insertModelMap() {
+	public void a09insert() {
 		// given
 		final GodTestAaa002VO vo = new GodTestAaa002VO();
 		vo.setAdministZoneSe("1");
@@ -362,6 +363,36 @@ public class GodTestAaa002ServiceImplTest extends EgovTestAbstractDAO {
 
 		// then
 		assertEqualsInsert(result);
+	}
+
+	/**
+	 * 조회(멀티건)
+	 */
+	@Test
+	public void a11selectList() {
+		// given
+		final GodTestAaa002VO testData = new GodTestAaa002VO();
+		testData(testData);
+
+		final GodTestAaa002VO vo = new GodTestAaa002VO();
+		vo.setFirstIndex(0);
+		vo.setRecordCountPerPage(10);
+
+//        vo.setSearchCondition("0");
+		vo.setSearchKeyword("test 이백행 검색어 " + LocalDateTime.now());
+
+		final ModelMap model = new ModelMap();
+
+		// when
+		service.selectList(vo, model);
+
+		final List<GodTestAaa002VO> resultList = (List<GodTestAaa002VO>) model.get("resultList");
+		final PaginationInfo paginationInfo = (PaginationInfo) model.get("paginationInfo");
+
+		debugPaginationInfo(paginationInfo);
+
+		// then
+		assertSelectList(testData, resultList);
 	}
 
 	/**

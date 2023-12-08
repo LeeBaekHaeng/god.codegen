@@ -5,6 +5,7 @@ import static org.junit.Assert.assertTrue;
 
 import java.sql.SQLException;
 
+import org.egovframe.rte.ptl.mvc.tags.ui.pagination.PaginationInfo;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -59,6 +60,7 @@ import lombok.extern.slf4j.Slf4j;
 		"classpath*:egovframework/spring/com/context-datasource.xml",
 		"classpath*:egovframework/spring/com/context-egovuserdetailshelper.xml",
 		"classpath*:egovframework/spring/com/context-mapper.xml",
+		"classpath*:egovframework/spring/com/context-properties.xml",
 		"classpath*:egovframework/spring/com/context-transaction.xml",
 
 })
@@ -209,6 +211,31 @@ public class EgovTestAbstractDAO {
 	protected void debugTotCnt(final int totCnt) {
 		if (log.isDebugEnabled()) {
 			log.debug("totCnt={}", totCnt);
+		}
+	}
+
+	/**
+	 * Debug PaginationInfo
+	 * 
+	 * @param paginationInfo
+	 */
+	protected void debugPaginationInfo(final PaginationInfo paginationInfo) {
+		if (log.isDebugEnabled()) {
+			log.debug("paginationInfo={}", paginationInfo);
+			log.debug("");
+
+			log.debug("getCurrentPageNo 현재 페이지 번호={}", paginationInfo.getCurrentPageNo());
+			log.debug("getRecordCountPerPage 한 페이지당 게시되는 게시물 건 수={}", paginationInfo.getRecordCountPerPage());
+			log.debug("getPageSize 페이지 리스트에 게시되는 페이지 건수={}", paginationInfo.getPageSize());
+			log.debug("getTotalRecordCount 전체 게시물 건 수={}", paginationInfo.getTotalRecordCount());
+			log.debug("");
+
+			log.debug("getTotalPageCount 페이지 개수={}", paginationInfo.getTotalPageCount());
+			log.debug("getFirstPageNoOnPageList 페이지 리스트의 첫 페이지 번호={}", paginationInfo.getFirstPageNoOnPageList());
+			log.debug("getLastPageNoOnPageList 페이지 리스트의 마지막 페이지 번호={}", paginationInfo.getLastPageNoOnPageList());
+			log.debug("getFirstRecordIndex 페이징 SQL의 조건절에 사용되는 시작 rownum={}", paginationInfo.getFirstRecordIndex());
+			log.debug("getLastRecordIndex 페이징 SQL의 조건절에 사용되는 마지막 rownum={}", paginationInfo.getLastRecordIndex());
+			log.debug("");
 		}
 	}
 
