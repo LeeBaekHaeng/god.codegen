@@ -45,7 +45,7 @@ public class TestAaa002Controller extends GodCoreCmmAbstractController<TestAaa00
 
 	@Override
 	public void select(final TestAaa002VO vo, final ModelMap model) {
-
+		debugVO(vo);
 	}
 
 	@Override
@@ -74,30 +74,30 @@ public class TestAaa002Controller extends GodCoreCmmAbstractController<TestAaa00
 
 	@Override
 	public void updateView(final TestAaa002VO vo, final ModelMap model) {
-
+		debugVO(vo);
 	}
 
 	@Override
 	public void update(final TestAaa002VO vo, final BindingResult bindingResult,
 			final MultipartHttpServletRequest multiRequest, final ModelMap model) {
-
+		debugVO(vo);
 	}
 
 	@Override
 	public void delete(final TestAaa002VO vo, final BindingResult bindingResult, final ModelMap model) {
-
+		debugVO(vo);
 	}
 
 	@Override
 	public void merge(final TestAaa002VO vo, final BindingResult bindingResult,
 			final MultipartHttpServletRequest multiRequest, final ModelMap model) {
-
+		debugVO(vo);
 	}
 
 	@Override
 	public void multi(final TestAaa002VO vo, final BindingResult bindingResult,
 			final MultipartHttpServletRequest multiRequest, final ModelMap model) {
-
+		debugVO(vo);
 	}
 
 }

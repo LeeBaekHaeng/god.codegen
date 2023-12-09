@@ -5,6 +5,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import lombok.NoArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 
 /**
  * data 처리관련(Controller 공통)
@@ -16,6 +17,7 @@ import lombok.NoArgsConstructor;
  * @param <R>
  */
 @NoArgsConstructor
+@Slf4j
 public abstract class GodCoreCmmAbstractController<T, R> {
 
 	/**
@@ -106,5 +108,11 @@ public abstract class GodCoreCmmAbstractController<T, R> {
 	 */
 	public abstract void multi(T vo, BindingResult bindingResult, MultipartHttpServletRequest multiRequest,
 			ModelMap model);
+
+	protected void debugVO(T vo) {
+		if (log.isDebugEnabled()) {
+			log.debug("vo={}", vo);
+		}
+	}
 
 }
