@@ -126,7 +126,6 @@ public class EgovBrowserUtil {
 
 	//KISA 보안약점 조치 (2018-10-29, 윤창원)
 /*	public static void main(String[] args) {
-		// TODO Auto-generated method stub
 		String testUserAgent[] = {
 		// IE 7.0
 		"Mozilla/4.0 (compatible; MSIE 7.0; Windows NT 6.0)"

@@ -94,7 +94,7 @@ public class BackupJobListener implements JobListener {
 			backupResult.setLastUpdusrId("SYSTEM");
 			backupResult.setFrstRegisterId("SYSTEM");
 			
-			if (backupResult.getBackupOpertId() != null && !backupResult.getBackupOpertId().equals("")) {	// TODO
+			if (backupResult.getBackupOpertId() != null && !backupResult.getBackupOpertId().equals("")) {
 				egovBackupOpertService.insertBackupResult(backupResult);
 			} else {
 				LOGGER.debug("Backup Result's Backup Operation ID is null...");
