@@ -2,6 +2,7 @@ package god.core.cmm.web;
 
 import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import lombok.NoArgsConstructor;
 
@@ -30,11 +31,13 @@ public abstract class GodCoreCmmAbstractController<T, R> {
 	 * 등록
 	 * 
 	 * @param vo
-	 * @param model
 	 * @param bindingResult
+	 * @param multiRequest
+	 * @param model
 	 * @return
 	 */
-	public abstract String insert(T vo, ModelMap model, BindingResult bindingResult);
+	public abstract String insert(T vo, BindingResult bindingResult, MultipartHttpServletRequest multiRequest,
+			ModelMap model);
 
 	/**
 	 * 상세 화면
@@ -48,11 +51,11 @@ public abstract class GodCoreCmmAbstractController<T, R> {
 	 * 목록 화면
 	 * 
 	 * @param vo
-	 * @param model
 	 * @param bindingResult
+	 * @param model
 	 * @return
 	 */
-	public abstract String selectList(T vo, ModelMap model, BindingResult bindingResult);
+	public abstract String selectList(T vo, BindingResult bindingResult, ModelMap model);
 
 	/**
 	 * 수정 화면
@@ -66,36 +69,42 @@ public abstract class GodCoreCmmAbstractController<T, R> {
 	 * 수정
 	 * 
 	 * @param vo
-	 * @param model
 	 * @param bindingResult
+	 * @param multiRequest
+	 * @param model
 	 */
-	public abstract void update(T vo, ModelMap model, BindingResult bindingResult);
+	public abstract void update(T vo, BindingResult bindingResult, MultipartHttpServletRequest multiRequest,
+			ModelMap model);
 
 	/**
 	 * 삭제
 	 * 
 	 * @param vo
-	 * @param model
 	 * @param bindingResult
+	 * @param model
 	 */
-	public abstract void delete(T vo, ModelMap model, BindingResult bindingResult);
+	public abstract void delete(T vo, BindingResult bindingResult, ModelMap model);
 
 	/**
 	 * 등록/수정
 	 * 
 	 * @param vo
-	 * @param model
 	 * @param bindingResult
+	 * @param multiRequest
+	 * @param model
 	 */
-	public abstract void merge(T vo, ModelMap model, BindingResult bindingResult);
+	public abstract void merge(T vo, BindingResult bindingResult, MultipartHttpServletRequest multiRequest,
+			ModelMap model);
 
 	/**
 	 * 등록/수정/삭제
 	 * 
 	 * @param vo
-	 * @param model
 	 * @param bindingResult
+	 * @param multiRequest
+	 * @param model
 	 */
-	public abstract void multi(T vo, ModelMap model, BindingResult bindingResult);
+	public abstract void multi(T vo, BindingResult bindingResult, MultipartHttpServletRequest multiRequest,
+			ModelMap model);
 
 }
