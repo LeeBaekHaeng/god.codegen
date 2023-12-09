@@ -47,7 +47,7 @@ public abstract class GodCoreCmmAbstractController<T, R> {
 	 * @param vo
 	 * @param model
 	 */
-	public abstract void select(T vo, ModelMap model);
+	public abstract String select(T vo, ModelMap model);
 
 	/**
 	 * 목록 화면
@@ -65,7 +65,7 @@ public abstract class GodCoreCmmAbstractController<T, R> {
 	 * @param vo
 	 * @param model
 	 */
-	public abstract void updateView(T vo, ModelMap model);
+	public abstract String updateView(T vo, ModelMap model);
 
 	/**
 	 * 수정
@@ -75,7 +75,7 @@ public abstract class GodCoreCmmAbstractController<T, R> {
 	 * @param multiRequest
 	 * @param model
 	 */
-	public abstract void update(T vo, BindingResult bindingResult, MultipartHttpServletRequest multiRequest,
+	public abstract String update(T vo, BindingResult bindingResult, MultipartHttpServletRequest multiRequest,
 			ModelMap model);
 
 	/**
@@ -85,7 +85,7 @@ public abstract class GodCoreCmmAbstractController<T, R> {
 	 * @param bindingResult
 	 * @param model
 	 */
-	public abstract void delete(T vo, BindingResult bindingResult, ModelMap model);
+	public abstract String delete(T vo, BindingResult bindingResult, ModelMap model);
 
 	/**
 	 * 등록/수정
@@ -95,7 +95,7 @@ public abstract class GodCoreCmmAbstractController<T, R> {
 	 * @param multiRequest
 	 * @param model
 	 */
-	public abstract void merge(T vo, BindingResult bindingResult, MultipartHttpServletRequest multiRequest,
+	public abstract String merge(T vo, BindingResult bindingResult, MultipartHttpServletRequest multiRequest,
 			ModelMap model);
 
 	/**
@@ -106,10 +106,22 @@ public abstract class GodCoreCmmAbstractController<T, R> {
 	 * @param multiRequest
 	 * @param model
 	 */
-	public abstract void multi(T vo, BindingResult bindingResult, MultipartHttpServletRequest multiRequest,
+	public abstract String multi(T vo, BindingResult bindingResult, MultipartHttpServletRequest multiRequest,
 			ModelMap model);
 
-	protected void debugVO(T vo) {
+	/**
+	 * Redirect 값읽기
+	 * 
+	 * @return
+	 */
+	public abstract String getRedirect();
+
+	/**
+	 * Debug VO
+	 * 
+	 * @param vo
+	 */
+	protected void debugVO(final T vo) {
 		if (log.isDebugEnabled()) {
 			log.debug("vo={}", vo);
 		}
