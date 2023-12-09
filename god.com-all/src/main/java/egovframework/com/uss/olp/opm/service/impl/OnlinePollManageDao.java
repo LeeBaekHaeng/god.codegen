@@ -33,7 +33,7 @@ public class OnlinePollManageDao extends EgovComAbstractDAO {
      * @throws Exception
      */
     public List<?> selectOnlinePollManageList(ComDefaultVO searchVO) throws Exception {
-        return list("OnlinePollManage.selectOnlinePollManage", searchVO);
+        return selectList("OnlinePollManage.selectOnlinePollManage", searchVO);
     }
 
     /**
@@ -94,7 +94,7 @@ public class OnlinePollManageDao extends EgovComAbstractDAO {
      * @throws Exception
      */
     public List<?> selectOnlinePollManageStatistics(OnlinePollManage onlinePollManage) throws Exception {
-        return list("OnlinePollManage.selectOnlinePollManageDetail", onlinePollManage);
+        return selectList("OnlinePollManage.selectOnlinePollManageDetail", onlinePollManage);
     }
 
     /**
@@ -103,7 +103,7 @@ public class OnlinePollManageDao extends EgovComAbstractDAO {
      * @throws Exception
      */
     public List<?> selectOnlinePollItemList(OnlinePollItem onlinePollItem) throws Exception {
-        return list("OnlinePollManage.selectOnlinePollItem", onlinePollItem);
+        return selectList("OnlinePollManage.selectOnlinePollItem", onlinePollItem);
     }
 
     /**

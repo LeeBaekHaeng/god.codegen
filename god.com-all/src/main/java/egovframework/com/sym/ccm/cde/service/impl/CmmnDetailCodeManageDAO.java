@@ -45,7 +45,7 @@ public class CmmnDetailCodeManageDAO extends EgovComAbstractDAO {
      * @throws Exception
      */
     public List<?> selectCmmnDetailCodeList(CmmnDetailCodeVO searchVO) throws Exception {
-        return list("CmmnDetailCodeManage.selectCmmnDetailCodeList", searchVO);
+        return selectList("CmmnDetailCodeManage.selectCmmnDetailCodeList", searchVO);
     }
 
 	/**

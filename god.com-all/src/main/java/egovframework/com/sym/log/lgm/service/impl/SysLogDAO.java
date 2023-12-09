@@ -59,7 +59,7 @@ public class SysLogDAO extends EgovComAbstractDAO{
 	 * @throws Exception
 	 */
 	public List<?> selectSysLogInf(SysLog sysLog) {
-		return list("SysLog.selectSysLogInf", sysLog);
+		return selectList("SysLog.selectSysLogInf", sysLog);
 	}
 
 	/**

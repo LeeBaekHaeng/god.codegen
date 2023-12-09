@@ -4,9 +4,6 @@ import java.lang.reflect.Array;
 import java.util.Collection;
 import java.util.Map;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
 /**
  * EgovMybatisUtil 클래스
  *
@@ -30,8 +27,6 @@ import org.slf4j.LoggerFactory;
 
 public class EgovMybatisUtil {
 	
-	private static final Logger logger = LoggerFactory.getLogger(EgovMybatisUtil.class); 
-	
     /**
 	 * Empty 여부를 확인한다.
 	 * @param o Object
@@ -47,7 +42,7 @@ public class EgovMybatisUtil {
 				return true;
 			}
 		} else if(o instanceof Collection) {
-			if(((Collection)o).isEmpty()){
+			if(((Collection<?>)o).isEmpty()){
 			return true;
 			}
 		} else if(o.getClass().isArray()) {
@@ -55,7 +50,7 @@ public class EgovMybatisUtil {
 			return true;
 			}
 		} else if(o instanceof Map) {
-			if(((Map)o).isEmpty()){
+			if(((Map<?, ?>)o).isEmpty()){
 			return true;
 			}
 		}else {

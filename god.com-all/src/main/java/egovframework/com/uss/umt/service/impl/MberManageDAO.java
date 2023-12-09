@@ -33,9 +33,8 @@ public class MberManageDAO extends EgovComAbstractDAO{
      * @param userSearchVO 검색조건
      * @return List<MberManageVO> 기업회원 목록정보
      */
-    @SuppressWarnings("unchecked")
 	public List<MberManageVO> selectMberList(UserDefaultVO userSearchVO){
-        return (List<MberManageVO>) list("mberManageDAO.selectMberList", userSearchVO);
+        return selectList("mberManageDAO.selectMberList", userSearchVO);
     }
 
     /**
@@ -87,7 +86,7 @@ public class MberManageDAO extends EgovComAbstractDAO{
      * @return List 일반회원약관정보
      */
     public List<?> selectStplat(String stplatId){
-    	return list("mberManageDAO.selectStplat_S", stplatId);
+    	return selectList("mberManageDAO.selectStplat_S", stplatId);
     }
 
     /**

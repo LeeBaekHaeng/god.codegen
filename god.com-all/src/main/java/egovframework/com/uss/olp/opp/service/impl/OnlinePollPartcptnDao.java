@@ -33,7 +33,7 @@ public class OnlinePollPartcptnDao extends EgovComAbstractDAO {
      * @throws Exception
      */
     public List<?> selectOnlinePollManageList(ComDefaultVO searchVO) throws Exception {
-        return list("OnlinePollPartcptn.selectOnlinePollManageList", searchVO);
+        return selectList("OnlinePollPartcptn.selectOnlinePollManageList", searchVO);
     }
 
     /**
@@ -53,7 +53,7 @@ public class OnlinePollPartcptnDao extends EgovComAbstractDAO {
      * @throws Exception
      */
     public List<?> selectOnlinePollManageDetail(OnlinePollPartcptn onlinePollPartcptn) throws Exception {
-        return list("OnlinePollPartcptn.selectOnlinePollManageDetail", onlinePollPartcptn);
+        return selectList("OnlinePollPartcptn.selectOnlinePollManageDetail", onlinePollPartcptn);
     }
 
     /**
@@ -63,7 +63,7 @@ public class OnlinePollPartcptnDao extends EgovComAbstractDAO {
      * @throws Exception
      */
     public List<?> selectOnlinePollItemDetail(OnlinePollPartcptn onlinePollPartcptn) throws Exception {
-        return list("OnlinePollPartcptn.selectOnlinePollItem", onlinePollPartcptn);
+        return selectList("OnlinePollPartcptn.selectOnlinePollItem", onlinePollPartcptn);
     }
 
 
@@ -82,7 +82,7 @@ public class OnlinePollPartcptnDao extends EgovComAbstractDAO {
      * @throws Exception
      */
     public List<?> selectOnlinePollManageStatistics(OnlinePollPartcptn onlinePollPartcptn) throws Exception {
-        return list("OnlinePollPartcptn.selectOnlinePollPartcptnStatistics", onlinePollPartcptn);
+        return selectList("OnlinePollPartcptn.selectOnlinePollPartcptnStatistics", onlinePollPartcptn);
     }
 
     /**

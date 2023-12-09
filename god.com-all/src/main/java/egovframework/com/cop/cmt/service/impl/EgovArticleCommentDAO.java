@@ -12,7 +12,7 @@ import egovframework.com.cop.cmt.service.CommentVO;
 public class EgovArticleCommentDAO extends EgovComAbstractDAO{
 
 	public List<?> selectArticleCommentList(CommentVO commentVO) {
-		return list("ArticleComment.selectArticleCommentList", commentVO);
+		return selectList("ArticleComment.selectArticleCommentList", commentVO);
 	}
 
 	public int selectArticleCommentListCnt(CommentVO commentVO) {

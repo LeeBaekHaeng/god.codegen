@@ -7,7 +7,6 @@ import java.util.List;
 import java.util.Map;
 
 import javax.annotation.Resource;
-import org.apache.ibatis.session.ResultHandler;
 import org.apache.ibatis.session.RowBounds;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.slf4j.Logger;
@@ -288,19 +287,4 @@ public abstract class EgovComAbstractDAO extends EgovAbstractMapper{
 		return getSqlSession().selectList(queryId, parameterObject, rowBounds);
 	}
 
-	/**
-	 * SQL 조회 결과를 ResultHandler를 이용해서 출력한다.
-	 * ResultHandler를 상속해 구현한 커스텀 핸들러의 handleResult() 메서드에 따라 실행된다.
-	 *
-	 * @param queryId - 리스트 조회 처리 SQL mapping 쿼리 ID
-	 * @param handler - 조회 결과를 제어하기 위해 구현한 ResultHandler
-	 * @return
-	 *
-	 * @return 결과 List 객체 - SQL mapping 파일에서 지정한 resultType/resultMap 에 의한 결과 객체(보통 VO 또는 Map)의 List
-	 */
-	@Override
-	public void listToOutUsingResultHandler(String queryId, ResultHandler handler) {
-		LOGGER.debug("queryId = "+queryId);
-		getSqlSession().select(queryId, handler);
-	}
 }

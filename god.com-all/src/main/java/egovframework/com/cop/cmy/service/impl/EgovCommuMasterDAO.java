@@ -12,7 +12,7 @@ import egovframework.com.cop.cmy.service.CommunityVO;
 public class EgovCommuMasterDAO extends EgovComAbstractDAO{
 
 	public List<?> selectCommuMasterList(CommunityVO cmmntyVO) {
-		return list("CommuMaster.selectCommuMasterList", cmmntyVO);
+		return selectList("CommuMaster.selectCommuMasterList", cmmntyVO);
 	}
 
 	public int selectCommuMasterListCnt(CommunityVO cmmntyVO) {
@@ -43,9 +43,8 @@ public class EgovCommuMasterDAO extends EgovComAbstractDAO{
      * @return
      * @throws Exception
      */
-	@SuppressWarnings("unchecked")
     public List<CommunityVO> selectCommuMasterListPortlet(CommunityVO cmmntyVO) throws Exception {
-		return (List<CommunityVO>) list("CommuMaster.selectCommuMasterListPortlet", cmmntyVO);
+		return selectList("CommuMaster.selectCommuMasterListPortlet", cmmntyVO);
     }
 
 }

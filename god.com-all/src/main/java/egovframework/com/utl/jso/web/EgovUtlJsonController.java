@@ -110,7 +110,7 @@ public class EgovUtlJsonController {
     	mp.put("fruits4", "lime");
     	mp.put("fruits5", "mango");
     	
-    	List<HashMap> list = new ArrayList<HashMap>();
+    	List<HashMap<String,String>> list = new ArrayList<>();
     	list.add(mp);
     	list.add(mp);
     	list.add(mp);

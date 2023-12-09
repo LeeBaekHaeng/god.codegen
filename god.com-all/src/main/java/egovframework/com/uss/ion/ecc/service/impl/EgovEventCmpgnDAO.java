@@ -12,7 +12,7 @@ import egovframework.com.uss.ion.ecc.service.TnextrlHrVO;
 public class EgovEventCmpgnDAO extends EgovComAbstractDAO {
 
 	public List<?> selectEventCmpgnList(EventCmpgnVO searchVO) {
-		return list("EventCmpgn.selectEventCmpgnList", searchVO);
+		return selectList("EventCmpgn.selectEventCmpgnList", searchVO);
 	}
 
 	public int selectEventCmpgnListCnt(EventCmpgnVO searchVO) {
@@ -36,7 +36,7 @@ public class EgovEventCmpgnDAO extends EgovComAbstractDAO {
 	}
 
 	public List<?> selectTnextrlHrList(TnextrlHrVO searchVO) {
-		return list("EventCmpgn.selectTnextrlHrList", searchVO);
+		return selectList("EventCmpgn.selectTnextrlHrList", searchVO);
 	}
 
 	public int selectTnextrlHrListCnt(TnextrlHrVO searchVO) {

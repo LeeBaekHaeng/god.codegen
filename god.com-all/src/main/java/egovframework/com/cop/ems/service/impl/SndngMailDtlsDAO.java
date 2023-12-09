@@ -33,7 +33,7 @@ public class SndngMailDtlsDAO extends EgovComAbstractDAO {
 	 * @exception Exception
 	 */
 	public List<?> selectSndngMailList(ComDefaultVO vo) throws Exception {
-		return list("SndngMailDtlsDAO.selectSndngMailList_D", vo);
+		return selectList("SndngMailDtlsDAO.selectSndngMailList_D", vo);
 	}
 
 	/**

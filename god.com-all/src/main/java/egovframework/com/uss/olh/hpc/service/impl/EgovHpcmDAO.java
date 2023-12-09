@@ -12,7 +12,7 @@ import egovframework.com.uss.olh.hpc.service.HpcmVO;
 public class EgovHpcmDAO extends EgovComAbstractDAO {
 
 	public List<?> selectHpcmList(HpcmDefaultVO searchVO) {
-		return list("Hpcm.selectHpcmList", searchVO);
+		return selectList("Hpcm.selectHpcmList", searchVO);
 	}
 
 	public int selectHpcmListCnt(HpcmDefaultVO searchVO) {

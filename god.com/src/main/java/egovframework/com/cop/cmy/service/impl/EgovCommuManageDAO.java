@@ -29,7 +29,7 @@ public class EgovCommuManageDAO extends EgovComAbstractDAO{
 	}
 
 	public List<?> selectCommuUserList(CommunityUserVO cmmntyUserVO) {
-		return list("CommuManage.selectCommuUserList", cmmntyUserVO);
+		return selectList("CommuManage.selectCommuUserList", cmmntyUserVO);
 	}
 
 	public int selectCommuUserListCnt(CommunityUserVO cmmntyUserVO) {

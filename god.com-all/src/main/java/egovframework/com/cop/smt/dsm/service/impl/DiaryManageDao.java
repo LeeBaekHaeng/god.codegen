@@ -34,7 +34,7 @@ public class DiaryManageDao extends EgovComAbstractDAO {
 	 */
 	@SuppressWarnings("rawtypes")
 	public List selectDiaryManageList(ComDefaultVO searchVO) throws Exception{
-		return (List)list("DiaryManage.selectDiaryManage", searchVO);
+		return selectList("DiaryManage.selectDiaryManage", searchVO);
 	}
 	
     /**

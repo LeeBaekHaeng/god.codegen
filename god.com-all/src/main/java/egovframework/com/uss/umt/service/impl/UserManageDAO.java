@@ -70,7 +70,7 @@ public class UserManageDAO extends EgovComAbstractDAO{
      * @return List 업무사용자 목록정보
      */
     public List<?> selectUserList(UserDefaultVO userSearchVO){
-        return list("userManageDAO.selectUserList_S", userSearchVO);
+        return selectList("userManageDAO.selectUserList_S", userSearchVO);
     }
 
     /**

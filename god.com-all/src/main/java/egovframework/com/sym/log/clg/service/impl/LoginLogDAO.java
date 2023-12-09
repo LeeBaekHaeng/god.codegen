@@ -57,7 +57,7 @@ public class LoginLogDAO extends EgovComAbstractDAO {
 	 * @throws Exception
 	 */
 	public List<?> selectLoginLogInf(LoginLog loginLog) throws Exception{
-		return list("LoginLog.selectLoginLogInf", loginLog);
+		return selectList("LoginLog.selectLoginLogInf", loginLog);
 	}
 
 	/**

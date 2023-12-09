@@ -11,7 +11,7 @@ import egovframework.com.uss.olh.faq.service.FaqVO;
 public class EgovFaqDAO extends EgovComAbstractDAO {
 
 	public List<?> selectFaqList(FaqVO searchVO) {
-		return list("FaqManage.selectFaqList", searchVO);
+		return selectList("FaqManage.selectFaqList", searchVO);
 	}
 
 	public int selectFaqListCnt(FaqVO searchVO) {

@@ -12,7 +12,7 @@ import egovframework.com.cop.scp.service.ScrapVO;
 public class EgovArticleScrapDAO extends EgovComAbstractDAO{
 
 	public List<?> selectArticleScrapList(ScrapVO scrapVO) {
-		return list("ArticleScrap.selectArticleScrapList", scrapVO);
+		return selectList("ArticleScrap.selectArticleScrapList", scrapVO);
 	}
 
 	public int selectArticleScrapListCnt(ScrapVO scrapVO) {

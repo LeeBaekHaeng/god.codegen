@@ -51,7 +51,7 @@ public class StplatManageDAO extends EgovComAbstractDAO {
 	 */
     public List<?> selectStplatList(StplatManageDefaultVO searchVO) throws Exception {
 
-        return list("StplatManage.selectStplatList", searchVO);
+        return selectList("StplatManage.selectStplatList", searchVO);
 
     }
 

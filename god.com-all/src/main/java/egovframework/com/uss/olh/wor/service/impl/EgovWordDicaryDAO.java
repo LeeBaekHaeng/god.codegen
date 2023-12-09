@@ -11,7 +11,7 @@ import egovframework.com.uss.olh.wor.service.WordDicaryVO;
 public class EgovWordDicaryDAO extends EgovComAbstractDAO {
 
 	public List<?> selectWordDicaryList(WordDicaryVO searchVO) {
-		return list("WordDicary.selectWordDicaryList", searchVO);
+		return selectList("WordDicary.selectWordDicaryList", searchVO);
 	}
 
 	public int selectWordDicaryListCnt(WordDicaryVO searchVO) {

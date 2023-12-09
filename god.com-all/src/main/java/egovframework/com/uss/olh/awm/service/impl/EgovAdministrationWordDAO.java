@@ -11,7 +11,7 @@ import egovframework.com.uss.olh.awm.service.AdministrationWordVO;
 public class EgovAdministrationWordDAO extends EgovComAbstractDAO {
 
 	public List<?> selectAdministrationWordList(AdministrationWordVO searchVO) {
-		return list("AdministrationWord.selectAdministrationWordList", searchVO);
+		return selectList("AdministrationWord.selectAdministrationWordList", searchVO);
 	}
 
 	public int selectAdministrationWordListCnt(AdministrationWordVO searchVO) {

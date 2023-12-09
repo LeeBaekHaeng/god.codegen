@@ -32,7 +32,7 @@ public class NoteTrnsmitDao extends EgovComAbstractDAO {
      * @throws Exception
      */
     public List<?> selectNoteTrnsmitList(NoteTrnsmit noteTrnsmit) throws Exception {
-    	return list("NoteTrnsmit.selectNoteTrnsmit", noteTrnsmit);
+    	return selectList("NoteTrnsmit.selectNoteTrnsmit", noteTrnsmit);
     }
 
     /**
@@ -109,6 +109,6 @@ public class NoteTrnsmitDao extends EgovComAbstractDAO {
      * @throws Exception
      */
     public List<?> selectNoteTrnsmitCnfirm(NoteTrnsmit noteTrnsmit) throws Exception {
-    	return list("NoteTrnsmit.selectNoteTrnsmitCnfirm", noteTrnsmit);
+    	return selectList("NoteTrnsmit.selectNoteTrnsmitCnfirm", noteTrnsmit);
     }
 }

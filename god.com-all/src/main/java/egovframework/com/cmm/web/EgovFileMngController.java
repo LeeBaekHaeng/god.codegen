@@ -1,7 +1,7 @@
 package egovframework.com.cmm.web;
 
 import java.net.URLDecoder;
-import java.net.URLEncoder;
+import java.nio.charset.StandardCharsets;
 import java.util.Base64;
 import java.util.List;
 import java.util.Map;
@@ -9,7 +9,6 @@ import java.util.Map;
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 
-import org.apache.commons.lang.StringUtils;
 import org.egovframe.rte.fdl.cryptography.EgovEnvCryptoService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -18,8 +17,6 @@ import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.context.request.RequestContextHolder;
-import org.springframework.web.context.request.ServletRequestAttributes;
 
 import egovframework.com.cmm.service.EgovFileMngService;
 import egovframework.com.cmm.service.FileVO;
@@ -58,7 +55,7 @@ public class EgovFileMngController {
 
 	@Resource(name = "egovEnvCryptoService")
 	public void setEgovEnvCryptoService(EgovEnvCryptoService cryptoService) {
-		this.cryptoService = cryptoService;
+		EgovFileMngController.cryptoService = cryptoService;
 	}
 	
 	/**
@@ -96,7 +93,7 @@ public class EgovFileMngController {
 		model.addAttribute("fileList", result);
 		model.addAttribute("updateFlag", "N");
 		model.addAttribute("fileListCnt", result.size());
-		model.addAttribute("atchFileId", URLDecoder.decode(param_atchFileId));
+		model.addAttribute("atchFileId", URLDecoder.decode(param_atchFileId, StandardCharsets.UTF_8.toString()));
 
 		return "egovframework/com/cmm/fms/EgovFileList";
 	}
@@ -139,7 +136,7 @@ public class EgovFileMngController {
 		model.addAttribute("fileList", result);
 		model.addAttribute("updateFlag", "Y");
 		model.addAttribute("fileListCnt", result.size());
-		model.addAttribute("atchFileId", URLDecoder.decode(param_atchFileId));
+		model.addAttribute("atchFileId", URLDecoder.decode(param_atchFileId, StandardCharsets.UTF_8.toString()));
 
 		return "egovframework/com/cmm/fms/EgovFileList";
 	}

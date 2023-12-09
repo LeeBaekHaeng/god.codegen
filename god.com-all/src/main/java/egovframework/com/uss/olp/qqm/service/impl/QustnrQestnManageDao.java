@@ -35,7 +35,7 @@ public class QustnrQestnManageDao extends EgovComAbstractDAO {
 	 * @throws Exception
 	 */
 	public List<?> selectQustnrManageStatistics2(Map<?, ?> map) throws Exception{
-		return list("QustnrQestnManage.selectQustnrManageStatistics2", map);
+		return selectList("QustnrQestnManage.selectQustnrManageStatistics2", map);
 	}
 
     /**
@@ -45,7 +45,7 @@ public class QustnrQestnManageDao extends EgovComAbstractDAO {
 	 * @throws Exception
 	 */
 	public List<?> selectQustnrManageStatistics(Map<?, ?> map) throws Exception{
-		return list("QustnrQestnManage.selectQustnrManageStatistics", map);
+		return selectList("QustnrQestnManage.selectQustnrManageStatistics", map);
 	}
 
     /**
@@ -66,7 +66,7 @@ public class QustnrQestnManageDao extends EgovComAbstractDAO {
 	 * @throws Exception
 	 */
 	public List<?> selectQustnrQestnManageList(ComDefaultVO searchVO) throws Exception{
-		return list("QustnrQestnManage.selectQustnrQestnManage", searchVO);
+		return selectList("QustnrQestnManage.selectQustnrQestnManage", searchVO);
 	}
 
     /**
@@ -76,7 +76,7 @@ public class QustnrQestnManageDao extends EgovComAbstractDAO {
 	 * @throws Exception
 	 */
 	public List<?> selectQustnrQestnManageDetail(QustnrQestnManageVO qustnrQestnManageVO) throws Exception{
-		return list("QustnrQestnManage.selectQustnrQestnManageDetail", qustnrQestnManageVO);
+		return selectList("QustnrQestnManage.selectQustnrQestnManageDetail", qustnrQestnManageVO);
 	}
 
     /**

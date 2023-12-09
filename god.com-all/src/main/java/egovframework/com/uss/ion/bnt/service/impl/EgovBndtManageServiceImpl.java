@@ -10,7 +10,6 @@ import java.util.List;
 import javax.annotation.Resource;
 
 import org.apache.commons.lang.StringUtils;
-import org.apache.commons.lang3.ObjectUtils;
 import org.apache.poi.hssf.usermodel.HSSFCell;
 import org.apache.poi.hssf.usermodel.HSSFRow;
 import org.apache.poi.hssf.usermodel.HSSFSheet;
@@ -446,7 +445,6 @@ public class EgovBndtManageServiceImpl extends EgovAbstractServiceImpl implement
 	 * @param String           - 당직자정보
     */
 	@Override
-	@SuppressWarnings("unused")
 	public void insertBndtManageBnde(BndtManageVO bndtManageVO, String checkedBndtManageForInsert) throws Exception {
 		BndtManage bndtManage;
 

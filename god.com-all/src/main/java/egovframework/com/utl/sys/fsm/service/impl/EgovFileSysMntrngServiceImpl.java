@@ -14,7 +14,7 @@ import org.egovframe.rte.fdl.idgnr.EgovIdGnrService;
 
 import javax.annotation.Resource;
 
-import org.apache.commons.io.FileSystemUtils;
+//import org.apache.commons.io.FileSystemUtils;
 import org.springframework.stereotype.Service;
 
 /**
@@ -108,7 +108,7 @@ public class EgovFileSysMntrngServiceImpl extends EgovAbstractServiceImpl implem
 	 * @param fileSysMntrng
 	 */
 	public int selectFileSysMg(FileSysMntrng fileSysMntrng) throws Exception{
-		FileSystemUtils.freeSpaceKb("");
+//		FileSystemUtils.freeSpaceKb("");
 		return 0;
 	}
 	

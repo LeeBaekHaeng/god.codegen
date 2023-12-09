@@ -34,7 +34,7 @@ public class AllSchdulManageDao extends EgovComAbstractDAO {
 	 */
 	@SuppressWarnings("rawtypes")
 	public List selectAllSchdulManageeList(ComDefaultVO searchVO) throws Exception{
-		return (List)list("AllSchdulManage.selectIndvdlSchdulManage", searchVO);
+		return selectList("AllSchdulManage.selectIndvdlSchdulManage", searchVO);
 	}
 	
 

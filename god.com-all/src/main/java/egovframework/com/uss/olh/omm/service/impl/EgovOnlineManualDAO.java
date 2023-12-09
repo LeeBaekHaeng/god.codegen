@@ -11,7 +11,7 @@ import egovframework.com.uss.olh.omm.service.OnlineManualVO;
 public class EgovOnlineManualDAO extends EgovComAbstractDAO {
 
 	public List<?> selectOnlineManualList(OnlineManualVO searchVO) {
-		return list("OnlineManual.selectOnlineManualList", searchVO);
+		return selectList("OnlineManual.selectOnlineManualList", searchVO);
 	}
 
 	public int selectOnlineManualListCnt(OnlineManualVO searchVO) {
