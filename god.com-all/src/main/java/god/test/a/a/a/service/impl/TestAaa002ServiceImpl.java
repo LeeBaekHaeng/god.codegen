@@ -4,6 +4,7 @@ import java.util.List;
 
 import javax.annotation.PostConstruct;
 
+import org.springframework.stereotype.Service;
 import org.springframework.ui.ModelMap;
 
 import god.core.cmm.service.impl.GodCoreCmmAbstractServiceImpl;
@@ -18,6 +19,7 @@ import lombok.extern.slf4j.Slf4j;
  * @author 이백행
  * @since 2023-12-06
  */
+@Service
 @RequiredArgsConstructor
 @Slf4j
 public class TestAaa002ServiceImpl extends GodCoreCmmAbstractServiceImpl<TestAaa002VO, TestAaa002VO>

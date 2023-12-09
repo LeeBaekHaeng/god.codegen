@@ -16,22 +16,22 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 public class TestAaa001DAO extends GodComCmm001DAOImpl<TestAaa001VO, TestAaa001VO> {
 
-    /**
-     * mapperNamespace 값설정
-     */
-    public TestAaa001DAO() {
-        super("GodTestAaa001DAO");
-        log.debug("getMapperNamespace={}", getMapperNamespace());
-    }
+	/**
+	 * mapperNamespace 값설정
+	 */
+	public TestAaa001DAO() {
+		super(TestAaa001DAO.class.getSimpleName());
+		log.debug("getMapperNamespace={}", getMapperNamespace());
+	}
 
-    @Override
-    public int insert(TestAaa001VO vo) {
-        log.debug("이백행");
-        return super.insert(vo);
-    }
+	@Override
+	public int insert(TestAaa001VO vo) {
+		log.debug("이백행");
+		return super.insert(vo);
+	}
 
-    public int insert3(final TestAaa001VO vo) {
-        return super.insert(getMapperNamespace() + "insert3", vo);
-    }
+	public int insert3(final TestAaa001VO vo) {
+		return super.insert(getMapperNamespace() + "insert3", vo);
+	}
 
 }

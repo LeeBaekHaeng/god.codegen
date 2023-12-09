@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?><!--Converted at: Wed May 11 15:49:38 KST 2016 -->
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="GodTestAaa001DAO">
+<mapper namespace="TestAaa001DAO">
 
-    <insert id="insert" parameterType="god.test.a.a.a.service.GodTestAaa001VO">
+    <insert id="insert" parameterType="god.test.a.a.a.service.TestAaa001VO">
 <![CDATA[
 /* GodTestAaa001DAO.insert */
 /* 행정코드 등록 */
@@ -19,7 +19,7 @@ INSERT INTO comtcadministcode /* 행정코드 */ (
 ]]>
     </insert>
 
-    <insert id="insert2" parameterType="god.test.a.a.a.service.GodTestAaa001VO">
+    <insert id="insert2" parameterType="god.test.a.a.a.service.TestAaa001VO">
 <![CDATA[
 /* GodTestAaa001DAO.insert2 */
 /* 행정코드 등록 */
@@ -35,7 +35,7 @@ INSERT INTO comtcadministcode /* 행정코드 */ (
 ]]>
     </insert>
 
-    <select id="select" parameterType="god.test.a.a.a.service.GodTestAaa001VO" resultType="god.test.a.a.a.service.GodTestAaa001VO">
+    <select id="select" parameterType="god.test.a.a.a.service.TestAaa001VO" resultType="god.test.a.a.a.service.TestAaa001VO">
 <![CDATA[
 /* GodTestAaa001DAO.select */
 /* 행정코드 조회(단건) */
@@ -49,7 +49,7 @@ WHERE A.ADMINIST_ZONE_SE = #{administZoneSe} /* ADMINIST_ZONE_SE char(1) NOT NUL
 ]]>
     </select>
 
-    <select id="select2" parameterType="god.test.a.a.a.service.GodTestAaa001VO" resultType="god.test.a.a.a.service.GodTestAaa001VO">
+    <select id="select2" parameterType="god.test.a.a.a.service.TestAaa001VO" resultType="god.test.a.a.a.service.TestAaa001VO">
 <![CDATA[
 /* GodTestAaa001DAO.select2 */
 /* 행정코드 조회(단건) */
@@ -63,7 +63,7 @@ WHERE A.ADMINIST_ZONE_SE = #{administZoneSe} /* ADMINIST_ZONE_SE char(1) NOT NUL
 ]]>
     </select>
 
-    <select id="selectList" parameterType="god.test.a.a.a.service.GodTestAaa001VO" resultType="god.test.a.a.a.service.GodTestAaa001VO">
+    <select id="selectList" parameterType="god.test.a.a.a.service.TestAaa001VO" resultType="god.test.a.a.a.service.TestAaa001VO">
 <![CDATA[
 /* GodTestAaa001DAO.selectList */
 /* 행정코드 조회(멀티건) */
@@ -78,7 +78,7 @@ LIMIT #{recordCountPerPage} OFFSET #{firstIndex}
 ]]>
     </select>
 
-    <select id="selectListTotCnt" parameterType="god.test.a.a.a.service.GodTestAaa001VO" resultType="int">
+    <select id="selectListTotCnt" parameterType="god.test.a.a.a.service.TestAaa001VO" resultType="int">
 <![CDATA[
 /* GodTestAaa001DAO.selectListTotCnt */
 /* 행정코드 조회(멀티건) 전체 건수 */
@@ -112,7 +112,7 @@ WHERE 1 = 1
 
     </sql>
 
-    <select id="select2List" parameterType="god.test.a.a.a.service.GodTestAaa001VO" resultType="god.test.a.a.a.service.GodTestAaa001VO">
+    <select id="select2List" parameterType="god.test.a.a.a.service.TestAaa001VO" resultType="god.test.a.a.a.service.TestAaa001VO">
 <![CDATA[
 /* GodTestAaa001DAO.selectList */
 /* 행정코드 조회(멀티건) */
@@ -127,7 +127,7 @@ LIMIT #{recordCountPerPage} OFFSET #{firstIndex}
 ]]>
     </select>
 
-    <select id="select2ListTotCnt" parameterType="god.test.a.a.a.service.GodTestAaa001VO" resultType="int">
+    <select id="select2ListTotCnt" parameterType="god.test.a.a.a.service.TestAaa001VO" resultType="int">
 <![CDATA[
 /* GodTestAaa001DAO.selectListTotCnt */
 /* 행정코드 조회(멀티건) 전체 건수 */
@@ -161,7 +161,7 @@ WHERE 1 = 1
 
     </sql>
 
-    <update id="update" parameterType="god.test.a.a.a.service.GodTestAaa001VO">
+    <update id="update" parameterType="god.test.a.a.a.service.TestAaa001VO">
 <![CDATA[
 /* GodTestAaa001DAO.update */
 /* 행정코드 수정 */
@@ -172,7 +172,7 @@ WHERE ADMINIST_ZONE_SE = #{administZoneSe} /* ADMINIST_ZONE_SE char(1) NOT NULL 
 ]]>
     </update>
 
-    <update id="update2" parameterType="god.test.a.a.a.service.GodTestAaa001VO">
+    <update id="update2" parameterType="god.test.a.a.a.service.TestAaa001VO">
 <![CDATA[
 /* GodTestAaa001DAO.update */
 /* 행정코드 수정 */
@@ -183,7 +183,7 @@ WHERE ADMINIST_ZONE_SE = #{administZoneSe} /* ADMINIST_ZONE_SE char(1) NOT NULL 
 ]]>
     </update>
 
-    <delete id="delete" parameterType="god.test.a.a.a.service.GodTestAaa001VO">
+    <delete id="delete" parameterType="god.test.a.a.a.service.TestAaa001VO">
 <![CDATA[
 /* GodTestAaa001DAO.delete */
 /* 행정코드 삭제 */
@@ -193,7 +193,7 @@ WHERE ADMINIST_ZONE_SE = #{administZoneSe} /* ADMINIST_ZONE_SE char(1) NOT NULL 
 ]]>
     </delete>
 
-    <delete id="delete2" parameterType="god.test.a.a.a.service.GodTestAaa001VO">
+    <delete id="delete2" parameterType="god.test.a.a.a.service.TestAaa001VO">
 <![CDATA[
 /* GodTestAaa001DAO.delete */
 /* 행정코드 삭제 */
@@ -203,7 +203,7 @@ WHERE ADMINIST_ZONE_SE = #{administZoneSe} /* ADMINIST_ZONE_SE char(1) NOT NULL 
 ]]>
     </delete>
 
-    <insert id="merge" parameterType="god.test.a.a.a.service.GodTestAaa001VO">
+    <insert id="merge" parameterType="god.test.a.a.a.service.TestAaa001VO">
 <![CDATA[
 /* GodTestAaa001DAO.merge */
 /* 행정코드 등록/수정 */
@@ -219,7 +219,7 @@ INSERT INTO comtcadministcode /* 행정코드 */ (
 ]]>
     </insert>
 
-    <insert id="merge2" parameterType="god.test.a.a.a.service.GodTestAaa001VO">
+    <insert id="merge2" parameterType="god.test.a.a.a.service.TestAaa001VO">
 <![CDATA[
 /* GodTestAaa001DAO.merge2 */
 /* 행정코드 등록/수정 */
@@ -235,7 +235,7 @@ INSERT INTO comtcadministcode /* 행정코드 */ (
 ]]>
     </insert>
 
-    <insert id="multi" parameterType="god.test.a.a.a.service.GodTestAaa001VO">
+    <insert id="multi" parameterType="god.test.a.a.a.service.TestAaa001VO">
 <![CDATA[
 /* GodTestAaa001DAO.multi */
 /* 행정코드 등록/수정/삭제 */
@@ -251,7 +251,7 @@ INSERT INTO comtcadministcode /* 행정코드 */ (
 ]]>
     </insert>
 
-    <insert id="multi2" parameterType="god.test.a.a.a.service.GodTestAaa001VO">
+    <insert id="multi2" parameterType="god.test.a.a.a.service.TestAaa001VO">
 <![CDATA[
 /* GodTestAaa001DAO.multi2 */
 /* 행정코드 등록/수정/삭제 */

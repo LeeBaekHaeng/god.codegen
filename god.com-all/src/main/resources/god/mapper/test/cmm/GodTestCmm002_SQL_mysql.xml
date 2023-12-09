@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?><!--Converted at: Wed May 11 15:49:38 KST 2016 -->
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="GodTestCmm002DAO">
+<mapper namespace="TestCmm002DAO">
 
-    <insert id="insert" parameterType="god.test.cmm.service.GodTestCmm002VO">
+    <insert id="insert" parameterType="god.test.cmm.service.TestCmm002VO">
 <![CDATA[
 /* GodTestCmm002DAO.insert */
 /* 행정코드 등록 */
@@ -19,7 +19,7 @@ INSERT INTO comtcadministcode /* 행정코드 */ (
 ]]>
     </insert>
 
-    <insert id="insert2" parameterType="god.test.cmm.service.GodTestCmm002VO">
+    <insert id="insert2" parameterType="god.test.cmm.service.TestCmm002VO">
 <![CDATA[
 /* GodTestCmm002DAO.insert2 */
 /* 행정코드 등록 */
@@ -35,7 +35,7 @@ INSERT INTO comtcadministcode /* 행정코드 */ (
 ]]>
     </insert>
 
-    <select id="select" parameterType="god.test.cmm.service.GodTestCmm002VO" resultType="god.test.cmm.service.GodTestCmm002VO">
+    <select id="select" parameterType="god.test.cmm.service.TestCmm002VO" resultType="god.test.cmm.service.TestCmm002VO">
 <![CDATA[
 /* GodTestCmm002DAO.select */
 /* 행정코드 조회(단건) */
@@ -74,7 +74,7 @@ WHERE 1 = 1
 
     </sql>
 
-    <select id="selectList" parameterType="god.test.cmm.service.GodTestCmm002VO" resultType="god.test.cmm.service.GodTestCmm002VO">
+    <select id="selectList" parameterType="god.test.cmm.service.TestCmm002VO" resultType="god.test.cmm.service.TestCmm002VO">
 <![CDATA[
 /* GodTestCmm002DAO.selectList */
 /* 행정코드 조회(멀티건) */
@@ -89,7 +89,7 @@ LIMIT #{recordCountPerPage} OFFSET #{firstIndex}
 ]]>
     </select>
 
-    <select id="selectListTotCnt" parameterType="god.test.cmm.service.GodTestCmm002VO" resultType="int">
+    <select id="selectListTotCnt" parameterType="god.test.cmm.service.TestCmm002VO" resultType="int">
 <![CDATA[
 /* GodTestCmm002DAO.selectListTotCnt */
 /* 행정코드 조회(멀티건) 전체 건수 */
@@ -99,7 +99,7 @@ SELECT
         <include refid="selectListFromWhere" />
     </select>
 
-    <update id="update" parameterType="god.test.cmm.service.GodTestCmm002VO">
+    <update id="update" parameterType="god.test.cmm.service.TestCmm002VO">
 <![CDATA[
 /* GodTestCmm002DAO.update */
 /* 행정코드 수정 */
@@ -110,7 +110,7 @@ WHERE ADMINIST_ZONE_SE = #{administZoneSe} /* ADMINIST_ZONE_SE char(1) NOT NULL 
 ]]>
     </update>
 
-    <delete id="delete" parameterType="god.test.cmm.service.GodTestCmm002VO">
+    <delete id="delete" parameterType="god.test.cmm.service.TestCmm002VO">
 <![CDATA[
 /* GodTestCmm002DAO.delete */
 /* 행정코드 삭제 */

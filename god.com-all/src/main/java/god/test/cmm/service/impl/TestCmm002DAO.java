@@ -16,31 +16,31 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 public class TestCmm002DAO extends GodComCmmDAOImpl<TestCmm002VO, TestCmm002VO> {
 
-    /**
-     * mapperNamespace 값설정
-     */
-    public TestCmm002DAO() {
-        super("GodTestCmm002DAO");
-    }
+	/**
+	 * mapperNamespace 값설정
+	 */
+	public TestCmm002DAO() {
+		super(TestCmm002DAO.class.getSimpleName());
+	}
 
-    @Override
-    public int insert(final TestCmm002VO vo) {
-        log.debug("vo={}", vo);
-        return super.insert(vo);
-    }
+	@Override
+	public int insert(final TestCmm002VO vo) {
+		log.debug("vo={}", vo);
+		return super.insert(vo);
+	}
 
-    public int insert2(final TestCmm002VO vo) {
-        log.debug("vo={}", vo);
-        return super.insert(getMapperNamespace() + "insert2", vo);
-    }
+	public int insert2(final TestCmm002VO vo) {
+		log.debug("vo={}", vo);
+		return super.insert(getMapperNamespace() + "insert2", vo);
+	}
 
-    @Override
-    public TestCmm002VO select(TestCmm002VO vo) {
-        return super.select(vo);
-    }
+	@Override
+	public TestCmm002VO select(TestCmm002VO vo) {
+		return super.select(vo);
+	}
 
-    public TestCmm002VO select2(TestCmm002VO vo) {
-        return super.selectOne(getMapperNamespace() + "select2", vo);
-    }
+	public TestCmm002VO select2(TestCmm002VO vo) {
+		return super.selectOne(getMapperNamespace() + "select2", vo);
+	}
 
 }

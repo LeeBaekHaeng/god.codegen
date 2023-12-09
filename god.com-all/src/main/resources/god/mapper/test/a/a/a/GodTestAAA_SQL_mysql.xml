@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?><!--Converted at: Wed May 11 15:49:38 KST 2016 -->
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="GodTestAAADAO">
+<mapper namespace="TestAAADAO">
 
-    <insert id="insert" parameterType="god.test.a.a.a.service.GodTestAAAVO">
+    <insert id="insert" parameterType="god.test.a.a.a.service.TestAAAVO">
 <![CDATA[
 /* GodTestAAADAO.insert */
 /* 행정코드 등록 */
@@ -19,7 +19,7 @@ INSERT INTO comtcadministcode /* 행정코드 */ (
 ]]>
     </insert>
 
-    <select id="select" parameterType="god.test.a.a.a.service.GodTestAAAVO" resultType="god.test.a.a.a.service.GodTestAAAVO">
+    <select id="select" parameterType="god.test.a.a.a.service.TestAAAVO" resultType="god.test.a.a.a.service.TestAAAVO">
 <![CDATA[
 /* GodTestAAADAO.select */
 /* 행정코드 조회(단건) */
@@ -33,7 +33,7 @@ WHERE A.ADMINIST_ZONE_SE = #{administZoneSe} /* ADMINIST_ZONE_SE char(1) NOT NUL
 ]]>
     </select>
 
-    <select id="selectList" parameterType="god.test.a.a.a.service.GodTestAAAVO" resultType="god.test.a.a.a.service.GodTestAAAVO">
+    <select id="selectList" parameterType="god.test.a.a.a.service.TestAAAVO" resultType="god.test.a.a.a.service.TestAAAVO">
 <![CDATA[
 /* GodTestAAADAO.selectList */
 /* 행정코드 조회(멀티건) */
@@ -48,7 +48,7 @@ LIMIT #{recordCountPerPage} OFFSET #{firstIndex}
 ]]>
     </select>
 
-    <select id="selectListTotCnt" parameterType="god.test.a.a.a.service.GodTestAAAVO" resultType="int">
+    <select id="selectListTotCnt" parameterType="god.test.a.a.a.service.TestAAAVO" resultType="int">
 <![CDATA[
 /* GodTestAAADAO.selectListTotCnt */
 /* 행정코드 조회(멀티건) 전체 건수 */
@@ -82,7 +82,7 @@ WHERE 1 = 1
 
     </sql>
 
-    <update id="update" parameterType="god.test.a.a.a.service.GodTestAAAVO">
+    <update id="update" parameterType="god.test.a.a.a.service.TestAAAVO">
 <![CDATA[
 /* GodTestAAADAO.update */
 /* 행정코드 수정 */
@@ -93,7 +93,7 @@ WHERE ADMINIST_ZONE_SE = #{administZoneSe} /* ADMINIST_ZONE_SE char(1) NOT NULL 
 ]]>
     </update>
 
-    <delete id="delete" parameterType="god.test.a.a.a.service.GodTestAAAVO">
+    <delete id="delete" parameterType="god.test.a.a.a.service.TestAAAVO">
 <![CDATA[
 /* GodTestAAADAO.delete */
 /* 행정코드 삭제 */

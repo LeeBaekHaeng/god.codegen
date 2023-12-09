@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?><!--Converted at: Wed May 11 15:49:38 KST 2016 -->
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="GodTestCmm002DAO">
+<mapper namespace="TestCmm002DAO">
 
-    <select id="select2" parameterType="god.test.cmm.service.GodTestCmm001VO" resultType="god.test.cmm.service.GodTestCmm001VO">
+    <select id="select2" parameterType="god.test.cmm.service.TestCmm001VO" resultType="god.test.cmm.service.TestCmm001VO">
 <![CDATA[
 /* GodTestCmm002DAO.select2 */
 /* 행정코드 조회(단건) */

@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?><!--Converted at: Wed May 11 15:49:38 KST 2016 -->
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="GodTestAaa001DAO">
+<mapper namespace="TestAaa001DAO">
 
-    <insert id="insert3" parameterType="god.test.a.a.a.service.GodTestAaa001VO">
+    <insert id="insert3" parameterType="god.test.a.a.a.service.TestAaa001VO">
 <![CDATA[
 /* GodTestAaa001DAO.insert3 */
 /* 행정코드 등록 */
