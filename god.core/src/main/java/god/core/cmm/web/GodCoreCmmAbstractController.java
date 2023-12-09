@@ -1,8 +1,10 @@
 package god.core.cmm.web;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
+import org.springmodules.validation.commons.DefaultBeanValidator;
 
 import lombok.NoArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -19,6 +21,12 @@ import lombok.extern.slf4j.Slf4j;
 @NoArgsConstructor
 @Slf4j
 public abstract class GodCoreCmmAbstractController<T, R> {
+
+	/**
+	 * 기본 Bean 유효성 검사기
+	 */
+	@Autowired
+	protected DefaultBeanValidator beanValidator;
 
 	/**
 	 * 등록 화면
@@ -110,11 +118,11 @@ public abstract class GodCoreCmmAbstractController<T, R> {
 			ModelMap model);
 
 	/**
-	 * Redirect 값읽기
+	 * Redirect 목록 화면 값읽기
 	 * 
 	 * @return
 	 */
-	public abstract String getRedirect();
+	public abstract String getRedirectSelectList();
 
 	/**
 	 * Debug VO

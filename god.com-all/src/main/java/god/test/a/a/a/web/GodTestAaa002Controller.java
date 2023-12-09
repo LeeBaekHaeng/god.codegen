@@ -38,7 +38,7 @@ public class GodTestAaa002Controller extends GodCoreCmmAbstractController<TestAa
 	 */
 	@Override
 	@GetMapping("/do/test/insertTestAaa002.do")
-	public String insertView(final TestAaa002VO vo, final ModelMap model) {
+	public String insertView(@ModelAttribute("registVO") final TestAaa002VO vo, final ModelMap model) {
 		debugVO(vo);
 		return "god/test/a/a/a/TestAaa002Regist";
 	}
@@ -48,11 +48,17 @@ public class GodTestAaa002Controller extends GodCoreCmmAbstractController<TestAa
 	 */
 	@Override
 	@PostMapping("/do/test/insertTestAaa002.do")
-	public String insert(final TestAaa002VO vo, final BindingResult bindingResult,
+	public String insert(@ModelAttribute("registVO") final TestAaa002VO vo, final BindingResult bindingResult,
 			final MultipartHttpServletRequest multiRequest, final ModelMap model) {
 		debugVO(vo);
+
+		beanValidator.validate(vo, bindingResult);
+		if (bindingResult.hasErrors()) {
+			return "god/test/a/a/a/TestAaa002Regist";
+		}
+
 		service.insert(vo, model);
-		return getRedirect();
+		return getRedirectSelectList();
 	}
 
 	/**
@@ -60,7 +66,7 @@ public class GodTestAaa002Controller extends GodCoreCmmAbstractController<TestAa
 	 */
 	@Override
 	@GetMapping("/do/test/selectTestAaa002.do")
-	public String select(final TestAaa002VO vo, final ModelMap model) {
+	public String select(@ModelAttribute("detailVO") final TestAaa002VO vo, final ModelMap model) {
 		debugVO(vo);
 		service.select(vo, model);
 		return "god/test/a/a/a/TestAaa002Detail";
@@ -74,6 +80,11 @@ public class GodTestAaa002Controller extends GodCoreCmmAbstractController<TestAa
 	public String selectList(@ModelAttribute("listVO") final TestAaa002VO vo, final BindingResult bindingResult,
 			final ModelMap model) {
 		debugVO(vo);
+
+		beanValidator.validate(vo, bindingResult);
+		if (bindingResult.hasErrors()) {
+			return "god/test/a/a/a/TestAaa002List";
+		}
 
 		final LoginVO loginVO = (LoginVO) EgovUserDetailsHelper.getAuthenticatedUser();
 		debug(loginVO);
@@ -101,7 +112,7 @@ public class GodTestAaa002Controller extends GodCoreCmmAbstractController<TestAa
 	 */
 	@Override
 	@GetMapping("/do/test/updateTestAaa002.do")
-	public String updateView(final TestAaa002VO vo, final ModelMap model) {
+	public String updateView(@ModelAttribute("updtVO") final TestAaa002VO vo, final ModelMap model) {
 		debugVO(vo);
 		return "god/test/a/a/a/TestAaa002Updt";
 	}
@@ -111,11 +122,17 @@ public class GodTestAaa002Controller extends GodCoreCmmAbstractController<TestAa
 	 */
 	@Override
 	@PostMapping("/do/test/updateTestAaa002.do")
-	public String update(final TestAaa002VO vo, final BindingResult bindingResult,
+	public String update(@ModelAttribute("updtVO") final TestAaa002VO vo, final BindingResult bindingResult,
 			final MultipartHttpServletRequest multiRequest, final ModelMap model) {
 		debugVO(vo);
+
+		beanValidator.validate(vo, bindingResult);
+		if (bindingResult.hasErrors()) {
+			return "god/test/a/a/a/TestAaa002Updt";
+		}
+
 		service.update(vo, model);
-		return getRedirect();
+		return getRedirectSelectList();
 	}
 
 	/**
@@ -123,10 +140,17 @@ public class GodTestAaa002Controller extends GodCoreCmmAbstractController<TestAa
 	 */
 	@Override
 	@PostMapping("/do/test/deleteTestAaa002.do")
-	public String delete(final TestAaa002VO vo, final BindingResult bindingResult, final ModelMap model) {
+	public String delete(@ModelAttribute("deleteVO") final TestAaa002VO vo, final BindingResult bindingResult,
+			final ModelMap model) {
 		debugVO(vo);
+
+		beanValidator.validate(vo, bindingResult);
+		if (bindingResult.hasErrors()) {
+			return "god/test/a/a/a/TestAaa002Updt";
+		}
+
 		service.delete(vo, model);
-		return getRedirect();
+		return getRedirectSelectList();
 	}
 
 	/**
@@ -134,11 +158,22 @@ public class GodTestAaa002Controller extends GodCoreCmmAbstractController<TestAa
 	 */
 	@Override
 	@PostMapping("/do/test/mergeTestAaa002.do")
-	public String merge(final TestAaa002VO vo, final BindingResult bindingResult,
+	public String merge(@ModelAttribute("mergeVO") final TestAaa002VO vo, final BindingResult bindingResult,
 			final MultipartHttpServletRequest multiRequest, final ModelMap model) {
 		debugVO(vo);
+
+		beanValidator.validate(vo, bindingResult);
+		if (bindingResult.hasErrors()) {
+			String merge = multiRequest.getParameter("merge");
+			if ("update".equals(merge)) {
+				return "god/test/a/a/a/TestAaa002Updt";
+			} else {
+				return "god/test/a/a/a/TestAaa002Regist";
+			}
+		}
+
 		service.merge(vo, model);
-		return getRedirect();
+		return getRedirectSelectList();
 	}
 
 	/**
@@ -146,15 +181,26 @@ public class GodTestAaa002Controller extends GodCoreCmmAbstractController<TestAa
 	 */
 	@Override
 	@PostMapping("/do/test/multiTestAaa002.do")
-	public String multi(final TestAaa002VO vo, final BindingResult bindingResult,
+	public String multi(@ModelAttribute("multiVO") final TestAaa002VO vo, final BindingResult bindingResult,
 			final MultipartHttpServletRequest multiRequest, final ModelMap model) {
 		debugVO(vo);
+
+		beanValidator.validate(vo, bindingResult);
+		if (bindingResult.hasErrors()) {
+			String multi = multiRequest.getParameter("multi");
+			if ("update".equals(multi) || "delete".equals(multi)) {
+				return "god/test/a/a/a/TestAaa002Updt";
+			} else {
+				return "god/test/a/a/a/TestAaa002Regist";
+			}
+		}
+
 		service.multi(vo, model);
-		return getRedirect();
+		return getRedirectSelectList();
 	}
 
 	@Override
-	public String getRedirect() {
+	public String getRedirectSelectList() {
 		return "redirect:/do/test/selectTestAaa002List.do";
 	}
 
