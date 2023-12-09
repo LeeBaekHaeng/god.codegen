@@ -1,8 +1,8 @@
 package god.core.cmm.web;
 
 import org.springframework.ui.ModelMap;
+import org.springframework.validation.BindingResult;
 
-import god.core.cmm.service.GodCoreCmmAbstractService;
 import lombok.NoArgsConstructor;
 
 /**
@@ -18,47 +18,84 @@ import lombok.NoArgsConstructor;
 public abstract class GodCoreCmmAbstractController<T, R> {
 
 	/**
-	 * data 처리관련(Service 공통)
+	 * 등록 화면
+	 * 
+	 * @param vo
+	 * @param model
+	 * @return
 	 */
-	private GodCoreCmmAbstractService<T, R> service;
+	public abstract String insertView(T vo, ModelMap model);
 
 	/**
-	 * service 주입
+	 * 등록
 	 * 
-	 * @param service
+	 * @param vo
+	 * @param model
+	 * @param bindingResult
+	 * @return
 	 */
-	protected void postConstruct(final GodCoreCmmAbstractService<T, R> service) {
-		this.service = service;
-	}
+	public abstract String insert(T vo, ModelMap model, BindingResult bindingResult);
 
-	public String insert(final T vo, final ModelMap model) {
-		service.insert(vo, model);
-		return null;
-	}
+	/**
+	 * 상세 화면
+	 * 
+	 * @param vo
+	 * @param model
+	 */
+	public abstract void select(T vo, ModelMap model);
 
-	public void select(final T vo, final ModelMap model) {
-		service.select(vo, model);
-	}
+	/**
+	 * 목록 화면
+	 * 
+	 * @param vo
+	 * @param model
+	 * @param bindingResult
+	 * @return
+	 */
+	public abstract String selectList(T vo, ModelMap model, BindingResult bindingResult);
 
-	public String selectList(final T vo, final ModelMap model) {
-		service.selectList(vo, model);
-		return null;
-	}
+	/**
+	 * 수정 화면
+	 * 
+	 * @param vo
+	 * @param model
+	 */
+	public abstract void updateView(T vo, ModelMap model);
 
-	public void update(final T vo, final ModelMap model) {
-		service.update(vo, model);
-	}
+	/**
+	 * 수정
+	 * 
+	 * @param vo
+	 * @param model
+	 * @param bindingResult
+	 */
+	public abstract void update(T vo, ModelMap model, BindingResult bindingResult);
 
-	public void delete(final T vo, final ModelMap model) {
-		service.delete(vo, model);
-	}
+	/**
+	 * 삭제
+	 * 
+	 * @param vo
+	 * @param model
+	 * @param bindingResult
+	 */
+	public abstract void delete(T vo, ModelMap model, BindingResult bindingResult);
 
-	public void merge(final T vo, final ModelMap model) {
-		service.merge(vo, model);
-	}
+	/**
+	 * 등록/수정
+	 * 
+	 * @param vo
+	 * @param model
+	 * @param bindingResult
+	 */
+	public abstract void merge(T vo, ModelMap model, BindingResult bindingResult);
 
-	public void multi(final T vo, final ModelMap model) {
-		service.multi(vo, model);
-	}
+	/**
+	 * 등록/수정/삭제
+	 * 
+	 * @param vo
+	 * @param model
+	 * @param bindingResult
+	 */
+	public abstract void multi(T vo, ModelMap model, BindingResult bindingResult);
 
 }
