@@ -35,7 +35,7 @@ public interface GodCoreCmmAbstractService<T, R> {
 	 * 조회(멀티건)
 	 * 
 	 * @param vo
-	 * @return result
+	 * @return resultList
 	 */
 	List<R> selectList(T vo);
 
