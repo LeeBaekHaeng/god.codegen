@@ -20,6 +20,7 @@ import egovframework.com.cmm.filter.HTMLTagFilter;
 import egovframework.com.cmm.filter.SessionTimeoutCookieFilter;
 import egovframework.com.cmm.service.EgovCmmUseService;
 import egovframework.com.cmm.service.EgovProperties;
+import egovframework.com.cmm.service.Globals;
 import egovframework.com.sec.security.filter.EgovSpringSecurityLoginFilter;
 import egovframework.com.sec.security.filter.EgovSpringSecurityLogoutFilter;
 import egovframework.com.uat.uap.filter.EgovLoginPolicyFilter;
@@ -197,6 +198,9 @@ public class EgovWebApplicationInitializer implements WebApplicationInitializer 
 		final EgovCmmUseService egovCmmUseService = rootContext.getBean(EgovCmmUseService.class);
 		ComDefaultVO comDefaultVO = new ComDefaultVO();
 		servletContext.setAttribute("COM_CMM_MENUS", egovCmmUseService.selectMenuList(comDefaultVO));
+
+		servletContext.setAttribute("Globals_OS_TYPE", Globals.OS_TYPE);
+		servletContext.setAttribute("Globals_MAIN_PAGE", Globals.MAIN_PAGE);
 	}
 
 }

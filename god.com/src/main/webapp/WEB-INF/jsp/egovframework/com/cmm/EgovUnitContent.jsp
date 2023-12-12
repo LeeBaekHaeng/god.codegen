@@ -68,6 +68,11 @@
 </head>
 <body>
 
+<pre>
+Globals_OS_TYPE: <c:out value="${Globals_OS_TYPE}" />
+Globals_MAIN_PAGE: <c:out value="${Globals_MAIN_PAGE}" />
+</pre>
+
 <ul>
     <c:forEach items="${COM_CMM_MENUS}" var="menu" varStatus="status">
         <c:if test="${menu.upperMenuNo == 0 and menu.menuNo > 0}">
