@@ -3,11 +3,13 @@ package god.test.a.a.a.service.impl;
 import static org.junit.Assert.assertEquals;
 
 import java.time.LocalDateTime;
+import java.util.Date;
 import java.util.List;
 
 import org.egovframe.rte.fdl.cmmn.exception.BaseRuntimeException;
 import org.egovframe.rte.fdl.cmmn.exception.FdlException;
 import org.egovframe.rte.fdl.idgnr.EgovIdGnrService;
+import org.egovframe.rte.fdl.string.EgovDateUtil;
 import org.egovframe.rte.ptl.mvc.tags.ui.pagination.PaginationInfo;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,6 +23,7 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.ui.ModelMap;
 
 import egovframework.com.test.EgovTestAbstractDAO;
+import god.core.cmm.service.impl.GodCoreCmmAbstractServiceImpl;
 import god.test.a.a.a.service.TestAaa002Service;
 import god.test.a.a.a.service.TestAaa002VO;
 import lombok.NoArgsConstructor;
@@ -93,7 +96,7 @@ public class TestAaa002ServiceImplTest extends EgovTestAbstractDAO {
 	/**
 	 * `ADMINIST_ZONE_CODE` varchar(10) NOT NULL COMMENT '행정구역코드',
 	 */
-	private String administZoneCode = "0000000001";
+	private String administZoneCode = "0000000003";
 
 	/**
 	 * 행정코드 등록 테스트
@@ -103,12 +106,39 @@ public class TestAaa002ServiceImplTest extends EgovTestAbstractDAO {
 		// given
 		final TestAaa002VO vo = new TestAaa002VO();
 		vo.setAdministZoneSe("1");
-		vo.setAdministZoneCode(administZoneCode);
+//		vo.setAdministZoneCode(administZoneCode);
+		vo.setAdministZoneCode(EgovDateUtil.toString(new Date(), "yyyyMMddHH", null));
 
 		setOpertSn(vo);
 
 		// when
 		final int result = service.insert(vo);
+
+		debugResult(result);
+
+		// then
+		assertEqualsInsert(result);
+	}
+
+	/**
+	 * 행정코드 등록 테스트
+	 */
+	@Test
+	public void a01insertModelMap() {
+		// given
+		final TestAaa002VO vo = new TestAaa002VO();
+		vo.setAdministZoneSe("1");
+//		vo.setAdministZoneCode(administZoneCode);
+		vo.setAdministZoneCode(EgovDateUtil.toString(new Date(), "yyyyMMddHH", null));
+
+		setOpertSn(vo);
+
+		final ModelMap model = new ModelMap();
+
+		// when
+		service.insert(vo, model);
+
+		final int result = (int) model.get(GodCoreCmmAbstractServiceImpl.MODEL_RESULT);
 
 		debugResult(result);
 

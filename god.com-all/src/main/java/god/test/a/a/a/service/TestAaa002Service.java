@@ -26,68 +26,20 @@ public interface TestAaa002Service extends GodCoreCmmService<TestAaa002VO, TestA
 	int insert2(TestAaa002VO vo);
 
 	/**
-	 * 조회(단건)
-	 * 
-	 * @param vo
-	 * @return result
-	 */
-	TestAaa002VO select2(TestAaa002VO vo);
-
-	/**
-	 * 조회(멀티건)
-	 * 
-	 * @param vo
-	 * @return resultList
-	 */
-	List<TestAaa002VO> select2List(TestAaa002VO vo);
-
-	/**
-	 * 수정
-	 * 
-	 * @param vo
-	 * @return result
-	 */
-	int update2(TestAaa002VO vo);
-
-	/**
-	 * 삭제
-	 * 
-	 * @param vo
-	 * @return result
-	 */
-	int delete2(TestAaa002VO vo);
-
-	/**
-	 * 등록/수정
-	 * 
-	 * @param vo
-	 * @return result
-	 */
-	int merge2(TestAaa002VO vo);
-
-	/**
-	 * 등록/수정/삭제
-	 * 
-	 * @param vo
-	 * @return result
-	 */
-	int multi2(TestAaa002VO vo);
-
-	/**
-	 * 조회(단건) 전체 건수
-	 * 
-	 * @param vo
-	 * @return totCnt
-	 */
-	int select2ListTotCnt(TestAaa002VO vo);
-
-	/**
 	 * 등록
 	 * 
 	 * @param vo
 	 * @param model
 	 */
 	void insert2(TestAaa002VO vo, ModelMap model);
+
+	/**
+	 * 조회(단건)
+	 * 
+	 * @param vo
+	 * @return result
+	 */
+	TestAaa002VO select2(TestAaa002VO vo);
 
 	/**
 	 * 조회(단건)
@@ -101,9 +53,25 @@ public interface TestAaa002Service extends GodCoreCmmService<TestAaa002VO, TestA
 	 * 조회(멀티건)
 	 * 
 	 * @param vo
+	 * @return resultList
+	 */
+	List<TestAaa002VO> select2List(TestAaa002VO vo);
+
+	/**
+	 * 조회(멀티건)
+	 * 
+	 * @param vo
 	 * @param model
 	 */
 	void select2List(TestAaa002VO vo, ModelMap model);
+
+	/**
+	 * 수정
+	 * 
+	 * @param vo
+	 * @return result
+	 */
+	int update2(TestAaa002VO vo);
 
 	/**
 	 * 수정
@@ -117,9 +85,25 @@ public interface TestAaa002Service extends GodCoreCmmService<TestAaa002VO, TestA
 	 * 삭제
 	 * 
 	 * @param vo
+	 * @return result
+	 */
+	int delete2(TestAaa002VO vo);
+
+	/**
+	 * 삭제
+	 * 
+	 * @param vo
 	 * @param model
 	 */
 	void delete2(TestAaa002VO vo, ModelMap model);
+
+	/**
+	 * 등록/수정
+	 * 
+	 * @param vo
+	 * @return result
+	 */
+	int merge2(TestAaa002VO vo);
 
 	/**
 	 * 등록/수정
@@ -133,8 +117,24 @@ public interface TestAaa002Service extends GodCoreCmmService<TestAaa002VO, TestA
 	 * 등록/수정/삭제
 	 * 
 	 * @param vo
+	 * @return result
+	 */
+	int multi2(TestAaa002VO vo);
+
+	/**
+	 * 등록/수정/삭제
+	 * 
+	 * @param vo
 	 * @param model
 	 */
 	void multi2(TestAaa002VO vo, ModelMap model);
+
+	/**
+	 * 조회(단건) 전체 건수
+	 * 
+	 * @param vo
+	 * @return totCnt
+	 */
+	int select2ListTotCnt(TestAaa002VO vo);
 
 }

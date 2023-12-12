@@ -41,7 +41,7 @@ public class GodCoreCmmAbstractDAO<T, R> extends EgovAbstractMapper implements G
 	 * 
 	 * @param namespace
 	 */
-	public void postConstruct(final String namespace) {
+	protected void postConstruct(final String namespace) {
 		this.namespace = namespace + ".";
 	}
 
@@ -50,7 +50,7 @@ public class GodCoreCmmAbstractDAO<T, R> extends EgovAbstractMapper implements G
 	 * 
 	 * @return
 	 */
-	public String getNamespace() {
+	protected String getNamespace() {
 		return namespace;
 	}
 

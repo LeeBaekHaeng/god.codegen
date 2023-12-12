@@ -1,5 +1,6 @@
 package god.core.cmm.service.impl;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 import javax.annotation.Resource;
@@ -10,6 +11,8 @@ import org.egovframe.rte.ptl.mvc.tags.ui.pagination.PaginationInfo;
 import org.springframework.ui.ModelMap;
 
 import egovframework.com.cmm.ComDefaultVO;
+import egovframework.com.cmm.LoginVO;
+import egovframework.com.cmm.util.EgovUserDetailsHelper;
 import god.core.cmm.service.GodCoreCmmService;
 import lombok.NoArgsConstructor;
 
@@ -52,7 +55,16 @@ public class GodCoreCmmAbstractServiceImpl<T, R> extends EgovAbstractServiceImpl
 
 	@Override
 	public int insert(final T vo) {
+		setFrstRegisterId((ComDefaultVO) vo);
 		return dao.insert(vo);
+	}
+
+	protected void setFrstRegisterId(final ComDefaultVO vo) {
+		LoginVO loginVO = (LoginVO) EgovUserDetailsHelper.getAuthenticatedUser();
+		vo.setFrstRegisterId(loginVO.getUniqId());
+		vo.setFrstRegistPnttm(LocalDateTime.now());
+		vo.setLastUpdusrId(loginVO.getUniqId());
+		vo.setLastUpdtPnttm(vo.getFrstRegistPnttm());
 	}
 
 	@Override
@@ -89,19 +101,19 @@ public class GodCoreCmmAbstractServiceImpl<T, R> extends EgovAbstractServiceImpl
 	/**
 	 * 페이징 전처리
 	 * 
-	 * @param comDefaultVO
+	 * @param vo
 	 */
-	protected void prePaginationInfo(final ComDefaultVO comDefaultVO, final PaginationInfo paginationInfo) {
-		comDefaultVO.setPageUnit(propertyService.getInt("pageUnit"));
-		comDefaultVO.setPageSize(propertyService.getInt("pageSize"));
+	protected void prePaginationInfo(final ComDefaultVO vo, final PaginationInfo paginationInfo) {
+		vo.setPageUnit(propertyService.getInt("pageUnit"));
+		vo.setPageSize(propertyService.getInt("pageSize"));
 
-		paginationInfo.setCurrentPageNo(comDefaultVO.getPageIndex());
-		paginationInfo.setRecordCountPerPage(comDefaultVO.getPageUnit());
-		paginationInfo.setPageSize(comDefaultVO.getPageSize());
+		paginationInfo.setCurrentPageNo(vo.getPageIndex());
+		paginationInfo.setRecordCountPerPage(vo.getPageUnit());
+		paginationInfo.setPageSize(vo.getPageSize());
 
-		comDefaultVO.setFirstIndex(paginationInfo.getFirstRecordIndex());
-		comDefaultVO.setLastIndex(paginationInfo.getLastRecordIndex());
-		comDefaultVO.setRecordCountPerPage(paginationInfo.getRecordCountPerPage());
+		vo.setFirstIndex(paginationInfo.getFirstRecordIndex());
+		vo.setLastIndex(paginationInfo.getLastRecordIndex());
+		vo.setRecordCountPerPage(paginationInfo.getRecordCountPerPage());
 	}
 
 	/**
