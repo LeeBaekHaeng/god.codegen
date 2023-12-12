@@ -10,6 +10,7 @@ import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import egovframework.com.cmm.LoginVO;
 import egovframework.com.cmm.util.EgovUserDetailsHelper;
+import god.core.cmm.service.GodCoreCmmController;
 import god.core.cmm.web.GodCoreCmmAbstractController;
 import god.test.a.a.a.service.TestAaa002Service;
 import god.test.a.a.a.service.TestAaa002VO;
@@ -26,7 +27,8 @@ import lombok.extern.slf4j.Slf4j;
 @Controller
 @RequiredArgsConstructor
 @Slf4j
-public class GodTestAaa002Controller extends GodCoreCmmAbstractController<TestAaa002VO, TestAaa002VO> {
+public class GodTestAaa002Controller extends GodCoreCmmAbstractController<TestAaa002VO, TestAaa002VO>
+		implements GodCoreCmmController<TestAaa002VO, TestAaa002VO> {
 
 	/**
 	 * 행정코드 Service
@@ -38,7 +40,7 @@ public class GodTestAaa002Controller extends GodCoreCmmAbstractController<TestAa
 	 */
 	@Override
 	@GetMapping("/do/test/insertTestAaa002.do")
-	public String insertView(@ModelAttribute("registVO") final TestAaa002VO vo, final ModelMap model) {
+	public String insert(@ModelAttribute("registVO") final TestAaa002VO vo, final ModelMap model) {
 		debugVO(vo);
 		return "god/test/a/a/a/TestAaa002Regist";
 	}
@@ -112,7 +114,7 @@ public class GodTestAaa002Controller extends GodCoreCmmAbstractController<TestAa
 	 */
 	@Override
 	@GetMapping("/do/test/updateTestAaa002.do")
-	public String updateView(@ModelAttribute("updtVO") final TestAaa002VO vo, final ModelMap model) {
+	public String update(@ModelAttribute("updtVO") final TestAaa002VO vo, final ModelMap model) {
 		debugVO(vo);
 		return "god/test/a/a/a/TestAaa002Updt";
 	}

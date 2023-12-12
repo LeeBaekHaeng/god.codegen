@@ -4,7 +4,7 @@ import java.util.List;
 
 import org.springframework.ui.ModelMap;
 
-import god.core.cmm.service.GodCoreCmmAbstractService;
+import god.core.cmm.service.GodCoreCmmService;
 
 /**
  * 행정코드 Service
@@ -15,7 +15,7 @@ import god.core.cmm.service.GodCoreCmmAbstractService;
  * @param <T>
  * @param <R>
  */
-public interface TestAaa002Service extends GodCoreCmmAbstractService<TestAaa002VO, TestAaa002VO> {
+public interface TestAaa002Service extends GodCoreCmmService<TestAaa002VO, TestAaa002VO> {
 
 	/**
 	 * 등록

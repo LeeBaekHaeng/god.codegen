@@ -10,7 +10,7 @@ import org.egovframe.rte.ptl.mvc.tags.ui.pagination.PaginationInfo;
 import org.springframework.ui.ModelMap;
 
 import egovframework.com.cmm.ComDefaultVO;
-import god.core.cmm.service.GodCoreCmmAbstractService;
+import god.core.cmm.service.GodCoreCmmService;
 import lombok.NoArgsConstructor;
 
 /**
@@ -23,8 +23,7 @@ import lombok.NoArgsConstructor;
  * @param <R>
  */
 @NoArgsConstructor
-public abstract class GodCoreCmmAbstractServiceImpl<T, R> extends EgovAbstractServiceImpl
-		implements GodCoreCmmAbstractService<T, R> {
+public class GodCoreCmmAbstractServiceImpl<T, R> extends EgovAbstractServiceImpl implements GodCoreCmmService<T, R> {
 
 	/**
 	 * Model Result
@@ -57,43 +56,13 @@ public abstract class GodCoreCmmAbstractServiceImpl<T, R> extends EgovAbstractSe
 	}
 
 	@Override
-	public R select(final T vo) {
-		return dao.select(vo);
-	}
-
-	@Override
-	public List<R> selectList(final T vo) {
-		return dao.selectList(vo);
-	}
-
-	@Override
-	public int update(final T vo) {
-		return dao.update(vo);
-	}
-
-	@Override
-	public int delete(final T vo) {
-		return dao.delete(vo);
-	}
-
-	@Override
-	public int merge(final T vo) {
-		return dao.merge(vo);
-	}
-
-	@Override
-	public int multi(final T vo) {
-		return dao.multi(vo);
-	}
-
-	@Override
-	public int selectListTotCnt(final T vo) {
-		return dao.selectListTotCnt(vo);
-	}
-
-	@Override
 	public void insert(final T vo, final ModelMap model) {
 		model.addAttribute(MODEL_RESULT, dao.insert(vo));
+	}
+
+	@Override
+	public R select(final T vo) {
+		return dao.select(vo);
 	}
 
 	@Override
@@ -102,15 +71,19 @@ public abstract class GodCoreCmmAbstractServiceImpl<T, R> extends EgovAbstractSe
 	}
 
 	@Override
+	public List<R> selectList(final T vo) {
+		return dao.selectList(vo);
+	}
+
+	@Override
 	public void selectList(final T vo, final ModelMap model) {
-		paginationInfoPre((ComDefaultVO) vo);
 		final PaginationInfo paginationInfo = new PaginationInfo();
-		paginationInfoPre2((ComDefaultVO) vo, paginationInfo);
+		prePaginationInfo((ComDefaultVO) vo, paginationInfo);
 
 		model.addAttribute("resultList", dao.selectList(vo));
+		model.addAttribute("resultListTotCnt", dao.selectListTotCnt(vo));
 
-		paginationInfo.setTotalRecordCount(dao.selectListTotCnt(vo));
-		model.addAttribute("paginationInfo", paginationInfo);
+		postPaginationInfo(model, paginationInfo);
 	}
 
 	/**
@@ -118,18 +91,10 @@ public abstract class GodCoreCmmAbstractServiceImpl<T, R> extends EgovAbstractSe
 	 * 
 	 * @param comDefaultVO
 	 */
-	protected void paginationInfoPre(final ComDefaultVO comDefaultVO) {
+	protected void prePaginationInfo(final ComDefaultVO comDefaultVO, final PaginationInfo paginationInfo) {
 		comDefaultVO.setPageUnit(propertyService.getInt("pageUnit"));
 		comDefaultVO.setPageSize(propertyService.getInt("pageSize"));
-	}
 
-	/**
-	 * 페이징 전처리
-	 * 
-	 * @param comDefaultVO
-	 * @param paginationInfo
-	 */
-	protected void paginationInfoPre2(final ComDefaultVO comDefaultVO, final PaginationInfo paginationInfo) {
 		paginationInfo.setCurrentPageNo(comDefaultVO.getPageIndex());
 		paginationInfo.setRecordCountPerPage(comDefaultVO.getPageUnit());
 		paginationInfo.setPageSize(comDefaultVO.getPageSize());
@@ -139,9 +104,30 @@ public abstract class GodCoreCmmAbstractServiceImpl<T, R> extends EgovAbstractSe
 		comDefaultVO.setRecordCountPerPage(paginationInfo.getRecordCountPerPage());
 	}
 
+	/**
+	 * 페이징 후처리
+	 * 
+	 * @param model
+	 * @param paginationInfo
+	 */
+	protected void postPaginationInfo(final ModelMap model, final PaginationInfo paginationInfo) {
+		paginationInfo.setTotalRecordCount((int) model.get("resultListTotCnt"));
+		model.addAttribute("paginationInfo", paginationInfo);
+	}
+
+	@Override
+	public int update(final T vo) {
+		return dao.update(vo);
+	}
+
 	@Override
 	public void update(final T vo, final ModelMap model) {
 		model.addAttribute(MODEL_RESULT, dao.update(vo));
+	}
+
+	@Override
+	public int delete(final T vo) {
+		return dao.delete(vo);
 	}
 
 	@Override
@@ -150,13 +136,28 @@ public abstract class GodCoreCmmAbstractServiceImpl<T, R> extends EgovAbstractSe
 	}
 
 	@Override
+	public int merge(final T vo) {
+		return dao.merge(vo);
+	}
+
+	@Override
 	public void merge(final T vo, final ModelMap model) {
 		model.addAttribute(MODEL_RESULT, dao.merge(vo));
 	}
 
 	@Override
+	public int multi(final T vo) {
+		return dao.multi(vo);
+	}
+
+	@Override
 	public void multi(final T vo, final ModelMap model) {
 		model.addAttribute(MODEL_RESULT, dao.multi(vo));
+	}
+
+	@Override
+	public int selectListTotCnt(final T vo) {
+		return dao.selectListTotCnt(vo);
 	}
 
 }
