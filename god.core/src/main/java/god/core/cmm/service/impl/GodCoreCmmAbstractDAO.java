@@ -41,7 +41,6 @@ public class GodCoreCmmAbstractDAO<T, R> extends EgovAbstractMapper implements G
 	 * 
 	 * @param namespace
 	 */
-//	@Override
 	public void postConstruct(final String namespace) {
 		this.namespace = namespace + ".";
 	}
@@ -51,7 +50,6 @@ public class GodCoreCmmAbstractDAO<T, R> extends EgovAbstractMapper implements G
 	 * 
 	 * @return
 	 */
-//	@Override
 	public String getNamespace() {
 		return namespace;
 	}
@@ -139,7 +137,6 @@ public class GodCoreCmmAbstractDAO<T, R> extends EgovAbstractMapper implements G
 	 * @param vo
 	 * @return totCnt
 	 */
-//	@Override
 	public int selectListTotCnt(final T vo) {
 		return selectOne(namespace + "selectListTotCnt", vo);
 	}

@@ -26,7 +26,7 @@ public class GodTestAaa002DAO extends GodCoreCmmAbstractDAO<TestAaa002VO, TestAa
 	 * 포스트 구성
 	 */
 	@PostConstruct
-	protected void postConstruct() {
+	public void postConstruct() {
 		super.postConstruct(GodTestAaa002DAO.class.getSimpleName());
 	}
 

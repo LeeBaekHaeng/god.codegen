@@ -5,12 +5,13 @@ import static org.junit.Assert.assertEquals;
 import java.time.LocalDateTime;
 import java.util.List;
 
+import javax.annotation.Resource;
+
 import org.egovframe.rte.fdl.cmmn.exception.BaseRuntimeException;
 import org.egovframe.rte.fdl.cmmn.exception.FdlException;
 import org.egovframe.rte.fdl.idgnr.EgovIdGnrService;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.ComponentScan.Filter;
 import org.springframework.context.annotation.Configuration;
@@ -81,8 +82,7 @@ public class GodTestAaa002DAOTest extends EgovTestAbstractDAO {
 	/**
 	 * egovAdministCodeRecptnIdGnrService
 	 */
-	@Autowired
-	@Qualifier("egovAdministCodeRecptnIdGnrService")
+	@Resource(name = "egovAdministCodeRecptnIdGnrService")
 	private EgovIdGnrService egovAdministCodeRecptnIdGnrService;
 
 	/**

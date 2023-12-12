@@ -22,8 +22,8 @@ public class TestAaa002DAO2 extends GodCoreCmmAbstractDAO<TestAaa002VO, TestAaa0
 	 * 포스트 구성
 	 */
 	@PostConstruct
-	private void postConstruct() {
-		super.postConstruct(GodTestAaa002DAO.class.getSimpleName());
+	public void postConstruct() {
+		super.postConstruct(TestAaa002DAO2.class.getSimpleName());
 	}
 
 	/**
@@ -32,7 +32,7 @@ public class TestAaa002DAO2 extends GodCoreCmmAbstractDAO<TestAaa002VO, TestAaa0
 	 * @return
 	 */
 	public int insert2(final TestAaa002VO vo) {
-		return insert(getNamespace() + "insert2", vo);
+		return insert(super.getNamespace() + "insert2", vo);
 	}
 
 	/**
@@ -41,7 +41,7 @@ public class TestAaa002DAO2 extends GodCoreCmmAbstractDAO<TestAaa002VO, TestAaa0
 	 * @return
 	 */
 	public TestAaa002VO select2(final TestAaa002VO vo) {
-		return selectOne(getNamespace() + "select2", vo);
+		return selectOne(super.getNamespace() + "select2", vo);
 	}
 
 	/**
@@ -50,7 +50,7 @@ public class TestAaa002DAO2 extends GodCoreCmmAbstractDAO<TestAaa002VO, TestAaa0
 	 * @return
 	 */
 	public List<TestAaa002VO> select2List(final TestAaa002VO vo) {
-		return selectList(getNamespace() + "select2List", vo);
+		return selectList(super.getNamespace() + "select2List", vo);
 	}
 
 	/**
@@ -59,7 +59,7 @@ public class TestAaa002DAO2 extends GodCoreCmmAbstractDAO<TestAaa002VO, TestAaa0
 	 * @return
 	 */
 	public int update2(final TestAaa002VO vo) {
-		return insert(getNamespace() + "update2", vo);
+		return insert(super.getNamespace() + "update2", vo);
 	}
 
 	/**
@@ -68,7 +68,7 @@ public class TestAaa002DAO2 extends GodCoreCmmAbstractDAO<TestAaa002VO, TestAaa0
 	 * @return
 	 */
 	public int delete2(final TestAaa002VO vo) {
-		return insert(getNamespace() + "delete2", vo);
+		return insert(super.getNamespace() + "delete2", vo);
 	}
 
 	/**
@@ -77,7 +77,7 @@ public class TestAaa002DAO2 extends GodCoreCmmAbstractDAO<TestAaa002VO, TestAaa0
 	 * @return
 	 */
 	public int merge2(final TestAaa002VO vo) {
-		return insert(getNamespace() + "merge2", vo);
+		return insert(super.getNamespace() + "merge2", vo);
 	}
 
 	/**
@@ -86,7 +86,7 @@ public class TestAaa002DAO2 extends GodCoreCmmAbstractDAO<TestAaa002VO, TestAaa0
 	 * @return
 	 */
 	public int multi2(final TestAaa002VO vo) {
-		return insert(getNamespace() + "multi2", vo);
+		return insert(super.getNamespace() + "multi2", vo);
 	}
 
 	/**
@@ -95,7 +95,7 @@ public class TestAaa002DAO2 extends GodCoreCmmAbstractDAO<TestAaa002VO, TestAaa0
 	 * @return
 	 */
 	public int select2ListTotCnt(final TestAaa002VO vo) {
-		return selectOne(getNamespace() + "select2ListTotCnt", vo);
+		return selectOne(super.getNamespace() + "select2ListTotCnt", vo);
 	}
 
 }
