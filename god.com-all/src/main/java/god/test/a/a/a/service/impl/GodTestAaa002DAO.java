@@ -20,14 +20,14 @@ import lombok.extern.slf4j.Slf4j;
 @Repository
 @NoArgsConstructor
 @Slf4j
-public class TestAaa002DAO extends GodCoreCmmAbstractDAO<TestAaa002VO, TestAaa002VO> {
+public class GodTestAaa002DAO extends GodCoreCmmAbstractDAO<TestAaa002VO, TestAaa002VO> {
 
 	/**
 	 * 포스트 구성
 	 */
 	@PostConstruct
 	protected void postConstruct() {
-		super.postConstruct(TestAaa002DAO.class.getSimpleName());
+		super.postConstruct(GodTestAaa002DAO.class.getSimpleName());
 	}
 
 	/**
@@ -42,6 +42,7 @@ public class TestAaa002DAO extends GodCoreCmmAbstractDAO<TestAaa002VO, TestAaa00
 			log.debug("vo", vo);
 		}
 		return super.insert(vo);
+//		return insert(super.getNamespace() + "insert", vo);
 	}
 
 	/**

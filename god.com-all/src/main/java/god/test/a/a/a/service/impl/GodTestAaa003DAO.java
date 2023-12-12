@@ -18,6 +18,15 @@ import god.test.a.a.a.service.GodTestAaa003VO;
 @Repository
 public class GodTestAaa003DAO extends EgovComAbstractDAO implements GodCoreCmmDAO<GodTestAaa003VO, GodTestAaa003VO> {
 
+//	@Override
+	public void postConstruct(String namespace) {
+	}
+
+//	@Override
+	public String getNamespace() {
+		return null;
+	}
+
 	@Override
 	public int insert(GodTestAaa003VO vo) {
 		return insert("GodTestAaa003DAO.insert", vo);
@@ -63,7 +72,7 @@ public class GodTestAaa003DAO extends EgovComAbstractDAO implements GodCoreCmmDA
 		return insert("GodTestAaa003DAO.multi", vo);
 	}
 
-	@Override
+//	@Override
 	public int selectListTotCnt(GodTestAaa003VO vo) {
 		return selectOne("GodTestAaa003DAO.selectListTotCnt", vo);
 	}

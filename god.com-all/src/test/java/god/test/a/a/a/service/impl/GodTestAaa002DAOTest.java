@@ -30,7 +30,7 @@ import lombok.extern.slf4j.Slf4j;
  * @since 2023-11-19
  *
  */
-@ContextConfiguration(classes = { TestAaa002DAOTest.class, EgovTestAbstractDAO.class, })
+@ContextConfiguration(classes = { GodTestAaa002DAOTest.class, EgovTestAbstractDAO.class, })
 
 @Configuration
 
@@ -58,7 +58,7 @@ import lombok.extern.slf4j.Slf4j;
 
 						classes = {
 
-								TestAaa002DAO.class,
+								GodTestAaa002DAO.class,
 
 						}
 
@@ -70,13 +70,13 @@ import lombok.extern.slf4j.Slf4j;
 
 @NoArgsConstructor
 @Slf4j
-public class TestAaa002DAOTest extends EgovTestAbstractDAO {
+public class GodTestAaa002DAOTest extends EgovTestAbstractDAO {
 
 	/**
 	 * 행정코드 DAO
 	 */
 	@Autowired
-	private TestAaa002DAO dao;
+	private GodTestAaa002DAO dao;
 
 	/**
 	 * egovAdministCodeRecptnIdGnrService

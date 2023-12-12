@@ -63,7 +63,7 @@ import lombok.extern.slf4j.Slf4j;
 
 								TestAaa002ServiceImpl.class,
 
-								TestAaa002DAO.class,
+								GodTestAaa002DAO.class,
 
 						}
 

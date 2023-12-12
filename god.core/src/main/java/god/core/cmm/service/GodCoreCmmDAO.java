@@ -13,6 +13,20 @@ import java.util.List;
  */
 public interface GodCoreCmmDAO<T, R> {
 
+//	/**
+//	 * 네임스페이스 값설정
+//	 * 
+//	 * @param namespace
+//	 */
+//	void postConstruct(String namespace);
+//
+//	/**
+//	 * 네임스페이스 값읽기
+//	 * 
+//	 * @return
+//	 */
+//	String getNamespace();
+
 	/**
 	 * 등록
 	 * 
@@ -69,12 +83,12 @@ public interface GodCoreCmmDAO<T, R> {
 	 */
 	int multi(T vo);
 
-	/**
-	 * 조회(단건) 전체 건수
-	 * 
-	 * @param vo
-	 * @return totCnt
-	 */
-	int selectListTotCnt(final T vo);
+//	/**
+//	 * 조회(단건) 전체 건수
+//	 * 
+//	 * @param vo
+//	 * @return totCnt
+//	 */
+//	int selectListTotCnt(T vo);
 
 }

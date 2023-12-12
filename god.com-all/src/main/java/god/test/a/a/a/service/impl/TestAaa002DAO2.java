@@ -23,7 +23,7 @@ public class TestAaa002DAO2 extends GodCoreCmmAbstractDAO<TestAaa002VO, TestAaa0
 	 */
 	@PostConstruct
 	private void postConstruct() {
-		super.postConstruct(TestAaa002DAO.class.getSimpleName());
+		super.postConstruct(GodTestAaa002DAO.class.getSimpleName());
 	}
 
 	/**

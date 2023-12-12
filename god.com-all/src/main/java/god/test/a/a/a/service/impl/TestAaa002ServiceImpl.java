@@ -28,7 +28,7 @@ public class TestAaa002ServiceImpl extends GodCoreCmmAbstractServiceImpl<TestAaa
 	/**
 	 * 행정코드 DAO
 	 */
-	private final TestAaa002DAO dao;
+	private final GodTestAaa002DAO dao;
 
 	/**
 	 * 포스트 구성

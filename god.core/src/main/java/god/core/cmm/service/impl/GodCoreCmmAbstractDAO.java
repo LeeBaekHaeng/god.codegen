@@ -2,11 +2,12 @@ package god.core.cmm.service.impl;
 
 import java.util.List;
 
+import javax.annotation.Resource;
+
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.egovframe.rte.psl.dataaccess.EgovAbstractMapper;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
 
+import god.core.cmm.service.GodCoreCmmDAO;
 import lombok.NoArgsConstructor;
 
 /**
@@ -19,7 +20,7 @@ import lombok.NoArgsConstructor;
  * @param <R>
  */
 @NoArgsConstructor
-public abstract class GodCoreCmmAbstractDAO<T, R> extends EgovAbstractMapper {
+public class GodCoreCmmAbstractDAO<T, R> extends EgovAbstractMapper implements GodCoreCmmDAO<T, R> {
 
 	/**
 	 * 네임스페이스
@@ -29,9 +30,8 @@ public abstract class GodCoreCmmAbstractDAO<T, R> extends EgovAbstractMapper {
 	/**
 	 * egov.sqlSession
 	 */
-	@Autowired
-	@Qualifier("egov.sqlSession")
 	@Override
+	@Resource(name = "egov.sqlSession")
 	public void setSqlSessionFactory(final SqlSessionFactory sqlSession) {
 		super.setSqlSessionFactory(sqlSession);
 	}
@@ -41,7 +41,8 @@ public abstract class GodCoreCmmAbstractDAO<T, R> extends EgovAbstractMapper {
 	 * 
 	 * @param namespace
 	 */
-	protected void postConstruct(final String namespace) {
+//	@Override
+	public void postConstruct(final String namespace) {
 		this.namespace = namespace + ".";
 	}
 
@@ -50,6 +51,7 @@ public abstract class GodCoreCmmAbstractDAO<T, R> extends EgovAbstractMapper {
 	 * 
 	 * @return
 	 */
+//	@Override
 	public String getNamespace() {
 		return namespace;
 	}
@@ -60,6 +62,7 @@ public abstract class GodCoreCmmAbstractDAO<T, R> extends EgovAbstractMapper {
 	 * @param vo
 	 * @return result
 	 */
+	@Override
 	public int insert(final T vo) {
 		return insert(namespace + "insert", vo);
 	}
@@ -70,6 +73,7 @@ public abstract class GodCoreCmmAbstractDAO<T, R> extends EgovAbstractMapper {
 	 * @param vo
 	 * @return result
 	 */
+	@Override
 	public R select(final T vo) {
 		return selectOne(namespace + "select", vo);
 	}
@@ -80,6 +84,7 @@ public abstract class GodCoreCmmAbstractDAO<T, R> extends EgovAbstractMapper {
 	 * @param vo
 	 * @return resultList
 	 */
+	@Override
 	public List<R> selectList(final T vo) {
 		return selectList(namespace + "selectList", vo);
 	}
@@ -90,6 +95,7 @@ public abstract class GodCoreCmmAbstractDAO<T, R> extends EgovAbstractMapper {
 	 * @param vo
 	 * @return result
 	 */
+	@Override
 	public int update(final T vo) {
 		return update(namespace + "update", vo);
 	}
@@ -100,6 +106,7 @@ public abstract class GodCoreCmmAbstractDAO<T, R> extends EgovAbstractMapper {
 	 * @param vo
 	 * @return result
 	 */
+	@Override
 	public int delete(final T vo) {
 		return delete(namespace + "delete", vo);
 	}
@@ -110,6 +117,7 @@ public abstract class GodCoreCmmAbstractDAO<T, R> extends EgovAbstractMapper {
 	 * @param vo
 	 * @return result
 	 */
+	@Override
 	public int merge(final T vo) {
 		return insert(namespace + "merge", vo);
 	}
@@ -120,6 +128,7 @@ public abstract class GodCoreCmmAbstractDAO<T, R> extends EgovAbstractMapper {
 	 * @param vo
 	 * @return result
 	 */
+	@Override
 	public int multi(final T vo) {
 		return insert(namespace + "multi", vo);
 	}
@@ -130,6 +139,7 @@ public abstract class GodCoreCmmAbstractDAO<T, R> extends EgovAbstractMapper {
 	 * @param vo
 	 * @return totCnt
 	 */
+//	@Override
 	public int selectListTotCnt(final T vo) {
 		return selectOne(namespace + "selectListTotCnt", vo);
 	}
