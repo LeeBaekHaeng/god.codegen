@@ -31,6 +31,16 @@ public class GodTestAaa002Controller extends GodCoreCmmAbstractController<TestAa
 		implements GodCoreCmmController<TestAaa002VO, TestAaa002VO> {
 
 	/**
+	 * 등록 화면
+	 */
+	private static final String RETURN_REGIST = "god/test/a/a/a/TestAaa002Regist";
+
+	/**
+	 * 수정 화면
+	 */
+	private static final String RETURN_UPDT = "god/test/a/a/a/TestAaa002Updt";
+
+	/**
 	 * 행정코드 Service
 	 */
 	private final TestAaa002Service service;
@@ -42,7 +52,8 @@ public class GodTestAaa002Controller extends GodCoreCmmAbstractController<TestAa
 	@GetMapping("/do/test/insertTestAaa002.do")
 	public String insert(@ModelAttribute("registVO") final TestAaa002VO vo, final ModelMap model) {
 		debugVO(vo);
-		return "god/test/a/a/a/TestAaa002Regist";
+		service.insert(vo, model);
+		return RETURN_REGIST;
 	}
 
 	/**
@@ -56,7 +67,7 @@ public class GodTestAaa002Controller extends GodCoreCmmAbstractController<TestAa
 
 		beanValidator.validate(vo, bindingResult);
 		if (bindingResult.hasErrors()) {
-			return "god/test/a/a/a/TestAaa002Regist";
+			return RETURN_REGIST;
 		}
 
 		service.insert(vo, model);
@@ -102,9 +113,13 @@ public class GodTestAaa002Controller extends GodCoreCmmAbstractController<TestAa
 		final LoginVO loginVO3 = (LoginVO) org.egovframe.rte.fdl.security.userdetails.util.EgovUserDetailsHelper
 				.getAuthenticatedUser();
 
-		if (log.isDebugEnabled()) {
-			log.debug("getName={}", loginVO.getName());
+		log.debug("getName={}", loginVO.getName());
+
+		if (loginVO3 != null) {
 			log.debug("getName={}", loginVO2.getName());
+		}
+
+		if (loginVO3 != null) {
 			log.debug("getName={}", loginVO3.getName());
 		}
 	}
@@ -116,7 +131,7 @@ public class GodTestAaa002Controller extends GodCoreCmmAbstractController<TestAa
 	@GetMapping("/do/test/updateTestAaa002.do")
 	public String update(@ModelAttribute("updtVO") final TestAaa002VO vo, final ModelMap model) {
 		debugVO(vo);
-		return "god/test/a/a/a/TestAaa002Updt";
+		return RETURN_UPDT;
 	}
 
 	/**
@@ -130,7 +145,7 @@ public class GodTestAaa002Controller extends GodCoreCmmAbstractController<TestAa
 
 		beanValidator.validate(vo, bindingResult);
 		if (bindingResult.hasErrors()) {
-			return "god/test/a/a/a/TestAaa002Updt";
+			return RETURN_UPDT;
 		}
 
 		service.update(vo, model);
@@ -148,7 +163,7 @@ public class GodTestAaa002Controller extends GodCoreCmmAbstractController<TestAa
 
 		beanValidator.validate(vo, bindingResult);
 		if (bindingResult.hasErrors()) {
-			return "god/test/a/a/a/TestAaa002Updt";
+			return RETURN_UPDT;
 		}
 
 		service.delete(vo, model);
@@ -166,11 +181,11 @@ public class GodTestAaa002Controller extends GodCoreCmmAbstractController<TestAa
 
 		beanValidator.validate(vo, bindingResult);
 		if (bindingResult.hasErrors()) {
-			String merge = multiRequest.getParameter("merge");
+			final String merge = multiRequest.getParameter("merge");
 			if ("update".equals(merge)) {
-				return "god/test/a/a/a/TestAaa002Updt";
+				return RETURN_UPDT;
 			} else {
-				return "god/test/a/a/a/TestAaa002Regist";
+				return RETURN_REGIST;
 			}
 		}
 
@@ -189,11 +204,11 @@ public class GodTestAaa002Controller extends GodCoreCmmAbstractController<TestAa
 
 		beanValidator.validate(vo, bindingResult);
 		if (bindingResult.hasErrors()) {
-			String multi = multiRequest.getParameter("multi");
+			final String multi = multiRequest.getParameter("multi");
 			if ("update".equals(multi) || "delete".equals(multi)) {
-				return "god/test/a/a/a/TestAaa002Updt";
+				return RETURN_UPDT;
 			} else {
-				return "god/test/a/a/a/TestAaa002Regist";
+				return RETURN_REGIST;
 			}
 		}
 

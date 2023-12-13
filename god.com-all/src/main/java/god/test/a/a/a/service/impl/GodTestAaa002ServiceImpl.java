@@ -1,17 +1,23 @@
 package god.test.a.a.a.service.impl;
 
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.annotation.PostConstruct;
 
 import org.springframework.stereotype.Service;
 import org.springframework.ui.ModelMap;
+import org.springframework.validation.BindingResult;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
 
+import egovframework.com.cmm.ComDefaultCodeVO;
+import egovframework.com.cmm.service.CmmnDetailCode;
 import god.core.cmm.service.impl.GodCoreCmmAbstractServiceImpl;
 import god.test.a.a.a.service.TestAaa002Service;
 import god.test.a.a.a.service.TestAaa002VO;
 import lombok.RequiredArgsConstructor;
-import lombok.extern.slf4j.Slf4j;
 
 /**
  * 행정코드 ServiceImpl
@@ -21,8 +27,7 @@ import lombok.extern.slf4j.Slf4j;
  */
 @Service
 @RequiredArgsConstructor
-@Slf4j
-public class TestAaa002ServiceImpl extends GodCoreCmmAbstractServiceImpl<TestAaa002VO, TestAaa002VO>
+public class GodTestAaa002ServiceImpl extends GodCoreCmmAbstractServiceImpl<TestAaa002VO, TestAaa002VO>
 		implements TestAaa002Service {
 
 	/**
@@ -40,7 +45,7 @@ public class TestAaa002ServiceImpl extends GodCoreCmmAbstractServiceImpl<TestAaa
 
 	@Override
 	public int insert(final TestAaa002VO vo) {
-		log.debug("vo={}", vo);
+		debugVO(vo);
 //		return super.insert(vo);
 
 		setFrstRegisterId(vo);
@@ -50,9 +55,42 @@ public class TestAaa002ServiceImpl extends GodCoreCmmAbstractServiceImpl<TestAaa
 
 	@Override
 	public void insert(final TestAaa002VO vo, final ModelMap model) {
-		log.debug("vo={}", vo);
-//		super.insert(vo, model);
+		// selectCmmCodeDetail
+		final Map<String, List<CmmnDetailCode>> cmmCodeDetailMap = new HashMap<>();
+		ComDefaultCodeVO comDefaultCodeVO = new ComDefaultCodeVO();
+		comDefaultCodeVO.setCodeId("COM001");
+		List<CmmnDetailCode> cmmCodeDetail = egovCmmUseService.selectCmmCodeDetail(comDefaultCodeVO);
+		cmmCodeDetailMap.put(comDefaultCodeVO.getCodeId(), cmmCodeDetail);
 
+		comDefaultCodeVO = new ComDefaultCodeVO();
+		comDefaultCodeVO.setCodeId("COM002");
+		cmmCodeDetail = egovCmmUseService.selectCmmCodeDetail(comDefaultCodeVO);
+		cmmCodeDetailMap.put(comDefaultCodeVO.getCodeId(), cmmCodeDetail);
+
+		model.addAttribute("cmmCodeDetail", cmmCodeDetailMap);
+
+		// selectCmmCodeDetails
+		final List<ComDefaultCodeVO> voList = new ArrayList<>();
+		comDefaultCodeVO = new ComDefaultCodeVO();
+		comDefaultCodeVO.setCodeId("COM003");
+		voList.add(comDefaultCodeVO);
+
+		comDefaultCodeVO = new ComDefaultCodeVO();
+		comDefaultCodeVO.setCodeId("COM005");
+		voList.add(comDefaultCodeVO);
+
+		comDefaultCodeVO = new ComDefaultCodeVO();
+		comDefaultCodeVO.setCodeId("COM006");
+		voList.add(comDefaultCodeVO);
+
+		final Map<String, List<CmmnDetailCode>> cmmCodeDetails = egovCmmUseService.selectCmmCodeDetails(voList);
+
+		model.addAttribute("cmmCodeDetails", cmmCodeDetails);
+	}
+
+	@Override
+	public void insert(final TestAaa002VO vo, final BindingResult bindingResult,
+			final MultipartHttpServletRequest multiRequest, final ModelMap model) {
 		setFrstRegisterId(vo);
 
 		model.addAttribute(MODEL_RESULT, dao.insert(vo));
@@ -60,79 +98,79 @@ public class TestAaa002ServiceImpl extends GodCoreCmmAbstractServiceImpl<TestAaa
 
 	@Override
 	public TestAaa002VO select(final TestAaa002VO vo) {
-		log.debug("vo={}", vo);
+		debugVO(vo);
 		return super.select(vo);
 	}
 
 	@Override
 	public void select(final TestAaa002VO vo, final ModelMap model) {
-		log.debug("vo={}", vo);
+		debugVO(vo);
 		super.select(vo, model);
 	}
 
 	@Override
 	public List<TestAaa002VO> selectList(final TestAaa002VO vo) {
-		log.debug("vo={}", vo);
+		debugVO(vo);
 		return super.selectList(vo);
 	}
 
 	@Override
 	public void selectList(final TestAaa002VO vo, final ModelMap model) {
-		log.debug("vo={}", vo);
+		debugVO(vo);
 		super.selectList(vo, model);
 	}
 
 	@Override
 	public int update(final TestAaa002VO vo) {
-		log.debug("vo={}", vo);
+		debugVO(vo);
 		return super.update(vo);
 	}
 
 	@Override
 	public void update(final TestAaa002VO vo, final ModelMap model) {
-		log.debug("vo={}", vo);
+		debugVO(vo);
 		super.update(vo, model);
 	}
 
 	@Override
 	public int delete(final TestAaa002VO vo) {
-		log.debug("vo={}", vo);
+		debugVO(vo);
 		return super.delete(vo);
 	}
 
 	@Override
 	public void delete(final TestAaa002VO vo, final ModelMap model) {
-		log.debug("vo={}", vo);
+		debugVO(vo);
 		super.delete(vo, model);
 	}
 
 	@Override
 	public int merge(final TestAaa002VO vo) {
-		log.debug("vo={}", vo);
+		debugVO(vo);
 		return super.merge(vo);
 	}
 
 	@Override
 	public void merge(final TestAaa002VO vo, final ModelMap model) {
-		log.debug("vo={}", vo);
+		debugVO(vo);
 		super.merge(vo, model);
 	}
 
 	@Override
 	public int multi(final TestAaa002VO vo) {
-		log.debug("vo={}", vo);
+		debugVO(vo);
 		return super.multi(vo);
 	}
 
 	@Override
 	public void multi(final TestAaa002VO vo, final ModelMap model) {
-		log.debug("vo={}", vo);
+		debugVO(vo);
 		super.multi(vo, model);
 	}
 
 	@Override
 	public int selectListTotCnt(final TestAaa002VO vo) {
-		log.debug("vo={}", vo);
+		debugVO(vo);
 		return super.selectListTotCnt(vo);
 	}
 
@@ -143,7 +181,7 @@ public class TestAaa002ServiceImpl extends GodCoreCmmAbstractServiceImpl<TestAaa
 
 	@Override
 	public void insert2(final TestAaa002VO vo, final ModelMap model) {
-		model.addAttribute("result", dao.insert2(vo));
+		model.addAttribute(MODEL_RESULT, dao.insert2(vo));
 	}
 
 	@Override
@@ -153,7 +191,7 @@ public class TestAaa002ServiceImpl extends GodCoreCmmAbstractServiceImpl<TestAaa
 
 	@Override
 	public void select2(final TestAaa002VO vo, final ModelMap model) {
-		model.addAttribute("result", dao.select2(vo));
+		model.addAttribute(MODEL_RESULT, dao.select2(vo));
 	}
 
 	@Override
@@ -173,7 +211,7 @@ public class TestAaa002ServiceImpl extends GodCoreCmmAbstractServiceImpl<TestAaa
 
 	@Override
 	public void update2(final TestAaa002VO vo, final ModelMap model) {
-		model.addAttribute("result", dao.update2(vo));
+		model.addAttribute(MODEL_RESULT, dao.update2(vo));
 	}
 
 	@Override
@@ -183,7 +221,7 @@ public class TestAaa002ServiceImpl extends GodCoreCmmAbstractServiceImpl<TestAaa
 
 	@Override
 	public void delete2(final TestAaa002VO vo, final ModelMap model) {
-		model.addAttribute("result", dao.delete2(vo));
+		model.addAttribute(MODEL_RESULT, dao.delete2(vo));
 	}
 
 	@Override
@@ -193,7 +231,7 @@ public class TestAaa002ServiceImpl extends GodCoreCmmAbstractServiceImpl<TestAaa
 
 	@Override
 	public void merge2(final TestAaa002VO vo, final ModelMap model) {
-		model.addAttribute("result", dao.merge2(vo));
+		model.addAttribute(MODEL_RESULT, dao.merge2(vo));
 	}
 
 	@Override
@@ -203,7 +241,7 @@ public class TestAaa002ServiceImpl extends GodCoreCmmAbstractServiceImpl<TestAaa
 
 	@Override
 	public void multi2(final TestAaa002VO vo, final ModelMap model) {
-		model.addAttribute("result", dao.multi2(vo));
+		model.addAttribute(MODEL_RESULT, dao.multi2(vo));
 	}
 
 	@Override

@@ -3,6 +3,8 @@ package god.core.cmm.service;
 import java.util.List;
 
 import org.springframework.ui.ModelMap;
+import org.springframework.validation.BindingResult;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 /**
  * data 처리관련(Service 공통)
@@ -24,12 +26,22 @@ public interface GodCoreCmmService<T, R> {
 	int insert(T vo);
 
 	/**
-	 * 등록
+	 * 등록 화면
 	 * 
 	 * @param vo
 	 * @param model
 	 */
 	void insert(T vo, ModelMap model);
+
+	/**
+	 * 등록
+	 * 
+	 * @param vo
+	 * @param bindingResult
+	 * @param multiRequest
+	 * @param model
+	 */
+	void insert(T vo, BindingResult bindingResult, MultipartHttpServletRequest multiRequest, ModelMap model);
 
 	/**
 	 * 조회(단건)
@@ -133,6 +145,6 @@ public interface GodCoreCmmService<T, R> {
 	 * @param vo
 	 * @return totCnt
 	 */
-	int selectListTotCnt(final T vo);
+	int selectListTotCnt(T vo);
 
 }

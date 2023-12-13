@@ -39,7 +39,7 @@ public class GodTestAaa002DAO extends GodCoreCmmAbstractDAO<TestAaa002VO, TestAa
 	@Override
 	public int insert(final TestAaa002VO vo) {
 		if (log.isDebugEnabled()) {
-			log.debug("vo", vo);
+			log.debug("vo={}", vo);
 		}
 		return super.insert(vo);
 //		return insert(super.getNamespace() + "insert", vo);
@@ -54,7 +54,7 @@ public class GodTestAaa002DAO extends GodCoreCmmAbstractDAO<TestAaa002VO, TestAa
 	@Override
 	public TestAaa002VO select(final TestAaa002VO vo) {
 		if (log.isDebugEnabled()) {
-			log.debug("vo", vo);
+			log.debug("vo={}", vo);
 		}
 		return super.select(vo);
 	}
@@ -68,7 +68,7 @@ public class GodTestAaa002DAO extends GodCoreCmmAbstractDAO<TestAaa002VO, TestAa
 	@Override
 	public List<TestAaa002VO> selectList(final TestAaa002VO vo) {
 		if (log.isDebugEnabled()) {
-			log.debug("vo", vo);
+			log.debug("vo={}", vo);
 		}
 		return super.selectList(vo);
 	}
@@ -82,7 +82,7 @@ public class GodTestAaa002DAO extends GodCoreCmmAbstractDAO<TestAaa002VO, TestAa
 	@Override
 	public int update(final TestAaa002VO vo) {
 		if (log.isDebugEnabled()) {
-			log.debug("vo", vo);
+			log.debug("vo={}", vo);
 		}
 		return super.update(vo);
 	}
@@ -96,7 +96,7 @@ public class GodTestAaa002DAO extends GodCoreCmmAbstractDAO<TestAaa002VO, TestAa
 	@Override
 	public int delete(final TestAaa002VO vo) {
 		if (log.isDebugEnabled()) {
-			log.debug("vo", vo);
+			log.debug("vo={}", vo);
 		}
 		return super.delete(vo);
 	}
@@ -110,7 +110,7 @@ public class GodTestAaa002DAO extends GodCoreCmmAbstractDAO<TestAaa002VO, TestAa
 	@Override
 	public int merge(final TestAaa002VO vo) {
 		if (log.isDebugEnabled()) {
-			log.debug("vo", vo);
+			log.debug("vo={}", vo);
 		}
 		return super.merge(vo);
 	}
@@ -124,7 +124,7 @@ public class GodTestAaa002DAO extends GodCoreCmmAbstractDAO<TestAaa002VO, TestAa
 	@Override
 	public int multi(final TestAaa002VO vo) {
 		if (log.isDebugEnabled()) {
-			log.debug("vo", vo);
+			log.debug("vo={}", vo);
 		}
 		return super.multi(vo);
 	}
@@ -138,7 +138,7 @@ public class GodTestAaa002DAO extends GodCoreCmmAbstractDAO<TestAaa002VO, TestAa
 	@Override
 	public int selectListTotCnt(final TestAaa002VO vo) {
 		if (log.isDebugEnabled()) {
-			log.debug("vo", vo);
+			log.debug("vo={}", vo);
 		}
 		return super.selectListTotCnt(vo);
 	}

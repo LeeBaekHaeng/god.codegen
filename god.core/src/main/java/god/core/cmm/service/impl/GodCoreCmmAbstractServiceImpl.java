@@ -9,12 +9,16 @@ import org.egovframe.rte.fdl.cmmn.EgovAbstractServiceImpl;
 import org.egovframe.rte.fdl.property.EgovPropertyService;
 import org.egovframe.rte.ptl.mvc.tags.ui.pagination.PaginationInfo;
 import org.springframework.ui.ModelMap;
+import org.springframework.validation.BindingResult;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import egovframework.com.cmm.ComDefaultVO;
 import egovframework.com.cmm.LoginVO;
+import egovframework.com.cmm.service.EgovCmmUseService;
 import egovframework.com.cmm.util.EgovUserDetailsHelper;
 import god.core.cmm.service.GodCoreCmmService;
 import lombok.NoArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 
 /**
  * data 처리관련(ServiceImpl 공통)
@@ -26,6 +30,7 @@ import lombok.NoArgsConstructor;
  * @param <R>
  */
 @NoArgsConstructor
+@Slf4j
 public class GodCoreCmmAbstractServiceImpl<T, R> extends EgovAbstractServiceImpl implements GodCoreCmmService<T, R> {
 
 	/**
@@ -38,6 +43,12 @@ public class GodCoreCmmAbstractServiceImpl<T, R> extends EgovAbstractServiceImpl
 	 */
 	@Resource(name = "propertiesService")
 	protected EgovPropertyService propertyService;
+
+	/**
+	 * 공통코드등 전체 업무에서 공용해서 사용해야 하는 서비스를 정의하기 위한 서비스 인터페이스
+	 */
+	@Resource
+	protected EgovCmmUseService egovCmmUseService;
 
 	/**
 	 * data 처리관련(DAO 공통)
@@ -59,16 +70,29 @@ public class GodCoreCmmAbstractServiceImpl<T, R> extends EgovAbstractServiceImpl
 		return dao.insert(vo);
 	}
 
+	/**
+	 * 최초등록시점, 최초등록자ID, 최종수정시점, 최종수정자ID 값설정
+	 * 
+	 * @param vo
+	 */
 	protected void setFrstRegisterId(final ComDefaultVO vo) {
-		LoginVO loginVO = (LoginVO) EgovUserDetailsHelper.getAuthenticatedUser();
-		vo.setFrstRegisterId(loginVO.getUniqId());
-		vo.setFrstRegistPnttm(LocalDateTime.now());
-		vo.setLastUpdusrId(loginVO.getUniqId());
-		vo.setLastUpdtPnttm(vo.getFrstRegistPnttm());
+		final LoginVO loginVO = (LoginVO) EgovUserDetailsHelper.getAuthenticatedUser();
+		if (loginVO != null) {
+			vo.setFrstRegisterId(loginVO.getUniqId());
+			vo.setFrstRegistPnttm(LocalDateTime.now());
+			vo.setLastUpdusrId(loginVO.getUniqId());
+			vo.setLastUpdtPnttm(vo.getFrstRegistPnttm());
+		}
 	}
 
 	@Override
 	public void insert(final T vo, final ModelMap model) {
+		log.debug("vo={}", vo);
+	}
+
+	@Override
+	public void insert(final T vo, final BindingResult bindingResult, final MultipartHttpServletRequest multiRequest,
+			final ModelMap model) {
 		model.addAttribute(MODEL_RESULT, dao.insert(vo));
 	}
 
@@ -170,6 +194,15 @@ public class GodCoreCmmAbstractServiceImpl<T, R> extends EgovAbstractServiceImpl
 	@Override
 	public int selectListTotCnt(final T vo) {
 		return dao.selectListTotCnt(vo);
+	}
+
+	/**
+	 * Debug VO
+	 * 
+	 * @param vo
+	 */
+	protected void debugVO(final T vo) {
+		log.debug("vo={}", vo);
 	}
 
 }
