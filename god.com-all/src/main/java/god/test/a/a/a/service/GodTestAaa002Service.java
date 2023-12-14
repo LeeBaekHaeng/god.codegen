@@ -15,7 +15,7 @@ import god.core.cmm.service.GodCoreCmmService;
  * @param <T>
  * @param <R>
  */
-public interface TestAaa002Service extends GodCoreCmmService<TestAaa002VO, TestAaa002VO> {
+public interface GodTestAaa002Service extends GodCoreCmmService<TestAaa002VO, TestAaa002VO> {
 
 	/**
 	 * 등록

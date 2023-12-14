@@ -12,7 +12,7 @@ import egovframework.com.cmm.LoginVO;
 import egovframework.com.cmm.util.EgovUserDetailsHelper;
 import god.core.cmm.service.GodCoreCmmController;
 import god.core.cmm.web.GodCoreCmmAbstractController;
-import god.test.a.a.a.service.TestAaa002Service;
+import god.test.a.a.a.service.GodTestAaa002Service;
 import god.test.a.a.a.service.TestAaa002VO;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -43,7 +43,7 @@ public class GodTestAaa002Controller extends GodCoreCmmAbstractController<TestAa
 	/**
 	 * 행정코드 Service
 	 */
-	private final TestAaa002Service service;
+	private final GodTestAaa002Service service;
 
 	/**
 	 * 행정코드 등록 화면

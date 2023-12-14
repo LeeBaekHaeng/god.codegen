@@ -24,7 +24,7 @@ import org.springframework.ui.ModelMap;
 
 import egovframework.com.test.EgovTestAbstractDAO;
 import god.core.cmm.service.impl.GodCoreCmmAbstractServiceImpl;
-import god.test.a.a.a.service.TestAaa002Service;
+import god.test.a.a.a.service.GodTestAaa002Service;
 import god.test.a.a.a.service.TestAaa002VO;
 import lombok.NoArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -84,7 +84,7 @@ public class GodTestAaa002ServiceImplTest extends EgovTestAbstractDAO {
 	 * 행정코드 Service
 	 */
 	@Autowired
-	private TestAaa002Service service;
+	private GodTestAaa002Service service;
 
 	/**
 	 * 행정코드 ID

@@ -1,9 +1,7 @@
 package god.test.a.a.a.service.impl;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import javax.annotation.PostConstruct;
 
@@ -12,10 +10,8 @@ import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
-import egovframework.com.cmm.ComDefaultCodeVO;
-import egovframework.com.cmm.service.CmmnDetailCode;
 import god.core.cmm.service.impl.GodCoreCmmAbstractServiceImpl;
-import god.test.a.a.a.service.TestAaa002Service;
+import god.test.a.a.a.service.GodTestAaa002Service;
 import god.test.a.a.a.service.TestAaa002VO;
 import lombok.RequiredArgsConstructor;
 
@@ -28,7 +24,7 @@ import lombok.RequiredArgsConstructor;
 @Service
 @RequiredArgsConstructor
 public class GodTestAaa002ServiceImpl extends GodCoreCmmAbstractServiceImpl<TestAaa002VO, TestAaa002VO>
-		implements TestAaa002Service {
+		implements GodTestAaa002Service {
 
 	/**
 	 * 행정코드 DAO
@@ -55,37 +51,16 @@ public class GodTestAaa002ServiceImpl extends GodCoreCmmAbstractServiceImpl<Test
 
 	@Override
 	public void insert(final TestAaa002VO vo, final ModelMap model) {
-		// selectCmmCodeDetail
-		final Map<String, List<CmmnDetailCode>> cmmCodeDetailMap = new HashMap<>();
-		ComDefaultCodeVO comDefaultCodeVO = new ComDefaultCodeVO();
-		comDefaultCodeVO.setCodeId("COM001");
-		List<CmmnDetailCode> cmmCodeDetail = egovCmmUseService.selectCmmCodeDetail(comDefaultCodeVO);
-		cmmCodeDetailMap.put(comDefaultCodeVO.getCodeId(), cmmCodeDetail);
+		final List<String> codeIds = new ArrayList<>();
+		codeIds.add("COM001");
+		codeIds.add("COM002");
+		selectCmmCodeDetail(codeIds, model);
 
-		comDefaultCodeVO = new ComDefaultCodeVO();
-		comDefaultCodeVO.setCodeId("COM002");
-		cmmCodeDetail = egovCmmUseService.selectCmmCodeDetail(comDefaultCodeVO);
-		cmmCodeDetailMap.put(comDefaultCodeVO.getCodeId(), cmmCodeDetail);
-
-		model.addAttribute("cmmCodeDetail", cmmCodeDetailMap);
-
-		// selectCmmCodeDetails
-		final List<ComDefaultCodeVO> voList = new ArrayList<>();
-		comDefaultCodeVO = new ComDefaultCodeVO();
-		comDefaultCodeVO.setCodeId("COM003");
-		voList.add(comDefaultCodeVO);
-
-		comDefaultCodeVO = new ComDefaultCodeVO();
-		comDefaultCodeVO.setCodeId("COM005");
-		voList.add(comDefaultCodeVO);
-
-		comDefaultCodeVO = new ComDefaultCodeVO();
-		comDefaultCodeVO.setCodeId("COM006");
-		voList.add(comDefaultCodeVO);
-
-		final Map<String, List<CmmnDetailCode>> cmmCodeDetails = egovCmmUseService.selectCmmCodeDetails(voList);
-
-		model.addAttribute("cmmCodeDetails", cmmCodeDetails);
+		codeIds.clear();
+		codeIds.add("COM003");
+		codeIds.add("COM005");
+		codeIds.add("COM006");
+		selectCmmCodeDetails(codeIds, model);
 	}
 
 	@Override

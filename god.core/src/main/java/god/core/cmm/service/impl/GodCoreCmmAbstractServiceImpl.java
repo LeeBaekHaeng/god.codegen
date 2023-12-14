@@ -1,7 +1,10 @@
 package god.core.cmm.service.impl;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.annotation.Resource;
 
@@ -12,8 +15,10 @@ import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
+import egovframework.com.cmm.ComDefaultCodeVO;
 import egovframework.com.cmm.ComDefaultVO;
 import egovframework.com.cmm.LoginVO;
+import egovframework.com.cmm.service.CmmnDetailCode;
 import egovframework.com.cmm.service.EgovCmmUseService;
 import egovframework.com.cmm.util.EgovUserDetailsHelper;
 import god.core.cmm.service.GodCoreCmmService;
@@ -88,6 +93,45 @@ public class GodCoreCmmAbstractServiceImpl<T, R> extends EgovAbstractServiceImpl
 	@Override
 	public void insert(final T vo, final ModelMap model) {
 		log.debug("vo={}", vo);
+	}
+
+	/**
+	 * 공통코드를 조회한다.
+	 * 
+	 * @param codeIds
+	 * @param model
+	 */
+	protected void selectCmmCodeDetail(final List<String> codeIds, final ModelMap model) {
+		final Map<String, List<CmmnDetailCode>> cmmCodeDetailMap = new HashMap<>();
+
+		for (final String codeId : codeIds) {
+			final ComDefaultCodeVO comDefaultCodeVO = new ComDefaultCodeVO();
+			comDefaultCodeVO.setCodeId(codeId);
+			final List<CmmnDetailCode> cmmCodeDetail = egovCmmUseService.selectCmmCodeDetail(comDefaultCodeVO);
+			cmmCodeDetailMap.put(comDefaultCodeVO.getCodeId(), cmmCodeDetail);
+		}
+
+		model.addAttribute("cmmCodeDetail", cmmCodeDetailMap);
+	}
+
+	/**
+	 * ComDefaultCodeVO의 리스트를 받아서 여러개의 코드 리스트를 맵에 담아서 리턴한다.
+	 * 
+	 * @param codeIds
+	 * @param model
+	 */
+	protected void selectCmmCodeDetails(final List<String> codeIds, final ModelMap model) {
+		final List<ComDefaultCodeVO> voList = new ArrayList<>();
+
+		for (final String codeId : codeIds) {
+			ComDefaultCodeVO comDefaultCodeVO = new ComDefaultCodeVO();
+			comDefaultCodeVO.setCodeId(codeId);
+			voList.add(comDefaultCodeVO);
+		}
+
+		final Map<String, List<CmmnDetailCode>> cmmCodeDetails = egovCmmUseService.selectCmmCodeDetails(voList);
+
+		model.addAttribute("cmmCodeDetails", cmmCodeDetails);
 	}
 
 	@Override
