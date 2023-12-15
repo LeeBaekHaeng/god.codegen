@@ -9,7 +9,6 @@ import org.springframework.stereotype.Repository;
 import god.core.cmm.service.impl.GodCoreCmmAbstractDAO;
 import god.test.a.a.a.service.TestAaa002VO;
 import lombok.NoArgsConstructor;
-import lombok.extern.slf4j.Slf4j;
 
 /**
  * 행정코드 DAO
@@ -19,14 +18,13 @@ import lombok.extern.slf4j.Slf4j;
  */
 @Repository
 @NoArgsConstructor
-@Slf4j
 public class GodTestAaa002DAO extends GodCoreCmmAbstractDAO<TestAaa002VO, TestAaa002VO> {
 
 	/**
 	 * 포스트 구성
 	 */
 	@PostConstruct
-	public void postConstruct() {
+	protected void postConstruct() {
 		super.postConstruct(GodTestAaa002DAO.class.getSimpleName());
 	}
 
@@ -36,13 +34,8 @@ public class GodTestAaa002DAO extends GodCoreCmmAbstractDAO<TestAaa002VO, TestAa
 	 * @param vo
 	 * @return result
 	 */
-	@Override
-	public int insert(final TestAaa002VO vo) {
-		if (log.isDebugEnabled()) {
-			log.debug("vo={}", vo);
-		}
-		return super.insert(vo);
-//		return insert(super.getNamespace() + "insert", vo);
+	public int insert3(final TestAaa002VO vo) {
+		return insert(super.getNamespace() + "insert3", vo);
 	}
 
 	/**
@@ -51,12 +44,8 @@ public class GodTestAaa002DAO extends GodCoreCmmAbstractDAO<TestAaa002VO, TestAa
 	 * @param vo
 	 * @return result
 	 */
-	@Override
-	public TestAaa002VO select(final TestAaa002VO vo) {
-		if (log.isDebugEnabled()) {
-			log.debug("vo={}", vo);
-		}
-		return super.select(vo);
+	public TestAaa002VO select3(final TestAaa002VO vo) {
+		return selectOne(super.getNamespace() + "select3", vo);
 	}
 
 	/**
@@ -65,12 +54,18 @@ public class GodTestAaa002DAO extends GodCoreCmmAbstractDAO<TestAaa002VO, TestAa
 	 * @param vo
 	 * @return resultList
 	 */
-	@Override
-	public List<TestAaa002VO> selectList(final TestAaa002VO vo) {
-		if (log.isDebugEnabled()) {
-			log.debug("vo={}", vo);
-		}
-		return super.selectList(vo);
+	public List<TestAaa002VO> select3List(final TestAaa002VO vo) {
+		return selectList(super.getNamespace() + "select3List", vo);
+	}
+
+	/**
+	 * 행정코드 전체건수
+	 * 
+	 * @param vo
+	 * @return result
+	 */
+	public int select3ListTotCnt(final TestAaa002VO vo) {
+		return selectOne(super.getNamespace() + "select3ListTotCnt", vo);
 	}
 
 	/**
@@ -79,12 +74,8 @@ public class GodTestAaa002DAO extends GodCoreCmmAbstractDAO<TestAaa002VO, TestAa
 	 * @param vo
 	 * @return result
 	 */
-	@Override
-	public int update(final TestAaa002VO vo) {
-		if (log.isDebugEnabled()) {
-			log.debug("vo={}", vo);
-		}
-		return super.update(vo);
+	public int update3(final TestAaa002VO vo) {
+		return update(super.getNamespace() + "update3", vo);
 	}
 
 	/**
@@ -93,12 +84,8 @@ public class GodTestAaa002DAO extends GodCoreCmmAbstractDAO<TestAaa002VO, TestAa
 	 * @param vo
 	 * @return result
 	 */
-	@Override
-	public int delete(final TestAaa002VO vo) {
-		if (log.isDebugEnabled()) {
-			log.debug("vo={}", vo);
-		}
-		return super.delete(vo);
+	public int delete3(final TestAaa002VO vo) {
+		return delete(super.getNamespace() + "delete3", vo);
 	}
 
 	/**
@@ -107,12 +94,8 @@ public class GodTestAaa002DAO extends GodCoreCmmAbstractDAO<TestAaa002VO, TestAa
 	 * @param vo
 	 * @return result
 	 */
-	@Override
-	public int merge(final TestAaa002VO vo) {
-		if (log.isDebugEnabled()) {
-			log.debug("vo={}", vo);
-		}
-		return super.merge(vo);
+	public int merge3(final TestAaa002VO vo) {
+		return insert(super.getNamespace() + "merge3", vo);
 	}
 
 	/**
@@ -121,106 +104,8 @@ public class GodTestAaa002DAO extends GodCoreCmmAbstractDAO<TestAaa002VO, TestAa
 	 * @param vo
 	 * @return result
 	 */
-	@Override
-	public int multi(final TestAaa002VO vo) {
-		if (log.isDebugEnabled()) {
-			log.debug("vo={}", vo);
-		}
-		return super.multi(vo);
-	}
-
-	/**
-	 * 행정코드 조회(단건) 전체 건수
-	 * 
-	 * @param vo
-	 * @return totCnt
-	 */
-	@Override
-	public int selectListTotCnt(final TestAaa002VO vo) {
-		if (log.isDebugEnabled()) {
-			log.debug("vo={}", vo);
-		}
-		return super.selectListTotCnt(vo);
-	}
-
-	/**
-	 * 행정코드 등록
-	 * 
-	 * @param vo
-	 * @return result
-	 */
-	public int insert2(final TestAaa002VO vo) {
-		return insert(super.getNamespace() + "insert2", vo);
-	}
-
-	/**
-	 * 행정코드 조회(단건)
-	 * 
-	 * @param vo
-	 * @return result
-	 */
-	public TestAaa002VO select2(final TestAaa002VO vo) {
-		return selectOne(super.getNamespace() + "select2", vo);
-	}
-
-	/**
-	 * 행정코드 조회(멀티건)
-	 * 
-	 * @param vo
-	 * @return resultList
-	 */
-	public List<TestAaa002VO> select2List(final TestAaa002VO vo) {
-		return selectList(super.getNamespace() + "select2List", vo);
-	}
-
-	/**
-	 * 행정코드 수정
-	 * 
-	 * @param vo
-	 * @return result
-	 */
-	public int update2(final TestAaa002VO vo) {
-		return insert(super.getNamespace() + "update2", vo);
-	}
-
-	/**
-	 * 행정코드 삭제
-	 * 
-	 * @param vo
-	 * @return result
-	 */
-	public int delete2(final TestAaa002VO vo) {
-		return insert(super.getNamespace() + "delete2", vo);
-	}
-
-	/**
-	 * 행정코드 등록/수정
-	 * 
-	 * @param vo
-	 * @return result
-	 */
-	public int merge2(final TestAaa002VO vo) {
-		return insert(super.getNamespace() + "merge2", vo);
-	}
-
-	/**
-	 * 행정코드 등록/수정/삭제
-	 * 
-	 * @param vo
-	 * @return result
-	 */
-	public int multi2(final TestAaa002VO vo) {
-		return insert(super.getNamespace() + "multi2", vo);
-	}
-
-	/**
-	 * 행정코드 조회(단건) 전체 건수
-	 * 
-	 * @param vo
-	 * @return result
-	 */
-	public int select2ListTotCnt(final TestAaa002VO vo) {
-		return selectOne(super.getNamespace() + "select2ListTotCnt", vo);
+	public int multi3(final TestAaa002VO vo) {
+		return insert(super.getNamespace() + "multi3", vo);
 	}
 
 }

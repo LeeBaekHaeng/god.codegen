@@ -2,11 +2,7 @@ package god.core.cmm.service.impl;
 
 import java.util.List;
 
-import javax.annotation.Resource;
-
-import org.apache.ibatis.session.SqlSessionFactory;
-import org.egovframe.rte.psl.dataaccess.EgovAbstractMapper;
-
+import egovframework.com.cmm.service.impl.EgovComAbstractDAO;
 import god.core.cmm.service.GodCoreCmmDAO;
 import lombok.NoArgsConstructor;
 
@@ -20,21 +16,12 @@ import lombok.NoArgsConstructor;
  * @param <R>
  */
 @NoArgsConstructor
-public class GodCoreCmmAbstractDAO<T, R> extends EgovAbstractMapper implements GodCoreCmmDAO<T, R> {
+public class GodCoreCmmAbstractDAO<T, R> extends EgovComAbstractDAO implements GodCoreCmmDAO<T, R> {
 
 	/**
 	 * 네임스페이스
 	 */
 	private String namespace;
-
-	/**
-	 * egov.sqlSession
-	 */
-	@Override
-	@Resource(name = "egov.sqlSession")
-	public void setSqlSessionFactory(final SqlSessionFactory sqlSession) {
-		super.setSqlSessionFactory(sqlSession);
-	}
 
 	/**
 	 * 네임스페이스 값설정
@@ -66,6 +53,16 @@ public class GodCoreCmmAbstractDAO<T, R> extends EgovAbstractMapper implements G
 	}
 
 	/**
+	 * 등록
+	 * 
+	 * @param vo
+	 * @return result
+	 */
+	public int insert2(final T vo) {
+		return insert(namespace + "insert2", vo);
+	}
+
+	/**
 	 * 조회(단건)
 	 * 
 	 * @param vo
@@ -74,6 +71,16 @@ public class GodCoreCmmAbstractDAO<T, R> extends EgovAbstractMapper implements G
 	@Override
 	public R select(final T vo) {
 		return selectOne(namespace + "select", vo);
+	}
+
+	/**
+	 * 조회(단건)
+	 * 
+	 * @param vo
+	 * @return result
+	 */
+	public R select2(final T vo) {
+		return selectOne(namespace + "select2", vo);
 	}
 
 	/**
@@ -88,6 +95,36 @@ public class GodCoreCmmAbstractDAO<T, R> extends EgovAbstractMapper implements G
 	}
 
 	/**
+	 * 전체건수
+	 * 
+	 * @param vo
+	 * @return totCnt
+	 */
+	public int selectListTotCnt(final T vo) {
+		return selectOne(namespace + "selectListTotCnt", vo);
+	}
+
+	/**
+	 * 조회(멀티건)
+	 * 
+	 * @param vo
+	 * @return resultList
+	 */
+	public List<R> select2List(final T vo) {
+		return selectList(namespace + "select2List", vo);
+	}
+
+	/**
+	 * 전체건수
+	 * 
+	 * @param vo
+	 * @return totCnt
+	 */
+	public int select2ListTotCnt(final T vo) {
+		return selectOne(namespace + "select2ListTotCnt", vo);
+	}
+
+	/**
 	 * 수정
 	 * 
 	 * @param vo
@@ -96,6 +133,16 @@ public class GodCoreCmmAbstractDAO<T, R> extends EgovAbstractMapper implements G
 	@Override
 	public int update(final T vo) {
 		return update(namespace + "update", vo);
+	}
+
+	/**
+	 * 수정
+	 * 
+	 * @param vo
+	 * @return result
+	 */
+	public int update2(final T vo) {
+		return update(namespace + "update2", vo);
 	}
 
 	/**
@@ -110,6 +157,16 @@ public class GodCoreCmmAbstractDAO<T, R> extends EgovAbstractMapper implements G
 	}
 
 	/**
+	 * 삭제
+	 * 
+	 * @param vo
+	 * @return result
+	 */
+	public int delete2(final T vo) {
+		return delete(namespace + "delete2", vo);
+	}
+
+	/**
 	 * 등록/수정
 	 * 
 	 * @param vo
@@ -118,6 +175,16 @@ public class GodCoreCmmAbstractDAO<T, R> extends EgovAbstractMapper implements G
 	@Override
 	public int merge(final T vo) {
 		return insert(namespace + "merge", vo);
+	}
+
+	/**
+	 * 등록/수정
+	 * 
+	 * @param vo
+	 * @return result
+	 */
+	public int merge2(final T vo) {
+		return insert(namespace + "merge2", vo);
 	}
 
 	/**
@@ -132,13 +199,13 @@ public class GodCoreCmmAbstractDAO<T, R> extends EgovAbstractMapper implements G
 	}
 
 	/**
-	 * 조회(단건) 전체 건수
+	 * 등록/수정/삭제
 	 * 
 	 * @param vo
-	 * @return totCnt
+	 * @return result
 	 */
-	public int selectListTotCnt(final T vo) {
-		return selectOne(namespace + "selectListTotCnt", vo);
+	public int multi2(final T vo) {
+		return insert(namespace + "multi2", vo);
 	}
 
 }

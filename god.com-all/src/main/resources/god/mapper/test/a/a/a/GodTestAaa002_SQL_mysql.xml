@@ -45,6 +45,22 @@ INSERT INTO comtcadministcode /* 행정코드 */ (
 ]]>
     </insert>
 
+    <insert id="insert3" parameterType="god.test.a.a.a.service.TestAaa002VO">
+<![CDATA[
+/* GodTestAaa002DAO.insert3 */
+/* 행정코드 등록 */
+INSERT INTO comtcadministcode /* 행정코드 */ (
+    ADMINIST_ZONE_SE /* ADMINIST_ZONE_SE char(1) NOT NULL 행정구역구분 */
+    , ADMINIST_ZONE_CODE /* ADMINIST_ZONE_CODE varchar(10) NOT NULL 행정구역코드 */
+    , USE_AT /* USE_AT char(1) NOT NULL 사용여부 */
+) VALUES (
+    #{administZoneSe} /* ADMINIST_ZONE_SE char(1) NOT NULL 행정구역구분 */
+    , #{administZoneCode} /* ADMINIST_ZONE_CODE varchar(10) NOT NULL 행정구역코드 */
+    , 'Y' /* USE_AT char(1) NOT NULL 사용여부 */
+)
+]]>
+    </insert>
+
     <select id="select" parameterType="god.test.a.a.a.service.TestAaa002VO" resultType="god.test.a.a.a.service.TestAaa002VO">
 <![CDATA[
 /* GodTestAaa002DAO.select */
