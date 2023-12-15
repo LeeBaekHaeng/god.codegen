@@ -526,6 +526,8 @@ public class GodTestAaa002DAOTest extends EgovTestAbstractDAO {
 
 		// then
 		assertEqualsInsert(result);
+
+		// test
 	}
 
 }
