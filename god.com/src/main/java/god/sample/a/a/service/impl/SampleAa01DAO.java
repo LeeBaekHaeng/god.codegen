@@ -41,20 +41,6 @@ public class SampleAa01DAO extends GodCoreCmmAbstractDAO<SampleAa01VO, SampleAa0
 	 * @param vo
 	 * @return result
 	 */
-	@Override
-	public int insert(final SampleAa01VO vo) {
-		if (log.isDebugEnabled()) {
-			log.debug(DEBUG_VO, vo);
-		}
-		return super.insert(vo);
-	}
-
-	/**
-	 * 행정코드 등록
-	 * 
-	 * @param vo
-	 * @return result
-	 */
 	public int insert2(final SampleAa01VO vo) {
 		return insert(super.getNamespace() + "insert2", vo);
 	}
