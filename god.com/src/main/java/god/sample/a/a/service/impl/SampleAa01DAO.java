@@ -59,6 +59,16 @@ public class SampleAa01DAO extends GodCoreCmmAbstractDAO<SampleAa01VO, SampleAa0
 	}
 
 	/**
+	 * 행정코드 조회(단건) 전체 건수
+	 * 
+	 * @param vo
+	 * @return result
+	 */
+	public int select2ListTotCnt(final SampleAa01VO vo) {
+		return selectOne(super.getNamespace() + "select2ListTotCnt", vo);
+	}
+
+	/**
 	 * 행정코드 수정
 	 * 
 	 * @param vo
@@ -96,16 +106,6 @@ public class SampleAa01DAO extends GodCoreCmmAbstractDAO<SampleAa01VO, SampleAa0
 	 */
 	public int multi2(final SampleAa01VO vo) {
 		return insert(super.getNamespace() + "multi2", vo);
-	}
-
-	/**
-	 * 행정코드 조회(단건) 전체 건수
-	 * 
-	 * @param vo
-	 * @return result
-	 */
-	public int select2ListTotCnt(final SampleAa01VO vo) {
-		return selectOne(super.getNamespace() + "select2ListTotCnt", vo);
 	}
 
 }
