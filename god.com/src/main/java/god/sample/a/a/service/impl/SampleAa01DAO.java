@@ -91,20 +91,6 @@ public class SampleAa01DAO extends GodCoreCmmAbstractDAO<SampleAa01VO, SampleAa0
 	 * @param vo
 	 * @return result
 	 */
-	@Override
-	public int merge(final SampleAa01VO vo) {
-		if (log.isDebugEnabled()) {
-			log.debug(DEBUG_VO, vo);
-		}
-		return super.merge(vo);
-	}
-
-	/**
-	 * 행정코드 등록/수정
-	 * 
-	 * @param vo
-	 * @return result
-	 */
 	public int merge2(final SampleAa01VO vo) {
 		return insert(super.getNamespace() + "merge2", vo);
 	}
