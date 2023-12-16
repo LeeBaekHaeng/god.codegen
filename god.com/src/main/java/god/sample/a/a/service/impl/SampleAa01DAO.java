@@ -61,20 +61,6 @@ public class SampleAa01DAO extends GodCoreCmmAbstractDAO<SampleAa01VO, SampleAa0
 	 * @param vo
 	 * @return resultList
 	 */
-	@Override
-	public List<SampleAa01VO> selectList(final SampleAa01VO vo) {
-		if (log.isDebugEnabled()) {
-			log.debug(DEBUG_VO, vo);
-		}
-		return super.selectList(vo);
-	}
-
-	/**
-	 * 행정코드 조회(멀티건)
-	 * 
-	 * @param vo
-	 * @return resultList
-	 */
 	public List<SampleAa01VO> select2List(final SampleAa01VO vo) {
 		return selectList(super.getNamespace() + "select2List", vo);
 	}
