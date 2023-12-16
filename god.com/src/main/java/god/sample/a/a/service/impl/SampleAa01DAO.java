@@ -109,20 +109,6 @@ public class SampleAa01DAO extends GodCoreCmmAbstractDAO<SampleAa01VO, SampleAa0
 	 * 행정코드 조회(단건) 전체 건수
 	 * 
 	 * @param vo
-	 * @return totCnt
-	 */
-	@Override
-	public int selectListTotCnt(final SampleAa01VO vo) {
-		if (log.isDebugEnabled()) {
-			log.debug(DEBUG_VO, vo);
-		}
-		return super.selectListTotCnt(vo);
-	}
-
-	/**
-	 * 행정코드 조회(단건) 전체 건수
-	 * 
-	 * @param vo
 	 * @return result
 	 */
 	public int select2ListTotCnt(final SampleAa01VO vo) {
