@@ -9,7 +9,6 @@ import org.springframework.stereotype.Repository;
 import god.core.cmm.service.impl.GodCoreCmmAbstractDAO;
 import god.sample.a.a.service.SampleAa01VO;
 import lombok.NoArgsConstructor;
-import lombok.extern.slf4j.Slf4j;
 
 /**
  * 행정코드 DAO
@@ -19,13 +18,7 @@ import lombok.extern.slf4j.Slf4j;
  */
 @Repository
 @NoArgsConstructor
-@Slf4j
 public class SampleAa01DAO extends GodCoreCmmAbstractDAO<SampleAa01VO, SampleAa01VO> {
-
-	/**
-	 * Debug VO
-	 */
-	public static final String DEBUG_VO = "vo={}";
 
 	/**
 	 * 포스트 구성
