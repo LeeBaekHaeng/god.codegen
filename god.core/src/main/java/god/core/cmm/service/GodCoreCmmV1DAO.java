@@ -11,21 +11,7 @@ import java.util.List;
  * @param <T>
  * @param <R>
  */
-public interface GodCoreCmmDAOV1<T, R> {
-
-	/**
-	 * 네임스페이스 값설정
-	 * 
-	 * @param namespace
-	 */
-	void postConstruct(String namespace);
-
-	/**
-	 * 네임스페이스 값읽기
-	 * 
-	 * @return
-	 */
-	String getNamespace();
+public interface GodCoreCmmV1DAO<T, R> {
 
 	/**
 	 * 등록
@@ -36,12 +22,28 @@ public interface GodCoreCmmDAOV1<T, R> {
 	int insert(T vo);
 
 	/**
+	 * 등록
+	 * 
+	 * @param vo
+	 * @return result
+	 */
+	int insert2(T vo);
+
+	/**
 	 * 조회(단건)
 	 * 
 	 * @param vo
 	 * @return result
 	 */
 	R select(T vo);
+
+	/**
+	 * 조회(단건)
+	 * 
+	 * @param vo
+	 * @return result
+	 */
+	R select2(T vo);
 
 	/**
 	 * 조회(멀티건)
@@ -60,12 +62,36 @@ public interface GodCoreCmmDAOV1<T, R> {
 	int selectListTotCnt(T vo);
 
 	/**
+	 * 조회(멀티건)
+	 * 
+	 * @param vo
+	 * @return resultList
+	 */
+	List<R> select2List(T vo);
+
+	/**
+	 * 전체건수
+	 * 
+	 * @param vo
+	 * @return
+	 */
+	int select2ListTotCnt(T vo);
+
+	/**
 	 * 수정
 	 * 
 	 * @param vo
 	 * @return result
 	 */
 	int update(T vo);
+
+	/**
+	 * 수정
+	 * 
+	 * @param vo
+	 * @return result
+	 */
+	int update2(T vo);
 
 	/**
 	 * 삭제
@@ -76,6 +102,14 @@ public interface GodCoreCmmDAOV1<T, R> {
 	int delete(T vo);
 
 	/**
+	 * 삭제
+	 * 
+	 * @param vo
+	 * @return result
+	 */
+	int delete2(T vo);
+
+	/**
 	 * 등록/수정
 	 * 
 	 * @param vo
@@ -84,11 +118,27 @@ public interface GodCoreCmmDAOV1<T, R> {
 	int merge(T vo);
 
 	/**
+	 * 등록/수정
+	 * 
+	 * @param vo
+	 * @return result
+	 */
+	int merge2(T vo);
+
+	/**
 	 * 등록/수정/삭제
 	 * 
 	 * @param vo
 	 * @return result
 	 */
 	int multi(T vo);
+
+	/**
+	 * 등록/수정/삭제
+	 * 
+	 * @param vo
+	 * @return result
+	 */
+	int multi2(T vo);
 
 }
