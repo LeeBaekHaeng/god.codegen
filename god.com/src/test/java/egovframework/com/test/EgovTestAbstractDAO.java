@@ -5,6 +5,8 @@ import static org.junit.Assert.assertTrue;
 
 import java.sql.SQLException;
 
+import javax.annotation.Resource;
+
 import org.egovframe.rte.ptl.mvc.tags.ui.pagination.PaginationInfo;
 import org.junit.After;
 import org.junit.AfterClass;
@@ -13,8 +15,6 @@ import org.junit.BeforeClass;
 import org.junit.runner.OrderWith;
 import org.junit.runner.RunWith;
 import org.junit.runner.manipulation.Alphanumeric;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.ImportResource;
@@ -25,7 +25,7 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.StopWatch;
 
 import egovframework.com.cmm.EgovMessageSource;
-import lombok.RequiredArgsConstructor;
+import lombok.NoArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 
 /**
@@ -65,7 +65,7 @@ import lombok.extern.slf4j.Slf4j;
 
 })
 
-@RequiredArgsConstructor
+@NoArgsConstructor
 @Slf4j
 
 public class EgovTestAbstractDAO {
@@ -88,7 +88,8 @@ public class EgovTestAbstractDAO {
 	/**
 	 * ApplicationContext
 	 */
-	@Autowired
+//	@Autowired
+	@Resource
 	private ApplicationContext context;
 
 	/**
@@ -96,8 +97,9 @@ public class EgovTestAbstractDAO {
 	 * 클래스의 구현체
 	 */
 //    @Resource(name = "egovMessageSource")
-	@Autowired
-	@Qualifier("egovMessageSource")
+//	@Autowired
+//	@Qualifier("egovMessageSource")
+	@Resource
 	protected EgovMessageSource egovMessageSource;
 
 	/**
@@ -126,7 +128,9 @@ public class EgovTestAbstractDAO {
 	public static void setUpBeforeClass() {
 		STOP_WATCH.start();
 
-		log.debug("setUpBeforeClass start");
+		if (log.isDebugEnabled()) {
+			log.debug("setUpBeforeClass start");
+		}
 	}
 
 	/**
@@ -151,14 +155,16 @@ public class EgovTestAbstractDAO {
 	public void setUp() {
 		stopWatch.start();
 
-		log.debug("setUp start");
+		if (log.isDebugEnabled()) {
+			log.debug("setUp start");
 
-		if (beanDefinitionNames == null) {
-			beanDefinitionNames = context.getBeanDefinitionNames();
-			for (final String beanDefinitionName : beanDefinitionNames) {
-				log.debug("beanDefinitionName={}", beanDefinitionName);
+			if (beanDefinitionNames == null) {
+				beanDefinitionNames = context.getBeanDefinitionNames();
+				for (final String beanDefinitionName : beanDefinitionNames) {
+					log.debug("beanDefinitionName={}", beanDefinitionName);
+				}
+				log.debug("length={}", beanDefinitionNames.length);
 			}
-			log.debug("length={}", beanDefinitionNames.length);
 		}
 	}
 
