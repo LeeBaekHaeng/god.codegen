@@ -81,7 +81,7 @@ public class SampleAB01DAOTest extends EgovTestAbstractDAO {
 	private SampleAB01DAO dao;
 
 	/**
-	 * egovCmmntyIdGnrService
+	 * 만족도 ID
 	 */
 	@Resource(name = "egovCmmntyIdGnrService")
 	private EgovIdGnrService egovCmmntyIdGnrService;
@@ -101,9 +101,8 @@ public class SampleAB01DAOTest extends EgovTestAbstractDAO {
 		// when
 		final int result = dao.insert(vo);
 
-		debugResult(result);
-
 		// then
+		debugResult(result);
 		assertEqualsInsert(result);
 	}
 
@@ -122,9 +121,8 @@ public class SampleAB01DAOTest extends EgovTestAbstractDAO {
 		// when
 		final int result = dao.insert2(vo);
 
-		debugResult(result);
-
 		// then
+		debugResult(result);
 		assertEqualsInsert(result);
 	}
 
@@ -143,9 +141,8 @@ public class SampleAB01DAOTest extends EgovTestAbstractDAO {
 		// when
 		final int result = dao.insert3(vo);
 
-		debugResult(result);
-
 		// then
+		debugResult(result);
 		assertEqualsInsert(result);
 	}
 
@@ -181,9 +178,8 @@ public class SampleAB01DAOTest extends EgovTestAbstractDAO {
 		// when
 		final int result = dao.insert(testData);
 
-		debugResult(result);
-
 		// then
+		debugResult(result);
 		assertEqualsInsert(result);
 	}
 
@@ -305,9 +301,8 @@ public class SampleAB01DAOTest extends EgovTestAbstractDAO {
 		// when
 		final int totCnt = dao.selectListTotCnt(vo);
 
-		debugTotCnt(totCnt);
-
 		// then
+		debugTotCnt(totCnt);
 		assertTrueTotCnt(totCnt);
 	}
 
@@ -348,9 +343,8 @@ public class SampleAB01DAOTest extends EgovTestAbstractDAO {
 		// when
 		final int totCnt = dao.select2ListTotCnt(vo);
 
-		debugTotCnt(totCnt);
-
 		// then
+		debugTotCnt(totCnt);
 		assertTrueTotCnt(totCnt);
 	}
 
@@ -391,9 +385,8 @@ public class SampleAB01DAOTest extends EgovTestAbstractDAO {
 		// when
 		final int totCnt = dao.select3ListTotCnt(vo);
 
-		debugTotCnt(totCnt);
-
 		// then
+		debugTotCnt(totCnt);
 		assertTrueTotCnt(totCnt);
 	}
 
@@ -437,9 +430,8 @@ public class SampleAB01DAOTest extends EgovTestAbstractDAO {
 		// when
 		final int result = dao.update(vo);
 
-		debugResult(result);
-
 		// then
+		debugResult(result);
 		assertEqualsUpdate(result);
 	}
 
@@ -461,9 +453,8 @@ public class SampleAB01DAOTest extends EgovTestAbstractDAO {
 		// when
 		final int result = dao.update2(vo);
 
-		debugResult(result);
-
 		// then
+		debugResult(result);
 		assertEqualsUpdate(result);
 	}
 
@@ -485,9 +476,8 @@ public class SampleAB01DAOTest extends EgovTestAbstractDAO {
 		// when
 		final int result = dao.update3(vo);
 
-		debugResult(result);
-
 		// then
+		debugResult(result);
 		assertEqualsUpdate(result);
 	}
 
@@ -507,9 +497,8 @@ public class SampleAB01DAOTest extends EgovTestAbstractDAO {
 		// when
 		final int result = dao.delete(vo);
 
-		debugResult(result);
-
 		// then
+		debugResult(result);
 		assertEqualsDelete(result);
 	}
 
@@ -529,9 +518,8 @@ public class SampleAB01DAOTest extends EgovTestAbstractDAO {
 		// when
 		final int result = dao.delete2(vo);
 
-		debugResult(result);
-
 		// then
+		debugResult(result);
 		assertEqualsDelete(result);
 	}
 
@@ -551,9 +539,8 @@ public class SampleAB01DAOTest extends EgovTestAbstractDAO {
 		// when
 		final int result = dao.delete3(vo);
 
-		debugResult(result);
-
 		// then
+		debugResult(result);
 		assertEqualsDelete(result);
 	}
 
@@ -572,9 +559,8 @@ public class SampleAB01DAOTest extends EgovTestAbstractDAO {
 		// when
 		final int result = dao.merge(vo);
 
-		debugResult(result);
-
 		// then
+		debugResult(result);
 		assertEqualsInsert(result);
 	}
 
@@ -593,9 +579,8 @@ public class SampleAB01DAOTest extends EgovTestAbstractDAO {
 		// when
 		final int result = dao.merge2(vo);
 
-		debugResult(result);
-
 		// then
+		debugResult(result);
 		assertEqualsInsert(result);
 	}
 
@@ -614,9 +599,8 @@ public class SampleAB01DAOTest extends EgovTestAbstractDAO {
 		// when
 		final int result = dao.merge3(vo);
 
-		debugResult(result);
-
 		// then
+		debugResult(result);
 		assertEqualsInsert(result);
 	}
 
@@ -635,9 +619,8 @@ public class SampleAB01DAOTest extends EgovTestAbstractDAO {
 		// when
 		final int result = dao.multi(vo);
 
-		debugResult(result);
-
 		// then
+		debugResult(result);
 		assertEqualsInsert(result);
 	}
 
@@ -656,9 +639,8 @@ public class SampleAB01DAOTest extends EgovTestAbstractDAO {
 		// when
 		final int result = dao.multi2(vo);
 
-		debugResult(result);
-
 		// then
+		debugResult(result);
 		assertEqualsInsert(result);
 	}
 
@@ -677,9 +659,8 @@ public class SampleAB01DAOTest extends EgovTestAbstractDAO {
 		// when
 		final int result = dao.multi3(vo);
 
-		debugResult(result);
-
 		// then
+		debugResult(result);
 		assertEqualsInsert(result);
 	}
 
