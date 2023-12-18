@@ -6,7 +6,7 @@ import javax.annotation.PostConstruct;
 
 import org.springframework.stereotype.Repository;
 
-import god.core.cmm.service.impl.AbstractGodCoreCmmV1DAO;
+import god.core.cmm.service.impl.GodCoreCmmV1AbstractDAO;
 import god.sample.a.b.service.SampleAB01VO;
 import lombok.NoArgsConstructor;
 
@@ -18,9 +18,11 @@ import lombok.NoArgsConstructor;
  */
 @Repository
 @NoArgsConstructor
-public class SampleAB01DAO extends AbstractGodCoreCmmV1DAO<SampleAB01VO, SampleAB01VO> {
+public class SampleAB01DAO extends GodCoreCmmV1AbstractDAO<SampleAB01VO, SampleAB01VO> {
 
-	@Override
+	/**
+	 * 네임스페이스 값설정. 포스트 구성.
+	 */
 	@PostConstruct
 	public void postConstruct() {
 		super.postConstruct(SampleAB01DAO.class.getSimpleName());

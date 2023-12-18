@@ -16,7 +16,7 @@ import lombok.NoArgsConstructor;
  * @param <R>
  */
 @NoArgsConstructor
-public abstract class AbstractGodCoreCmmV1DAO<T, R> extends EgovComAbstractDAO implements GodCoreCmmV1DAO<T, R> {
+public class GodCoreCmmV1AbstractDAO<T, R> extends EgovComAbstractDAO implements GodCoreCmmV1DAO<T, R> {
 
 	/**
 	 * 네임스페이스
@@ -31,11 +31,6 @@ public abstract class AbstractGodCoreCmmV1DAO<T, R> extends EgovComAbstractDAO i
 	protected void postConstruct(final String namespace) {
 		this.namespace = namespace + ".";
 	}
-
-	/**
-	 * 네임스페이스 값설정. 포스트 구성.
-	 */
-	public abstract void postConstruct();
 
 	@Override
 	public int insert(final T vo) {
