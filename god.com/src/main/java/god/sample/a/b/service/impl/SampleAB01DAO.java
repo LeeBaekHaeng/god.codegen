@@ -24,7 +24,7 @@ public class SampleAB01DAO extends GodCoreCmmV1AbstractDAO<SampleAB01VO, SampleA
 	 * 네임스페이스 값설정. 포스트 구성.
 	 */
 	@PostConstruct
-	public void postConstruct() {
+	protected void postConstruct() {
 //		super.postConstruct(SampleAB01DAO.class.getSimpleName());
 		super.postConstruct(this.getClass().getSimpleName());
 	}
