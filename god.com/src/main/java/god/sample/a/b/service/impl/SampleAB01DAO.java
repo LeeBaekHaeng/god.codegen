@@ -25,7 +25,8 @@ public class SampleAB01DAO extends GodCoreCmmV1AbstractDAO<SampleAB01VO, SampleA
 	 */
 	@PostConstruct
 	public void postConstruct() {
-		super.postConstruct(SampleAB01DAO.class.getSimpleName());
+//		super.postConstruct(SampleAB01DAO.class.getSimpleName());
+		super.postConstruct(this.getClass().getSimpleName());
 	}
 
 	/**
