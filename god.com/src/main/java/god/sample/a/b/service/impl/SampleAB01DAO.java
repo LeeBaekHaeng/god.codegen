@@ -2,13 +2,10 @@ package god.sample.a.b.service.impl;
 
 import java.util.List;
 
-import javax.annotation.PostConstruct;
-
 import org.springframework.stereotype.Repository;
 
 import god.core.cmm.service.impl.GodCoreCmmV1AbstractDAO;
 import god.sample.a.b.service.SampleAB01VO;
-import lombok.NoArgsConstructor;
 
 /**
  * 행정코드 DAO
@@ -17,15 +14,19 @@ import lombok.NoArgsConstructor;
  * @since 2023-12-18
  */
 @Repository
-@NoArgsConstructor
+//@NoArgsConstructor
 public class SampleAB01DAO extends GodCoreCmmV1AbstractDAO<SampleAB01VO, SampleAB01VO> {
 
-	/**
-	 * 네임스페이스 값설정. 포스트 구성.
-	 */
-	@PostConstruct
-	protected void postConstruct() {
-//		super.postConstruct(SampleAB01DAO.class.getSimpleName());
+//	/**
+//	 * 네임스페이스 값설정. 포스트 구성.
+//	 */
+//	@PostConstruct
+//	protected void postConstruct() {
+////		super.postConstruct(SampleAB01DAO.class.getSimpleName());
+//		super.postConstruct(this.getClass().getSimpleName());
+//	}
+
+	public SampleAB01DAO() {
 		super.postConstruct(this.getClass().getSimpleName());
 	}
 
