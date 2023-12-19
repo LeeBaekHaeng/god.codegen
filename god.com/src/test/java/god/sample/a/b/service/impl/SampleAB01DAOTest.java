@@ -106,46 +106,6 @@ public class SampleAB01DAOTest extends EgovTestAbstractDAO {
 		assertEqualsInsert(result);
 	}
 
-	/**
-	 * 행정코드 등록 테스트
-	 */
-	@Test
-	public void a01insert2() {
-		// given
-		final SampleAB01VO vo = new SampleAB01VO();
-		vo.setAdministZoneSe("1");
-		setAdministZoneCode(vo);
-
-		setOpertSn(vo);
-
-		// when
-		final int result = dao.insert2(vo);
-
-		// then
-		debugResult(result);
-		assertEqualsInsert(result);
-	}
-
-	/**
-	 * 행정코드 등록 테스트
-	 */
-	@Test
-	public void a01insert3() {
-		// given
-		final SampleAB01VO vo = new SampleAB01VO();
-		vo.setAdministZoneSe("1");
-		setAdministZoneCode(vo);
-
-		setOpertSn(vo);
-
-		// when
-		final int result = dao.insert3(vo);
-
-		// then
-		debugResult(result);
-		assertEqualsInsert(result);
-	}
-
 	private void setAdministZoneCode(final SampleAB01VO vo) {
 		vo.setAdministZoneCode(EgovDateUtil.toString(new Date(), "yyyyMMddHH", null));
 	}
@@ -198,54 +158,6 @@ public class SampleAB01DAOTest extends EgovTestAbstractDAO {
 
 		// when
 		final SampleAB01VO result = dao.select(vo);
-
-		// then
-		assertSelect(testData, result);
-	}
-
-	/**
-	 * 행정코드 조회(단건) 테스트
-	 */
-	@Test
-	public void a02select2() {
-		// given
-		final SampleAB01VO testData = new SampleAB01VO();
-		testData(testData);
-
-		final SampleAB01VO vo = new SampleAB01VO();
-		vo.setAdministZoneSe(testData.getAdministZoneSe());
-		vo.setAdministZoneCode(testData.getAdministZoneCode());
-
-		// when
-		final SampleAB01VO result = dao.select2(vo);
-
-		if (log.isDebugEnabled()) {
-			log.debug("result={}", result);
-		}
-
-		// then
-		assertSelect(testData, result);
-	}
-
-	/**
-	 * 행정코드 조회(단건) 테스트
-	 */
-	@Test
-	public void a02select3() {
-		// given
-		final SampleAB01VO testData = new SampleAB01VO();
-		testData(testData);
-
-		final SampleAB01VO vo = new SampleAB01VO();
-		vo.setAdministZoneSe(testData.getAdministZoneSe());
-		vo.setAdministZoneCode(testData.getAdministZoneCode());
-
-		// when
-		final SampleAB01VO result = dao.select3(vo);
-
-		if (log.isDebugEnabled()) {
-			log.debug("result={}", result);
-		}
 
 		// then
 		assertSelect(testData, result);
@@ -306,90 +218,6 @@ public class SampleAB01DAOTest extends EgovTestAbstractDAO {
 		assertTrueTotCnt(totCnt);
 	}
 
-	/**
-	 * 행정코드 조회(멀티건) 테스트
-	 */
-	@Test
-	public void a03select2List() {
-		// given
-		final SampleAB01VO testData = new SampleAB01VO();
-		testData(testData);
-
-		final SampleAB01VO vo = new SampleAB01VO();
-		vo.setFirstIndex(0);
-		vo.setRecordCountPerPage(10);
-
-		// vo.setSearchCondition("0");
-		vo.setSearchKeyword("test 이백행 검색어 " + LocalDateTime.now());
-
-		// when
-		final List<SampleAB01VO> resultList = dao.select2List(vo);
-
-		// then
-		assertSelectList(testData, resultList);
-	}
-
-	/**
-	 * 행정코드 조회(단건) 전체 건수 테스트
-	 */
-	@Test
-	public void a08select2ListTotCnt() {
-		// given
-		final SampleAB01VO testData = new SampleAB01VO();
-		testData(testData);
-
-		final SampleAB01VO vo = new SampleAB01VO();
-
-		// when
-		final int totCnt = dao.select2ListTotCnt(vo);
-
-		// then
-		debugTotCnt(totCnt);
-		assertTrueTotCnt(totCnt);
-	}
-
-	/**
-	 * 행정코드 조회(멀티건) 테스트
-	 */
-	@Test
-	public void a03select3List() {
-		// given
-		final SampleAB01VO testData = new SampleAB01VO();
-		testData(testData);
-
-		final SampleAB01VO vo = new SampleAB01VO();
-		vo.setFirstIndex(0);
-		vo.setRecordCountPerPage(10);
-
-		// vo.setSearchCondition("0");
-		vo.setSearchKeyword("test 이백행 검색어 " + LocalDateTime.now());
-
-		// when
-		final List<SampleAB01VO> resultList = dao.select3List(vo);
-
-		// then
-		assertSelectList(testData, resultList);
-	}
-
-	/**
-	 * 행정코드 조회(단건) 전체 건수 테스트
-	 */
-	@Test
-	public void a08select3ListTotCnt() {
-		// given
-		final SampleAB01VO testData = new SampleAB01VO();
-		testData(testData);
-
-		final SampleAB01VO vo = new SampleAB01VO();
-
-		// when
-		final int totCnt = dao.select3ListTotCnt(vo);
-
-		// then
-		debugTotCnt(totCnt);
-		assertTrueTotCnt(totCnt);
-	}
-
 	private void assertSelectList(final SampleAB01VO testData, final List<SampleAB01VO> resultList) {
 		if (log.isDebugEnabled()) {
 			log.debug("resultList={}", resultList);
@@ -436,52 +264,6 @@ public class SampleAB01DAOTest extends EgovTestAbstractDAO {
 	}
 
 	/**
-	 * 행정코드 수정 테스트
-	 */
-	@Test
-	public void a04update2() {
-		// given
-		final SampleAB01VO testData = new SampleAB01VO();
-		testData(testData);
-
-		final SampleAB01VO vo = new SampleAB01VO();
-		vo.setAdministZoneSe(testData.getAdministZoneSe());
-		vo.setAdministZoneCode(testData.getAdministZoneCode());
-
-		vo.setUseAt("Y");
-
-		// when
-		final int result = dao.update2(vo);
-
-		// then
-		debugResult(result);
-		assertEqualsUpdate(result);
-	}
-
-	/**
-	 * 행정코드 수정 테스트
-	 */
-	@Test
-	public void a04update3() {
-		// given
-		final SampleAB01VO testData = new SampleAB01VO();
-		testData(testData);
-
-		final SampleAB01VO vo = new SampleAB01VO();
-		vo.setAdministZoneSe(testData.getAdministZoneSe());
-		vo.setAdministZoneCode(testData.getAdministZoneCode());
-
-		vo.setUseAt("Y");
-
-		// when
-		final int result = dao.update3(vo);
-
-		// then
-		debugResult(result);
-		assertEqualsUpdate(result);
-	}
-
-	/**
 	 * 행정코드 삭제 테스트
 	 */
 	@Test
@@ -496,48 +278,6 @@ public class SampleAB01DAOTest extends EgovTestAbstractDAO {
 
 		// when
 		final int result = dao.delete(vo);
-
-		// then
-		debugResult(result);
-		assertEqualsDelete(result);
-	}
-
-	/**
-	 * 행정코드 삭제 테스트
-	 */
-	@Test
-	public void a05delete2() {
-		// given
-		final SampleAB01VO testData = new SampleAB01VO();
-		testData(testData);
-
-		final SampleAB01VO vo = new SampleAB01VO();
-		vo.setAdministZoneSe(testData.getAdministZoneSe());
-		vo.setAdministZoneCode(testData.getAdministZoneCode());
-
-		// when
-		final int result = dao.delete2(vo);
-
-		// then
-		debugResult(result);
-		assertEqualsDelete(result);
-	}
-
-	/**
-	 * 행정코드 삭제 테스트
-	 */
-	@Test
-	public void a05delete3() {
-		// given
-		final SampleAB01VO testData = new SampleAB01VO();
-		testData(testData);
-
-		final SampleAB01VO vo = new SampleAB01VO();
-		vo.setAdministZoneSe(testData.getAdministZoneSe());
-		vo.setAdministZoneCode(testData.getAdministZoneCode());
-
-		// when
-		final int result = dao.delete3(vo);
 
 		// then
 		debugResult(result);
@@ -565,46 +305,6 @@ public class SampleAB01DAOTest extends EgovTestAbstractDAO {
 	}
 
 	/**
-	 * 행정코드 등록/수정 테스트
-	 */
-	@Test
-	public void a06merge2() {
-		// given
-		final SampleAB01VO vo = new SampleAB01VO();
-		vo.setAdministZoneSe("1");
-		setAdministZoneCode(vo);
-
-		setOpertSn(vo);
-
-		// when
-		final int result = dao.merge2(vo);
-
-		// then
-		debugResult(result);
-		assertEqualsInsert(result);
-	}
-
-	/**
-	 * 행정코드 등록/수정 테스트
-	 */
-	@Test
-	public void a06merge3() {
-		// given
-		final SampleAB01VO vo = new SampleAB01VO();
-		vo.setAdministZoneSe("1");
-		setAdministZoneCode(vo);
-
-		setOpertSn(vo);
-
-		// when
-		final int result = dao.merge3(vo);
-
-		// then
-		debugResult(result);
-		assertEqualsInsert(result);
-	}
-
-	/**
 	 * 행정코드 등록/수정/삭제 테스트
 	 */
 	@Test
@@ -625,6 +325,156 @@ public class SampleAB01DAOTest extends EgovTestAbstractDAO {
 	}
 
 	/**
+	 * 행정코드 등록 테스트
+	 */
+	@Test
+	public void a01insert2() {
+		// given
+		final SampleAB01VO vo = new SampleAB01VO();
+		vo.setAdministZoneSe("1");
+		setAdministZoneCode(vo);
+	
+		setOpertSn(vo);
+	
+		// when
+		final int result = dao.insert2(vo);
+	
+		// then
+		debugResult(result);
+		assertEqualsInsert(result);
+	}
+
+	/**
+	 * 행정코드 조회(단건) 테스트
+	 */
+	@Test
+	public void a02select2() {
+		// given
+		final SampleAB01VO testData = new SampleAB01VO();
+		testData(testData);
+	
+		final SampleAB01VO vo = new SampleAB01VO();
+		vo.setAdministZoneSe(testData.getAdministZoneSe());
+		vo.setAdministZoneCode(testData.getAdministZoneCode());
+	
+		// when
+		final SampleAB01VO result = dao.select2(vo);
+	
+		if (log.isDebugEnabled()) {
+			log.debug("result={}", result);
+		}
+	
+		// then
+		assertSelect(testData, result);
+	}
+
+	/**
+	 * 행정코드 조회(멀티건) 테스트
+	 */
+	@Test
+	public void a03select2List() {
+		// given
+		final SampleAB01VO testData = new SampleAB01VO();
+		testData(testData);
+	
+		final SampleAB01VO vo = new SampleAB01VO();
+		vo.setFirstIndex(0);
+		vo.setRecordCountPerPage(10);
+	
+		// vo.setSearchCondition("0");
+		vo.setSearchKeyword("test 이백행 검색어 " + LocalDateTime.now());
+	
+		// when
+		final List<SampleAB01VO> resultList = dao.select2List(vo);
+	
+		// then
+		assertSelectList(testData, resultList);
+	}
+
+	/**
+	 * 행정코드 조회(단건) 전체 건수 테스트
+	 */
+	@Test
+	public void a08select2ListTotCnt() {
+		// given
+		final SampleAB01VO testData = new SampleAB01VO();
+		testData(testData);
+	
+		final SampleAB01VO vo = new SampleAB01VO();
+	
+		// when
+		final int totCnt = dao.select2ListTotCnt(vo);
+	
+		// then
+		debugTotCnt(totCnt);
+		assertTrueTotCnt(totCnt);
+	}
+
+	/**
+	 * 행정코드 수정 테스트
+	 */
+	@Test
+	public void a04update2() {
+		// given
+		final SampleAB01VO testData = new SampleAB01VO();
+		testData(testData);
+	
+		final SampleAB01VO vo = new SampleAB01VO();
+		vo.setAdministZoneSe(testData.getAdministZoneSe());
+		vo.setAdministZoneCode(testData.getAdministZoneCode());
+	
+		vo.setUseAt("Y");
+	
+		// when
+		final int result = dao.update2(vo);
+	
+		// then
+		debugResult(result);
+		assertEqualsUpdate(result);
+	}
+
+	/**
+	 * 행정코드 삭제 테스트
+	 */
+	@Test
+	public void a05delete2() {
+		// given
+		final SampleAB01VO testData = new SampleAB01VO();
+		testData(testData);
+	
+		final SampleAB01VO vo = new SampleAB01VO();
+		vo.setAdministZoneSe(testData.getAdministZoneSe());
+		vo.setAdministZoneCode(testData.getAdministZoneCode());
+	
+		// when
+		final int result = dao.delete2(vo);
+	
+		// then
+		debugResult(result);
+		assertEqualsDelete(result);
+	}
+
+	/**
+	 * 행정코드 등록/수정 테스트
+	 */
+	@Test
+	public void a06merge2() {
+		// given
+		final SampleAB01VO vo = new SampleAB01VO();
+		vo.setAdministZoneSe("1");
+		setAdministZoneCode(vo);
+	
+		setOpertSn(vo);
+	
+		// when
+		final int result = dao.merge2(vo);
+	
+		// then
+		debugResult(result);
+		assertEqualsInsert(result);
+	}
+
+	/**
 	 * 행정코드 등록/수정/삭제 테스트
 	 */
 	@Test
@@ -639,6 +489,156 @@ public class SampleAB01DAOTest extends EgovTestAbstractDAO {
 		// when
 		final int result = dao.multi2(vo);
 
+		// then
+		debugResult(result);
+		assertEqualsInsert(result);
+	}
+
+	/**
+	 * 행정코드 등록 테스트
+	 */
+	@Test
+	public void a01insert3() {
+		// given
+		final SampleAB01VO vo = new SampleAB01VO();
+		vo.setAdministZoneSe("1");
+		setAdministZoneCode(vo);
+	
+		setOpertSn(vo);
+	
+		// when
+		final int result = dao.insert3(vo);
+	
+		// then
+		debugResult(result);
+		assertEqualsInsert(result);
+	}
+
+	/**
+	 * 행정코드 조회(단건) 테스트
+	 */
+	@Test
+	public void a02select3() {
+		// given
+		final SampleAB01VO testData = new SampleAB01VO();
+		testData(testData);
+	
+		final SampleAB01VO vo = new SampleAB01VO();
+		vo.setAdministZoneSe(testData.getAdministZoneSe());
+		vo.setAdministZoneCode(testData.getAdministZoneCode());
+	
+		// when
+		final SampleAB01VO result = dao.select3(vo);
+	
+		if (log.isDebugEnabled()) {
+			log.debug("result={}", result);
+		}
+	
+		// then
+		assertSelect(testData, result);
+	}
+
+	/**
+	 * 행정코드 조회(멀티건) 테스트
+	 */
+	@Test
+	public void a03select3List() {
+		// given
+		final SampleAB01VO testData = new SampleAB01VO();
+		testData(testData);
+	
+		final SampleAB01VO vo = new SampleAB01VO();
+		vo.setFirstIndex(0);
+		vo.setRecordCountPerPage(10);
+	
+		// vo.setSearchCondition("0");
+		vo.setSearchKeyword("test 이백행 검색어 " + LocalDateTime.now());
+	
+		// when
+		final List<SampleAB01VO> resultList = dao.select3List(vo);
+	
+		// then
+		assertSelectList(testData, resultList);
+	}
+
+	/**
+	 * 행정코드 조회(단건) 전체 건수 테스트
+	 */
+	@Test
+	public void a08select3ListTotCnt() {
+		// given
+		final SampleAB01VO testData = new SampleAB01VO();
+		testData(testData);
+	
+		final SampleAB01VO vo = new SampleAB01VO();
+	
+		// when
+		final int totCnt = dao.select3ListTotCnt(vo);
+	
+		// then
+		debugTotCnt(totCnt);
+		assertTrueTotCnt(totCnt);
+	}
+
+	/**
+	 * 행정코드 수정 테스트
+	 */
+	@Test
+	public void a04update3() {
+		// given
+		final SampleAB01VO testData = new SampleAB01VO();
+		testData(testData);
+	
+		final SampleAB01VO vo = new SampleAB01VO();
+		vo.setAdministZoneSe(testData.getAdministZoneSe());
+		vo.setAdministZoneCode(testData.getAdministZoneCode());
+	
+		vo.setUseAt("Y");
+	
+		// when
+		final int result = dao.update3(vo);
+	
+		// then
+		debugResult(result);
+		assertEqualsUpdate(result);
+	}
+
+	/**
+	 * 행정코드 삭제 테스트
+	 */
+	@Test
+	public void a05delete3() {
+		// given
+		final SampleAB01VO testData = new SampleAB01VO();
+		testData(testData);
+	
+		final SampleAB01VO vo = new SampleAB01VO();
+		vo.setAdministZoneSe(testData.getAdministZoneSe());
+		vo.setAdministZoneCode(testData.getAdministZoneCode());
+	
+		// when
+		final int result = dao.delete3(vo);
+	
+		// then
+		debugResult(result);
+		assertEqualsDelete(result);
+	}
+
+	/**
+	 * 행정코드 등록/수정 테스트
+	 */
+	@Test
+	public void a06merge3() {
+		// given
+		final SampleAB01VO vo = new SampleAB01VO();
+		vo.setAdministZoneSe("1");
+		setAdministZoneCode(vo);
+	
+		setOpertSn(vo);
+	
+		// when
+		final int result = dao.merge3(vo);
+	
 		// then
 		debugResult(result);
 		assertEqualsInsert(result);

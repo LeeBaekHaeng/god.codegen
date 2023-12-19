@@ -14,19 +14,13 @@ import god.sample.a.b.service.SampleAB01VO;
  * @since 2023-12-18
  */
 @Repository
-//@NoArgsConstructor
 public class SampleAB01DAO extends GodCoreCmmV1AbstractDAO<SampleAB01VO, SampleAB01VO> {
 
-//	/**
-//	 * 네임스페이스 값설정. 포스트 구성.
-//	 */
-//	@PostConstruct
-//	protected void postConstruct() {
-////		super.postConstruct(SampleAB01DAO.class.getSimpleName());
-//		super.postConstruct(this.getClass().getSimpleName());
-//	}
-
+	/**
+	 * 네임스페이스 값설정
+	 */
 	public SampleAB01DAO() {
+		super();
 		super.postConstruct(this.getClass().getSimpleName());
 	}
 

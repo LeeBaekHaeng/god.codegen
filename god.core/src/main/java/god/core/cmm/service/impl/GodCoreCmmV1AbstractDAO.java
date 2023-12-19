@@ -23,12 +23,8 @@ public class GodCoreCmmV1AbstractDAO<T, R> extends EgovComAbstractDAO implements
 	 */
 	protected String namespace;
 
-	/**
-	 * 네임스페이스 값설정
-	 * 
-	 * @param namespace
-	 */
-	protected void postConstruct(final String namespace) {
+	@Override
+	public void postConstruct(final String namespace) {
 		this.namespace = namespace + ".";
 	}
 
@@ -38,18 +34,8 @@ public class GodCoreCmmV1AbstractDAO<T, R> extends EgovComAbstractDAO implements
 	}
 
 	@Override
-	public int insert2(final T vo) {
-		return insert(namespace + "insert2", vo);
-	}
-
-	@Override
 	public R select(final T vo) {
 		return selectOne(namespace + "select", vo);
-	}
-
-	@Override
-	public R select2(final T vo) {
-		return selectOne(namespace + "select2", vo);
 	}
 
 	@Override
@@ -63,23 +49,8 @@ public class GodCoreCmmV1AbstractDAO<T, R> extends EgovComAbstractDAO implements
 	}
 
 	@Override
-	public List<R> select2List(final T vo) {
-		return selectList(namespace + "select2List", vo);
-	}
-
-	@Override
-	public int select2ListTotCnt(final T vo) {
-		return selectOne(namespace + "select2ListTotCnt", vo);
-	}
-
-	@Override
 	public int update(final T vo) {
 		return update(namespace + "update", vo);
-	}
-
-	@Override
-	public int update2(final T vo) {
-		return update(namespace + "update2", vo);
 	}
 
 	@Override
@@ -88,18 +59,8 @@ public class GodCoreCmmV1AbstractDAO<T, R> extends EgovComAbstractDAO implements
 	}
 
 	@Override
-	public int delete2(final T vo) {
-		return delete(namespace + "delete2", vo);
-	}
-
-	@Override
 	public int merge(final T vo) {
 		return insert(namespace + "merge", vo);
-	}
-
-	@Override
-	public int merge2(final T vo) {
-		return insert(namespace + "merge2", vo);
 	}
 
 	@Override
@@ -107,7 +68,35 @@ public class GodCoreCmmV1AbstractDAO<T, R> extends EgovComAbstractDAO implements
 		return insert(namespace + "multi", vo);
 	}
 
+	public int insert2(final T vo) {
+		return insert(namespace + "insert2", vo);
+	}
+
+	public R select2(final T vo) {
+		return selectOne(namespace + "select2", vo);
+	}
+
+	public List<R> select2List(final T vo) {
+		return selectList(namespace + "select2List", vo);
+	}
+
+	public int select2ListTotCnt(final T vo) {
+		return selectOne(namespace + "select2ListTotCnt", vo);
+	}
+
 	@Override
+	public int update2(final T vo) {
+		return update(namespace + "update2", vo);
+	}
+
+	public int delete2(final T vo) {
+		return delete(namespace + "delete2", vo);
+	}
+
+	public int merge2(final T vo) {
+		return insert(namespace + "merge2", vo);
+	}
+
 	public int multi2(final T vo) {
 		return insert(namespace + "multi2", vo);
 	}
