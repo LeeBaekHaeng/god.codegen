@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="UTF-8"?><!--Converted at: Wed May 11 15:49:38 
+	KST 2016 -->
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="SampleBa01DAO">
+
+	<insert id="insert3"
+		parameterType="god.sample.b.a.service.SampleBa01VO">
+<![CDATA[
+/* SampleBa01DAO.insert3 */
+/* 행정코드 등록 */
+INSERT INTO comtcadministcode /* 행정코드 */ (
+    ADMINIST_ZONE_SE /* ADMINIST_ZONE_SE char(1) NOT NULL 행정구역구분 */
+    , ADMINIST_ZONE_CODE /* ADMINIST_ZONE_CODE varchar(10) NOT NULL 행정구역코드 */
+    , USE_AT /* USE_AT char(1) NOT NULL 사용여부 */
+) VALUES (
+    #{administZoneSe} /* ADMINIST_ZONE_SE char(1) NOT NULL 행정구역구분 */
+    , #{administZoneCode} /* ADMINIST_ZONE_CODE varchar(10) NOT NULL 행정구역코드 */
+    , 'Y' /* USE_AT char(1) NOT NULL 사용여부 */
+)
+]]>
+	</insert>
+
+	<select id="select3"
+		parameterType="god.sample.b.a.service.SampleBa01VO"
+		resultType="god.sample.b.a.service.SampleBa01VO">
+<![CDATA[
+/* SampleBa01DAO.select3 */
+/* 행정코드 조회(단건) */
+SELECT
+    A.ADMINIST_ZONE_SE /* ADMINIST_ZONE_SE char(1) NOT NULL 행정구역구분 */
+    , A.ADMINIST_ZONE_CODE /* ADMINIST_ZONE_CODE varchar(10) NOT NULL 행정구역코드 */
+    , A.USE_AT /* USE_AT char(1) NOT NULL 사용여부 */
+/*  */
+    , A.FRST_REGIST_PNTTM /* `FRST_REGIST_PNTTM` datetime DEFAULT NULL COMMENT '최초등록시점', */
+    , A.FRST_REGISTER_ID /* `FRST_REGISTER_ID` varchar(20) DEFAULT NULL COMMENT '최초등록자ID', */
+    , A.LAST_UPDT_PNTTM /* `LAST_UPDT_PNTTM` datetime DEFAULT NULL COMMENT '최종수정시점', */
+    , A.LAST_UPDUSR_ID /* `LAST_UPDUSR_ID` varchar(20) DEFAULT NULL COMMENT '최종수정자ID', */
+FROM COMTCADMINISTCODE /* 행정코드 */ A
+WHERE A.ADMINIST_ZONE_SE = #{administZoneSe} /* ADMINIST_ZONE_SE char(1) NOT NULL 행정구역구분 */
+    AND A.ADMINIST_ZONE_CODE = #{administZoneCode} /* ADMINIST_ZONE_CODE varchar(10) NOT NULL 행정구역코드 */
+]]>
+	</select>
+
+	<!-- select3List -->
+
+	<select id="select3List"
+		parameterType="god.sample.b.a.service.SampleBa01VO"
+		resultType="god.sample.b.a.service.SampleBa01VO">
+<![CDATA[
+/* SampleBa01DAO.selectList */
+/* 행정코드 조회(멀티건) */
+SELECT
+    A.ADMINIST_ZONE_SE /* ADMINIST_ZONE_SE char(1) NOT NULL 행정구역구분 */
+    , A.ADMINIST_ZONE_CODE /* ADMINIST_ZONE_CODE varchar(10) NOT NULL 행정구역코드 */
+    , A.USE_AT /* USE_AT char(1) NOT NULL 사용여부 */
+/*  */
+    , A.FRST_REGIST_PNTTM /* `FRST_REGIST_PNTTM` datetime DEFAULT NULL COMMENT '최초등록시점', */
+    , A.FRST_REGISTER_ID /* `FRST_REGISTER_ID` varchar(20) DEFAULT NULL COMMENT '최초등록자ID', */
+    , A.LAST_UPDT_PNTTM /* `LAST_UPDT_PNTTM` datetime DEFAULT NULL COMMENT '최종수정시점', */
+    , A.LAST_UPDUSR_ID /* `LAST_UPDUSR_ID` varchar(20) DEFAULT NULL COMMENT '최종수정자ID', */    
+]]>
+		<include refid="select3ListFromWhere" />
+<![CDATA[
+LIMIT #{recordCountPerPage} OFFSET #{firstIndex}
+]]>
+	</select>
+
+	<select id="select3ListTotCnt"
+		parameterType="god.sample.b.a.service.SampleBa01VO" resultType="int">
+<![CDATA[
+/* SampleBa01DAO.selectListTotCnt */
+/* 행정코드 조회(멀티건) 전체 건수 */
+SELECT
+    COUNT(*)
+]]>
+		<include refid="select3ListFromWhere" />
+	</select>
+
+	<sql id="select3ListFromWhere">
+<![CDATA[
+FROM COMTCADMINISTCODE /* 행정코드 */ A
+WHERE 1 = 1
+]]>
+
+		<if
+			test="@egovframework.com.cmm.util.EgovMybatisUtil@isNotEmpty(searchKeyword)">
+			<choose>
+				<when
+					test="@egovframework.com.cmm.util.EgovMybatisUtil@isEquals(searchCondition, '0')">
+<![CDATA[
+    AND ADMINIST_ZONE_SE = #{searchKeyword} /* ADMINIST_ZONE_SE char(1) NOT NULL 행정구역구분 */
+]]>
+				</when>
+				<otherwise>
+<![CDATA[
+    /* search otherwise */
+]]>
+				</otherwise>
+			</choose>
+		</if>
+
+	</sql>
+
+	<!-- select3List -->
+
+	<update id="update3"
+		parameterType="god.sample.b.a.service.SampleBa01VO">
+<![CDATA[
+/* SampleBa01DAO.update3 */
+/* 행정코드 수정 */
+UPDATE comtcadministcode /* 행정코드 */ SET
+    USE_AT = #{useAt} /* USE_AT char(1) NOT NULL 사용여부 */
+WHERE ADMINIST_ZONE_SE = #{administZoneSe} /* ADMINIST_ZONE_SE char(1) NOT NULL 행정구역구분 */
+    AND ADMINIST_ZONE_CODE = #{administZoneCode} /* ADMINIST_ZONE_CODE varchar(10) NOT NULL 행정구역코드 */
+]]>
+	</update>
+
+	<delete id="delete3"
+		parameterType="god.sample.b.a.service.SampleBa01VO">
+<![CDATA[
+/* SampleBa01DAO.delete3 */
+/* 행정코드 삭제 */
+DELETE FROM comtcadministcode /* 행정코드 */
+WHERE ADMINIST_ZONE_SE = #{administZoneSe} /* ADMINIST_ZONE_SE char(1) NOT NULL 행정구역구분 */
+    AND ADMINIST_ZONE_CODE = #{administZoneCode} /* ADMINIST_ZONE_CODE varchar(10) NOT NULL 행정구역코드 */
+]]>
+	</delete>
+
+	<insert id="merge3"
+		parameterType="god.sample.b.a.service.SampleBa01VO">
+<![CDATA[
+/* SampleBa01DAO.merge3 */
+/* 행정코드 등록/수정 */
+INSERT INTO comtcadministcode /* 행정코드 */ (
+    ADMINIST_ZONE_SE /* ADMINIST_ZONE_SE char(1) NOT NULL 행정구역구분 */
+    , ADMINIST_ZONE_CODE /* ADMINIST_ZONE_CODE varchar(10) NOT NULL 행정구역코드 */
+    , USE_AT /* USE_AT char(1) NOT NULL 사용여부 */
+) VALUES (
+    #{administZoneSe} /* ADMINIST_ZONE_SE char(1) NOT NULL 행정구역구분 */
+    , #{administZoneCode} /* ADMINIST_ZONE_CODE varchar(10) NOT NULL 행정구역코드 */
+    , 'Y' /* USE_AT char(1) NOT NULL 사용여부 */
+)
+]]>
+	</insert>
+
+	<insert id="multi3"
+		parameterType="god.sample.b.a.service.SampleBa01VO">
+<![CDATA[
+/* SampleBa01DAO.multi3 */
+/* 행정코드 등록/수정/삭제 */
+INSERT INTO comtcadministcode /* 행정코드 */ (
+    ADMINIST_ZONE_SE /* ADMINIST_ZONE_SE char(1) NOT NULL 행정구역구분 */
+    , ADMINIST_ZONE_CODE /* ADMINIST_ZONE_CODE varchar(10) NOT NULL 행정구역코드 */
+    , USE_AT /* USE_AT char(1) NOT NULL 사용여부 */
+) VALUES (
+    #{administZoneSe} /* ADMINIST_ZONE_SE char(1) NOT NULL 행정구역구분 */
+    , #{administZoneCode} /* ADMINIST_ZONE_CODE varchar(10) NOT NULL 행정구역코드 */
+    , 'Y' /* USE_AT char(1) NOT NULL 사용여부 */
+)
+]]>
+	</insert>
+
+</mapper>
