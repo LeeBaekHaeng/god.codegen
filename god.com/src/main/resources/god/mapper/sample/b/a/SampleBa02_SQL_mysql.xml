@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?><!--Converted at: Wed May 11 15:49:38 
+	KST 2016 -->
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="SampleBa02DAO">
+
+	<insert id="insert"
+		parameterType="god.sample.b.a.service.SampleBa02VO">
+<![CDATA[
+/* SampleBa02DAO.insert */
+/* 게시판 등록 */
+INSERT INTO comtnbbs /* 게시판 */ (
+       NTT_ID /* `NTT_ID` decimal(20,0) NOT NULL COMMENT '게시물ID', */
+     , BBS_ID /* `BBS_ID` char(30) NOT NULL COMMENT '게시판ID', */
+     , USE_AT /* `USE_AT` char(1) NOT NULL COMMENT '사용여부', */
+/*  */
+     , FRST_REGIST_PNTTM /* `FRST_REGIST_PNTTM` datetime DEFAULT NULL COMMENT '최초등록시점', */
+     , FRST_REGISTER_ID /* `FRST_REGISTER_ID` varchar(20) DEFAULT NULL COMMENT '최초등록자ID', */
+     , LAST_UPDT_PNTTM /* `LAST_UPDT_PNTTM` datetime DEFAULT NULL COMMENT '최종수정시점', */
+     , LAST_UPDUSR_ID /* `LAST_UPDUSR_ID` varchar(20) DEFAULT NULL COMMENT '최종수정자ID', */
+) VALUES (
+       #{nttId} /* `NTT_ID` decimal(20,0) NOT NULL COMMENT '게시물ID', */
+     , #{bbsId} /* `BBS_ID` char(30) NOT NULL COMMENT '게시판ID', */
+     , #{useAt} /* `USE_AT` char(1) NOT NULL COMMENT '사용여부', */
+/*  */
+     , #{frstRegistPnttm} /* `FRST_REGIST_PNTTM` datetime DEFAULT NULL COMMENT '최초등록시점', */
+     , #{frstRegisterId} /* `FRST_REGISTER_ID` varchar(20) DEFAULT NULL COMMENT '최초등록자ID', */
+     , #{lastUpdtPnttm} /* `LAST_UPDT_PNTTM` datetime DEFAULT NULL COMMENT '최종수정시점', */
+     , #{lastUpdusrId} /* `LAST_UPDUSR_ID` varchar(20) DEFAULT NULL COMMENT '최종수정자ID', */
+)
+]]>
+	</insert>
+
+</mapper>
