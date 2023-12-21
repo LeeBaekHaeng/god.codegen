@@ -29,6 +29,11 @@ public class SampleBa02 extends ComDefaultVO {
 	private String bbsId;
 
 	/**
+	 * `NTT_NO` decimal(20,0) DEFAULT NULL COMMENT '게시물번호',
+	 */
+	private Long nttNo;
+
+	/**
 	 * `USE_AT` char(1) NOT NULL COMMENT '사용여부',
 	 */
 	private String useAt;
@@ -76,6 +81,24 @@ public class SampleBa02 extends ComDefaultVO {
 	 */
 	public void setBbsId(String bbsId) {
 		this.bbsId = bbsId;
+	}
+
+	/**
+	 * `NTT_NO` decimal(20,0) DEFAULT NULL COMMENT '게시물번호',
+	 * 
+	 * @return
+	 */
+	public Long getNttNo() {
+		return nttNo;
+	}
+
+	/**
+	 * `NTT_NO` decimal(20,0) DEFAULT NULL COMMENT '게시물번호',
+	 * 
+	 * @param nttNo
+	 */
+	public void setNttNo(Long nttNo) {
+		this.nttNo = nttNo;
 	}
 
 	/**
