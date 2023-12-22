@@ -39,6 +39,14 @@ public class SampleBa02 extends ComDefaultVO {
 	private String useAt;
 
 	/**
+	 * 게시물제목
+	 * 
+	 * @TABLE_NAME COMTNBBS 게시판
+	 * @COLUMN_NAME `NTT_SJ` varchar(2000) DEFAULT NULL COMMENT '게시물제목',
+	 */
+	private String nttSj;
+
+	/**
 	 * getSerialversionuid
 	 * 
 	 * @return
@@ -117,6 +125,28 @@ public class SampleBa02 extends ComDefaultVO {
 	 */
 	public void setUseAt(String useAt) {
 		this.useAt = useAt;
+	}
+
+	/**
+	 * 게시물제목 값읽기
+	 * 
+	 * @return
+	 * @TABLE_NAME COMTNBBS 게시판
+	 * @COLUMN_NAME `NTT_SJ` varchar(2000) DEFAULT NULL COMMENT '게시물제목',
+	 */
+	public String getNttSj() {
+		return nttSj;
+	}
+
+	/**
+	 * 게시물제목 값설정
+	 * 
+	 * @param nttSj
+	 * @TABLE_NAME COMTNBBS 게시판
+	 * @COLUMN_NAME `NTT_SJ` varchar(2000) DEFAULT NULL COMMENT '게시물제목',
+	 */
+	public void setNttSj(String nttSj) {
+		this.nttSj = nttSj;
 	}
 
 }
