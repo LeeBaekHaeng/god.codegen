@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<sndngMail>
+    <mssageId>MAILMSG_000000000226</mssageId>
+    <dsptchPerson>TEST1</dsptchPerson>
+    <recptnPerson>dlqorgod@naver.com</recptnPerson>
+    <sj>test 이백행 통합포털 메일발송 제목 2023-12-25T15:52:32.783</sj>
+    <emailCn>test 이백행 통합포털 메일발송 발신내용 2023-12-25T15:52:32.783</emailCn>
+    <sndngResultCode></sndngResultCode>
+    <orignlFileList></orignlFileList>
+    <streFileList></streFileList>
+</sndngMail>

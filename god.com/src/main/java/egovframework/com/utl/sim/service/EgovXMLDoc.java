@@ -61,23 +61,27 @@ public class EgovXMLDoc {
      * @param file XML파일
      * @return SndngMailDocument mailDoc 메일발송 클래스(XML스키마를 통해 생성된 자바클래스)
      */
-    public static SndngMailDocument getXMLToClass(String file) throws Exception {
-        FileInputStream fis = null;
-        SndngMailDocument mailDoc = null;
-
-        String storePathString = EgovProperties.getProperty("Globals.fileStorePath");
+    public static SndngMailDocument getXMLToClass(String file) {
         try {
-            File xmlFile = new File(storePathString, FilenameUtils.getName(file));
-            if (xmlFile.exists() && xmlFile.isFile()) {
-                fis = new FileInputStream(xmlFile);
-                mailDoc = (SndngMailDocument) SndngMailDocument.Factory.parse(xmlFile);
+            FileInputStream fis = null;
+            SndngMailDocument mailDoc = null;
 
+            String storePathString = EgovProperties.getProperty("Globals.fileStorePath");
+            try {
+                File xmlFile = new File(storePathString, FilenameUtils.getName(file));
+                if (xmlFile.exists() && xmlFile.isFile()) {
+                    fis = new FileInputStream(xmlFile);
+                    mailDoc = (SndngMailDocument) SndngMailDocument.Factory.parse(xmlFile);
+
+                }
+            } finally {
+                EgovResourceCloseHelper.close(fis);
             }
-        } finally {
-            EgovResourceCloseHelper.close(fis);
-        }
 
-        return mailDoc;
+            return mailDoc;
+        } catch (Exception e) {
+            throw new BaseRuntimeException("Exception getXMLToClass 에러가 발생했습니다!", e);
+        }
     }
 
     /**
