@@ -47,6 +47,14 @@ public class SampleBa02 extends ComDefaultVO {
 	private String nttSj;
 
 	/**
+	 * 게시물내용
+	 * 
+	 * @TABLE_NAME COMTNBBS 게시판
+	 * @COLUMN_NAME `NTT_CN` mediumtext DEFAULT NULL COMMENT '게시물내용',
+	 */
+	private String nttCn;
+
+	/**
 	 * getSerialversionuid
 	 * 
 	 * @return
@@ -147,6 +155,28 @@ public class SampleBa02 extends ComDefaultVO {
 	 */
 	public void setNttSj(String nttSj) {
 		this.nttSj = nttSj;
+	}
+
+	/**
+	 * 게시물내용 값읽기
+	 * 
+	 * @TABLE_NAME COMTNBBS 게시판
+	 * @COLUMN_NAME `NTT_CN` mediumtext DEFAULT NULL COMMENT '게시물내용',
+	 * @return
+	 */
+	public String getNttCn() {
+		return nttCn;
+	}
+
+	/**
+	 * 게시물내용 값설정
+	 * 
+	 * @TABLE_NAME COMTNBBS 게시판
+	 * @COLUMN_NAME `NTT_CN` mediumtext DEFAULT NULL COMMENT '게시물내용',
+	 * @param nttCn
+	 */
+	public void setNttCn(String nttCn) {
+		this.nttCn = nttCn;
 	}
 
 }

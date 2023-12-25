@@ -89,7 +89,9 @@ public class SampleBa02DAOTest extends EgovTestAbstractDAO {
 		final SampleBa02VO vo = new SampleBa02VO();
 		vo.setNttId(0);
 		vo.setBbsId("TEST_A100_BBSMSTR_000000000001");
-		vo.setNttSj("test 이백행 게시물제목 " + LocalDateTime.now());
+		LocalDateTime now = LocalDateTime.now();
+		vo.setNttSj("test 이백행 게시물제목 " + now);
+		vo.setNttCn("test 이백행 게시물내용 " + now);
 		vo.setUseAt("Y");
 
 		vo.setFrstRegistPnttm(LocalDateTime.now());
