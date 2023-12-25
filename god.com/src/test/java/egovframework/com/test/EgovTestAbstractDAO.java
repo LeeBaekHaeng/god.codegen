@@ -2,6 +2,8 @@ package egovframework.com.test;
 
 import java.sql.SQLException;
 
+import javax.annotation.Resource;
+
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -10,7 +12,6 @@ import org.junit.runner.OrderWith;
 import org.junit.runner.RunWith;
 import org.junit.runner.manipulation.Alphanumeric;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.ImportResource;
@@ -87,11 +88,13 @@ public class EgovTestAbstractDAO {
     private ApplicationContext context;
 
     /**
-     * 메시지 리소스 사용을 위한 MessageSource 인터페이스 및 ReloadableResourceBundleMessageSource 클래스의 구현체
+     * 메시지 리소스 사용을 위한 MessageSource 인터페이스 및 ReloadableResourceBundleMessageSource
+     * 클래스의 구현체
      */
 //    @Resource(name = "egovMessageSource")
-    @Autowired
-    @Qualifier("egovMessageSource")
+//    @Autowired
+//    @Qualifier("egovMessageSource")
+    @Resource
     protected EgovMessageSource egovMessageSource;
 
     /**
