@@ -28,6 +28,11 @@ public class SndngMailDocumentTest {
     @Test
     public void test() {
         final SndngMailVO vo = new SndngMailVO();
+        vo.setMssageId("MAILMSG_000000000226");
+        vo.setDsptchPerson("TEST1");
+        vo.setRecptnPerson("dlqorgod@naver.com;"); // 받는사람
+        vo.setSj("test 이백행 통합포털 메일발송 제목 2023-12-25T15:52:32.783");
+        vo.setEmailCn("test 이백행 통합포털 메일발송 발신내용 2023-12-25T15:52:32.783");
 
         // 2. XML데이터를 만든다.
         SndngMailDocument mailDoc;
