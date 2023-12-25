@@ -113,7 +113,7 @@ public class EgovSndngMailRegistServiceImplTest extends EgovTestAbstractDAO {
         final SndngMailVO vo = new SndngMailVO();
 
         // 받는사람
-        vo.setRecptnPerson("dlqorgod@naver.com;bhlee@gsitm.com");
+        vo.setRecptnPerson("dlqorgod@naver.com;bhlee@gsitm.com;");
 //        vo.setRecptnPerson("dlqorgod@naver.com");
 //        vo.setRecptnPerson("bhlee@gsitm.com");
 
