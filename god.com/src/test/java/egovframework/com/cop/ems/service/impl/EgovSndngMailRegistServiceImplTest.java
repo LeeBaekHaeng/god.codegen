@@ -125,7 +125,7 @@ public class EgovSndngMailRegistServiceImplTest extends EgovTestAbstractDAO {
         // 발신내용
         vo.setEmailCn("test 이백행 발신내용 " + now);
 
-        LoginVO loginVO = (LoginVO) EgovUserDetailsHelper.getAuthenticatedUser();
+        final LoginVO loginVO = (LoginVO) EgovUserDetailsHelper.getAuthenticatedUser();
         if (loginVO != null) {
             vo.setDsptchPerson(loginVO.getId());
         }

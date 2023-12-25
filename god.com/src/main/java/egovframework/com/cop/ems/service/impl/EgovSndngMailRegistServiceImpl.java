@@ -124,7 +124,8 @@ public class EgovSndngMailRegistServiceImpl extends EgovAbstractServiceImpl impl
             }
             return true;
         } catch (Exception e) {
-            throw new BaseRuntimeException(egovMessageSource.getMessage("fail.common.msg"), e);
+            throw new BaseRuntimeException(
+                    "Exception insertSndngMail " + egovMessageSource.getMessage("fail.common.msg"), e);
         }
     }
 
