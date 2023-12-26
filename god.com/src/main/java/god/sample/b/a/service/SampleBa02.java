@@ -55,6 +55,14 @@ public class SampleBa02 extends ComDefaultVO {
 	private String nttCn;
 
 	/**
+	 * 댓글여부
+	 * 
+	 * @TABLE_NAME COMTNBBS 게시판
+	 * @COLUMN_NAME `ANSWER_AT` char(1) DEFAULT NULL COMMENT '댓글여부',
+	 */
+	private String answerAt;
+
+	/**
 	 * getSerialversionuid
 	 * 
 	 * @return
@@ -77,7 +85,7 @@ public class SampleBa02 extends ComDefaultVO {
 	 * 
 	 * @param nttId
 	 */
-	public void setNttId(long nttId) {
+	public void setNttId(final long nttId) {
 		this.nttId = nttId;
 	}
 
@@ -95,7 +103,7 @@ public class SampleBa02 extends ComDefaultVO {
 	 * 
 	 * @param bbsId
 	 */
-	public void setBbsId(String bbsId) {
+	public void setBbsId(final String bbsId) {
 		this.bbsId = bbsId;
 	}
 
@@ -113,7 +121,7 @@ public class SampleBa02 extends ComDefaultVO {
 	 * 
 	 * @param nttNo
 	 */
-	public void setNttNo(Long nttNo) {
+	public void setNttNo(final Long nttNo) {
 		this.nttNo = nttNo;
 	}
 
@@ -131,7 +139,7 @@ public class SampleBa02 extends ComDefaultVO {
 	 * 
 	 * @param useAt
 	 */
-	public void setUseAt(String useAt) {
+	public void setUseAt(final String useAt) {
 		this.useAt = useAt;
 	}
 
@@ -153,7 +161,7 @@ public class SampleBa02 extends ComDefaultVO {
 	 * @TABLE_NAME COMTNBBS 게시판
 	 * @COLUMN_NAME `NTT_SJ` varchar(2000) DEFAULT NULL COMMENT '게시물제목',
 	 */
-	public void setNttSj(String nttSj) {
+	public void setNttSj(final String nttSj) {
 		this.nttSj = nttSj;
 	}
 
@@ -175,8 +183,30 @@ public class SampleBa02 extends ComDefaultVO {
 	 * @COLUMN_NAME `NTT_CN` mediumtext DEFAULT NULL COMMENT '게시물내용',
 	 * @param nttCn
 	 */
-	public void setNttCn(String nttCn) {
+	public void setNttCn(final String nttCn) {
 		this.nttCn = nttCn;
+	}
+
+	/**
+	 * 댓글여부 값읽기
+	 * 
+	 * @TABLE_NAME COMTNBBS 게시판
+	 * @COLUMN_NAME `ANSWER_AT` char(1) DEFAULT NULL COMMENT '댓글여부',
+	 * @return
+	 */
+	public String getAnswerAt() {
+		return answerAt;
+	}
+
+	/**
+	 * 댓글여부 값설정
+	 * 
+	 * @TABLE_NAME COMTNBBS 게시판
+	 * @COLUMN_NAME `ANSWER_AT` char(1) DEFAULT NULL COMMENT '댓글여부',
+	 * @param answerAt
+	 */
+	public void setAnswerAt(final String answerAt) {
+		this.answerAt = answerAt;
 	}
 
 }
