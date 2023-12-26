@@ -26,6 +26,7 @@ INSERT INTO comtnbbs /* 게시판 */ (
      , NTT_SJ /* `NTT_SJ` varchar(2000) DEFAULT NULL COMMENT '게시물제목', */
      , NTT_CN /* `NTT_CN` mediumtext DEFAULT NULL COMMENT '게시물내용', */
      , ANSWER_AT /* `ANSWER_AT` char(1) DEFAULT NULL COMMENT '댓글여부', */
+     , PARNTSCTT_NO /* `PARNTSCTT_NO` decimal(10,0) DEFAULT NULL COMMENT '부모글번호', */
 /*  */
      , FRST_REGIST_PNTTM /* `FRST_REGIST_PNTTM` datetime DEFAULT NULL COMMENT '최초등록시점', */
      , FRST_REGISTER_ID /* `FRST_REGISTER_ID` varchar(20) DEFAULT NULL COMMENT '최초등록자ID', */
@@ -40,6 +41,7 @@ INSERT INTO comtnbbs /* 게시판 */ (
      , #{nttSj} /* `NTT_SJ` varchar(2000) DEFAULT NULL COMMENT '게시물제목', */
      , #{nttCn} /* `NTT_CN` mediumtext DEFAULT NULL COMMENT '게시물내용', */
      , #{answerAt} /* `ANSWER_AT` char(1) DEFAULT NULL COMMENT '댓글여부', */
+     , #{parntscttNo} /* `PARNTSCTT_NO` decimal(10,0) DEFAULT NULL COMMENT '부모글번호', */
 /*  */
      , #{frstRegistPnttm} /* `FRST_REGIST_PNTTM` datetime DEFAULT NULL COMMENT '최초등록시점', */
      , #{frstRegisterId} /* `FRST_REGISTER_ID` varchar(20) DEFAULT NULL COMMENT '최초등록자ID', */

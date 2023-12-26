@@ -94,6 +94,7 @@ public class SampleBa02DAOTest extends EgovTestAbstractDAO {
 		vo.setNttCn("test 이백행 게시물내용 " + now);
 		vo.setAnswerAt("Y");
 		vo.setUseAt("Y");
+		vo.setParntscttNo(null);
 
 		vo.setFrstRegistPnttm(LocalDateTime.now());
 		vo.setLastUpdtPnttm(vo.getFrstRegistPnttm());

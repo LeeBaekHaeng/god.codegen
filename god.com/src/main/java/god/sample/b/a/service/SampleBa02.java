@@ -63,6 +63,14 @@ public class SampleBa02 extends ComDefaultVO {
 	private String answerAt;
 
 	/**
+	 * 부모글번호
+	 * 
+	 * @TABLE_NAME COMTNBBS 게시판
+	 * @COLUMN_NAME `PARNTSCTT_NO` decimal(10,0) DEFAULT NULL COMMENT '부모글번호',
+	 */
+	private Long parntscttNo;
+
+	/**
 	 * getSerialversionuid
 	 * 
 	 * @return
@@ -207,6 +215,28 @@ public class SampleBa02 extends ComDefaultVO {
 	 */
 	public void setAnswerAt(final String answerAt) {
 		this.answerAt = answerAt;
+	}
+
+	/**
+	 * 부모글번호 값읽기
+	 * 
+	 * @TABLE_NAME COMTNBBS 게시판
+	 * @COLUMN_NAME `PARNTSCTT_NO` decimal(10,0) DEFAULT NULL COMMENT '부모글번호',
+	 * @return
+	 */
+	public Long getParntscttNo() {
+		return parntscttNo;
+	}
+
+	/**
+	 * 부모글번호 값설정
+	 * 
+	 * @TABLE_NAME COMTNBBS 게시판
+	 * @COLUMN_NAME `PARNTSCTT_NO` decimal(10,0) DEFAULT NULL COMMENT '부모글번호',
+	 * @param parntscttNo
+	 */
+	public void setParntscttNo(final Long parntscttNo) {
+		this.parntscttNo = parntscttNo;
 	}
 
 }
