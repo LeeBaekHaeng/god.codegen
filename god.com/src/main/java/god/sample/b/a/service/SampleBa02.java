@@ -71,6 +71,14 @@ public class SampleBa02 extends ComDefaultVO {
 	private Long parntscttNo;
 
 	/**
+	 * 댓글위치
+	 * 
+	 * @TABLE_NAME COMTNBBS 게시판
+	 * @COLUMN_NAME `ANSWER_LC` decimal(8,0) DEFAULT NULL COMMENT '댓글위치',
+	 */
+	private Long answerLc;
+
+	/**
 	 * getSerialversionuid
 	 * 
 	 * @return
@@ -237,6 +245,28 @@ public class SampleBa02 extends ComDefaultVO {
 	 */
 	public void setParntscttNo(final Long parntscttNo) {
 		this.parntscttNo = parntscttNo;
+	}
+
+	/**
+	 * 댓글위치 값읽기
+	 * 
+	 * @TABLE_NAME COMTNBBS 게시판
+	 * @COLUMN_NAME `ANSWER_LC` decimal(8,0) DEFAULT NULL COMMENT '댓글위치',
+	 * @return
+	 */
+	public Long getAnswerLc() {
+		return answerLc;
+	}
+
+	/**
+	 * 댓글위치 값설정
+	 * 
+	 * @TABLE_NAME COMTNBBS 게시판
+	 * @COLUMN_NAME `ANSWER_LC` decimal(8,0) DEFAULT NULL COMMENT '댓글위치',
+	 * @param answerLc
+	 */
+	public void setAnswerLc(final Long answerLc) {
+		this.answerLc = answerLc;
 	}
 
 }
