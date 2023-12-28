@@ -8,7 +8,7 @@
 		parameterType="egovframework.com.cmm.ComDefaultVO"
 		resultType="org.egovframe.rte.psl.dataaccess.util.EgovMap">
 <![CDATA[
-SELECT /* CmmUseDAO.selectMenuList 메뉴정보 조회(멀티건) */
+SELECT /* CmmUseDAO.selectMenuList 메뉴정보, 프로그램목록 조회(멀티건) */
        A.*
      , B.*
   FROM COMTNMENUINFO A /* 메뉴정보 */
