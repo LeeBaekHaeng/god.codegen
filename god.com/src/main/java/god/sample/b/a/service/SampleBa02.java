@@ -79,6 +79,14 @@ public class SampleBa02 extends ComDefaultVO {
 	private Long answerLc;
 
 	/**
+	 * 정렬순서
+	 * 
+	 * @TABLE_NAME COMTNBBS 게시판
+	 * @COLUMN_NAME `SORT_ORDR` decimal(8,0) DEFAULT NULL COMMENT '정렬순서',
+	 */
+	private Long sortOrdr;
+
+	/**
 	 * getSerialversionuid
 	 * 
 	 * @return
@@ -267,6 +275,28 @@ public class SampleBa02 extends ComDefaultVO {
 	 */
 	public void setAnswerLc(final Long answerLc) {
 		this.answerLc = answerLc;
+	}
+
+	/**
+	 * 정렬순서 값읽기
+	 * 
+	 * @TABLE_NAME COMTNBBS 게시판
+	 * @COLUMN_NAME `SORT_ORDR` decimal(8,0) DEFAULT NULL COMMENT '정렬순서',
+	 * @return
+	 */
+	public Long getSortOrdr() {
+		return sortOrdr;
+	}
+
+	/**
+	 * 정렬순서 값설정
+	 * 
+	 * @TABLE_NAME COMTNBBS 게시판
+	 * @COLUMN_NAME `SORT_ORDR` decimal(8,0) DEFAULT NULL COMMENT '정렬순서',
+	 * @param sortOrdr
+	 */
+	public void setSortOrdr(final Long sortOrdr) {
+		this.sortOrdr = sortOrdr;
 	}
 
 }

@@ -96,6 +96,7 @@ public class SampleBa02DAOTest extends EgovTestAbstractDAO {
 		vo.setUseAt("Y");
 		vo.setParntscttNo(vo.getNttId());
 		vo.setAnswerLc(null);
+		vo.setSortOrdr(null);
 
 		vo.setFrstRegistPnttm(LocalDateTime.now());
 		vo.setLastUpdtPnttm(vo.getFrstRegistPnttm());

@@ -28,6 +28,7 @@ INSERT INTO comtnbbs /* 게시판 */ (
      , ANSWER_AT /* `ANSWER_AT` char(1) DEFAULT NULL COMMENT '댓글여부', */
      , PARNTSCTT_NO /* `PARNTSCTT_NO` decimal(10,0) DEFAULT NULL COMMENT '부모글번호', */
      , ANSWER_LC /* `ANSWER_LC` decimal(8,0) DEFAULT NULL COMMENT '댓글위치', */
+     , SORT_ORDR /* `SORT_ORDR` decimal(8,0) DEFAULT NULL COMMENT '정렬순서', */
 /*  */
      , FRST_REGIST_PNTTM /* `FRST_REGIST_PNTTM` datetime DEFAULT NULL COMMENT '최초등록시점', */
      , FRST_REGISTER_ID /* `FRST_REGISTER_ID` varchar(20) DEFAULT NULL COMMENT '최초등록자ID', */
@@ -44,6 +45,7 @@ INSERT INTO comtnbbs /* 게시판 */ (
      , #{answerAt} /* `ANSWER_AT` char(1) DEFAULT NULL COMMENT '댓글여부', */
      , #{parntscttNo} /* `PARNTSCTT_NO` decimal(10,0) DEFAULT NULL COMMENT '부모글번호', */
      , #{answerLc} /* `ANSWER_LC` decimal(8,0) DEFAULT NULL COMMENT '댓글위치', */
+     , #{sortOrdr} /* `SORT_ORDR` decimal(8,0) DEFAULT NULL COMMENT '정렬순서', */
 /*  */
      , #{frstRegistPnttm} /* `FRST_REGIST_PNTTM` datetime DEFAULT NULL COMMENT '최초등록시점', */
      , #{frstRegisterId} /* `FRST_REGISTER_ID` varchar(20) DEFAULT NULL COMMENT '최초등록자ID', */
