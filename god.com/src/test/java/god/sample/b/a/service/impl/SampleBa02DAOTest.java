@@ -16,8 +16,10 @@ import org.springframework.test.context.ContextConfiguration;
 import egovframework.com.cmm.LoginVO;
 import egovframework.com.cmm.util.EgovUserDetailsHelper;
 import egovframework.com.test.EgovTestAbstractDAO;
+import god.sample.b.a.service.SampleBa02.UseAt;
 import god.sample.b.a.service.SampleBa02VO;
 import lombok.NoArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 
 /**
  * 게시판 DAO 테스트
@@ -65,7 +67,7 @@ import lombok.NoArgsConstructor;
 )
 
 @NoArgsConstructor
-//@Slf4j
+@Slf4j
 public class SampleBa02DAOTest extends EgovTestAbstractDAO {
 
 	/**
@@ -93,7 +95,21 @@ public class SampleBa02DAOTest extends EgovTestAbstractDAO {
 		vo.setNttSj("test 이백행 게시물제목 " + now);
 		vo.setNttCn("test 이백행 게시물내용 " + now);
 		vo.setAnswerAt("Y");
-		vo.setUseAt("Y");
+
+//		vo.setUseAt("Y");
+		vo.setUseAt(UseAt.Y.name());
+		if (log.isDebugEnabled()) {
+			log.debug("UseAt.Y={}", UseAt.Y);
+			log.debug("name={}", UseAt.Y.name());
+			log.debug("ordinal={}", UseAt.Y.ordinal());
+			log.debug("UseAt.N={}", UseAt.N);
+
+			UseAt[] values = UseAt.values();
+			for (int i = 0; i < values.length; i++) {
+				log.debug("values[{}]={}", i, values[i]);
+			}
+		}
+
 		vo.setParntscttNo(vo.getNttId());
 		vo.setAnswerLc(null);
 		vo.setSortOrdr(null);

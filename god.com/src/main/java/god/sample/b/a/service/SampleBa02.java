@@ -299,4 +299,18 @@ public class SampleBa02 extends ComDefaultVO {
 		this.sortOrdr = sortOrdr;
 	}
 
+	/**
+	 * 사용여부
+	 * 
+	 * @author 이백행
+	 * @since 2023-12-29
+	 * 
+	 * @TABLE_NAME COMTNBBS 게시판
+	 * @COLUMN_NAME `USE_AT` char(1) NOT NULL COMMENT '사용여부',
+	 * 
+	 */
+	public enum UseAt {
+		Y, N
+	}
+
 }
