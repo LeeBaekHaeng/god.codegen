@@ -7,6 +7,7 @@ where
 	-- 	and TABLE_CATALOG = 'def'
 	and TABLE_SCHEMA = 'com'
 	and COLUMN_NAME like '%_AT'
+	-- 	and COLUMN_TYPE != 'char(1)'
 order by
 	TABLE_CATALOG,
 	TABLE_SCHEMA,
@@ -29,6 +30,5 @@ group by
 	COLUMN_NAME,
 	COLUMN_COMMENT
 order by
-	COLUMN_NAME,
-	COLUMN_COMMENT
+	COLUMN_NAME
 ;
