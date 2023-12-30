@@ -87,6 +87,14 @@ public class SampleBa02 extends ComDefaultVO {
 	private Long sortOrdr;
 
 	/**
+	 * 조회수
+	 * 
+	 * @TABLE_NAME COMTNBBS 게시판
+	 * @COLUMN_NAME `RDCNT` decimal(10,0) DEFAULT NULL COMMENT '조회수',
+	 */
+	private Long rdcnt;
+
+	/**
 	 * getSerialversionuid
 	 * 
 	 * @return
@@ -297,6 +305,28 @@ public class SampleBa02 extends ComDefaultVO {
 	 */
 	public void setSortOrdr(final Long sortOrdr) {
 		this.sortOrdr = sortOrdr;
+	}
+
+	/**
+	 * 조회수 값읽기
+	 * 
+	 * @TABLE_NAME COMTNBBS 게시판
+	 * @COLUMN_NAME `RDCNT` decimal(10,0) DEFAULT NULL COMMENT '조회수',
+	 * @return
+	 */
+	public Long getRdcnt() {
+		return rdcnt;
+	}
+
+	/**
+	 * 조회수 값설정
+	 * 
+	 * @TABLE_NAME COMTNBBS 게시판
+	 * @COLUMN_NAME `RDCNT` decimal(10,0) DEFAULT NULL COMMENT '조회수',
+	 * @param rdcnt
+	 */
+	public void setRdcnt(Long rdcnt) {
+		this.rdcnt = rdcnt;
 	}
 
 	/**
