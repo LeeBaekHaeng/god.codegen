@@ -95,6 +95,14 @@ public class SampleBa02 extends ComDefaultVO {
 	private Long rdcnt;
 
 	/**
+	 * 게시시작일
+	 * 
+	 * @TABLE_NAME COMTNBBS 게시판
+	 * @COLUMN_NAME `NTCE_BGNDE` char(20) DEFAULT NULL COMMENT '게시시작일',
+	 */
+	private String ntceBgnde;
+
+	/**
 	 * getSerialversionuid
 	 * 
 	 * @return
@@ -327,6 +335,30 @@ public class SampleBa02 extends ComDefaultVO {
 	 */
 	public void setRdcnt(Long rdcnt) {
 		this.rdcnt = rdcnt;
+	}
+
+	/**
+	 * 게시시작일 값읽기
+	 * 
+	 * @return
+	 * 
+	 * @TABLE_NAME COMTNBBS 게시판
+	 * @COLUMN_NAME `NTCE_BGNDE` char(20) DEFAULT NULL COMMENT '게시시작일',
+	 */
+	public String getNtceBgnde() {
+		return ntceBgnde;
+	}
+
+	/**
+	 * 게시시작일 값설정
+	 * 
+	 * @param ntceBgnde
+	 * 
+	 * @TABLE_NAME COMTNBBS 게시판
+	 * @COLUMN_NAME `NTCE_BGNDE` char(20) DEFAULT NULL COMMENT '게시시작일',
+	 */
+	public void setNtceBgnde(String ntceBgnde) {
+		this.ntceBgnde = ntceBgnde;
 	}
 
 	/**

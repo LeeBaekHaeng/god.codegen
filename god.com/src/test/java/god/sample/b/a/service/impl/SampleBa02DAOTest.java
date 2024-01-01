@@ -1,10 +1,12 @@
 package god.sample.b.a.service.impl;
 
 import java.time.LocalDateTime;
+import java.util.Date;
 
 import javax.annotation.Resource;
 
 import org.egovframe.rte.fdl.idgnr.EgovIdGnrService;
+import org.egovframe.rte.fdl.string.EgovDateUtil;
 import org.junit.Test;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.ComponentScan.Filter;
@@ -90,7 +92,8 @@ public class SampleBa02DAOTest extends EgovTestAbstractDAO {
 		// given
 		final SampleBa02VO vo = new SampleBa02VO();
 		vo.setNttId(0);
-		vo.setBbsId("TEST_A100_BBSMSTR_000000000001");
+//		vo.setBbsId("TEST_A100_BBSMSTR_000000000001");
+		vo.setBbsId("BBSMSTR_000000000021nOQNbfsaSM");
 		final LocalDateTime now = LocalDateTime.now();
 		vo.setNttSj("test 이백행 게시물제목 " + now);
 		vo.setNttCn("test 이백행 게시물내용 " + now);
@@ -114,6 +117,7 @@ public class SampleBa02DAOTest extends EgovTestAbstractDAO {
 		vo.setAnswerLc(null);
 		vo.setSortOrdr(null);
 		vo.setRdcnt(0L);
+		vo.setNtceBgnde(EgovDateUtil.toString(new Date(), "yyyyMMddHHmmss", null));
 
 		vo.setFrstRegistPnttm(LocalDateTime.now());
 		vo.setLastUpdtPnttm(vo.getFrstRegistPnttm());
