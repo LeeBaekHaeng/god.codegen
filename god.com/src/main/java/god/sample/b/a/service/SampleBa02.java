@@ -112,6 +112,13 @@ public class SampleBa02 extends ComDefaultVO {
 	private String ntceEndde;
 
 	/**
+	 * 게시자ID
+	 * 
+	 * @COLUMN_NAME `NTCR_ID` varchar(20) DEFAULT NULL COMMENT '게시자ID',
+	 */
+	private String ntcrId;
+
+	/**
 	 * getSerialversionuid
 	 * 
 	 * @return
@@ -342,7 +349,7 @@ public class SampleBa02 extends ComDefaultVO {
 	 * @COLUMN_NAME `RDCNT` decimal(10,0) DEFAULT NULL COMMENT '조회수',
 	 * @param rdcnt
 	 */
-	public void setRdcnt(Long rdcnt) {
+	public void setRdcnt(final Long rdcnt) {
 		this.rdcnt = rdcnt;
 	}
 
@@ -366,7 +373,7 @@ public class SampleBa02 extends ComDefaultVO {
 	 * @TABLE_NAME COMTNBBS 게시판
 	 * @COLUMN_NAME `NTCE_BGNDE` char(20) DEFAULT NULL COMMENT '게시시작일',
 	 */
-	public void setNtceBgnde(String ntceBgnde) {
+	public void setNtceBgnde(final String ntceBgnde) {
 		this.ntceBgnde = ntceBgnde;
 	}
 
@@ -386,8 +393,28 @@ public class SampleBa02 extends ComDefaultVO {
 	 * @COLUMN_NAME `NTCE_ENDDE` char(20) DEFAULT NULL COMMENT '게시종료일',
 	 * @param ntceEndde
 	 */
-	public void setNtceEndde(String ntceEndde) {
+	public void setNtceEndde(final String ntceEndde) {
 		this.ntceEndde = ntceEndde;
+	}
+
+	/**
+	 * 게시자ID 값읽기
+	 * 
+	 * @COLUMN_NAME `NTCR_ID` varchar(20) DEFAULT NULL COMMENT '게시자ID',
+	 * @return
+	 */
+	public String getNtcrId() {
+		return ntcrId;
+	}
+
+	/**
+	 * 게시자ID 값설정
+	 * 
+	 * @COLUMN_NAME `NTCR_ID` varchar(20) DEFAULT NULL COMMENT '게시자ID',
+	 * @param ntcrId
+	 */
+	public void setNtcrId(final String ntcrId) {
+		this.ntcrId = ntcrId;
 	}
 
 	/**

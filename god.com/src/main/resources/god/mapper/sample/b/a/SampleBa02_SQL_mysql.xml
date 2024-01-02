@@ -34,6 +34,7 @@ INSERT INTO comtnbbs /* 게시판 */ (
      , RDCNT /* `RDCNT` decimal(10,0) DEFAULT NULL COMMENT '조회수', */
      , NTCE_BGNDE /* `NTCE_BGNDE` char(20) DEFAULT NULL COMMENT '게시시작일', */
      , NTCE_ENDDE /* `NTCE_ENDDE` char(20) DEFAULT NULL COMMENT '게시종료일', */
+     , NTCR_ID /* `NTCR_ID` varchar(20) DEFAULT NULL COMMENT '게시자ID', */
 /*  */
      , FRST_REGIST_PNTTM /* `FRST_REGIST_PNTTM` datetime DEFAULT NULL COMMENT '최초등록시점', */
      , FRST_REGISTER_ID /* `FRST_REGISTER_ID` varchar(20) DEFAULT NULL COMMENT '최초등록자ID', */
@@ -56,6 +57,7 @@ INSERT INTO comtnbbs /* 게시판 */ (
      , #{rdcnt} /* `RDCNT` decimal(10,0) DEFAULT NULL COMMENT '조회수', */
      , #{ntceBgnde} /* `NTCE_BGNDE` char(20) DEFAULT NULL COMMENT '게시시작일', */
      , #{ntceEndde} /* `NTCE_ENDDE` char(20) DEFAULT NULL COMMENT '게시종료일', */
+     , #{ntcrId} /* `NTCR_ID` varchar(20) DEFAULT NULL COMMENT '게시자ID', */
 /*  */
      , #{frstRegistPnttm} /* `FRST_REGIST_PNTTM` datetime DEFAULT NULL COMMENT '최초등록시점', */
      , #{frstRegisterId} /* `FRST_REGISTER_ID` varchar(20) DEFAULT NULL COMMENT '최초등록자ID', */

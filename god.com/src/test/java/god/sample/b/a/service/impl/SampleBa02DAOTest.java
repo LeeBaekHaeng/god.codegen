@@ -124,6 +124,7 @@ public class SampleBa02DAOTest extends EgovTestAbstractDAO {
 		vo.setLastUpdtPnttm(vo.getFrstRegistPnttm());
 		final LoginVO loginVO = (LoginVO) EgovUserDetailsHelper.getAuthenticatedUser();
 		if (loginVO != null) {
+			vo.setNtcrId(loginVO.getUniqId());
 			vo.setFrstRegisterId(loginVO.getUniqId());
 			vo.setLastUpdusrId(loginVO.getUniqId());
 		}
