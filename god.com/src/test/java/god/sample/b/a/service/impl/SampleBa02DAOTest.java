@@ -118,6 +118,7 @@ public class SampleBa02DAOTest extends EgovTestAbstractDAO {
 		vo.setSortOrdr(null);
 		vo.setRdcnt(0L);
 		vo.setNtceBgnde(EgovDateUtil.toString(new Date(), "yyyyMMddHHmmss", null));
+		vo.setNtceEndde(vo.getNtceBgnde());
 
 		vo.setFrstRegistPnttm(LocalDateTime.now());
 		vo.setLastUpdtPnttm(vo.getFrstRegistPnttm());

@@ -9,6 +9,8 @@ import lombok.NoArgsConstructor;
  * @author 이백행
  * @since 2023-12-21
  *
+ * @TABLE_NAME COMTNBBS 게시판
+ *
  */
 @NoArgsConstructor
 public class SampleBa02 extends ComDefaultVO {
@@ -101,6 +103,13 @@ public class SampleBa02 extends ComDefaultVO {
 	 * @COLUMN_NAME `NTCE_BGNDE` char(20) DEFAULT NULL COMMENT '게시시작일',
 	 */
 	private String ntceBgnde;
+
+	/**
+	 * 게시종료일
+	 * 
+	 * @COLUMN_NAME `NTCE_ENDDE` char(20) DEFAULT NULL COMMENT '게시종료일',
+	 */
+	private String ntceEndde;
 
 	/**
 	 * getSerialversionuid
@@ -359,6 +368,26 @@ public class SampleBa02 extends ComDefaultVO {
 	 */
 	public void setNtceBgnde(String ntceBgnde) {
 		this.ntceBgnde = ntceBgnde;
+	}
+
+	/**
+	 * 게시종료일 값읽기
+	 * 
+	 * @COLUMN_NAME `NTCE_ENDDE` char(20) DEFAULT NULL COMMENT '게시종료일',
+	 * @return
+	 */
+	public String getNtceEndde() {
+		return ntceEndde;
+	}
+
+	/**
+	 * 게시종료일 값설정
+	 * 
+	 * @COLUMN_NAME `NTCE_ENDDE` char(20) DEFAULT NULL COMMENT '게시종료일',
+	 * @param ntceEndde
+	 */
+	public void setNtceEndde(String ntceEndde) {
+		this.ntceEndde = ntceEndde;
 	}
 
 	/**
