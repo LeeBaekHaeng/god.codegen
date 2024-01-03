@@ -119,6 +119,13 @@ public class SampleBa02 extends ComDefaultVO {
 	private String ntcrId;
 
 	/**
+	 * 게시자명
+	 * 
+	 * @COLUMN_NAME `NTCR_NM` varchar(20) DEFAULT NULL COMMENT '게시자명',
+	 */
+	private String ntcrNm;
+
+	/**
 	 * getSerialversionuid
 	 * 
 	 * @return
@@ -415,6 +422,28 @@ public class SampleBa02 extends ComDefaultVO {
 	 */
 	public void setNtcrId(final String ntcrId) {
 		this.ntcrId = ntcrId;
+	}
+
+	/**
+	 * 게시자명 값읽기
+	 * 
+	 * @return
+	 * 
+	 * @COLUMN_NAME `NTCR_NM` varchar(20) DEFAULT NULL COMMENT '게시자명',
+	 */
+	public String getNtcrNm() {
+		return ntcrNm;
+	}
+
+	/**
+	 * 게시자명 값설정
+	 * 
+	 * @param ntcrNm
+	 * 
+	 * @COLUMN_NAME `NTCR_NM` varchar(20) DEFAULT NULL COMMENT '게시자명',
+	 */
+	public void setNtcrNm(final String ntcrNm) {
+		this.ntcrNm = ntcrNm;
 	}
 
 	/**
