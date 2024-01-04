@@ -2,8 +2,15 @@ package egovframework.com.cmm.service;
 
 import static org.junit.Assert.assertEquals;
 
+import java.io.BufferedInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.InputStream;
+import java.nio.file.Files;
 import java.nio.file.Paths;
+import java.util.Properties;
 
+import org.egovframe.rte.fdl.cmmn.exception.BaseRuntimeException;
 import org.junit.Test;
 
 import egovframework.com.cmm.EgovWebUtil;
@@ -44,6 +51,45 @@ public class EgovPropertiesTest {
                     EgovProperties.class.getResource("").getPath().lastIndexOf("com")));
             log.debug("{}", Paths.get(EgovWebUtil.filePathBlackList(EgovProperties.class.getResource("").getPath()
                     .substring(1, EgovProperties.class.getResource("").getPath().lastIndexOf("com")))));
+        }
+
+        assertEquals("", "", "");
+    }
+
+    /**
+     * Property 파일패스로 Properties 객체를 리턴한다. 단위 테스트
+     */
+    @Test
+    public void loadPropertiesFromFile() {
+        final String fileName = EgovProperties.GLOBALS_PROPERTIES_FILE;
+
+        if (log.isDebugEnabled()) {
+            log.debug("fileName={}", fileName);
+        }
+
+        final Properties props = new Properties();
+
+        try (
+
+//                FileInputStream fis = new FileInputStream(EgovWebUtil.filePathBlackList(fileName));
+//                BufferedInputStream bis = new BufferedInputStream(fis);
+
+                InputStream fis = Files.newInputStream(Paths.get(EgovWebUtil.filePathBlackList(fileName)));
+                BufferedInputStream bis = new BufferedInputStream(fis);
+
+        ) {
+            props.load(bis);
+        } catch (FileNotFoundException fne) {
+            log.debug("Property file not found.", fne);
+            throw new BaseRuntimeException("Property file not found", fne);
+        } catch (IOException ioe) {
+            log.debug("Property file IO exception", ioe);
+            throw new BaseRuntimeException("Property file IO exception", ioe);
+        }
+
+        if (log.isDebugEnabled()) {
+            log.debug("Globals.DbType={}", props.getProperty("Globals.DbType"));
+            log.debug("Globals.Auth={}", props.getProperty("Globals.Auth"));
         }
 
         assertEquals("", "", "");

@@ -53,7 +53,7 @@ public class EgovProperties {
     // +FILE_SEPARATOR + "globals.properties";
 
     public static final String RELATIVE_PATH_PREFIX = EgovProperties.class.getResource("") == null ? ""
-            : EgovProperties.class.getResource("").getPath().substring(0,
+            : EgovProperties.class.getResource("").getPath().substring(1,
                     EgovProperties.class.getResource("").getPath().lastIndexOf("com"));
     // public static final String RELATIVE_PATH_PREFIX =
     // EgovProperties.class.getProtectionDomain().getCodeSource().getLocation().getPath().substring(0,EgovProperties.class.getProtectionDomain().getCodeSource().getLocation().getPath().indexOf("WEB-INF/classes/")+"WEB-INF/classes/".length())+"egovframework/";
