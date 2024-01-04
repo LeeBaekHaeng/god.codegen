@@ -1,22 +1,24 @@
 package egovframework.com.cmm.service;
 
 import java.io.BufferedInputStream;
-import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.io.InputStream;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.Enumeration;
-import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.Properties;
+import java.util.concurrent.ConcurrentHashMap;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import org.egovframe.rte.fdl.cmmn.exception.BaseRuntimeException;
 
 import egovframework.com.cmm.EgovWebUtil;
 import egovframework.com.utl.fcc.service.EgovStringUtil;
+import lombok.experimental.UtilityClass;
+import lombok.extern.slf4j.Slf4j;
 
 /**
  * Class Name : EgovProperties.java Description : properties값들을 파일로부터 읽어와
@@ -39,25 +41,31 @@ import egovframework.com.utl.fcc.service.EgovStringUtil;
  * @see
  *
  */
-
+@UtilityClass
+@Slf4j
 public class EgovProperties {
 
-    private static final Logger LOGGER = LoggerFactory.getLogger(EgovProperties.class);
+    /**
+     * 파일구분자
+     */
+    private final static String FILE_SEPARATOR = System.getProperty("file.separator");
 
-    // 파일구분자
-    final static String FILE_SEPARATOR = System.getProperty("file.separator");
-
-    // 프로퍼티 파일의 물리적 위치
     // public static final String GLOBALS_PROPERTIES_FILE =
     // System.getProperty("user.home") + FILE_SEPARATOR + "egovProps"
     // +FILE_SEPARATOR + "globals.properties";
 
+    /**
+     * 프로퍼티 파일의 물리적 위치
+     */
     public static final String RELATIVE_PATH_PREFIX = EgovProperties.class.getResource("") == null ? ""
             : EgovProperties.class.getResource("").getPath().substring(1,
                     EgovProperties.class.getResource("").getPath().lastIndexOf("com"));
     // public static final String RELATIVE_PATH_PREFIX =
     // EgovProperties.class.getProtectionDomain().getCodeSource().getLocation().getPath().substring(0,EgovProperties.class.getProtectionDomain().getCodeSource().getLocation().getPath().indexOf("WEB-INF/classes/")+"WEB-INF/classes/".length())+"egovframework/";
 
+    /**
+     * 전역 속성 파일
+     */
     public static final String GLOBALS_PROPERTIES_FILE = RELATIVE_PATH_PREFIX + "egovProps" + FILE_SEPARATOR
             + "globals.properties";
 
@@ -67,11 +75,13 @@ public class EgovProperties {
      * @param keyName String
      * @return String
      */
-    public static String getProperty(String keyName) {
+    public static String getProperty(final String keyName) {
         // 221116 김혜준 2022 시큐어코딩 조치
-        LOGGER.debug("===>>> getProperty" + EgovStringUtil
-                .isNullToString(EgovProperties.class.getProtectionDomain().getCodeSource().getLocation().getPath()));
-        LOGGER.debug("getProperty : {} = {}", GLOBALS_PROPERTIES_FILE, keyName);
+        if (log.isDebugEnabled()) {
+            log.debug("===>>> getProperty" + EgovStringUtil.isNullToString(
+                    EgovProperties.class.getProtectionDomain().getCodeSource().getLocation().getPath()));
+            log.debug("getProperty : {} = {}", GLOBALS_PROPERTIES_FILE, keyName);
+        }
 
         return getPropertyValueByKey(keyName);
     }
@@ -82,8 +92,8 @@ public class EgovProperties {
      * @param keyName String
      * @return String
      */
-    public static String getPathProperty(String keyName) {
-        LOGGER.debug("getPathProperty : {} = {}", GLOBALS_PROPERTIES_FILE, keyName);
+    public static String getPathProperty(final String keyName) {
+        log.debug("getPathProperty : {} = {}", GLOBALS_PROPERTIES_FILE, keyName);
 
         return RELATIVE_PATH_PREFIX + "egovProps" + FILE_SEPARATOR + getProperty(keyName);
     }
@@ -95,7 +105,7 @@ public class EgovProperties {
      * @param key      String
      * @return String
      */
-    public static String getProperty(String fileName, String keyName) {
+    public static String getProperty(final String fileName, final String keyName) {
         return getPropertyValueByKey(fileName, keyName);
     }
 
@@ -106,7 +116,7 @@ public class EgovProperties {
      * @param key      String
      * @return String
      */
-    public static String getPathProperty(String fileName, String keyName) {
+    public static String getPathProperty(final String fileName, final String keyName) {
         return RELATIVE_PATH_PREFIX + "egovProps" + FILE_SEPARATOR + getProperty(fileName, keyName);
     }
 
@@ -116,21 +126,21 @@ public class EgovProperties {
      * @param property String
      * @return ArrayList
      */
-    public static ArrayList<Map<String, String>> loadPropertyFile(String property) {
+    public static List<Map<String, String>> loadPropertyFile(final String property) {
 
         // key - value 형태로 된 배열 결과
-        ArrayList<Map<String, String>> keyList = new ArrayList<Map<String, String>>();
+        final List<Map<String, String>> keyList = new ArrayList<>();
 
-        String src = property.replace("\\", FILE_SEPARATOR).replace("/", FILE_SEPARATOR);
+        final String src = property.replace("\\", FILE_SEPARATOR).replace("/", FILE_SEPARATOR);
 
         if (Files.exists(Paths.get(EgovWebUtil.filePathBlackList(src)))) { // 2022.01 Potential Path Traversal
-            Properties props = loadPropertiesFromFile(src);
+            final Properties props = loadPropertiesFromFile(src);
 
-            Enumeration<?> plist = props.propertyNames();
+            final Enumeration<?> plist = props.propertyNames();
             if (plist != null) {
                 while (plist.hasMoreElements()) {
-                    Map<String, String> map = new HashMap<String, String>();
-                    String key = (String) plist.nextElement();
+                    final Map<String, String> map = new ConcurrentHashMap<>();
+                    final String key = (String) plist.nextElement();
                     map.put(key, props.getProperty(key));
                     keyList.add(map);
                 }
@@ -146,7 +156,7 @@ public class EgovProperties {
      * @param keyName
      * @return
      */
-    public static String getPropertyValueByKey(String keyName) {
+    public static String getPropertyValueByKey(final String keyName) {
         return getPropertyValueByKey(GLOBALS_PROPERTIES_FILE, keyName);
     }
 
@@ -157,9 +167,9 @@ public class EgovProperties {
      * @param keyName
      * @return
      */
-    public static String getPropertyValueByKey(String fileName, String keyName) {
+    public static String getPropertyValueByKey(final String fileName, final String keyName) {
         String propertyValue = "";
-        Properties props = loadPropertiesFromFile(fileName);
+        final Properties props = loadPropertiesFromFile(fileName);
 
         if (props.containsKey(keyName)) {
             propertyValue = props.getProperty(keyName).trim();
@@ -174,18 +184,25 @@ public class EgovProperties {
      * @param fileName
      * @return
      */
-    private static Properties loadPropertiesFromFile(String fileName) {
-        Properties props = new Properties();
+    private static Properties loadPropertiesFromFile(final String fileName) {
+        final Properties props = new Properties();
 
-        try (FileInputStream fis = new FileInputStream(EgovWebUtil.filePathBlackList(fileName));
-                BufferedInputStream bis = new BufferedInputStream(fis);) {
+        try (
+
+//                FileInputStream fis = new FileInputStream(EgovWebUtil.filePathBlackList(fileName));
+//                BufferedInputStream bis = new BufferedInputStream(fis);
+
+                InputStream fis = Files.newInputStream(Paths.get(EgovWebUtil.filePathBlackList(fileName)));
+                BufferedInputStream bis = new BufferedInputStream(fis);
+
+        ) {
             props.load(bis);
         } catch (FileNotFoundException fne) {
-            LOGGER.debug("Property file not found.", fne);
-            throw new RuntimeException("Property file not found", fne);
+            log.debug("Property file not found.", fne);
+            throw new BaseRuntimeException("Property file not found", fne);
         } catch (IOException ioe) {
-            LOGGER.debug("Property file IO exception", ioe);
-            throw new RuntimeException("Property file IO exception", ioe);
+            log.debug("Property file IO exception", ioe);
+            throw new BaseRuntimeException("Property file IO exception", ioe);
         }
 
         return props;
