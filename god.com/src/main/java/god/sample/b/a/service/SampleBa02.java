@@ -126,6 +126,13 @@ public class SampleBa02 extends ComDefaultVO {
 	private String ntcrNm;
 
 	/**
+	 * 비밀번호
+	 * 
+	 * @COLUMN_NAME `PASSWORD` varchar(200) DEFAULT NULL COMMENT '비밀번호',
+	 */
+	private String password;
+
+	/**
 	 * getSerialversionuid
 	 * 
 	 * @return
@@ -444,6 +451,28 @@ public class SampleBa02 extends ComDefaultVO {
 	 */
 	public void setNtcrNm(final String ntcrNm) {
 		this.ntcrNm = ntcrNm;
+	}
+
+	/**
+	 * 비밀번호 값읽기
+	 * 
+	 * @return
+	 * 
+	 * @COLUMN_NAME `PASSWORD` varchar(200) DEFAULT NULL COMMENT '비밀번호',
+	 */
+	public String getPassword() {
+		return password;
+	}
+
+	/**
+	 * 비밀번호 값설정
+	 * 
+	 * @param password
+	 * 
+	 * @COLUMN_NAME `PASSWORD` varchar(200) DEFAULT NULL COMMENT '비밀번호',
+	 */
+	public void setPassword(String password) {
+		this.password = password;
 	}
 
 	/**

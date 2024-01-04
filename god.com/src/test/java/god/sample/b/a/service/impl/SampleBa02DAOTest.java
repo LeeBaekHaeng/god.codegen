@@ -18,6 +18,7 @@ import org.springframework.test.context.ContextConfiguration;
 import egovframework.com.cmm.LoginVO;
 import egovframework.com.cmm.util.EgovUserDetailsHelper;
 import egovframework.com.test.EgovTestAbstractDAO;
+import egovframework.com.utl.sim.service.EgovFileScrty;
 import god.sample.b.a.service.SampleBa02.UseAt;
 import god.sample.b.a.service.SampleBa02VO;
 import lombok.NoArgsConstructor;
@@ -107,7 +108,7 @@ public class SampleBa02DAOTest extends EgovTestAbstractDAO {
 			log.debug("ordinal={}", UseAt.Y.ordinal());
 			log.debug("UseAt.N={}", UseAt.N);
 
-			UseAt[] values = UseAt.values();
+			final UseAt[] values = UseAt.values();
 			for (int i = 0; i < values.length; i++) {
 				log.debug("values[{}]={}", i, values[i]);
 			}
@@ -119,6 +120,7 @@ public class SampleBa02DAOTest extends EgovTestAbstractDAO {
 		vo.setRdcnt(0L);
 		vo.setNtceBgnde(EgovDateUtil.toString(new Date(), "yyyyMMddHHmmss", null));
 		vo.setNtceEndde(vo.getNtceBgnde());
+		vo.setPassword(EgovFileScrty.encryptPassword("test 이백행 비밀번호 " + now, ""));
 
 		vo.setFrstRegistPnttm(LocalDateTime.now());
 		vo.setLastUpdtPnttm(vo.getFrstRegistPnttm());
@@ -126,6 +128,8 @@ public class SampleBa02DAOTest extends EgovTestAbstractDAO {
 		if (loginVO != null) {
 			vo.setNtcrId(loginVO.getUniqId());
 			vo.setNtcrNm(loginVO.getName());
+//			vo.setPassword(EgovFileScrty.encryptPassword("test 이백행 비밀번호 " + now, loginVO.getId()));
+
 			vo.setFrstRegisterId(loginVO.getUniqId());
 			vo.setLastUpdusrId(loginVO.getUniqId());
 		}

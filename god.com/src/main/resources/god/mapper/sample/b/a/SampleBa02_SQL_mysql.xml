@@ -36,6 +36,7 @@ INSERT INTO comtnbbs /* 게시판 */ (
      , NTCE_ENDDE /* `NTCE_ENDDE` char(20) DEFAULT NULL COMMENT '게시종료일', */
      , NTCR_ID /* `NTCR_ID` varchar(20) DEFAULT NULL COMMENT '게시자ID', */
      , NTCR_NM /* `NTCR_NM` varchar(20) DEFAULT NULL COMMENT '게시자명', */
+     , PASSWORD /* `PASSWORD` varchar(200) DEFAULT NULL COMMENT '비밀번호', */
 /*  */
      , FRST_REGIST_PNTTM /* `FRST_REGIST_PNTTM` datetime DEFAULT NULL COMMENT '최초등록시점', */
      , FRST_REGISTER_ID /* `FRST_REGISTER_ID` varchar(20) DEFAULT NULL COMMENT '최초등록자ID', */
@@ -60,6 +61,7 @@ INSERT INTO comtnbbs /* 게시판 */ (
      , #{ntceEndde} /* `NTCE_ENDDE` char(20) DEFAULT NULL COMMENT '게시종료일', */
      , #{ntcrId} /* `NTCR_ID` varchar(20) DEFAULT NULL COMMENT '게시자ID', */
      , #{ntcrNm} /* `NTCR_NM` varchar(20) DEFAULT NULL COMMENT '게시자명', */
+     , #{password} /* `PASSWORD` varchar(200) DEFAULT NULL COMMENT '비밀번호', */
 /*  */
      , #{frstRegistPnttm} /* `FRST_REGIST_PNTTM` datetime DEFAULT NULL COMMENT '최초등록시점', */
      , #{frstRegisterId} /* `FRST_REGISTER_ID` varchar(20) DEFAULT NULL COMMENT '최초등록자ID', */
