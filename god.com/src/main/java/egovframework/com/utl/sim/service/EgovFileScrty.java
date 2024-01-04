@@ -38,10 +38,13 @@ import egovframework.com.cmm.util.EgovResourceCloseHelper;
  * @Class Name : EgovFileScrty.java
  * @Description : 파일 및 텍스트 문자열 암호화 처리하는 구현 클래스
  * @Modification Information
- *
- *               수정일 수정자 수정내용 ---------- ------- ------------------- 2019.11.29
- *               신용호 encryptPassword(String data) 삭제 : KISA 보안약점 조치 (비밀번호 해시함수
- *               적용 시 솔트를 사용하여야 함) 2022.11.16 신용호 소스코드 보안 조치
+ * 
+ *               <pre>
+ *    수정일                 수정자              수정내용
+ *    ----------    -------     -------------------
+ *    2019.11.29	신용호		encryptPassword(String data) 삭제 : KISA 보안약점 조치 (비밀번호 해시함수 적용 시 솔트를 사용하여야 함)
+ *    2022.11.16	신용호        소스코드 보안 조치
+ *               </pre>
  * 
  * @author 공통컴포넌트개발팀 한성곤
  * @since 2009.08.26
