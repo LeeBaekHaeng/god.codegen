@@ -126,11 +126,18 @@ public class SampleBa02 extends ComDefaultVO {
 	private String ntcrNm;
 
 	/**
+	 * 첨부파일ID
+	 * 
+	 * @COLUMN_NAME `ATCH_FILE_ID` char(20) DEFAULT NULL COMMENT '첨부파일ID',
+	 */
+	private String password;
+
+	/**
 	 * 비밀번호
 	 * 
 	 * @COLUMN_NAME `PASSWORD` varchar(200) DEFAULT NULL COMMENT '비밀번호',
 	 */
-	private String password;
+	private String atchFileId;
 
 	/**
 	 * getSerialversionuid
@@ -473,6 +480,26 @@ public class SampleBa02 extends ComDefaultVO {
 	 */
 	public void setPassword(String password) {
 		this.password = password;
+	}
+
+	/**
+	 * 첨부파일ID 값읽기
+	 * 
+	 * @return
+	 * @COLUMN_NAME `ATCH_FILE_ID` char(20) DEFAULT NULL COMMENT '첨부파일ID',
+	 */
+	public String getAtchFileId() {
+		return atchFileId;
+	}
+
+	/**
+	 * 첨부파일ID 값설정
+	 * 
+	 * @param atchFileId
+	 * @COLUMN_NAME `ATCH_FILE_ID` char(20) DEFAULT NULL COMMENT '첨부파일ID',
+	 */
+	public void setAtchFileId(String atchFileId) {
+		this.atchFileId = atchFileId;
 	}
 
 	/**

@@ -121,6 +121,7 @@ public class SampleBa02DAOTest extends EgovTestAbstractDAO {
 		vo.setNtceBgnde(EgovDateUtil.toString(new Date(), "yyyyMMddHHmmss", null));
 		vo.setNtceEndde(vo.getNtceBgnde());
 		vo.setPassword(EgovFileScrty.encryptPassword("test 이백행 비밀번호 " + now, ""));
+		vo.setAtchFileId(vo.getNtceBgnde());
 
 		vo.setFrstRegistPnttm(LocalDateTime.now());
 		vo.setLastUpdtPnttm(vo.getFrstRegistPnttm());
