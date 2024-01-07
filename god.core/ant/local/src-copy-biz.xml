@@ -10,7 +10,7 @@
 	<!-- <property name="dist" location="dist" /> -->
 
 	<property name="src0" location="../../../" />
-	<property name="dist0" location="${user.home}/Desktop/프로젝트" />
+	<property name="dist0" location="${user.home}/Desktop/업무컴포넌트" />
 
 	<!-- god.core -->
 	<property name="project1" value="god.core" />
@@ -76,7 +76,16 @@
 		<copy todir="${dist1}" verbose="true">
 			<fileset dir="${src1}">
 				<include name="src/main/java/god/**/*.*" />
+
 				<include name="src/main/resources/god/mapper/**/*.*" />
+
+				<include name="src/main/webapp/css/god/**/*.*" />
+				<include name="src/main/webapp/html/god/**/*.*" />
+				<include name="src/main/webapp/images/god/**/*.*" />
+				<include name="src/main/webapp/js/god/**/*.*" />
+
+				<include name="src/main/webapp/WEB-INF/config/god/**/*.*" />
+				<include name="src/main/webapp/WEB-INF/jsp/god/**/*.*" />
 			</fileset>
 		</copy>
 
@@ -84,7 +93,16 @@
 		<copy todir="${dist2}" verbose="true">
 			<fileset dir="${src2}">
 				<include name="src/main/java/god/**/*.*" />
+
 				<include name="src/main/resources/god/mapper/**/*.*" />
+
+				<include name="src/main/webapp/css/god/**/*.*" />
+				<include name="src/main/webapp/html/god/**/*.*" />
+				<include name="src/main/webapp/images/god/**/*.*" />
+				<include name="src/main/webapp/js/god/**/*.*" />
+
+				<include name="src/main/webapp/WEB-INF/config/god/**/*.*" />
+				<include name="src/main/webapp/WEB-INF/jsp/god/**/*.*" />
 			</fileset>
 		</copy>
 
@@ -92,7 +110,16 @@
 		<copy todir="${dist3}" verbose="true">
 			<fileset dir="${src3}">
 				<include name="src/main/java/god/**/*.*" />
+
 				<include name="src/main/resources/god/mapper/**/*.*" />
+
+				<include name="src/main/webapp/css/god/**/*.*" />
+				<include name="src/main/webapp/html/god/**/*.*" />
+				<include name="src/main/webapp/images/god/**/*.*" />
+				<include name="src/main/webapp/js/god/**/*.*" />
+
+				<include name="src/main/webapp/WEB-INF/config/god/**/*.*" />
+				<include name="src/main/webapp/WEB-INF/jsp/god/**/*.*" />
 			</fileset>
 		</copy>
 

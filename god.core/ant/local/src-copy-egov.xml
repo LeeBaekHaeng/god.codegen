@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<project name="MyProject" default="dist" basedir=".">
+	<description>
+		simple example build file
+	</description>
+	<!-- set global properties for this build -->
+	<!-- <property name="src" location="src" /> -->
+	<!-- <property name="build" location="build" /> -->
+	<!-- <property name="dist" location="dist" /> -->
+
+	<property name="src0" location="../../../" />
+	<property name="dist0" location="${user.home}/Desktop/공통컴포넌트" />
+
+	<!-- god.core -->
+	<property name="project1" value="god.core" />
+	<property name="src1" location="${src0}/${project1}" />
+	<property name="dist1" location="${dist0}/${project1}" />
+
+	<!-- god.com -->
+	<property name="project2" value="god.com" />
+	<property name="src2" location="${src0}/${project2}" />
+	<property name="dist2" location="${dist0}/${project2}" />
+
+	<!-- god.com-all -->
+	<property name="project3" value="god.com-all" />
+	<property name="src3" location="${src0}/${project3}" />
+	<property name="dist3" location="${dist0}/${project3}" />
+
+	<target name="init">
+		<!-- Create the time stamp -->
+		<!-- <tstamp /> -->
+		<tstamp />
+		<!-- Create the build directory structure used by compile -->
+		<!-- <mkdir dir="${build}" /> -->
+
+		<mkdir dir="${dist1}" />
+
+		<echo>DSTAMP=${DSTAMP}</echo>
+		<echo>---------- ---------- ----------</echo>
+
+		<echo>src0=${src0}</echo>
+		<echo>dist0=${dist0}</echo>
+		<echo>---------- ---------- ----------</echo>
+
+		<!-- god.core -->
+		<echo>src1=${src1}</echo>
+		<echo>dist1=${dist1}</echo>
+		<echo>---------- ---------- ----------</echo>
+
+		<!-- god.com -->
+		<echo>src2=${src2}</echo>
+		<echo>dist2=${dist2}</echo>
+		<echo>---------- ---------- ----------</echo>
+
+		<!-- god.com-all -->
+		<echo>src3=${src3}</echo>
+		<echo>dist3=${dist3}</echo>
+		<echo>---------- ---------- ---------- </echo>
+
+	</target>
+
+	<target name="compile" depends="init" description="compile the source">
+		<!-- Compile the Java code from ${src} into ${build} -->
+		<!-- <javac srcdir="${src}" destdir="${build}" /> -->
+	</target>
+
+	<target name="dist" depends="compile" description="generate the distribution">
+		<!-- Create the distribution directory -->
+		<!-- <mkdir dir="${dist}/lib" /> -->
+
+		<!-- Put everything in ${build} into the MyProject-${DSTAMP}.jar file -->
+		<!-- <jar jarfile="${dist}/lib/MyProject-${DSTAMP}.jar" basedir="${build}" /> -->
+
+		<!-- god.core -->
+		<copy todir="${dist1}" verbose="true">
+			<fileset dir="${src1}">
+				<include name="src/main/java/egovframework/**/*.*" />
+
+				<include name="src/main/resources/egovframework/mapper/**/*.*" />
+
+				<include name="src/main/webapp/css/egovframework/**/*.*" />
+				<include name="src/main/webapp/html/egovframework/**/*.*" />
+				<include name="src/main/webapp/images/egovframework/**/*.*" />
+				<include name="src/main/webapp/js/egovframework/**/*.*" />
+
+				<include name="src/main/webapp/WEB-INF/config/egovframework/**/*.*" />
+				<include name="src/main/webapp/WEB-INF/jsp/egovframework/**/*.*" />
+			</fileset>
+		</copy>
+
+		<!-- god.com -->
+		<copy todir="${dist2}" verbose="true">
+			<fileset dir="${src2}">
+				<include name="src/main/java/egovframework/**/*.*" />
+
+				<include name="src/main/resources/egovframework/mapper/**/*.*" />
+
+				<include name="src/main/webapp/css/egovframework/**/*.*" />
+				<include name="src/main/webapp/html/egovframework/**/*.*" />
+				<include name="src/main/webapp/images/egovframework/**/*.*" />
+				<include name="src/main/webapp/js/egovframework/**/*.*" />
+
+				<include name="src/main/webapp/WEB-INF/config/egovframework/**/*.*" />
+				<include name="src/main/webapp/WEB-INF/jsp/egovframework/**/*.*" />
+			</fileset>
+		</copy>
+
+		<!-- god.com-all -->
+		<copy todir="${dist3}" verbose="true">
+			<fileset dir="${src3}">
+				<include name="src/main/java/egovframework/**/*.*" />
+
+				<include name="src/main/resources/egovframework/mapper/**/*.*" />
+
+				<include name="src/main/webapp/css/egovframework/**/*.*" />
+				<include name="src/main/webapp/html/egovframework/**/*.*" />
+				<include name="src/main/webapp/images/egovframework/**/*.*" />
+				<include name="src/main/webapp/js/egovframework/**/*.*" />
+
+				<include name="src/main/webapp/WEB-INF/config/egovframework/**/*.*" />
+				<include name="src/main/webapp/WEB-INF/jsp/egovframework/**/*.*" />
+			</fileset>
+		</copy>
+
+	</target>
+
+	<target name="clean" description="clean up">
+		<!-- Delete the ${build} and ${dist} directory trees -->
+		<!-- <delete dir="${build}" /> -->
+		<!-- <delete dir="${dist}" /> -->
+
+		<delete dir="${dist0}" />
+	</target>
+</project>
