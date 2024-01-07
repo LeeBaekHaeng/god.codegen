@@ -153,6 +153,10 @@
 
 				<include name="src/main/webapp/jsp/**/*.*" />
 				<include name="src/main/webapp/resources/**/*.*" />
+
+				<exclude name="src/main/webapp/resources/com/cmm/axios.min.js" />
+				<exclude name="src/main/webapp/resources/com/cmm/jquery.blockUI.js" />
+				<exclude name="src/main/webapp/resources/com/cmm/vue.global.min.js" />
 			</fileset>
 		</copy>
 
