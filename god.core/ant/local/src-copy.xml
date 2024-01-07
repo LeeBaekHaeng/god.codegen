@@ -37,21 +37,26 @@
 		<mkdir dir="${dist1}" />
 
 		<echo>DSTAMP=${DSTAMP}</echo>
+		<echo>---------- ---------- ----------</echo>
 
 		<echo>src0=${src0}</echo>
 		<echo>dist0=${dist0}</echo>
+		<echo>---------- ---------- ----------</echo>
 
-		<echo>god.core</echo>
+		<!-- god.core -->
 		<echo>src1=${src1}</echo>
 		<echo>dist1=${dist1}</echo>
+		<echo>---------- ---------- ----------</echo>
 
-		<echo>god.com</echo>
+		<!-- god.com -->
 		<echo>src2=${src2}</echo>
 		<echo>dist2=${dist2}</echo>
+		<echo>---------- ---------- ----------</echo>
 
-		<echo>god.com-all</echo>
+		<!-- god.com-all -->
 		<echo>src3=${src3}</echo>
 		<echo>dist3=${dist3}</echo>
+		<echo>---------- ---------- ---------- </echo>
 
 	</target>
 
