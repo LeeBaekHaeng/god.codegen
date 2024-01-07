@@ -79,13 +79,21 @@
 
 				<include name="src/main/resources/egovframework/mapper/**/*.*" />
 
+				<include name="src/main/webapp/*.jsp" />
+
 				<include name="src/main/webapp/css/egovframework/**/*.*" />
 				<include name="src/main/webapp/html/egovframework/**/*.*" />
 				<include name="src/main/webapp/images/egovframework/**/*.*" />
 				<include name="src/main/webapp/js/egovframework/**/*.*" />
 
+				<include name="src/main/webapp/META-INF/**/*.*" />
+
+				<include name="src/main/webapp/WEB-INF/**/*.xml" />
 				<include name="src/main/webapp/WEB-INF/config/egovframework/**/*.*" />
 				<include name="src/main/webapp/WEB-INF/jsp/egovframework/**/*.*" />
+				<include name="src/main/webapp/WEB-INF/lib/**/*.*" />
+				<include name="src/main/webapp/WEB-INF/META-INF/**/*.*" />
+				<include name="src/main/webapp/WEB-INF/tlds/**/*.*" />
 			</fileset>
 		</copy>
 
@@ -96,13 +104,21 @@
 
 				<include name="src/main/resources/egovframework/mapper/**/*.*" />
 
+				<include name="src/main/webapp/*.jsp" />
+
 				<include name="src/main/webapp/css/egovframework/**/*.*" />
 				<include name="src/main/webapp/html/egovframework/**/*.*" />
 				<include name="src/main/webapp/images/egovframework/**/*.*" />
 				<include name="src/main/webapp/js/egovframework/**/*.*" />
 
+				<include name="src/main/webapp/META-INF/**/*.*" />
+
+				<include name="src/main/webapp/WEB-INF/**/*.xml" />
 				<include name="src/main/webapp/WEB-INF/config/egovframework/**/*.*" />
 				<include name="src/main/webapp/WEB-INF/jsp/egovframework/**/*.*" />
+				<include name="src/main/webapp/WEB-INF/lib/**/*.*" />
+				<include name="src/main/webapp/WEB-INF/META-INF/**/*.*" />
+				<include name="src/main/webapp/WEB-INF/tlds/**/*.*" />
 			</fileset>
 		</copy>
 
@@ -113,13 +129,21 @@
 
 				<include name="src/main/resources/egovframework/mapper/**/*.*" />
 
+				<include name="src/main/webapp/*.jsp" />
+
 				<include name="src/main/webapp/css/egovframework/**/*.*" />
 				<include name="src/main/webapp/html/egovframework/**/*.*" />
 				<include name="src/main/webapp/images/egovframework/**/*.*" />
 				<include name="src/main/webapp/js/egovframework/**/*.*" />
 
+				<include name="src/main/webapp/META-INF/**/*.*" />
+
+				<include name="src/main/webapp/WEB-INF/**/*.xml" />
 				<include name="src/main/webapp/WEB-INF/config/egovframework/**/*.*" />
 				<include name="src/main/webapp/WEB-INF/jsp/egovframework/**/*.*" />
+				<include name="src/main/webapp/WEB-INF/lib/**/*.*" />
+				<include name="src/main/webapp/WEB-INF/META-INF/**/*.*" />
+				<include name="src/main/webapp/WEB-INF/tlds/**/*.*" />
 			</fileset>
 		</copy>
 
