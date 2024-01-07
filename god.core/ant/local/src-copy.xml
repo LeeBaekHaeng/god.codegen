@@ -9,35 +9,55 @@
 	<!-- <property name="build" location="build" /> -->
 	<!-- <property name="dist" location="dist" /> -->
 
+	<property name="src0" location="../../../" />
+	<property name="dist0" location="${user.home}/Desktop/프로젝트" />
+
 	<!-- god.core -->
-	<property name="src" location="../../src/main" />
-	<property name="build" location="../../target/build" />
-	<property name="dist" location="../../target/dist" />
+	<property name="project1" value="god.core" />
+	<property name="src1" location="${src0}/${project1}" />
+	<property name="dist1" location="${dist0}/${project1}" />
+
+	<!-- god.com -->
+	<property name="project2" value="god.com" />
+	<property name="src2" location="${src0}/${project2}" />
+	<property name="dist2" location="${dist0}/${project2}" />
+
+	<!-- god.com-all -->
+	<property name="project3" value="god.com-all" />
+	<property name="src3" location="${src0}/${project3}" />
+	<property name="dist3" location="${dist0}/${project3}" />
 
 	<target name="init">
 		<!-- Create the time stamp -->
+		<!-- <tstamp /> -->
 		<tstamp />
 		<!-- Create the build directory structure used by compile -->
-		<mkdir dir="${build}" />
+		<!-- <mkdir dir="${build}" /> -->
+
+		<mkdir dir="${dist1}" />
+
+		<echo>DSTAMP=${DSTAMP}</echo>
+
+		<echo>src0=${src0}</echo>
+		<echo>dist0=${dist0}</echo>
 
 		<echo>god.core</echo>
-		<echo>src=${src}</echo>
-		<echo>build=${build}</echo>
-		<echo>dist=${dist}</echo>
+		<echo>src1=${src1}</echo>
+		<echo>dist1=${dist1}</echo>
+
+		<echo>god.com</echo>
+		<echo>src2=${src2}</echo>
+		<echo>dist2=${dist2}</echo>
+
+		<echo>god.com-all</echo>
+		<echo>src3=${src3}</echo>
+		<echo>dist3=${dist3}</echo>
 
 	</target>
 
 	<target name="compile" depends="init" description="compile the source">
 		<!-- Compile the Java code from ${src} into ${build} -->
 		<!-- <javac srcdir="${src}" destdir="${build}" /> -->
-
-		<!-- god.core -->
-		<copy todir="${build}/프로젝트" verbose="true">
-			<fileset dir="${src}">
-				<include name="**/*.*" />
-			</fileset>
-		</copy>
-
 	</target>
 
 	<target name="dist" depends="compile" description="generate the distribution">
@@ -46,11 +66,38 @@
 
 		<!-- Put everything in ${build} into the MyProject-${DSTAMP}.jar file -->
 		<!-- <jar jarfile="${dist}/lib/MyProject-${DSTAMP}.jar" basedir="${build}" /> -->
+
+		<!-- god.core -->
+		<copy todir="${dist1}" verbose="true">
+			<fileset dir="${src1}">
+				<include name="src/main/java/god/**/*.*" />
+				<include name="src/main/resources/god/mapper/**/*.*" />
+			</fileset>
+		</copy>
+
+		<!-- god.com -->
+		<copy todir="${dist2}" verbose="true">
+			<fileset dir="${src2}">
+				<include name="src/main/java/god/**/*.*" />
+				<include name="src/main/resources/god/mapper/**/*.*" />
+			</fileset>
+		</copy>
+
+		<!-- god.com-all -->
+		<copy todir="${dist3}" verbose="true">
+			<fileset dir="${src3}">
+				<include name="src/main/java/god/**/*.*" />
+				<include name="src/main/resources/god/mapper/**/*.*" />
+			</fileset>
+		</copy>
+
 	</target>
 
 	<target name="clean" description="clean up">
 		<!-- Delete the ${build} and ${dist} directory trees -->
-		<delete dir="${build}" />
-		<delete dir="${dist}" />
+		<!-- <delete dir="${build}" /> -->
+		<!-- <delete dir="${dist}" /> -->
+
+		<delete dir="${dist0}" />
 	</target>
 </project>
