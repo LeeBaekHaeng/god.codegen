@@ -140,6 +140,13 @@ public class SampleBa02 extends ComDefaultVO {
 	private String atchFileId;
 
 	/**
+	 * 공지사항여부
+	 * 
+	 * @COLUMN_NAME `NOTICE_AT` char(1) DEFAULT NULL COMMENT '공지사항여부',
+	 */
+	private String noticeAt;
+
+	/**
 	 * getSerialversionuid
 	 * 
 	 * @return
@@ -500,6 +507,26 @@ public class SampleBa02 extends ComDefaultVO {
 	 */
 	public void setAtchFileId(String atchFileId) {
 		this.atchFileId = atchFileId;
+	}
+
+	/**
+	 * 공지사항여부 값읽기
+	 * 
+	 * @return
+	 * @COLUMN_NAME `NOTICE_AT` char(1) DEFAULT NULL COMMENT '공지사항여부',
+	 */
+	public String getNoticeAt() {
+		return noticeAt;
+	}
+
+	/**
+	 * 공지사항여부 값설정
+	 * 
+	 * @param noticeAt
+	 * @COLUMN_NAME `NOTICE_AT` char(1) DEFAULT NULL COMMENT '공지사항여부',
+	 */
+	public void setNoticeAt(String noticeAt) {
+		this.noticeAt = noticeAt;
 	}
 
 	/**

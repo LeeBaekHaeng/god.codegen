@@ -38,6 +38,7 @@ INSERT INTO comtnbbs /* 게시판 */ (
      , NTCR_NM /* `NTCR_NM` varchar(20) DEFAULT NULL COMMENT '게시자명', */
      , PASSWORD /* `PASSWORD` varchar(200) DEFAULT NULL COMMENT '비밀번호', */
      , ATCH_FILE_ID /* `ATCH_FILE_ID` char(20) DEFAULT NULL COMMENT '첨부파일ID', */
+     , NOTICE_AT /* `NOTICE_AT` char(1) DEFAULT NULL COMMENT '공지사항여부', */
 /*  */
      , FRST_REGIST_PNTTM /* `FRST_REGIST_PNTTM` datetime DEFAULT NULL COMMENT '최초등록시점', */
      , FRST_REGISTER_ID /* `FRST_REGISTER_ID` varchar(20) DEFAULT NULL COMMENT '최초등록자ID', */
@@ -64,6 +65,7 @@ INSERT INTO comtnbbs /* 게시판 */ (
      , #{ntcrNm} /* `NTCR_NM` varchar(20) DEFAULT NULL COMMENT '게시자명', */
      , #{password} /* `PASSWORD` varchar(200) DEFAULT NULL COMMENT '비밀번호', */
      , #{atchFileId} /* `ATCH_FILE_ID` char(20) DEFAULT NULL COMMENT '첨부파일ID', */
+     , #{noticeAt} /* `NOTICE_AT` char(1) DEFAULT NULL COMMENT '공지사항여부', */
 /*  */
      , #{frstRegistPnttm} /* `FRST_REGIST_PNTTM` datetime DEFAULT NULL COMMENT '최초등록시점', */
      , #{frstRegisterId} /* `FRST_REGISTER_ID` varchar(20) DEFAULT NULL COMMENT '최초등록자ID', */
