@@ -147,6 +147,13 @@ public class SampleBa02 extends ComDefaultVO {
 	private String noticeAt;
 
 	/**
+	 * 제목볼드여부
+	 * 
+	 * @COLUMN_NAME `SJ_BOLD_AT` char(1) DEFAULT NULL COMMENT '제목볼드여부',
+	 */
+	private String sjBoldAt;
+
+	/**
 	 * getSerialversionuid
 	 * 
 	 * @return
@@ -527,6 +534,26 @@ public class SampleBa02 extends ComDefaultVO {
 	 */
 	public void setNoticeAt(String noticeAt) {
 		this.noticeAt = noticeAt;
+	}
+
+	/**
+	 * 제목볼드여부 값읽기
+	 * 
+	 * @return
+	 * @COLUMN_NAME `SJ_BOLD_AT` char(1) DEFAULT NULL COMMENT '제목볼드여부',
+	 */
+	public String getSjBoldAt() {
+		return sjBoldAt;
+	}
+
+	/**
+	 * 제목볼드여부 값설정
+	 * 
+	 * @param sjBoldAt
+	 * @COLUMN_NAME `SJ_BOLD_AT` char(1) DEFAULT NULL COMMENT '제목볼드여부',
+	 */
+	public void setSjBoldAt(String sjBoldAt) {
+		this.sjBoldAt = sjBoldAt;
 	}
 
 	/**

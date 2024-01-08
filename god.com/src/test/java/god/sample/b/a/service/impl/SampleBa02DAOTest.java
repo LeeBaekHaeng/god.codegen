@@ -98,7 +98,7 @@ public class SampleBa02DAOTest extends EgovTestAbstractDAO {
 		final LocalDateTime now = LocalDateTime.now();
 		vo.setNttSj("test 이백행 게시물제목 " + now);
 		vo.setNttCn("test 이백행 게시물내용 " + now);
-		vo.setAnswerAt("Y");
+		vo.setAnswerAt("Y"); // TODO enum
 
 //		vo.setUseAt("Y");
 		vo.setUseAt(UseAt.Y.name());
@@ -122,7 +122,8 @@ public class SampleBa02DAOTest extends EgovTestAbstractDAO {
 		vo.setNtceEndde(vo.getNtceBgnde());
 		vo.setPassword(EgovFileScrty.encryptPassword("test 이백행 비밀번호 " + now, ""));
 		vo.setAtchFileId(vo.getNtceBgnde());
-		vo.setNoticeAt("Y");
+		vo.setNoticeAt("Y"); // TODO enum
+		vo.setSjBoldAt("Y"); // TODO enum
 
 		vo.setFrstRegistPnttm(LocalDateTime.now());
 		vo.setLastUpdtPnttm(vo.getFrstRegistPnttm());
