@@ -154,6 +154,13 @@ public class SampleBa02 extends ComDefaultVO {
 	private String sjBoldAt;
 
 	/**
+	 * 비밀글여부
+	 * 
+	 * @COLUMN_NAME `SECRET_AT` char(1) DEFAULT NULL COMMENT '비밀글여부',
+	 */
+	private String secretAt;
+
+	/**
 	 * getSerialversionuid
 	 * 
 	 * @return
@@ -557,17 +564,23 @@ public class SampleBa02 extends ComDefaultVO {
 	}
 
 	/**
-	 * 사용여부
+	 * 비밀글여부 값읽기
 	 * 
-	 * @author 이백행
-	 * @since 2023-12-29
-	 * 
-	 * @TABLE_NAME COMTNBBS 게시판
-	 * @COLUMN_NAME `USE_AT` char(1) NOT NULL COMMENT '사용여부',
-	 * 
+	 * @return
+	 * @COLUMN_NAME `SECRET_AT` char(1) DEFAULT NULL COMMENT '비밀글여부',
 	 */
-	public enum UseAt {
-		Y, N
+	public String getSecretAt() {
+		return secretAt;
+	}
+
+	/**
+	 * 비밀글여부 값설정
+	 * 
+	 * @param secretAt
+	 * @COLUMN_NAME `SECRET_AT` char(1) DEFAULT NULL COMMENT '비밀글여부',
+	 */
+	public void setSecretAt(String secretAt) {
+		this.secretAt = secretAt;
 	}
 
 }

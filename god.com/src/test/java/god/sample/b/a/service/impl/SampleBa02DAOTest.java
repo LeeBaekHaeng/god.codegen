@@ -16,10 +16,14 @@ import org.springframework.context.annotation.ImportResource;
 import org.springframework.test.context.ContextConfiguration;
 
 import egovframework.com.cmm.LoginVO;
+import egovframework.com.cmm.enum_column.AnswerAt;
+import egovframework.com.cmm.enum_column.NoticeAt;
+import egovframework.com.cmm.enum_column.SecretAt;
+import egovframework.com.cmm.enum_column.SjBoldAt;
+import egovframework.com.cmm.enum_column.UseAt;
 import egovframework.com.cmm.util.EgovUserDetailsHelper;
 import egovframework.com.test.EgovTestAbstractDAO;
 import egovframework.com.utl.sim.service.EgovFileScrty;
-import god.sample.b.a.service.SampleBa02.UseAt;
 import god.sample.b.a.service.SampleBa02VO;
 import lombok.NoArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -98,7 +102,8 @@ public class SampleBa02DAOTest extends EgovTestAbstractDAO {
 		final LocalDateTime now = LocalDateTime.now();
 		vo.setNttSj("test 이백행 게시물제목 " + now);
 		vo.setNttCn("test 이백행 게시물내용 " + now);
-		vo.setAnswerAt("Y"); // TODO enum
+//		vo.setAnswerAt("Y");
+		vo.setAnswerAt(AnswerAt.Y.name());
 
 //		vo.setUseAt("Y");
 		vo.setUseAt(UseAt.Y.name());
@@ -122,8 +127,9 @@ public class SampleBa02DAOTest extends EgovTestAbstractDAO {
 		vo.setNtceEndde(vo.getNtceBgnde());
 		vo.setPassword(EgovFileScrty.encryptPassword("test 이백행 비밀번호 " + now, ""));
 		vo.setAtchFileId(vo.getNtceBgnde());
-		vo.setNoticeAt("Y"); // TODO enum
-		vo.setSjBoldAt("Y"); // TODO enum
+		vo.setNoticeAt(NoticeAt.Y.name());
+		vo.setSjBoldAt(SjBoldAt.Y.name());
+		vo.setSecretAt(SecretAt.Y.name());
 
 		vo.setFrstRegistPnttm(LocalDateTime.now());
 		vo.setLastUpdtPnttm(vo.getFrstRegistPnttm());
