@@ -5,6 +5,9 @@ import java.util.Date;
 
 import javax.annotation.Resource;
 
+import org.apache.commons.lang3.RandomStringUtils;
+import org.egovframe.rte.fdl.cmmn.exception.BaseRuntimeException;
+import org.egovframe.rte.fdl.cmmn.exception.FdlException;
 import org.egovframe.rte.fdl.idgnr.EgovIdGnrService;
 import org.egovframe.rte.fdl.string.EgovDateUtil;
 import org.junit.Test;
@@ -22,6 +25,8 @@ import egovframework.com.cmm.enum_column.SecretAt;
 import egovframework.com.cmm.enum_column.SjBoldAt;
 import egovframework.com.cmm.enum_column.UseAt;
 import egovframework.com.cmm.util.EgovUserDetailsHelper;
+import egovframework.com.cop.bbs.service.BoardMaster;
+import egovframework.com.cop.bbs.service.impl.EgovBBSMasterDAO;
 import egovframework.com.test.EgovTestAbstractDAO;
 import egovframework.com.utl.sim.service.EgovFileScrty;
 import god.sample.b.a.service.SampleBa02VO;
@@ -41,6 +46,8 @@ import lombok.extern.slf4j.Slf4j;
 
 @ImportResource({
 
+		"classpath*:/egovframework/spring/com/idgn/context-idgn-bbs.xml",
+
 		"classpath*:egovframework/spring/com/idgn/context-idgn-Cmmnty.xml",
 
 })
@@ -53,6 +60,8 @@ import lombok.extern.slf4j.Slf4j;
 
 				"god.sample.b.a.service.impl",
 
+				"egovframework.com.cop.bbs.service.impl",
+
 		},
 
 		includeFilters = {
@@ -64,6 +73,8 @@ import lombok.extern.slf4j.Slf4j;
 						classes = {
 
 								SampleBa02DAO.class,
+
+								EgovBBSMasterDAO.class,
 
 						}
 
@@ -84,6 +95,39 @@ public class SampleBa02DAOTest extends EgovTestAbstractDAO {
 	private SampleBa02DAO dao;
 
 	/**
+	 * 게시판마스터 DAO
+	 */
+	@Resource
+	private EgovBBSMasterDAO egovBBSMasterDAO;
+
+	/**
+	 * 게시판ID
+	 * 
+	 * @테이블 comtnbbs 게시판
+	 * @컬럼 `BBS_ID` char(30) NOT NULL COMMENT '게시판ID',
+	 */
+	@Resource(name = "egovBBSMstrIdGnrService")
+	private EgovIdGnrService egovBBSMstrIdGnrService;
+
+	/**
+	 * 게시물ID
+	 * 
+	 * @테이블 comtnbbs 게시판
+	 * @컬럼 `NTT_ID` decimal(20,0) NOT NULL COMMENT '게시물ID',
+	 */
+	@Resource(name = "egovNttIdGnrService")
+	private EgovIdGnrService egovNttIdGnrService;
+
+	/**
+	 * 블로그 ID
+	 * 
+	 * @테이블 comtnbbs 게시판
+	 * @컬럼 `BLOG_ID` char(20) DEFAULT NULL COMMENT '블로그 ID',
+	 */
+	@Resource(name = "egovBlogIdGnrService")
+	private EgovIdGnrService egovBlogIdGnrService;
+
+	/**
 	 * 만족도 ID
 	 */
 	@Resource(name = "egovCmmntyIdGnrService")
@@ -95,10 +139,22 @@ public class SampleBa02DAOTest extends EgovTestAbstractDAO {
 	@Test
 	public void a01insert() {
 		// given
+		final BoardMaster testDataBoardMaster = new BoardMaster();
+		testDataBoardMaster(testDataBoardMaster);
+
 		final SampleBa02VO vo = new SampleBa02VO();
-		vo.setNttId(0);
+
+//		vo.setNttId(0);
+		try {
+			vo.setNttId(egovNttIdGnrService.getNextLongId());
+		} catch (FdlException e) {
+			throw new BaseRuntimeException("FdlException egovBBSMstrIdGnrService 게시판ID", e);
+		}
+
 //		vo.setBbsId("TEST_A100_BBSMSTR_000000000001");
-		vo.setBbsId("BBSMSTR_000000000021nOQNbfsaSM");
+//		vo.setBbsId("BBSMSTR_000000000021nOQNbfsaSM");
+		vo.setBbsId(testDataBoardMaster.getBbsId());
+
 		final LocalDateTime now = LocalDateTime.now();
 		vo.setNttSj("test 이백행 게시물제목 " + now);
 		vo.setNttCn("test 이백행 게시물내용 " + now);
@@ -143,6 +199,13 @@ public class SampleBa02DAOTest extends EgovTestAbstractDAO {
 			vo.setLastUpdusrId(loginVO.getUniqId());
 		}
 
+//		vo.setBlogId(vo.getNtceBgnde());
+		try {
+			vo.setBlogId(egovBlogIdGnrService.getNextStringId());
+		} catch (FdlException e) {
+			throw new BaseRuntimeException("FdlException egovBBSMstrIdGnrService 게시판ID", e);
+		}
+
 		// when
 		final int result = dao.insert(vo);
 
@@ -151,43 +214,28 @@ public class SampleBa02DAOTest extends EgovTestAbstractDAO {
 		assertEqualsInsert(result);
 	}
 
-//	private void setAdministZoneCode(final SampleBa02VO vo) {
-//		vo.setAdministZoneCode(EgovDateUtil.toString(new Date(), "yyyyMMddHH", null));
-//	}
-//
-//	private void setOpertSn(final SampleBa02VO vo) {
-//		try {
-//			vo.setOpertSn(egovCmmntyIdGnrService.getNextLongId());
-//		} catch (FdlException e) {
-//			throw new BaseRuntimeException(
-//					"FdlException egovCmmntyIdGnrService " + egovMessageSource.getMessage("fail.common.msg"), e);
-//		}
-//
-//		if (log.isDebugEnabled()) {
-//			log.debug("getOpertSn={}", vo.getOpertSn());
-//		}
-//	}
-//
-//	/**
-//	 * 테스트 데이터
-//	 * 
-//	 * @param testData
-//	 */
-//	private void testData(final SampleBa02VO testData) {
-//		// given
-//		testData.setAdministZoneSe("1");
-//		testData.setAdministZoneCode(EgovDateUtil.toString(new Date(), "yyyyMMddHH", null));
-//
-//		setOpertSn(testData);
-//
-//		// when
-//		final int result = dao.insert(testData);
-//
-//		// then
-//		debugResult(result);
-//		assertEqualsInsert(result);
-//	}
-//
+	/**
+	 * 게시판마스터 테스트 데이터
+	 * 
+	 * @param testDataBoardMaster
+	 * 
+	 * @테이블 comtnbbsmaster 게시판마스터
+	 */
+	private void testDataBoardMaster(final BoardMaster testDataBoardMaster) {
+		// given
+		try {
+			testDataBoardMaster
+					.setBbsId(egovBBSMstrIdGnrService.getNextStringId() + RandomStringUtils.randomAlphabetic(10));
+		} catch (FdlException e) {
+			throw new BaseRuntimeException("FdlException egovBBSMstrIdGnrService 게시판ID", e);
+		}
+
+		// when
+		egovBBSMasterDAO.insertBBSMasterInf(testDataBoardMaster);
+
+		// then
+	}
+
 //	/**
 //	 * 게시판 조회(단건) 테스트
 //	 */

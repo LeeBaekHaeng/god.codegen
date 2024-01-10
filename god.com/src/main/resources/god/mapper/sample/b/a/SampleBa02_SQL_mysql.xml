@@ -46,6 +46,8 @@ INSERT INTO comtnbbs /* 게시판 */ (
      , FRST_REGISTER_ID /* `FRST_REGISTER_ID` varchar(20) DEFAULT NULL COMMENT '최초등록자ID', */
      , LAST_UPDT_PNTTM /* `LAST_UPDT_PNTTM` datetime DEFAULT NULL COMMENT '최종수정시점', */
      , LAST_UPDUSR_ID /* `LAST_UPDUSR_ID` varchar(20) DEFAULT NULL COMMENT '최종수정자ID', */
+/*  */
+     , BLOG_ID /* `BLOG_ID` char(20) DEFAULT NULL COMMENT '블로그 ID', */
 ) VALUES (
        #{nttId} /* `NTT_ID` decimal(20,0) NOT NULL COMMENT '게시물ID', */
      , #{bbsId} /* `BBS_ID` char(30) NOT NULL COMMENT '게시판ID', */
@@ -75,6 +77,8 @@ INSERT INTO comtnbbs /* 게시판 */ (
      , #{frstRegisterId} /* `FRST_REGISTER_ID` varchar(20) DEFAULT NULL COMMENT '최초등록자ID', */
      , #{lastUpdtPnttm} /* `LAST_UPDT_PNTTM` datetime DEFAULT NULL COMMENT '최종수정시점', */
      , #{lastUpdusrId} /* `LAST_UPDUSR_ID` varchar(20) DEFAULT NULL COMMENT '최종수정자ID', */
+/*  */
+     , #{blogId} /* `BLOG_ID` char(20) DEFAULT NULL COMMENT '블로그 ID', */
 )
 ]]>
 	</insert>

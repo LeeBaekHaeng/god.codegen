@@ -161,6 +161,13 @@ public class SampleBa02 extends ComDefaultVO {
 	private String secretAt;
 
 	/**
+	 * 블로그 ID
+	 * 
+	 * @COLUMN_NAME `BLOG_ID` char(20) DEFAULT NULL COMMENT '블로그 ID',
+	 */
+	private String blogId;
+
+	/**
 	 * getSerialversionuid
 	 * 
 	 * @return
@@ -499,7 +506,7 @@ public class SampleBa02 extends ComDefaultVO {
 	 * 
 	 * @COLUMN_NAME `PASSWORD` varchar(200) DEFAULT NULL COMMENT '비밀번호',
 	 */
-	public void setPassword(String password) {
+	public void setPassword(final String password) {
 		this.password = password;
 	}
 
@@ -519,7 +526,7 @@ public class SampleBa02 extends ComDefaultVO {
 	 * @param atchFileId
 	 * @COLUMN_NAME `ATCH_FILE_ID` char(20) DEFAULT NULL COMMENT '첨부파일ID',
 	 */
-	public void setAtchFileId(String atchFileId) {
+	public void setAtchFileId(final String atchFileId) {
 		this.atchFileId = atchFileId;
 	}
 
@@ -539,7 +546,7 @@ public class SampleBa02 extends ComDefaultVO {
 	 * @param noticeAt
 	 * @COLUMN_NAME `NOTICE_AT` char(1) DEFAULT NULL COMMENT '공지사항여부',
 	 */
-	public void setNoticeAt(String noticeAt) {
+	public void setNoticeAt(final String noticeAt) {
 		this.noticeAt = noticeAt;
 	}
 
@@ -559,7 +566,7 @@ public class SampleBa02 extends ComDefaultVO {
 	 * @param sjBoldAt
 	 * @COLUMN_NAME `SJ_BOLD_AT` char(1) DEFAULT NULL COMMENT '제목볼드여부',
 	 */
-	public void setSjBoldAt(String sjBoldAt) {
+	public void setSjBoldAt(final String sjBoldAt) {
 		this.sjBoldAt = sjBoldAt;
 	}
 
@@ -579,8 +586,28 @@ public class SampleBa02 extends ComDefaultVO {
 	 * @param secretAt
 	 * @COLUMN_NAME `SECRET_AT` char(1) DEFAULT NULL COMMENT '비밀글여부',
 	 */
-	public void setSecretAt(String secretAt) {
+	public void setSecretAt(final String secretAt) {
 		this.secretAt = secretAt;
+	}
+
+	/**
+	 * 블로그 ID 값읽기
+	 * 
+	 * @return
+	 * @COLUMN_NAME `BLOG_ID` char(20) DEFAULT NULL COMMENT '블로그 ID',
+	 */
+	public String getBlogId() {
+		return blogId;
+	}
+
+	/**
+	 * 블로그 ID 값설정
+	 * 
+	 * @param blogId
+	 * @COLUMN_NAME `BLOG_ID` char(20) DEFAULT NULL COMMENT '블로그 ID',
+	 */
+	public void setBlogId(final String blogId) {
+		this.blogId = blogId;
 	}
 
 }
