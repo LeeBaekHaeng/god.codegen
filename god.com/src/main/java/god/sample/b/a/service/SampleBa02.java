@@ -177,36 +177,44 @@ public class SampleBa02 extends ComDefaultVO {
 	}
 
 	/**
-	 * `NTT_ID` decimal(20,0) NOT NULL COMMENT '게시물ID',
+	 * 게시물ID 값읽기
 	 * 
 	 * @return
+	 * 
+	 * @컬럼 `NTT_ID` decimal(20,0) NOT NULL COMMENT '게시물ID',
 	 */
 	public long getNttId() {
 		return nttId;
 	}
 
 	/**
-	 * `NTT_ID` decimal(20,0) NOT NULL COMMENT '게시물ID',
+	 * 게시물ID 값설정
 	 * 
 	 * @param nttId
+	 * 
+	 * @컬럼 `NTT_ID` decimal(20,0) NOT NULL COMMENT '게시물ID',
 	 */
 	public void setNttId(final long nttId) {
 		this.nttId = nttId;
 	}
 
 	/**
-	 * `BBS_ID` char(30) NOT NULL COMMENT '게시판ID',
+	 * 게시판ID 값읽기
 	 * 
 	 * @return
+	 * 
+	 * @컬럼 `BBS_ID` char(30) NOT NULL COMMENT '게시판ID',
 	 */
 	public String getBbsId() {
 		return bbsId;
 	}
 
 	/**
-	 * `BBS_ID` char(30) NOT NULL COMMENT '게시판ID',
+	 * 게시판ID 값설정
 	 * 
 	 * @param bbsId
+	 * 
+	 * @컬럼 `BBS_ID` char(30) NOT NULL COMMENT '게시판ID',
 	 */
 	public void setBbsId(final String bbsId) {
 		this.bbsId = bbsId;

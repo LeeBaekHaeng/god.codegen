@@ -122,6 +122,16 @@ public class EgovTestAbstractDAO {
 	public static final String FAIL_COMMON_SELECT = "fail.common.select";
 
 	/**
+	 * 
+	 */
+	public static final String LOG_RESULT_LIST = "resultList={}";
+
+	/**
+	 * 
+	 */
+	public static final String LOG_RESULT = "result={}";
+
+	/**
 	 * setUpBeforeClass
 	 */
 	@BeforeClass
