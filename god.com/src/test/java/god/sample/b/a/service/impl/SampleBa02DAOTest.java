@@ -150,7 +150,7 @@ public class SampleBa02DAOTest extends EgovTestAbstractDAO {
 		try {
 			vo.setNttId(egovNttIdGnrService.getNextLongId());
 		} catch (FdlException e) {
-			throw new BaseRuntimeException("FdlException egovBBSMstrIdGnrService 게시판ID", e);
+			throw new BaseRuntimeException("FdlException egovNttIdGnrService 게시물ID", e);
 		}
 
 //		vo.setBbsId("TEST_A100_BBSMSTR_000000000001");
@@ -205,7 +205,7 @@ public class SampleBa02DAOTest extends EgovTestAbstractDAO {
 		try {
 			vo.setBlogId(egovBlogIdGnrService.getNextStringId());
 		} catch (FdlException e) {
-			throw new BaseRuntimeException("FdlException egovBBSMstrIdGnrService 게시판ID", e);
+			throw new BaseRuntimeException("FdlException egovBlogIdGnrService 블로그 ID", e);
 		}
 
 		// when
@@ -346,23 +346,44 @@ public class SampleBa02DAOTest extends EgovTestAbstractDAO {
 			log.debug(LOG_RESULT, result);
 			log.debug("getNttId 게시물ID={}, {}", testData.getNttId(), result.getNttId());
 			log.debug("getBbsId 게시판ID={}, {}", testData.getBbsId(), result.getBbsId());
+			log.debug("");
 
 			log.debug("getNttNo 게시물번호={}, {}", testData.getNttNo(), result.getNttNo());
 			log.debug("getUseAt 사용여부={}, {}", testData.getUseAt(), result.getUseAt());
 			log.debug("getNttSj 게시물제목={}, {}", testData.getNttSj(), result.getNttSj());
+			log.debug("getNttCn 게시물내용={}, {}", testData.getNttCn(), result.getNttCn());
+			log.debug("");
+
+			log.debug("getAnswerAt 댓글여부={}, {}", testData.getAnswerAt(), result.getAnswerAt());
+			log.debug("getParntscttNo 부모글번호={}, {}", testData.getParntscttNo(), result.getParntscttNo());
+			log.debug("getAnswerLc 댓글위치={}, {}", testData.getAnswerLc(), result.getAnswerLc());
+			log.debug("getSortOrdr 정렬순서={}, {}", testData.getSortOrdr(), result.getSortOrdr());
+			log.debug("");
+
+			log.debug("getRdcnt 조회수={}, {}", testData.getRdcnt(), result.getRdcnt());
+			log.debug("getNtceBgnde 게시시작일={}, {}", testData.getNtceBgnde(), result.getNtceBgnde());
+			log.debug("getNtceEndde 게시종료일={}, {}", testData.getNtceEndde(), result.getNtceEndde());
+			log.debug("");
 		}
 
-		assertEquals(egovMessageSource.getMessage(FAIL_COMMON_SELECT) + " 게시물ID", testData.getNttId(),
-				result.getNttId());
-		assertEquals(egovMessageSource.getMessage(FAIL_COMMON_SELECT) + " 게시판ID", testData.getBbsId(),
-				result.getBbsId());
+		assertEquals("게시물ID", testData.getNttId(), result.getNttId());
+		assertEquals("게시판ID", testData.getBbsId(), result.getBbsId());
 
-		assertEquals(egovMessageSource.getMessage(FAIL_COMMON_SELECT) + " 게시물번호", testData.getNttNo(),
-				result.getNttNo());
-		assertEquals(egovMessageSource.getMessage(FAIL_COMMON_SELECT) + " 사용여부", testData.getUseAt(),
-				result.getUseAt());
-		assertEquals(egovMessageSource.getMessage(FAIL_COMMON_SELECT) + " 게시물제목", testData.getNttSj(),
-				result.getNttSj());
+		assertEquals("게시물번호", testData.getNttNo(), result.getNttNo());
+		assertEquals("사용여부", testData.getUseAt(), result.getUseAt());
+		assertEquals("게시물제목", testData.getNttSj(), result.getNttSj());
+		assertEquals("게시물내용", testData.getNttCn(), result.getNttCn());
+
+		assertEquals("댓글여부", testData.getAnswerAt(), result.getAnswerAt());
+		assertEquals("부모글번호", testData.getParntscttNo(), result.getParntscttNo());
+		assertEquals("댓글위치", testData.getAnswerLc(), result.getAnswerLc());
+		assertEquals("정렬순서", testData.getSortOrdr(), result.getSortOrdr());
+
+		assertEquals("조회수", testData.getRdcnt(), result.getRdcnt());
+		final String comCopBbs_articleVO_reply_ntceDe = egovMessageSource
+				.getMessage("comCopBbs.articleVO.reply.ntceDe");
+		assertEquals(comCopBbs_articleVO_reply_ntceDe + " 게시시작일", testData.getNtceBgnde(), result.getNtceBgnde());
+		assertEquals(comCopBbs_articleVO_reply_ntceDe + " 게시종료일", testData.getNtceEndde(), result.getNtceEndde());
 	}
 
 //	/**
