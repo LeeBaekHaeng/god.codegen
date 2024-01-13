@@ -10,36 +10,50 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 
+import lombok.NoArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 
+/**
+ * 셀레늄 테스트 사용
+ * 
+ * @author 이백행
+ * @since 2024-01-13
+ *
+ */
+@NoArgsConstructor
 @Slf4j
-public class UsingSeleniumTest {
+class UsingSeleniumTest {
 
+	/**
+	 * 8개의 구성요소
+	 */
 	@Test
-	public void eightComponents() {
+	void eightComponents() {
 		if (log.isDebugEnabled()) {
 			log.debug("eightComponents");
 		}
 
-		WebDriver driver = new ChromeDriver();
+		final WebDriver driver = new ChromeDriver();
 		driver.get("https://www.selenium.dev/selenium/web/web-form.html");
 
-		String title = driver.getTitle();
-		assertEquals("Web form", title);
+		final String title = driver.getTitle();
+		assertEquals("title 제목", "Web form", title);
 
 		driver.manage().timeouts().implicitlyWait(Duration.ofMillis(500));
 
-		WebElement textBox = driver.findElement(By.name("my-text"));
-		WebElement submitButton = driver.findElement(By.cssSelector("button"));
+		final WebElement textBox = driver.findElement(By.name("my-text"));
+		final WebElement submitButton = driver.findElement(By.cssSelector("button"));
 
 		textBox.sendKeys("Selenium");
 		submitButton.click();
 
-		WebElement message = driver.findElement(By.id("message"));
-		String value = message.getText();
-		assertEquals("Received!", value);
+		final WebElement message = driver.findElement(By.id("message"));
+		final String value = message.getText();
+		assertEquals("message 메시지", "Received!", value);
 
 		driver.quit();
+
+		assertEquals("", "", "");
 	}
 
 }
