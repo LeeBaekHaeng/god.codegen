@@ -35,3 +35,5 @@ egov.batch.sam-web/.classpath
 egov.batch.sam-web/.project
 god.core/.classpath
 god.core/.project
+god.test/.classpath
+god.test/.project
