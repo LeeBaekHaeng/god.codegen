@@ -137,6 +137,14 @@
             <systemPath>${basedir}/src/main/webapp/WEB-INF/lib/ojdbc-14.jar</systemPath>
         </dependency>
         -->
+
+		<!-- https://www.selenium.dev/documentation/webdriver/getting_started/install_library/ -->
+		<dependency>
+			<groupId>org.seleniumhq.selenium</groupId>
+			<artifactId>selenium-java</artifactId>
+			<version>4.16.1</version>
+		</dependency>
+
 	</dependencies>
 
 	<build>
