@@ -37,7 +37,7 @@ class UsingSeleniumTest {
 		driver.get("https://www.selenium.dev/selenium/web/web-form.html");
 
 		final String title = driver.getTitle();
-		assertEquals("title 제목", "Web form", title);
+		assertEquals("Web form", title, "title 제목");
 
 		driver.manage().timeouts().implicitlyWait(Duration.ofMillis(500));
 
@@ -49,7 +49,7 @@ class UsingSeleniumTest {
 
 		final WebElement message = driver.findElement(By.id("message"));
 		final String value = message.getText();
-		assertEquals("message 메시지", "Received!", value);
+		assertEquals("Received!", value, "message 메시지");
 
 		driver.quit();
 
