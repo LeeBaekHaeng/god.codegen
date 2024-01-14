@@ -1,4 +1,4 @@
-package god.test;
+package a01_단위_테스트.a01_공통컴포넌트.a03_협업.a02_180_게시판관리;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
@@ -7,6 +7,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.Select;
 
+import god.test.셀레늄_테스트;
 import lombok.NoArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 
@@ -19,18 +20,20 @@ import lombok.extern.slf4j.Slf4j;
  */
 @NoArgsConstructor
 @Slf4j
-class TEST_01_01_01_180_게시판관리 extends EgovTestAbstractSelenium {
+class a03_상세2 extends 셀레늄_테스트 {
 
 	@Test
 	void test01_조회_버튼() {
-		login();
+//		로그인();
+		로그인("USER");
+//		로그인("USER", "rhdxhd12");
 
 		final StringBuffer sb = new StringBuffer(1600);
 		sb.append("\n\n");
 
 		// 게시판 목록
 		driver.get(GET_URL + "/cop/bbs/selectBBSMasterInfs.do");
-		sleep();
+		정지();
 		sb.append("1. 게시판 목록\n");
 		sb.append('\n');
 
@@ -38,7 +41,7 @@ class TEST_01_01_01_180_게시판관리 extends EgovTestAbstractSelenium {
 		// searchCnd
 		final WebElement searchCnd = driver.findElement(By.name("searchCnd"));
 		searchCnd.sendKeys("게시판소개내용"); // 게시판소개내용
-		sleep();
+		정지();
 		sb.append("2. 검색조건\n");
 
 		final Select searchCndSelect = new Select(searchCnd);
@@ -50,7 +53,7 @@ class TEST_01_01_01_180_게시판관리 extends EgovTestAbstractSelenium {
 		final String searchWrdString = "통합게시판";
 		final WebElement searchWrd = driver.findElement(By.name("searchWrd"));
 		searchWrd.sendKeys(searchWrdString); // 검색어
-		sleep();
+		정지();
 		sb.append("3. 검색어\n");
 
 		sb.append(searchWrdString + "\n");
@@ -60,7 +63,7 @@ class TEST_01_01_01_180_게시판관리 extends EgovTestAbstractSelenium {
 		// $('.s_btn')
 		final WebElement sBtn = driver.findElement(By.className("s_btn"));
 		sBtn.click();
-		sleep();
+		정지();
 		sb.append("4. 조회 버튼\n");
 		sb.append('\n');
 
@@ -93,17 +96,17 @@ class TEST_01_01_01_180_게시판관리 extends EgovTestAbstractSelenium {
 			log.debug("test");
 		}
 
-		login();
+		로그인();
 
 		// 게시판 목록
 		driver.get(GET_URL + "/cop/bbs/selectBBSMasterInfs.do");
-		sleep();
+		정지();
 
 		// 등록 버튼
 		// $('.btn_b')
 		final WebElement btnB = driver.findElement(By.className("btn_b"));
 		btnB.click();
-		sleep();
+		정지();
 
 		// then
 		assertEquals("", "", "등록 버튼");

@@ -1,5 +1,6 @@
 package god.test;
 
+import java.time.LocalDateTime;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -25,13 +26,33 @@ import lombok.extern.slf4j.Slf4j;
  */
 @NoArgsConstructor
 @Slf4j
-public class EgovTestAbstractSelenium {
+public class 셀레늄_테스트 {
 
 	/**
 	 * 
 	 */
 //	public static final String GET_URL = "http://localhost:8080/com";
 	public static final String GET_URL = "http://127.0.0.1:8080/com";
+
+	/**
+	 * 
+	 */
+	protected String 테스터 = "이백행";
+
+	/**
+	 * 현재 년월일시분초
+	 */
+	protected String 테스트_값_접미어 = LocalDateTime.now().toString();
+
+	/**
+	 * 
+	 */
+	protected int 로그_번호 = 1;
+
+	/**
+	 * 
+	 */
+	protected String SB_N_N = "\n\n";
 
 	/**
 	 * WebDriver
@@ -50,22 +71,22 @@ public class EgovTestAbstractSelenium {
 
 	@BeforeAll
 	static void setUpBeforeClass() {
-		if (log.isDebugEnabled()) {
-			log.debug("setUpBeforeClass @BeforeAll");
+		if (log.isTraceEnabled()) {
+			log.trace("setUpBeforeClass @BeforeAll");
 		}
 	}
 
 	@AfterAll
 	static void tearDownAfterClass() {
-		if (log.isDebugEnabled()) {
-			log.debug("tearDownAfterClass @AfterAll");
+		if (log.isTraceEnabled()) {
+			log.trace("tearDownAfterClass @AfterAll");
 		}
 	}
 
 	@BeforeEach
 	void setUp() {
-		if (log.isDebugEnabled()) {
-			log.debug("setUp @BeforeEach");
+		if (log.isTraceEnabled()) {
+			log.trace("setUp @BeforeEach");
 		}
 
 		driver = new ChromeDriver();
@@ -75,8 +96,8 @@ public class EgovTestAbstractSelenium {
 
 	@AfterEach
 	void tearDown() {
-		if (log.isDebugEnabled()) {
-			log.debug("tearDown @AfterEach");
+		if (log.isTraceEnabled()) {
+			log.trace("tearDown @AfterEach");
 		}
 
 //		driver.quit();
@@ -85,12 +106,23 @@ public class EgovTestAbstractSelenium {
 	/**
 	 * 로그인
 	 */
-	protected void login() {
-		if (log.isDebugEnabled()) {
-			log.debug("test");
-		}
+	protected void 로그인() {
+		로그인("USER", "rhdxhd12");
+	}
 
-		vars.put("id", "USER");// 아이디
+	/**
+	 * 로그인
+	 */
+	protected void 로그인(final String 아이디) {
+		로그인(아이디, "rhdxhd12");
+	}
+
+	/**
+	 * 로그인
+	 */
+	protected void 로그인(final String 아이디, final String 패스워드) {
+//		vars.put("id", "USER");// 아이디
+		vars.put("id", 아이디);// 아이디
 
 		vars.put("searchKeyword", "일반회원"); // 사용자명검색
 //        vars.put("searchKeyword", "테스트1"); // 사용자명검색
@@ -104,7 +136,9 @@ public class EgovTestAbstractSelenium {
 		js.executeScript("location.reload()");
 
 		final String title = driver.getTitle();
-		log.debug("title={}", title);
+		if (log.isTraceEnabled()) {
+			log.trace("title={}", title);
+		}
 //		assertEquals("에러가 발생했습니다!", "eGovFrame 공통 컴포넌트", title);
 //		assertEquals("로그인", title, "title 로그인");
 
@@ -116,7 +150,8 @@ public class EgovTestAbstractSelenium {
 //		sleep();
 
 		// 비밀번호
-		driver.findElement(By.id("password")).sendKeys("rhdxhd12");
+//		driver.findElement(By.id("password")).sendKeys("rhdxhd12");
+		driver.findElement(By.id("password")).sendKeys(패스워드);
 //		sleep();
 
 		// 로그인 버튼
@@ -129,7 +164,7 @@ public class EgovTestAbstractSelenium {
 	 * 
 	 * @param millis
 	 */
-	protected void sleep(final long millis) {
+	protected void 정지(final long millis) {
 		try {
 			Thread.sleep(millis);
 		} catch (InterruptedException e) {
@@ -141,7 +176,7 @@ public class EgovTestAbstractSelenium {
 	/**
 	 * 1초 스레드 정지
 	 */
-	protected void sleep() {
+	protected void 정지() {
 		try {
 			Thread.sleep(1_000);
 		} catch (InterruptedException e) {
@@ -153,7 +188,7 @@ public class EgovTestAbstractSelenium {
 	/**
 	 * 1초 스레드 정지
 	 */
-	protected void sleep1second() {
+	protected void 정지_1초() {
 		try {
 			Thread.sleep(1_000);
 		} catch (InterruptedException e) {
@@ -165,7 +200,7 @@ public class EgovTestAbstractSelenium {
 	/**
 	 * 2초 스레드 정지
 	 */
-	protected void sleep2second() {
+	protected void 정지_2초() {
 		try {
 			Thread.sleep(2_000);
 		} catch (InterruptedException e) {
@@ -177,13 +212,22 @@ public class EgovTestAbstractSelenium {
 	/**
 	 * 3초 스레드 정지
 	 */
-	protected void sleep3second() {
+	protected void 정지_3초() {
 		try {
 			Thread.sleep(1_000);
 		} catch (InterruptedException e) {
 			throw new BaseRuntimeException("InterruptedException sleep sleep3second", e);
 		}
 //		driver.manage().timeouts().implicitlyWait(Duration.ofMillis(1_000));
+	}
+
+	/**
+	 * 
+	 * @param 테스트값
+	 * @return
+	 */
+	protected String 테스트_값읽기(final String 테스트값) {
+		return "test " + 테스터 + " " + 테스트값 + " " + 테스트_값_접미어;
 	}
 
 }

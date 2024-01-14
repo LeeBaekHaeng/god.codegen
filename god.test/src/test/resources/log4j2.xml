@@ -28,6 +28,14 @@
 			<AppenderRef ref="console" />
 		</Logger>
 
+		<Logger name="a01_단위_테스트" level="DEBUG" additivity="false">
+			<AppenderRef ref="console" />
+		</Logger>
+
+		<Logger name="a02_통합_테스트" level="DEBUG" additivity="false">
+			<AppenderRef ref="console" />
+		</Logger>
+
 		<Root level="INFO">
 			<AppenderRef ref="console" />
 		</Root>
