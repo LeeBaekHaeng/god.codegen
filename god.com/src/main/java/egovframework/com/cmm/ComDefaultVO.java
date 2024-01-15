@@ -2,6 +2,7 @@ package egovframework.com.cmm;
 
 import java.io.Serializable;
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
 import org.apache.commons.lang3.builder.ToStringBuilder;
 
@@ -18,8 +19,22 @@ import org.apache.commons.lang3.builder.ToStringBuilder;
  * @see
  * 
  */
-@SuppressWarnings("serial")
 public class ComDefaultVO implements Serializable {
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -2705903127125724800L;
+
+	/**
+	 * yyyy-MM-dd HH:mm:ss
+	 */
+	public static final String DATE_TIME_FORMATTER_PATTERN = "yyyy-MM-dd HH:mm:ss";
+
+	/**
+	 * yyyy-MM-dd
+	 */
+	public static final String DATE_TIME_FORMATTER_PATTERN2 = "yyyy-MM-dd";
 
 	/** 검색조건 */
 	private String searchCondition = "";
@@ -64,6 +79,24 @@ public class ComDefaultVO implements Serializable {
 	private LocalDateTime frstRegistPnttm;
 
 	/**
+	 * 최초등록시점 yyyy-MM-dd HH:mm:ss
+	 * 
+	 * <p>
+	 * `FRST_REGIST_PNTTM` datetime DEFAULT NULL COMMENT '최초등록시점',
+	 * </p>
+	 */
+	private String frstRegistPnttm2;
+
+	/**
+	 * 최초등록시점 yyyy-MM-dd
+	 * 
+	 * <p>
+	 * `FRST_REGIST_PNTTM` datetime DEFAULT NULL COMMENT '최초등록시점',
+	 * </p>
+	 */
+	private String frstRegistPnttm3;
+
+	/**
 	 * 최초등록자ID
 	 * 
 	 * <p>
@@ -94,7 +127,7 @@ public class ComDefaultVO implements Serializable {
 		return firstIndex;
 	}
 
-	public void setFirstIndex(int firstIndex) {
+	public void setFirstIndex(final int firstIndex) {
 		this.firstIndex = firstIndex;
 	}
 
@@ -102,7 +135,7 @@ public class ComDefaultVO implements Serializable {
 		return lastIndex;
 	}
 
-	public void setLastIndex(int lastIndex) {
+	public void setLastIndex(final int lastIndex) {
 		this.lastIndex = lastIndex;
 	}
 
@@ -110,7 +143,7 @@ public class ComDefaultVO implements Serializable {
 		return recordCountPerPage;
 	}
 
-	public void setRecordCountPerPage(int recordCountPerPage) {
+	public void setRecordCountPerPage(final int recordCountPerPage) {
 		this.recordCountPerPage = recordCountPerPage;
 	}
 
@@ -118,7 +151,7 @@ public class ComDefaultVO implements Serializable {
 		return searchCondition;
 	}
 
-	public void setSearchCondition(String searchCondition) {
+	public void setSearchCondition(final String searchCondition) {
 		this.searchCondition = searchCondition;
 	}
 
@@ -126,7 +159,7 @@ public class ComDefaultVO implements Serializable {
 		return searchKeyword;
 	}
 
-	public void setSearchKeyword(String searchKeyword) {
+	public void setSearchKeyword(final String searchKeyword) {
 		this.searchKeyword = searchKeyword;
 	}
 
@@ -134,7 +167,7 @@ public class ComDefaultVO implements Serializable {
 		return searchUseYn;
 	}
 
-	public void setSearchUseYn(String searchUseYn) {
+	public void setSearchUseYn(final String searchUseYn) {
 		this.searchUseYn = searchUseYn;
 	}
 
@@ -142,7 +175,7 @@ public class ComDefaultVO implements Serializable {
 		return pageIndex;
 	}
 
-	public void setPageIndex(int pageIndex) {
+	public void setPageIndex(final int pageIndex) {
 		this.pageIndex = pageIndex;
 	}
 
@@ -150,7 +183,7 @@ public class ComDefaultVO implements Serializable {
 		return pageUnit;
 	}
 
-	public void setPageUnit(int pageUnit) {
+	public void setPageUnit(final int pageUnit) {
 		this.pageUnit = pageUnit;
 	}
 
@@ -158,7 +191,7 @@ public class ComDefaultVO implements Serializable {
 		return pageSize;
 	}
 
-	public void setPageSize(int pageSize) {
+	public void setPageSize(final int pageSize) {
 		this.pageSize = pageSize;
 	}
 
@@ -181,7 +214,7 @@ public class ComDefaultVO implements Serializable {
 	 * 
 	 * @param searchKeywordFrom String
 	 */
-	public void setSearchKeywordFrom(String searchKeywordFrom) {
+	public void setSearchKeywordFrom(final String searchKeywordFrom) {
 		this.searchKeywordFrom = searchKeywordFrom;
 	}
 
@@ -199,7 +232,7 @@ public class ComDefaultVO implements Serializable {
 	 * 
 	 * @param searchKeywordTo String
 	 */
-	public void setSearchKeywordTo(String searchKeywordTo) {
+	public void setSearchKeywordTo(final String searchKeywordTo) {
 		this.searchKeywordTo = searchKeywordTo;
 	}
 
@@ -225,8 +258,51 @@ public class ComDefaultVO implements Serializable {
 	 * 
 	 * @param frstRegistPnttm
 	 */
-	public void setFrstRegistPnttm(LocalDateTime frstRegistPnttm) {
+	public void setFrstRegistPnttm(final LocalDateTime frstRegistPnttm) {
 		this.frstRegistPnttm = frstRegistPnttm;
+//		setFrstRegistPnttmYyyyMMddHHmmss(final LocalDateTime.now().format(DateTimeFormatter.ISO_LOCAL_DATE_TIME));
+		setFrstRegistPnttm2(LocalDateTime.now().format(DateTimeFormatter.ofPattern(DATE_TIME_FORMATTER_PATTERN)));
+		setFrstRegistPnttm3(LocalDateTime.now().format(DateTimeFormatter.ofPattern(DATE_TIME_FORMATTER_PATTERN2)));
+	}
+
+	/**
+	 * 최초등록시점 값읽기 yyyy-MM-dd HH:mm:ss
+	 * 
+	 * @return
+	 * 
+	 * @컬럼 `FRST_REGIST_PNTTM` datetime DEFAULT NULL COMMENT '최초등록시점',
+	 */
+	public String getFrstRegistPnttm2() {
+		return frstRegistPnttm2;
+	}
+
+	/**
+	 * 최초등록시점 값설정 yyyy-MM-dd HH:mm:ss
+	 * 
+	 * @param frstRegistPnttmYyyyMMddHHmmss
+	 * 
+	 * @컬럼 `FRST_REGIST_PNTTM` datetime DEFAULT NULL COMMENT '최초등록시점',
+	 */
+	public void setFrstRegistPnttm2(final String frstRegistPnttm2) {
+		this.frstRegistPnttm2 = frstRegistPnttm2;
+	}
+
+	/**
+	 * 최초등록시점 값읽기 yyyy-MM-dd
+	 * 
+	 * @return
+	 */
+	public String getFrstRegistPnttm3() {
+		return frstRegistPnttm3;
+	}
+
+	/**
+	 * 최초등록시점 값설정 yyyy-MM-dd
+	 * 
+	 * @param frstRegistPnttmYyyyMMdd
+	 */
+	public void setFrstRegistPnttm3(final String frstRegistPnttm3) {
+		this.frstRegistPnttm3 = frstRegistPnttm3;
 	}
 
 	/**
@@ -251,7 +327,7 @@ public class ComDefaultVO implements Serializable {
 	 * 
 	 * @param frstRegisterId
 	 */
-	public void setFrstRegisterId(String frstRegisterId) {
+	public void setFrstRegisterId(final String frstRegisterId) {
 		this.frstRegisterId = frstRegisterId;
 	}
 
@@ -277,7 +353,7 @@ public class ComDefaultVO implements Serializable {
 	 * 
 	 * @param lastUpdtPnttm
 	 */
-	public void setLastUpdtPnttm(LocalDateTime lastUpdtPnttm) {
+	public void setLastUpdtPnttm(final LocalDateTime lastUpdtPnttm) {
 		this.lastUpdtPnttm = lastUpdtPnttm;
 	}
 
@@ -303,7 +379,7 @@ public class ComDefaultVO implements Serializable {
 	 * 
 	 * @param lastUpdusrId
 	 */
-	public void setLastUpdusrId(String lastUpdusrId) {
+	public void setLastUpdusrId(final String lastUpdusrId) {
 		this.lastUpdusrId = lastUpdusrId;
 	}
 
