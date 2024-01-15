@@ -10,6 +10,7 @@ import org.egovframe.rte.fdl.string.EgovDateUtil;
 import org.junit.Test;
 
 import egovframework.com.utl.fcc.service.EgovStringUtil;
+import god.com.cmm.enums.DatePattern;
 import lombok.NoArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 
@@ -57,6 +58,12 @@ public class ComDefaultVOTest {
 			log.debug("today={}", today);
 
 			log.debug("timeStamp={}", timeStamp);
+
+			log.debug("YYYY_MM_DD_HH_MM_SS={}", DatePattern.YYYY_MM_DD_HH_MM_SS);
+			log.debug("name={}", DatePattern.YYYY_MM_DD_HH_MM_SS.name());
+			log.debug("ordinal={}", DatePattern.YYYY_MM_DD_HH_MM_SS.ordinal());
+			log.debug("getCode={}", DatePattern.YYYY_MM_DD_HH_MM_SS.getCode());
+			log.debug("getCodeNm={}", DatePattern.YYYY_MM_DD_HH_MM_SS.getCodeNm());
 		}
 
 		// then
@@ -67,6 +74,14 @@ public class ComDefaultVOTest {
 		assertEquals("",
 				comDefaultVO.getFrstRegistPnttm()
 						.format(DateTimeFormatter.ofPattern(ComDefaultVO.DATE_TIME_FORMATTER_PATTERN2)),
+				comDefaultVO.getFrstRegistPnttm3());
+
+		assertEquals("",
+				comDefaultVO.getFrstRegistPnttm()
+						.format(DateTimeFormatter.ofPattern(DatePattern.YYYY_MM_DD_HH_MM_SS.getCode())),
+				comDefaultVO.getFrstRegistPnttm2());
+		assertEquals("",
+				comDefaultVO.getFrstRegistPnttm().format(DateTimeFormatter.ofPattern(DatePattern.YYYY_MM_DD.getCode())),
 				comDefaultVO.getFrstRegistPnttm3());
 	}
 
