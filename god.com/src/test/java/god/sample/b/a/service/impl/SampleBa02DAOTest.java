@@ -4,6 +4,7 @@ import static org.junit.Assert.assertEquals;
 
 import java.time.LocalDateTime;
 import java.util.Date;
+import java.util.List;
 
 import javax.annotation.Resource;
 
@@ -386,29 +387,31 @@ public class SampleBa02DAOTest extends EgovTestAbstractDAO {
 		assertEquals(comCopBbs_articleVO_reply_ntceDe + " 게시종료일", testData.getNtceEndde(), result.getNtceEndde());
 	}
 
-//	/**
-//	 * 게시판 조회(멀티건) 테스트
-//	 */
-//	@Test
-//	public void a03selectList() {
-//		// given
-//		final SampleBa02VO testData = new SampleBa02VO();
-//		testData(testData);
-//
-//		final SampleBa02VO vo = new SampleBa02VO();
-//		vo.setFirstIndex(0);
-//		vo.setRecordCountPerPage(10);
-//
-////        vo.setSearchCondition("0");
-//		vo.setSearchKeyword("test 이백행 검색어 " + LocalDateTime.now());
-//
-//		// when
-//		final List<SampleBa02VO> resultList = dao.selectList(vo);
-//
-//		// then
-//		assertSelectList(testData, resultList);
-//	}
-//
+	/**
+	 * 게시판 조회(멀티건) 테스트
+	 */
+	@Test
+	public void a03selectList() {
+		// given
+		final BoardMaster testDataBoardMaster = new BoardMaster();
+		testDataBoardMaster(testDataBoardMaster);
+
+		final SampleBa02VO testData = new SampleBa02VO();
+		testData(testData, testDataBoardMaster);
+
+		final SampleBa02VO vo = new SampleBa02VO();
+		vo.setBbsId(testData.getBbsId());
+
+		vo.setFirstIndex(0);
+		vo.setRecordCountPerPage(10);
+
+		// when
+		final List<SampleBa02VO> resultList = dao.selectList(vo);
+
+		// then
+		assertSelectList(testData, resultList);
+	}
+
 //	/**
 //	 * 게시판 조회(단건) 전체 건수 테스트
 //	 */
@@ -427,29 +430,29 @@ public class SampleBa02DAOTest extends EgovTestAbstractDAO {
 //		debugTotCnt(totCnt);
 //		assertTrueTotCnt(totCnt);
 //	}
-//
-//	private void assertSelectList(final SampleBa02VO testData, final List<SampleBa02VO> resultList) {
-//		if (log.isDebugEnabled()) {
-//			log.debug("resultList={}", resultList);
-//
-//			int i = 1;
-//
-//			for (final SampleBa02VO result : resultList) {
-//				log.debug("i={}", i);
-//
-//				log.debug("getAdministZoneSe={}, {}", testData.getAdministZoneSe(), result.getAdministZoneSe());
-//				log.debug("getAdministZoneCode={}, {}", testData.getAdministZoneCode(), result.getAdministZoneCode());
-//
-//				log.debug("getUseAt={}, {}", testData.getUseAt(), result.getUseAt());
-//				log.debug("");
-//
-//				i++;
-//			}
-//		}
-//
-//		assertTrueResultListSize(resultList.size());
-//	}
-//
+
+	private void assertSelectList(final SampleBa02VO testData, final List<SampleBa02VO> resultList) {
+		if (log.isDebugEnabled()) {
+			log.debug("resultList={}", resultList);
+
+			int i = 1;
+
+			for (final SampleBa02VO result : resultList) {
+				log.debug("i={}", i);
+
+				log.debug("getNttId={}, {}", testData.getNttId(), result.getNttId());
+				log.debug("getBbsId={}, {}", testData.getBbsId(), result.getBbsId());
+
+				log.debug("getUseAt={}, {}", testData.getUseAt(), result.getUseAt());
+				log.debug("");
+
+				i++;
+			}
+		}
+
+		assertTrueResultListSize(resultList.size());
+	}
+
 //	/**
 //	 * 게시판 수정 테스트
 //	 */
