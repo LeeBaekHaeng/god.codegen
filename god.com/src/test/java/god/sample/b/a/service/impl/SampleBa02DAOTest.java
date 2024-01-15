@@ -3,6 +3,7 @@ package god.sample.b.a.service.impl;
 import static org.junit.Assert.assertEquals;
 
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.Date;
 import java.util.List;
 
@@ -292,7 +293,8 @@ public class SampleBa02DAOTest extends EgovTestAbstractDAO {
 		testData.setSjBoldAt(SjBoldAt.Y.name());
 		testData.setSecretAt(SecretAt.Y.name());
 
-		testData.setFrstRegistPnttm(LocalDateTime.now());
+		testData.setFrstRegistPnttm(
+				LocalDateTime.parse(LocalDateTime.now().format(DateTimeFormatter.ISO_LOCAL_DATE_TIME)));
 		testData.setLastUpdtPnttm(testData.getFrstRegistPnttm());
 		final LoginVO loginVO = (LoginVO) EgovUserDetailsHelper.getAuthenticatedUser();
 		if (loginVO != null) {
@@ -412,6 +414,85 @@ public class SampleBa02DAOTest extends EgovTestAbstractDAO {
 		assertSelectList(testData, resultList);
 	}
 
+	private void assertSelectList(final SampleBa02VO testData, final List<SampleBa02VO> resultList) {
+		if (log.isDebugEnabled()) {
+			log.debug("resultList={}", resultList);
+
+			int i = 1;
+
+			for (final SampleBa02VO result : resultList) {
+				log.debug("i={}", i);
+
+				log.debug("getNttId 게시물ID={}, {}", testData.getNttId(), result.getNttId());
+				log.debug("getBbsId 게시판ID={}, {}", testData.getBbsId(), result.getBbsId());
+
+				log.debug("getNttNo 게시물번호={}, {}", testData.getNttNo(), result.getNttNo());
+				log.debug("getUseAt 사용여부={}, {}", testData.getUseAt(), result.getUseAt());
+				log.debug("getNttSj 게시물제목={}, {}", testData.getNttSj(), result.getNttSj());
+				log.debug("getNttCn 게시물내용={}, {}", testData.getNttCn(), result.getNttCn());
+
+				log.debug("getAnswerAt 댓글여부={}, {}", testData.getAnswerAt(), result.getAnswerAt());
+				log.debug("getParntscttNo 부모글번호={}, {}", testData.getParntscttNo(), result.getParntscttNo());
+				log.debug("getAnswerLc 댓글위치={}, {}", testData.getAnswerLc(), result.getAnswerLc());
+				log.debug("getSortOrdr 정렬순서={}, {}", testData.getSortOrdr(), result.getSortOrdr());
+				log.debug("getRdcnt 조회수={}, {}", testData.getRdcnt(), result.getRdcnt());
+				log.debug("getNtceBgnde 게시시작일={}, {}", testData.getNtceBgnde(), result.getNtceBgnde());
+				log.debug("getNtceEndde 게시종료일={}, {}", testData.getNtceEndde(), result.getNtceEndde());
+				log.debug("getNtcrId 게시자ID={}, {}", testData.getNtcrId(), result.getNtcrId());
+				log.debug("getNtcrNm 게시자명ID={}, {}", testData.getNtcrNm(), result.getNtcrNm());
+				log.debug("getPassword 비밀번호={}, {}", testData.getPassword(), result.getPassword());
+				log.debug("getAtchFileId 첨부파일ID={}, {}", testData.getAtchFileId(), result.getAtchFileId());
+				log.debug("getNoticeAt 공지사항여부={}, {}", testData.getNoticeAt(), result.getNoticeAt());
+				log.debug("getSjBoldAt 제목볼드여부={}, {}", testData.getSjBoldAt(), result.getSjBoldAt());
+				log.debug("getSecretAt 비밀글여부={}, {}", testData.getSecretAt(), result.getSecretAt());
+
+				log.debug("getFrstRegistPnttm 최초등록시점={}, {}", testData.getFrstRegistPnttm(),
+						result.getFrstRegistPnttm());
+				log.debug("getFrstRegisterId 최초등록자ID={}, {}", testData.getFrstRegisterId(), result.getFrstRegisterId());
+				log.debug("getLastUpdtPnttm 최종수정시점={}, {}", testData.getLastUpdtPnttm(), result.getLastUpdtPnttm());
+				log.debug("getLastUpdusrId 최종수정자ID={}, {}", testData.getLastUpdusrId(), result.getLastUpdusrId());
+
+				log.debug("getBlogId 블로그 ID={}, {}", testData.getBlogId(), result.getBlogId());
+
+				log.debug("");
+
+				i++;
+			}
+		}
+
+		assertTrueResultListSize(resultList.size());
+
+		assertEquals("게시물ID", testData.getNttId(), resultList.get(0).getNttId());
+		assertEquals("게시판ID", testData.getBbsId(), resultList.get(0).getBbsId());
+
+		assertEquals("게시물번호", testData.getNttNo(), resultList.get(0).getNttNo());
+		assertEquals("사용여부", testData.getUseAt(), resultList.get(0).getUseAt());
+		assertEquals("게시물제목", testData.getNttSj(), resultList.get(0).getNttSj());
+		assertEquals("게시물내용", testData.getNttCn(), resultList.get(0).getNttCn());
+
+		assertEquals("댓글여부", testData.getAnswerAt(), resultList.get(0).getAnswerAt());
+		assertEquals("부모글번호", testData.getParntscttNo(), resultList.get(0).getParntscttNo());
+		assertEquals("댓글위치", testData.getAnswerLc(), resultList.get(0).getAnswerLc());
+		assertEquals("정렬순서", testData.getSortOrdr(), resultList.get(0).getSortOrdr());
+		assertEquals("조회수", testData.getRdcnt(), resultList.get(0).getRdcnt());
+		assertEquals("게시시작일", testData.getNtceBgnde(), resultList.get(0).getNtceBgnde());
+		assertEquals("게시종료일", testData.getNtceEndde(), resultList.get(0).getNtceEndde());
+		assertEquals("게시자ID", testData.getNtcrId(), resultList.get(0).getNtcrId());
+		assertEquals("게시자명", testData.getNtcrNm(), resultList.get(0).getNtcrNm());
+		assertEquals("비밀번호", testData.getPassword(), resultList.get(0).getPassword());
+		assertEquals("첨부파일ID", testData.getAtchFileId(), resultList.get(0).getAtchFileId());
+		assertEquals("공지사항여부", testData.getNoticeAt(), resultList.get(0).getNoticeAt());
+		assertEquals("제목볼드여부", testData.getSjBoldAt(), resultList.get(0).getSjBoldAt());
+		assertEquals("비밀글여부", testData.getSecretAt(), resultList.get(0).getSecretAt());
+
+//		assertEquals("최초등록시점", testData.getFrstRegistPnttm(), resultList.get(0).getFrstRegistPnttm());
+		assertEquals("최초등록자ID", testData.getFrstRegisterId(), resultList.get(0).getFrstRegisterId());
+//		assertEquals("최종수정시점", testData.getLastUpdtPnttm(), resultList.get(0).getLastUpdtPnttm());
+		assertEquals("최종수정자ID", testData.getLastUpdusrId(), resultList.get(0).getLastUpdusrId());
+
+		assertEquals("블로그 ID", testData.getBlogId(), resultList.get(0).getBlogId());
+	}
+
 //	/**
 //	 * 게시판 조회(단건) 전체 건수 테스트
 //	 */
@@ -430,28 +511,6 @@ public class SampleBa02DAOTest extends EgovTestAbstractDAO {
 //		debugTotCnt(totCnt);
 //		assertTrueTotCnt(totCnt);
 //	}
-
-	private void assertSelectList(final SampleBa02VO testData, final List<SampleBa02VO> resultList) {
-		if (log.isDebugEnabled()) {
-			log.debug("resultList={}", resultList);
-
-			int i = 1;
-
-			for (final SampleBa02VO result : resultList) {
-				log.debug("i={}", i);
-
-				log.debug("getNttId={}, {}", testData.getNttId(), result.getNttId());
-				log.debug("getBbsId={}, {}", testData.getBbsId(), result.getBbsId());
-
-				log.debug("getUseAt={}, {}", testData.getUseAt(), result.getUseAt());
-				log.debug("");
-
-				i++;
-			}
-		}
-
-		assertTrueResultListSize(resultList.size());
-	}
 
 //	/**
 //	 * 게시판 수정 테스트
