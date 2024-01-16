@@ -3,7 +3,6 @@ package god.sample.b.a.service.impl;
 import static org.junit.Assert.assertEquals;
 
 import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
 import java.util.Date;
 import java.util.List;
 
@@ -191,7 +190,7 @@ public class SampleBa02DAOTest extends EgovTestAbstractDAO {
 		vo.setSjBoldAt(SjBoldAt.Y.name());
 		vo.setSecretAt(SecretAt.Y.name());
 
-		vo.setFrstRegistPnttm(LocalDateTime.now());
+		vo.setFrstRegistPnttm(now);
 		vo.setLastUpdtPnttm(vo.getFrstRegistPnttm());
 		final LoginVO loginVO = (LoginVO) EgovUserDetailsHelper.getAuthenticatedUser();
 		if (loginVO != null) {
@@ -293,8 +292,7 @@ public class SampleBa02DAOTest extends EgovTestAbstractDAO {
 		testData.setSjBoldAt(SjBoldAt.Y.name());
 		testData.setSecretAt(SecretAt.Y.name());
 
-		testData.setFrstRegistPnttm(
-				LocalDateTime.parse(LocalDateTime.now().format(DateTimeFormatter.ISO_LOCAL_DATE_TIME)));
+		testData.setFrstRegistPnttm(now);
 		testData.setLastUpdtPnttm(testData.getFrstRegistPnttm());
 		final LoginVO loginVO = (LoginVO) EgovUserDetailsHelper.getAuthenticatedUser();
 		if (loginVO != null) {
@@ -448,8 +446,14 @@ public class SampleBa02DAOTest extends EgovTestAbstractDAO {
 
 				log.debug("getFrstRegistPnttm 최초등록시점={}, {}", testData.getFrstRegistPnttm(),
 						result.getFrstRegistPnttm());
+				log.debug("getFrstRegistPnttm2 최초등록시점={}, {}", testData.getFrstRegistPnttm2(),
+						result.getFrstRegistPnttm2());
+				log.debug("getFrstRegistPnttm3 최초등록시점={}, {}", testData.getFrstRegistPnttm3(),
+						result.getFrstRegistPnttm3());
 				log.debug("getFrstRegisterId 최초등록자ID={}, {}", testData.getFrstRegisterId(), result.getFrstRegisterId());
 				log.debug("getLastUpdtPnttm 최종수정시점={}, {}", testData.getLastUpdtPnttm(), result.getLastUpdtPnttm());
+				log.debug("getLastUpdtPnttm2 최종수정시점={}, {}", testData.getLastUpdtPnttm2(), result.getLastUpdtPnttm2());
+				log.debug("getLastUpdtPnttm3 최종수정시점={}, {}", testData.getLastUpdtPnttm3(), result.getLastUpdtPnttm3());
 				log.debug("getLastUpdusrId 최종수정자ID={}, {}", testData.getLastUpdusrId(), result.getLastUpdusrId());
 
 				log.debug("getBlogId 블로그 ID={}, {}", testData.getBlogId(), result.getBlogId());
@@ -485,9 +489,11 @@ public class SampleBa02DAOTest extends EgovTestAbstractDAO {
 		assertEquals("제목볼드여부", testData.getSjBoldAt(), resultList.get(0).getSjBoldAt());
 		assertEquals("비밀글여부", testData.getSecretAt(), resultList.get(0).getSecretAt());
 
-//		assertEquals("최초등록시점", testData.getFrstRegistPnttm(), resultList.get(0).getFrstRegistPnttm());
+		assertEquals("최초등록시점", testData.getFrstRegistPnttm2(), resultList.get(0).getFrstRegistPnttm2());
+		assertEquals("최초등록시점", testData.getFrstRegistPnttm3(), resultList.get(0).getFrstRegistPnttm3());
 		assertEquals("최초등록자ID", testData.getFrstRegisterId(), resultList.get(0).getFrstRegisterId());
-//		assertEquals("최종수정시점", testData.getLastUpdtPnttm(), resultList.get(0).getLastUpdtPnttm());
+		assertEquals("최종수정시점", testData.getLastUpdtPnttm2(), resultList.get(0).getLastUpdtPnttm2());
+		assertEquals("최종수정시점", testData.getLastUpdtPnttm3(), resultList.get(0).getLastUpdtPnttm3());
 		assertEquals("최종수정자ID", testData.getLastUpdusrId(), resultList.get(0).getLastUpdusrId());
 
 		assertEquals("블로그 ID", testData.getBlogId(), resultList.get(0).getBlogId());

@@ -36,8 +36,8 @@ public class ComDefaultVOTest {
 		comDefaultVO.setFrstRegistPnttm(LocalDateTime.now());
 
 		final String nowString = EgovDateUtil.toString(new Date(), "", null);
-		final String nowString2 = EgovDateUtil.toString(new Date(), ComDefaultVO.DATE_TIME_FORMATTER_PATTERN, null);
-		final String nowString3 = EgovDateUtil.toString(new Date(), ComDefaultVO.DATE_TIME_FORMATTER_PATTERN2, null);
+		final String nowString2 = EgovDateUtil.toString(new Date(), DatePattern.YYYY_MM_DD_HH_MM_SS.getCode(), null);
+		final String nowString3 = EgovDateUtil.toString(new Date(), DatePattern.YYYY_MM_DD.getCode(), null);
 
 		final String today = egovframework.com.utl.fcc.service.EgovDateUtil.getToday();
 
@@ -69,11 +69,10 @@ public class ComDefaultVOTest {
 		// then
 		assertEquals("",
 				comDefaultVO.getFrstRegistPnttm()
-						.format(DateTimeFormatter.ofPattern(ComDefaultVO.DATE_TIME_FORMATTER_PATTERN)),
+						.format(DateTimeFormatter.ofPattern(DatePattern.YYYY_MM_DD_HH_MM_SS.getCode())),
 				comDefaultVO.getFrstRegistPnttm2());
 		assertEquals("",
-				comDefaultVO.getFrstRegistPnttm()
-						.format(DateTimeFormatter.ofPattern(ComDefaultVO.DATE_TIME_FORMATTER_PATTERN2)),
+				comDefaultVO.getFrstRegistPnttm().format(DateTimeFormatter.ofPattern(DatePattern.YYYY_MM_DD.getCode())),
 				comDefaultVO.getFrstRegistPnttm3());
 
 		assertEquals("",

@@ -6,6 +6,9 @@ import java.time.format.DateTimeFormatter;
 
 import org.apache.commons.lang3.builder.ToStringBuilder;
 
+import god.com.cmm.enums.DatePattern;
+import lombok.NoArgsConstructor;
+
 /**
  * @Class Name : ComDefaultVO.java
  * @Description : ComDefaultVO class
@@ -19,22 +22,13 @@ import org.apache.commons.lang3.builder.ToStringBuilder;
  * @see
  * 
  */
+@NoArgsConstructor
 public class ComDefaultVO implements Serializable {
 
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = -2705903127125724800L;
-
-	/**
-	 * yyyy-MM-dd HH:mm:ss
-	 */
-	public static final String DATE_TIME_FORMATTER_PATTERN = "yyyy-MM-dd HH:mm:ss";
-
-	/**
-	 * yyyy-MM-dd
-	 */
-	public static final String DATE_TIME_FORMATTER_PATTERN2 = "yyyy-MM-dd";
 
 	/** 검색조건 */
 	private String searchCondition = "";
@@ -115,6 +109,24 @@ public class ComDefaultVO implements Serializable {
 	private LocalDateTime lastUpdtPnttm;
 
 	/**
+	 * 최종수정시점 yyyy-MM-dd HH:mm:ss
+	 * 
+	 * <p>
+	 * `LAST_UPDT_PNTTM` datetime DEFAULT NULL COMMENT '최종수정시점',
+	 * </p>
+	 */
+	private String lastUpdtPnttm2;
+
+	/**
+	 * 최종수정시점 yyyy-MM-dd
+	 * 
+	 * <p>
+	 * `LAST_UPDT_PNTTM` datetime DEFAULT NULL COMMENT '최종수정시점',
+	 * </p>
+	 */
+	private String lastUpdtPnttm3;
+
+	/**
 	 * 최종수정자ID
 	 * 
 	 * <p>
@@ -122,6 +134,15 @@ public class ComDefaultVO implements Serializable {
 	 * </p>
 	 */
 	private String lastUpdusrId;
+
+	/**
+	 * 직렬 버전 UID 값읽기
+	 * 
+	 * @return
+	 */
+	public static long getSerialversionuid() {
+		return serialVersionUID;
+	}
 
 	public int getFirstIndex() {
 		return firstIndex;
@@ -261,8 +282,9 @@ public class ComDefaultVO implements Serializable {
 	public void setFrstRegistPnttm(final LocalDateTime frstRegistPnttm) {
 		this.frstRegistPnttm = frstRegistPnttm;
 //		setFrstRegistPnttmYyyyMMddHHmmss(final LocalDateTime.now().format(DateTimeFormatter.ISO_LOCAL_DATE_TIME));
-		setFrstRegistPnttm2(LocalDateTime.now().format(DateTimeFormatter.ofPattern(DATE_TIME_FORMATTER_PATTERN)));
-		setFrstRegistPnttm3(LocalDateTime.now().format(DateTimeFormatter.ofPattern(DATE_TIME_FORMATTER_PATTERN2)));
+		setFrstRegistPnttm2(
+				frstRegistPnttm.format(DateTimeFormatter.ofPattern(DatePattern.YYYY_MM_DD_HH_MM_SS.getCode())));
+		setFrstRegistPnttm3(frstRegistPnttm.format(DateTimeFormatter.ofPattern(DatePattern.YYYY_MM_DD.getCode())));
 	}
 
 	/**
@@ -355,6 +377,44 @@ public class ComDefaultVO implements Serializable {
 	 */
 	public void setLastUpdtPnttm(final LocalDateTime lastUpdtPnttm) {
 		this.lastUpdtPnttm = lastUpdtPnttm;
+		setLastUpdtPnttm2(lastUpdtPnttm.format(DateTimeFormatter.ofPattern(DatePattern.YYYY_MM_DD_HH_MM_SS.getCode())));
+		setLastUpdtPnttm3(lastUpdtPnttm.format(DateTimeFormatter.ofPattern(DatePattern.YYYY_MM_DD.getCode())));
+	}
+
+	/**
+	 * 최종수정시점 값읽기 yyyy-MM-dd HH:mm:ss
+	 * 
+	 * @return
+	 */
+	public String getLastUpdtPnttm2() {
+		return lastUpdtPnttm2;
+	}
+
+	/**
+	 * 최종수정시점 값설정 yyyy-MM-dd HH:mm:ss
+	 * 
+	 * @param lastUpdtPnttm2
+	 */
+	public void setLastUpdtPnttm2(final String lastUpdtPnttm2) {
+		this.lastUpdtPnttm2 = lastUpdtPnttm2;
+	}
+
+	/**
+	 * 최종수정시점 값읽기 yyyy-MM-dd
+	 * 
+	 * @return
+	 */
+	public String getLastUpdtPnttm3() {
+		return lastUpdtPnttm3;
+	}
+
+	/**
+	 * 최종수정시점 값설정 yyyy-MM-dd
+	 * 
+	 * @param lastUpdtPnttm3
+	 */
+	public void setLastUpdtPnttm3(final String lastUpdtPnttm3) {
+		this.lastUpdtPnttm3 = lastUpdtPnttm3;
 	}
 
 	/**
