@@ -67,7 +67,7 @@ class a01_등록 extends 셀레늄_테스트 {
 		final StringBuffer sb = new StringBuffer(1600);
 		sb.append(SB_N_N);
 
-		테스터 = "홍길동";
+		테스터 = "이백행";
 
 		로그인("USER");
 
@@ -84,7 +84,7 @@ class a01_등록 extends 셀레늄_테스트 {
 
 		등록_버튼(sb);
 
-		assert__확인();
+		assert__확인(sb);
 
 		if (log.isDebugEnabled()) {
 			log.debug(sb.toString());
@@ -244,8 +244,28 @@ class a01_등록 extends 셀레늄_테스트 {
 		sb.append(SB_N_N);
 	}
 
-	private void assert__확인() {
-		assertEquals("", "", "등록 버튼");
+	private void assert__확인(final StringBuffer sb) {
+		final WebElement element = driver.findElement(By.name("searchWrd"));
+		element.sendKeys(게시판명);
+		정지();
+
+		final WebElement element2 = driver.findElement(By.className("s_btn"));
+		element2.click();
+		정지();
+
+		final WebElement element3 = driver.findElement(By.cssSelector(".board_list tbody tr td:nth-child(2)"));
+		정지();
+
+		final String expected = 게시판명.substring(0, 게시판명.lastIndexOf('.'));
+		final String actual = element3.getText().substring(0, 게시판명.lastIndexOf('.'));
+
+		sb.append(로그_번호++);
+		sb.append("게시판명=");
+		sb.append(expected);
+		sb.append(", ");
+		sb.append(actual);
+
+		assertEquals(expected, actual, "등록 버튼");
 	}
 
 }

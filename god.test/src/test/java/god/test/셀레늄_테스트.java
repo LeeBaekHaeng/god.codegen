@@ -32,7 +32,8 @@ public class 셀레늄_테스트 {
 	 * 
 	 */
 //	public static final String GET_URL = "http://localhost:8080/com";
-	public static final String GET_URL = "http://127.0.0.1:8080/com";
+//	public static final String GET_URL = "http://127.0.0.1:8080/com";
+	public static final String GET_URL = "http://localhost:8080/egovframework-all-in-one";
 
 	/**
 	 * 
