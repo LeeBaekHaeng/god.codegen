@@ -169,4 +169,16 @@ SELECT
 ]]>
 	</select>
 
+	<select id="SampleBa02DAO.selectListTotCnt"
+		parameterType="god.sample.b.a.service.SampleBa02VO" resultType="int">
+<![CDATA[
+/* SampleBa02DAO.selectListTotCnt 게시판 조회(멀티건) 전체건수 */
+SELECT
+       COUNT(*)
+  FROM COMTNBBS /* 게시판 */
+ WHERE BBS_ID = #{bbsId} /* `BBS_ID` char(30) NOT NULL COMMENT '게시판ID', */
+   AND USE_AT = 'Y'
+]]>
+	</select>
+
 </mapper>

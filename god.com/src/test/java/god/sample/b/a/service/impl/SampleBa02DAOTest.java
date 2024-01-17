@@ -499,24 +499,28 @@ public class SampleBa02DAOTest extends EgovTestAbstractDAO {
 		assertEquals("블로그 ID", testData.getBlogId(), resultList.get(0).getBlogId());
 	}
 
-//	/**
-//	 * 게시판 조회(단건) 전체 건수 테스트
-//	 */
-//	@Test
-//	public void a04selectListTotCnt() {
-//		// given
-//		final SampleBa02VO testData = new SampleBa02VO();
-//		testData(testData);
-//
-//		final SampleBa02VO vo = new SampleBa02VO();
-//
-//		// when
-//		final int totCnt = dao.selectListTotCnt(vo);
-//
-//		// then
-//		debugTotCnt(totCnt);
-//		assertTrueTotCnt(totCnt);
-//	}
+	/**
+	 * 게시판 조회(단건) 전체 건수 테스트
+	 */
+	@Test
+	public void a04selectListTotCnt() {
+		// given
+		final BoardMaster testDataBoardMaster = new BoardMaster();
+		testDataBoardMaster(testDataBoardMaster);
+
+		final SampleBa02VO testData = new SampleBa02VO();
+		testData(testData, testDataBoardMaster);
+
+		final SampleBa02VO vo = new SampleBa02VO();
+		vo.setBbsId(testData.getBbsId());
+
+		// when
+		final int totCnt = dao.selectListTotCnt(vo);
+
+		// then
+		debugTotCnt(totCnt);
+		assertTrueTotCnt(totCnt);
+	}
 
 //	/**
 //	 * 게시판 수정 테스트
