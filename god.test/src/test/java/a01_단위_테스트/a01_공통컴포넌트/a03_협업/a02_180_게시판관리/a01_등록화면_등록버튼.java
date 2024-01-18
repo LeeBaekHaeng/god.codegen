@@ -12,7 +12,7 @@ import lombok.NoArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 
 /**
- * 10. 로그인 단위 테스트
+ * [셀레늄단위테스트]게시판관리 등록화면 등록버튼
  * 
  * @author 이백행
  * @since 2024-01-13
@@ -20,7 +20,7 @@ import lombok.extern.slf4j.Slf4j;
  */
 @NoArgsConstructor
 @Slf4j
-class a01_등록 extends 셀레늄_테스트 {
+class a01_등록화면_등록버튼 extends 셀레늄_테스트 {
 
 	/**
 	 * 
@@ -63,7 +63,7 @@ class a01_등록 extends 셀레늄_테스트 {
 	private String 사용여부;
 
 	@Test
-	void 등록_버튼() {
+	void 등록버튼() {
 		final StringBuffer sb = new StringBuffer(1600);
 		sb.append(SB_N_N);
 
@@ -71,7 +71,7 @@ class a01_등록 extends 셀레늄_테스트 {
 
 		로그인("USER");
 
-		등록__화면(sb);
+		등록화면(sb);
 
 		게시판명__입력(sb);
 		게시판소개내용__입력(sb);
@@ -82,7 +82,7 @@ class a01_등록 extends 셀레늄_테스트 {
 		추가선택사항__선택(sb);
 		사용여부__선택(sb);
 
-		등록_버튼(sb);
+		등록버튼(sb);
 
 		assert__확인(sb);
 
@@ -91,7 +91,7 @@ class a01_등록 extends 셀레늄_테스트 {
 		}
 	}
 
-	private void 등록__화면(final StringBuffer sb) {
+	private void 등록화면(final StringBuffer sb) {
 		driver.get(GET_URL + "/cop/bbs/insertBBSMasterView.do");
 		정지();
 
@@ -231,7 +231,7 @@ class a01_등록 extends 셀레늄_테스트 {
 		sb.append(SB_N_N);
 	}
 
-	private void 등록_버튼(final StringBuffer sb) {
+	private void 등록버튼(final StringBuffer sb) {
 		final WebElement element = driver.findElement(By.className("s_submit"));
 		element.click();
 		정지();
@@ -265,7 +265,7 @@ class a01_등록 extends 셀레늄_테스트 {
 		sb.append(", ");
 		sb.append(actual);
 
-		assertEquals(expected, actual, "등록 버튼");
+		assertEquals(expected, actual, "등록화면 등록버튼");
 	}
 
 }

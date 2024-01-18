@@ -20,7 +20,7 @@ import lombok.extern.slf4j.Slf4j;
  */
 @NoArgsConstructor
 @Slf4j
-class a05_삭제2 extends 셀레늄_테스트 {
+class c02_상세화면_목록버튼 extends 셀레늄_테스트 {
 
 	@Test
 	void test01_조회_버튼() {
