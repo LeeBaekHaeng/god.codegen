@@ -233,6 +233,8 @@ public class SampleBa02DAOTest extends EgovTestAbstractDAO {
 			throw new BaseRuntimeException("FdlException egovBBSMstrIdGnrService 게시판ID", e);
 		}
 
+		testDataBoardMaster.setBbsNm("test 이백행 게시판명 " + LocalDateTime.now());
+
 		// when
 		egovBBSMasterDAO.insertBBSMasterInf(testDataBoardMaster);
 
@@ -409,10 +411,11 @@ public class SampleBa02DAOTest extends EgovTestAbstractDAO {
 		final List<SampleBa02VO> resultList = dao.selectList(vo);
 
 		// then
-		assertSelectList(testData, resultList);
+		assertSelectList(testDataBoardMaster, testData, resultList);
 	}
 
-	private void assertSelectList(final SampleBa02VO testData, final List<SampleBa02VO> resultList) {
+	private void assertSelectList(final BoardMaster testDataBoardMaster, final SampleBa02VO testData,
+			final List<SampleBa02VO> resultList) {
 		if (log.isDebugEnabled()) {
 			log.debug("resultList={}", resultList);
 
@@ -458,6 +461,8 @@ public class SampleBa02DAOTest extends EgovTestAbstractDAO {
 
 				log.debug("getBlogId 블로그 ID={}, {}", testData.getBlogId(), result.getBlogId());
 
+				log.debug("getBbsNm 게시판명={}, {}", testDataBoardMaster.getBbsNm(), result.getBbsNm());
+
 				log.debug("");
 
 				i++;
@@ -497,6 +502,8 @@ public class SampleBa02DAOTest extends EgovTestAbstractDAO {
 		assertEquals("최종수정자ID", testData.getLastUpdusrId(), resultList.get(0).getLastUpdusrId());
 
 		assertEquals("블로그 ID", testData.getBlogId(), resultList.get(0).getBlogId());
+
+		assertEquals("게시판명", testDataBoardMaster.getBbsNm(), resultList.get(0).getBbsNm());
 	}
 
 	/**

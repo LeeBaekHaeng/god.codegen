@@ -131,40 +131,42 @@ SELECT
 <![CDATA[
 /* SampleBa02DAO.selectList 게시판 조회(멀티건) */
 SELECT
-       NTT_ID /* `NTT_ID` decimal(20,0) NOT NULL COMMENT '게시물ID', */
-     , BBS_ID /* `BBS_ID` char(30) NOT NULL COMMENT '게시판ID', */
+       A.NTT_ID /* `NTT_ID` decimal(20,0) NOT NULL COMMENT '게시물ID', */
+     , A.BBS_ID /* `BBS_ID` char(30) NOT NULL COMMENT '게시판ID', */
 /*  */
-     , NTT_NO /* `NTT_NO` decimal(20,0) DEFAULT NULL COMMENT '게시물번호', */
-     , USE_AT /* `USE_AT` char(1) NOT NULL COMMENT '사용여부', */
-     , NTT_SJ /* `NTT_SJ` varchar(2000) DEFAULT NULL COMMENT '게시물제목', */
-     , NTT_CN /* `NTT_CN` mediumtext DEFAULT NULL COMMENT '게시물내용', */
+     , A.NTT_NO /* `NTT_NO` decimal(20,0) DEFAULT NULL COMMENT '게시물번호', */
+     , A.USE_AT /* `USE_AT` char(1) NOT NULL COMMENT '사용여부', */
+     , A.NTT_SJ /* `NTT_SJ` varchar(2000) DEFAULT NULL COMMENT '게시물제목', */
+     , A.NTT_CN /* `NTT_CN` mediumtext DEFAULT NULL COMMENT '게시물내용', */
 /*  */
-     , ANSWER_AT /* `ANSWER_AT` char(1) DEFAULT NULL COMMENT '댓글여부', */
-     , PARNTSCTT_NO /* `PARNTSCTT_NO` decimal(10,0) DEFAULT NULL COMMENT '부모글번호', */
-     , ANSWER_LC /* `ANSWER_LC` decimal(8,0) DEFAULT NULL COMMENT '댓글위치', */
-     , SORT_ORDR /* `SORT_ORDR` decimal(8,0) DEFAULT NULL COMMENT '정렬순서', */
+     , A.ANSWER_AT /* `ANSWER_AT` char(1) DEFAULT NULL COMMENT '댓글여부', */
+     , A.PARNTSCTT_NO /* `PARNTSCTT_NO` decimal(10,0) DEFAULT NULL COMMENT '부모글번호', */
+     , A.ANSWER_LC /* `ANSWER_LC` decimal(8,0) DEFAULT NULL COMMENT '댓글위치', */
+     , A.SORT_ORDR /* `SORT_ORDR` decimal(8,0) DEFAULT NULL COMMENT '정렬순서', */
 /*  */
-     , RDCNT /* `RDCNT` decimal(10,0) DEFAULT NULL COMMENT '조회수', */
-     , NTCE_BGNDE /* `NTCE_BGNDE` char(20) DEFAULT NULL COMMENT '게시시작일', */
-     , NTCE_ENDDE /* `NTCE_ENDDE` char(20) DEFAULT NULL COMMENT '게시종료일', */
-     , NTCR_ID /* `NTCR_ID` varchar(20) DEFAULT NULL COMMENT '게시자ID', */
-     , NTCR_NM /* `NTCR_NM` varchar(20) DEFAULT NULL COMMENT '게시자명', */
-     , PASSWORD /* `PASSWORD` varchar(200) DEFAULT NULL COMMENT '비밀번호', */
-     , ATCH_FILE_ID /* `ATCH_FILE_ID` char(20) DEFAULT NULL COMMENT '첨부파일ID', */
-     , NOTICE_AT /* `NOTICE_AT` char(1) DEFAULT NULL COMMENT '공지사항여부', */
-     , SJ_BOLD_AT /* `SJ_BOLD_AT` char(1) DEFAULT NULL COMMENT '제목볼드여부', */
-     , SECRET_AT /* `SECRET_AT` char(1) DEFAULT NULL COMMENT '비밀글여부', */
+     , A.RDCNT /* `RDCNT` decimal(10,0) DEFAULT NULL COMMENT '조회수', */
+     , A.NTCE_BGNDE /* `NTCE_BGNDE` char(20) DEFAULT NULL COMMENT '게시시작일', */
+     , A.NTCE_ENDDE /* `NTCE_ENDDE` char(20) DEFAULT NULL COMMENT '게시종료일', */
+     , A.NTCR_ID /* `NTCR_ID` varchar(20) DEFAULT NULL COMMENT '게시자ID', */
+     , A.NTCR_NM /* `NTCR_NM` varchar(20) DEFAULT NULL COMMENT '게시자명', */
+     , A.PASSWORD /* `PASSWORD` varchar(200) DEFAULT NULL COMMENT '비밀번호', */
+     , A.ATCH_FILE_ID /* `ATCH_FILE_ID` char(20) DEFAULT NULL COMMENT '첨부파일ID', */
+     , A.NOTICE_AT /* `NOTICE_AT` char(1) DEFAULT NULL COMMENT '공지사항여부', */
+     , A.SJ_BOLD_AT /* `SJ_BOLD_AT` char(1) DEFAULT NULL COMMENT '제목볼드여부', */
+     , A.SECRET_AT /* `SECRET_AT` char(1) DEFAULT NULL COMMENT '비밀글여부', */
 /*  */
-     , FRST_REGIST_PNTTM /* `FRST_REGIST_PNTTM` datetime DEFAULT NULL COMMENT '최초등록시점', */
-     , FRST_REGISTER_ID /* `FRST_REGISTER_ID` varchar(20) DEFAULT NULL COMMENT '최초등록자ID', */
-     , LAST_UPDT_PNTTM /* `LAST_UPDT_PNTTM` datetime DEFAULT NULL COMMENT '최종수정시점', */
-     , LAST_UPDUSR_ID /* `LAST_UPDUSR_ID` varchar(20) DEFAULT NULL COMMENT '최종수정자ID', */
+     , A.FRST_REGIST_PNTTM /* `FRST_REGIST_PNTTM` datetime DEFAULT NULL COMMENT '최초등록시점', */
+     , A.FRST_REGISTER_ID /* `FRST_REGISTER_ID` varchar(20) DEFAULT NULL COMMENT '최초등록자ID', */
+     , A.LAST_UPDT_PNTTM /* `LAST_UPDT_PNTTM` datetime DEFAULT NULL COMMENT '최종수정시점', */
+     , A.LAST_UPDUSR_ID /* `LAST_UPDUSR_ID` varchar(20) DEFAULT NULL COMMENT '최종수정자ID', */
 /*  */
-     , BLOG_ID /* `BLOG_ID` char(20) DEFAULT NULL COMMENT '블로그 ID', */
-  FROM COMTNBBS /* 게시판 */
- WHERE BBS_ID = #{bbsId} /* `BBS_ID` char(30) NOT NULL COMMENT '게시판ID', */
-   AND USE_AT = 'Y'
- ORDER BY SORT_ORDR DESC, NTT_NO ASC
+     , A.BLOG_ID /* `BLOG_ID` char(20) DEFAULT NULL COMMENT '블로그 ID', */
+/*  */
+     , B.BBS_NM /* `BBS_NM` varchar(255) NOT NULL COMMENT '게시판명', */
+]]>
+		<include refid="SampleBa02DAO.selectListFromWhere"></include>
+<![CDATA[
+ ORDER BY A.SORT_ORDR DESC, A.NTT_NO ASC
  LIMIT #{recordCountPerPage} OFFSET #{firstIndex}
 ]]>
 	</select>
@@ -175,10 +177,17 @@ SELECT
 /* SampleBa02DAO.selectListTotCnt 게시판 조회(멀티건) 전체건수 */
 SELECT
        COUNT(*)
-  FROM COMTNBBS /* 게시판 */
- WHERE BBS_ID = #{bbsId} /* `BBS_ID` char(30) NOT NULL COMMENT '게시판ID', */
-   AND USE_AT = 'Y'
 ]]>
+		<include refid="SampleBa02DAO.selectListFromWhere"></include>
 	</select>
+
+	<sql id="SampleBa02DAO.selectListFromWhere">
+<![CDATA[
+  FROM COMTNBBS A /* 게시판 */
+  LEFT OUTER JOIN COMTNBBSMASTER B ON B.BBS_ID = A.BBS_ID
+ WHERE A.BBS_ID = #{bbsId} /* `BBS_ID` char(30) NOT NULL COMMENT '게시판ID', */
+   AND A.USE_AT = 'Y'
+]]>
+	</sql>
 
 </mapper>

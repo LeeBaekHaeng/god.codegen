@@ -168,6 +168,14 @@ public class SampleBa02 extends ComDefaultVO {
 	private String blogId;
 
 	/**
+	 * 게시판명
+	 * 
+	 * @테이블 COMTNBBSMASTER 게시판마스터
+	 * @컬럼 `BBS_NM` varchar(255) NOT NULL COMMENT '게시판명',
+	 */
+	private String bbsNm;
+
+	/**
 	 * getSerialversionuid
 	 * 
 	 * @return
@@ -616,6 +624,30 @@ public class SampleBa02 extends ComDefaultVO {
 	 */
 	public void setBlogId(final String blogId) {
 		this.blogId = blogId;
+	}
+
+	/**
+	 * 게시판명 값읽기
+	 * 
+	 * @return
+	 * 
+	 * @테이블 COMTNBBSMASTER 게시판마스터
+	 * @컬럼 `BBS_NM` varchar(255) NOT NULL COMMENT '게시판명',
+	 */
+	public String getBbsNm() {
+		return bbsNm;
+	}
+
+	/**
+	 * 게시판명 값설정
+	 * 
+	 * @param bbsNm
+	 * 
+	 * @테이블 COMTNBBSMASTER 게시판마스터
+	 * @컬럼 `BBS_NM` varchar(255) NOT NULL COMMENT '게시판명',
+	 */
+	public void setBbsNm(final String bbsNm) {
+		this.bbsNm = bbsNm;
 	}
 
 }
