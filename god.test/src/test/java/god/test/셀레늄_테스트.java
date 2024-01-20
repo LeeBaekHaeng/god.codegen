@@ -53,6 +53,11 @@ public class 셀레늄_테스트 {
 	/**
 	 * 
 	 */
+	protected String SB_N = "\n";
+
+	/**
+	 * 
+	 */
 	protected String SB_N_N = "\n\n";
 
 	/**

@@ -60,22 +60,59 @@ class a02_등록화면_목록버튼 extends 셀레늄_테스트 {
 		정지();
 
 		sb.append(로그_번호++);
-		sb.append(". 목록버튼\n");
-		sb.append(SB_N_N);
+		sb.append(". 목록버튼\n\n");
 	}
 
 	private void assert__확인(final StringBuffer sb) {
-		final WebElement element = driver.findElement(By.cssSelector(".board_list tbody tr td:nth-child(2)"));
+		final WebElement 번호 = driver.findElement(By.cssSelector(".board_list tbody tr:nth-child(1) td:nth-child(1)"));
+		final WebElement 게시판명 = driver.findElement(By.cssSelector(".board_list tbody tr:nth-child(1) td:nth-child(2)"));
+		final WebElement 등록자 = driver.findElement(By.cssSelector(".board_list tbody tr:nth-child(1) td:nth-child(3)"));
+		final WebElement 등록일 = driver.findElement(By.cssSelector(".board_list tbody tr:nth-child(1) td:nth-child(4)"));
+		final WebElement 사용여부 = driver.findElement(By.cssSelector(".board_list tbody tr:nth-child(1) td:nth-child(5)"));
 		정지();
 
 		sb.append(로그_번호++);
-		sb.append(". 게시판명\n");
-		sb.append(element.getText());
+		sb.append(". 확인\n\n");
 
+		sb.append("번호=");
+		sb.append(번호.getText());
+		sb.append(SB_N);
+
+		sb.append("게시판명=");
+		sb.append(게시판명.getText());
+		sb.append(SB_N);
+
+		sb.append("등록자=");
+		sb.append(등록자.getText());
+		sb.append(SB_N);
+
+		sb.append("등록일=");
+		sb.append(등록일.getText());
+		sb.append(SB_N);
+
+		sb.append("사용여부=");
+		sb.append(사용여부.getText());
+		sb.append(SB_N);
+
+		sb.append(SB_N);
+		sb.append("목록=");
+		sb.append(SB_N_N);
 		final List<WebElement> elements = driver.findElements(By.cssSelector(".board_list tbody tr"));
 		정지();
 		for (WebElement tr : elements) {
 			sb.append(tr.getText());
+			sb.append(SB_N);
+
+			sb.append("번호=");
+			sb.append(tr.findElement(By.cssSelector("td:nth-child(1)")).getText());
+			sb.append(", 게시판명=");
+			sb.append(tr.findElement(By.cssSelector("td:nth-child(2)")).getText());
+			sb.append(", 등록자=");
+			sb.append(tr.findElement(By.cssSelector("td:nth-child(3)")).getText());
+			sb.append(", 등록일=");
+			sb.append(tr.findElement(By.cssSelector("td:nth-child(4)")).getText());
+			sb.append(", 사용여부=");
+			sb.append(tr.findElement(By.cssSelector("td:nth-child(5)")).getText());
 			sb.append(SB_N_N);
 		}
 

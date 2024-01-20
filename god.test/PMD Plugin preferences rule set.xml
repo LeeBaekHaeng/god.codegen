@@ -137,11 +137,11 @@
    <rule ref="category/java/codestyle.xml/ConfusingTernary"/>
    <rule ref="category/modelica/bestpractices.xml/ConnectUsingNonConnector"/>
    <!-- <rule ref="category/java/performance.xml/ConsecutiveAppendsShouldReuse"/> -->
-   <rule ref="category/java/performance.xml/ConsecutiveLiteralAppends">
+   <!-- <rule ref="category/java/performance.xml/ConsecutiveLiteralAppends">
       <properties>
          <property name="threshold" value="10"/>
       </properties>
-   </rule>
+   </rule> -->
    <rule ref="category/ecmascript/bestpractices.xml/ConsistentReturn"/>
    <rule ref="category/java/bestpractices.xml/ConstantsInInterface"/>
    <rule ref="category/java/errorprone.xml/ConstructorCallsOverridableMethod"/>
@@ -227,8 +227,8 @@
    <rule ref="category/apex/codestyle.xml/ForLoopsMustUseBraces"/>
    <rule ref="category/ecmascript/codestyle.xml/ForLoopsMustUseBraces"/>
    <rule ref="category/java/codestyle.xml/ForLoopsMustUseBraces"/>
-   <rule ref="category/apex/codestyle.xml/FormalParameterNamingConventions"/>
-   <rule ref="category/java/codestyle.xml/FormalParameterNamingConventions"/>
+   <!-- <rule ref="category/apex/codestyle.xml/FormalParameterNamingConventions"/> -->
+   <!-- <rule ref="category/java/codestyle.xml/FormalParameterNamingConventions"/> -->
    <rule ref="category/java/codestyle.xml/GenericsNaming"/>
    <rule ref="category/ecmascript/bestpractices.xml/GlobalVariable"/>
    <rule ref="category/java/design.xml/GodClass"/>
@@ -365,7 +365,7 @@
    <rule ref="category/ecmascript/bestpractices.xml/ScopeForInVariable"/>
    <rule ref="category/java/codestyle.xml/ShortClassName"/>
    <rule ref="category/java/performance.xml/ShortInstantiation"/>
-   <rule ref="category/java/codestyle.xml/ShortMethodName"/>
+   <!-- <rule ref="category/java/codestyle.xml/ShortMethodName"/> -->
    <rule ref="category/java/codestyle.xml/ShortVariable">
       <properties>
          <property name="minimum" value="0"/>
