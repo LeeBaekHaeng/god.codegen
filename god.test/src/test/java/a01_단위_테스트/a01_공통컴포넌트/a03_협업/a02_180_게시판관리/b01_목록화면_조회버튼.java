@@ -12,10 +12,10 @@ import lombok.NoArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 
 /**
- * 10. 로그인 단위 테스트
+ * [셀레늄단위테스트]게시판관리 목록화면 조회버튼
  * 
  * @author 이백행
- * @since 2024-01-13
+ * @since 2024-01-22
  *
  */
 @NoArgsConstructor
@@ -31,11 +31,7 @@ class b01_목록화면_조회버튼 extends 셀레늄_테스트 {
 		final StringBuffer sb = new StringBuffer(1600);
 		sb.append("\n\n");
 
-		// 게시판 목록
-		driver.get(GET_URL + "/cop/bbs/selectBBSMasterInfs.do");
-		정지();
-		sb.append("1. 게시판 목록\n");
-		sb.append('\n');
+		목록화면(sb);
 
 		// 검색조건
 		// searchCnd
@@ -90,26 +86,14 @@ class b01_목록화면_조회버튼 extends 셀레늄_테스트 {
 		}
 	}
 
-	@Test
-	void test02_등록_버튼() {
-		if (log.isDebugEnabled()) {
-			log.debug("test");
-		}
-
-		로그인();
-
-		// 게시판 목록
+	private void 목록화면(final StringBuffer sb) {
 		driver.get(GET_URL + "/cop/bbs/selectBBSMasterInfs.do");
 		정지();
 
-		// 등록 버튼
-		// $('.btn_b')
-		final WebElement btnB = driver.findElement(By.className("btn_b"));
-		btnB.click();
-		정지();
-
-		// then
-		assertEquals("", "", "등록 버튼");
+		sb.append(로그_번호++);
+		sb.append(". ");
+		sb.append("게시판");
+		sb.append(" 목록 화면\n\n");
 	}
 
 }
