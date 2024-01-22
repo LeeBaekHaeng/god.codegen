@@ -99,7 +99,7 @@ class a02_등록화면_목록버튼 extends 셀레늄_테스트 {
 		sb.append(SB_N_N);
 		final List<WebElement> elements = driver.findElements(By.cssSelector(".board_list tbody tr"));
 		정지();
-		for (WebElement tr : elements) {
+		for (final WebElement tr : elements) {
 			sb.append(tr.getText());
 			sb.append(SB_N);
 
