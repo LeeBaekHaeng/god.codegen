@@ -88,7 +88,11 @@ function fn_egov_inquire_bbsdetail(bbsId) {
 			</li>
 		</ul>
 	</div>
-	
+	<div>
+		<div id="currentPageNo"><c:out value="${paginationInfo.currentPageNo}" /></div>
+		/
+		<c:out value="${paginationInfo.totalRecordCount}" />
+	</div>
 	<!-- 목록영역 -->
 	<table class="board_list" summary="<spring:message code="common.summary.list" arguments="${pageTitle}" />">
 	<caption>${pageTitle}<spring:message code="title.list" /></caption>
