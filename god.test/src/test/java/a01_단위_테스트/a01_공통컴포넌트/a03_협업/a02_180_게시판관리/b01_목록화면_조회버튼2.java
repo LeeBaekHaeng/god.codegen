@@ -22,7 +22,7 @@ import lombok.extern.slf4j.Slf4j;
  */
 @NoArgsConstructor
 @Slf4j
-class b01_목록화면_조회버튼 extends 셀레늄_테스트 {
+class b01_목록화면_조회버튼2 extends 셀레늄_테스트 {
 
 	/**
 	 * 
@@ -68,8 +68,8 @@ class b01_목록화면_조회버튼 extends 셀레늄_테스트 {
 	}
 
 	private void 검색조건__선택(final StringBuffer sb) {
-		검색조건 = "게시판명";
-//		검색조건 = "게시판소개내용";
+//		검색조건 = "게시판명";
+		검색조건 = "게시판소개내용";
 
 		final WebElement element = driver.findElement(By.name("searchCnd"));
 		element.sendKeys(검색조건);
