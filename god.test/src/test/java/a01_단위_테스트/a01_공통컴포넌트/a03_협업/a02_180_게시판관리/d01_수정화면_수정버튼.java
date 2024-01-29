@@ -12,104 +12,248 @@ import lombok.NoArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 
 /**
- * 10. 로그인 단위 테스트
+ * [셀레늄단위테스트]게시판관리 수정화면 수정버튼
  * 
  * @author 이백행
- * @since 2024-01-13
+ * @since 2024-01-30
  *
  */
 @NoArgsConstructor
 @Slf4j
 class d01_수정화면_수정버튼 extends 셀레늄_테스트 {
 
+	/**
+	 * 
+	 */
+	private String 게시판명;
+
+	/**
+	 * 
+	 */
+	private String 게시판소개내용;
+
+	/**
+	 * 
+	 */
+	private String 게시판_유형;
+
+	/**
+	 * 
+	 */
+	private String 파일첨부가능여부;
+
+	/**
+	 * 
+	 */
+	private String 첨부가능파일숫자;
+
+	/**
+	 * 
+	 */
+	private String 사용여부;
+
 	@Test
-	void test01_조회_버튼() {
-//		로그인();
-		로그인("USER");
-//		로그인("USER", "rhdxhd12");
-
+	void 테스트() {
 		final StringBuffer sb = new StringBuffer(1600);
-		sb.append("\n\n");
+		sb.append(SB_N_N);
 
-		// 게시판 목록
-		driver.get(GET_URL + "/cop/bbs/selectBBSMasterInfs.do");
-		정지();
-		sb.append("1. 게시판 목록\n");
-		sb.append('\n');
+		테스터 = "이백행";
 
-		// 검색조건
-		// searchCnd
-		final WebElement searchCnd = driver.findElement(By.name("searchCnd"));
-		searchCnd.sendKeys("게시판소개내용"); // 게시판소개내용
-		정지();
-		sb.append("2. 검색조건\n");
+		로그인("USER");
 
-		final Select searchCndSelect = new Select(searchCnd);
-		sb.append(searchCndSelect.getFirstSelectedOption().getText() + "\n");
-		sb.append('\n');
+		목록화면(sb);
+		게시판명_클릭(sb);
 
-		// 검색어
-		// searchWrd
-		final String searchWrdString = "통합게시판";
-		final WebElement searchWrd = driver.findElement(By.name("searchWrd"));
-		searchWrd.sendKeys(searchWrdString); // 검색어
-		정지();
-		sb.append("3. 검색어\n");
+		상세화면_수정버튼_클릭(sb);
 
-		sb.append(searchWrdString + "\n");
-		sb.append('\n');
+		게시판명__입력(sb);
+		게시판소개내용__입력(sb);
+		게시판_유형__선택(sb);
+		파일첨부가능여부__선택(sb);
+		첨부가능파일숫자__선택(sb);
+		사용여부__선택(sb);
 
-		// 조회 버튼
-		// $('.s_btn')
-		final WebElement sBtn = driver.findElement(By.className("s_btn"));
-		sBtn.click();
-		정지();
-		sb.append("4. 조회 버튼\n");
-		sb.append('\n');
+		수정버튼(sb);
 
-		// then
+		목록화면(sb);
 
-		// $('.board_list tbody tr td:nth-child(2)')
-		final WebElement boardList = driver.findElement(By.cssSelector(".board_list tbody tr td:nth-child(2)"));
-		final String nttSj = boardList.getText();
-		sb.append("5. 확인\n");
-
-		sb.append("게시판명 예상: ");
-		sb.append(nttSj);
-		sb.append(", 실제: ");
-		sb.append(nttSj + "\n");
-//		sb.append('\n');
-
-//		assertTrue(value.indexOf(searchWrdString) != -1, "message 메시지");
-		assertEquals(searchWrdString, nttSj, "확인");
-
-		assertEquals("", "", "조회 버튼");
+		assert__확인(sb);
 
 		if (log.isDebugEnabled()) {
 			log.debug(sb.toString());
 		}
 	}
 
-	@Test
-	void test02_등록_버튼() {
-		if (log.isDebugEnabled()) {
-			log.debug("test");
-		}
-
-		로그인();
-
-		// 게시판 목록
+	private void 목록화면(final StringBuffer sb) {
 		driver.get(GET_URL + "/cop/bbs/selectBBSMasterInfs.do");
 		정지();
 
-		// 등록 버튼
-		// $('.btn_b')
-		final WebElement btnB = driver.findElement(By.className("btn_b"));
-		btnB.click();
+		sb.append(로그_번호++);
+		sb.append(". 게시판 목록화면");
+		sb.append(SB_N_N);
+	}
+
+	private void 게시판명_클릭(final StringBuffer sb) {
+		final WebElement 게시판명_element = driver
+				.findElement(By.cssSelector(".board_list tbody tr:nth-child(1) td:nth-child(2)"));
+
+		게시판명_element.click();
+
+		sb.append(로그_번호++);
+		sb.append(". 게시판명 클릭");
+		sb.append(SB_N_N);
+	}
+
+	private void 상세화면_수정버튼_클릭(final StringBuffer sb) {
+		final WebElement element = driver.findElement(By.className("s_submit"));
+		element.click();
 		정지();
 
-		// then
-		assertEquals("", "", "등록 버튼");
+		sb.append(로그_번호++);
+		sb.append(". 상세화면 수정버튼 클릭");
+		sb.append(SB_N_N);
+	}
+
+	private void 게시판명__입력(final StringBuffer sb) {
+		게시판명 = 테스트_값읽기("게시판명 수정");
+
+		final WebElement element = driver.findElement(By.id("bbsNm"));
+		element.clear();
+		element.sendKeys(게시판명);
+		정지();
+
+		sb.append(로그_번호++);
+		sb.append(". 게시판명\n");
+		sb.append(게시판명);
+		sb.append(SB_N_N);
+	}
+
+	private void 게시판소개내용__입력(final StringBuffer sb) {
+		게시판소개내용 = 테스트_값읽기("게시판소개내용 수정");
+
+		final WebElement element = driver.findElement(By.id("bbsIntrcn"));
+		element.clear();
+		element.sendKeys(게시판소개내용);
+		정지();
+
+		sb.append(로그_번호++);
+		sb.append(". 게시판소개내용\n");
+		sb.append(게시판소개내용);
+		sb.append(SB_N_N);
+	}
+
+	private void 게시판_유형__선택(final StringBuffer sb) {
+//		게시판_유형 = "통합게시판";
+		게시판_유형 = "블로그형게시판";
+//		게시판_유형 = "방명록";
+
+		final WebElement element = driver.findElement(By.id("bbsTyCode"));
+		element.sendKeys(게시판_유형);
+		final Select select = new Select(element);
+		정지();
+
+		sb.append(로그_번호++);
+		sb.append(". 게시판 유형\n");
+		sb.append(게시판_유형);
+		sb.append(", ");
+		sb.append(select.getFirstSelectedOption().getText());
+		sb.append(SB_N_N);
+	}
+
+	private void 파일첨부가능여부__선택(final StringBuffer sb) {
+		파일첨부가능여부 = "예";
+//		파일첨부가능여부 = "아니오";
+
+		final WebElement element = driver.findElement(By.id("fileAtchPosblAt"));
+		element.sendKeys(파일첨부가능여부);
+		final Select select = new Select(element);
+		정지();
+
+		sb.append(로그_번호++);
+		sb.append(". 파일첨부가능여부\n");
+		sb.append(파일첨부가능여부);
+		sb.append(", ");
+		sb.append(select.getFirstSelectedOption().getText());
+		sb.append(SB_N_N);
+	}
+
+	private void 첨부가능파일숫자__선택(final StringBuffer sb) {
+//		첨부가능파일숫자 = "1";
+		첨부가능파일숫자 = "2";
+//		첨부가능파일숫자 = "3";
+
+		final WebElement element = driver.findElement(By.id("atchPosblFileNumber"));
+		element.sendKeys(첨부가능파일숫자);
+		final Select select = new Select(element);
+		정지();
+
+		sb.append(로그_번호++);
+		sb.append(". 첨부가능파일숫자\n");
+		sb.append(첨부가능파일숫자);
+		sb.append(", ");
+		sb.append(select.getFirstSelectedOption().getText());
+		sb.append(SB_N_N);
+	}
+
+	private void 사용여부__선택(final StringBuffer sb) {
+//		사용여부 = "예";
+		사용여부 = "아니요";
+
+		final WebElement element = driver.findElement(By.id("useAt"));
+		element.sendKeys(사용여부);
+		final Select select = new Select(element);
+//		사용여부 = select.getFirstSelectedOption().getText();
+		사용여부 = select.getFirstSelectedOption().getAttribute("value");
+		정지();
+
+		sb.append(로그_번호++);
+		sb.append(". 사용여부\n");
+		sb.append(사용여부);
+		sb.append(", ");
+		sb.append(select.getFirstSelectedOption().getText());
+		sb.append(SB_N_N);
+	}
+
+	private void 수정버튼(final StringBuffer sb) {
+		final WebElement element = driver.findElement(By.className("s_submit"));
+		element.click();
+		정지();
+
+		// 확인
+		driver.switchTo().alert().accept();
+
+		sb.append(로그_번호++);
+		sb.append(". 수정 버튼\n");
+		sb.append(SB_N_N);
+	}
+
+	private void assert__확인(final StringBuffer sb) {
+		final WebElement 게시판명_element = driver
+				.findElement(By.cssSelector(".board_list tbody tr:nth-child(1) td:nth-child(2)"));
+		final String 게시판명_실제_actual = 게시판명_element.getText();
+		정지();
+
+		final WebElement 사용여부_element = driver
+				.findElement(By.cssSelector(".board_list tbody tr:nth-child(1) td:nth-child(5)"));
+		final String 사용여부_실제_actual = 사용여부_element.getText();
+		정지();
+
+		sb.append(로그_번호++);
+		sb.append(". 게시판명\n예상: ");
+		sb.append(게시판명);
+		sb.append(", 실제: ");
+		sb.append(게시판명_실제_actual);
+		sb.append(SB_N_N);
+
+		sb.append(로그_번호++);
+		sb.append(". 사용여부\n예상: ");
+		sb.append(사용여부);
+		sb.append(", 실제: ");
+		sb.append(사용여부_실제_actual);
+		sb.append(SB_N_N);
+
+		assertEquals(게시판명, 게시판명_실제_actual, "게시판명");
+		assertEquals(사용여부, 사용여부_실제_actual, "사용여부");
 	}
 
 }

@@ -1,6 +1,7 @@
 package god.test;
 
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -43,7 +44,9 @@ public class 셀레늄_테스트 {
 	/**
 	 * 현재 년월일시분초
 	 */
-	protected String 테스트_값_접미어 = LocalDateTime.now().toString();
+//	protected String 테스트_값_접미어 = LocalDateTime.now().toString();
+//	protected String 테스트_값_접미어 = LocalDateTime.now().format(DateTimeFormatter.ISO_LOCAL_DATE_TIME);
+	protected String 테스트_값_접미어 = LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"));
 
 	/**
 	 * 
