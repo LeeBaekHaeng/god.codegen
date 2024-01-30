@@ -449,7 +449,7 @@
    <rule ref="category/java/performance.xml/UseArraysAsList"/>
    <rule ref="category/java/bestpractices.xml/UseAssertEqualsInsteadOfAssertTrue"/>
    <rule ref="category/java/bestpractices.xml/UseAssertNullInsteadOfAssertTrue"/>
-   <rule ref="category/java/bestpractices.xml/UseAssertSameInsteadOfAssertTrue"/>
+   <!-- <rule ref="category/java/bestpractices.xml/UseAssertSameInsteadOfAssertTrue"/> -->
    <rule ref="category/java/bestpractices.xml/UseAssertTrueInsteadOfAssertEquals"/>
    <rule ref="category/ecmascript/bestpractices.xml/UseBaseWithParseInt"/>
    <rule ref="category/java/bestpractices.xml/UseCollectionIsEmpty"/>
