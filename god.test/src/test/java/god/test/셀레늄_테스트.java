@@ -141,8 +141,9 @@ public class 셀레늄_테스트 {
 		// URL
 //		driver.get("http://localhost:8080/com/");
 		driver.get(GET_URL + "/uat/uia/egovLoginUsr.do");
-//		sleep3second();
+		정지();
 		js.executeScript("location.reload()");
+		정지();
 
 		final String title = driver.getTitle();
 		if (log.isTraceEnabled()) {
@@ -156,16 +157,17 @@ public class 셀레늄_테스트 {
 		// 아이디
 //        driver.findElement(By.id("id")).sendKeys("USER");
 		driver.findElement(By.id("id")).sendKeys((String) vars.get("id"));
-//		sleep();
+		정지();
 
 		// 비밀번호
 //		driver.findElement(By.id("password")).sendKeys("rhdxhd12");
 		driver.findElement(By.id("password")).sendKeys(패스워드);
-//		sleep();
+		정지();
 
 		// 로그인 버튼
 //		driver.findElement(By.cssSelector(".btn_login:nth-child(1)")).click();
 		js.executeScript("actionLogin()");
+		정지();
 	}
 
 	/**
@@ -187,7 +189,9 @@ public class 셀레늄_테스트 {
 	 */
 	protected void 정지() {
 		try {
-			Thread.sleep(1_000);
+//			Thread.sleep(1_000);
+			Thread.sleep(2_000);
+//			Thread.sleep(3_000);
 		} catch (InterruptedException e) {
 			throw new BaseRuntimeException("InterruptedException sleep", e);
 		}
