@@ -720,13 +720,20 @@
 
 					<configuration>
 
+						<compileSourceRoots>${project.basedir}/src/main</compileSourceRoots>
+
 						<!-- <excludes>
 							<exclude>**/egovframework/com/**</exclude>
 							<exclude>**/org/egovframe/**</exclude>
 						</excludes> -->
 
 						<includes>
-							<include>**/god/**</include>
+							<!-- <include>**/god/**</include> -->
+							<include>java/god/**/*.java</include>
+							<include>**/god/**/*.jsp</include>
+							<!-- <include>webapp/**/god/**/*.jsp</include>
+							<include>webapp/**/god/**/*.js</include>
+							<include>webapp/**/god/**/*.html</include> -->
 						</includes>
 
 						<!-- <minimumPriority>1</minimumPriority> -->
