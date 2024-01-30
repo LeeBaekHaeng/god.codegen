@@ -1,0 +1,12 @@
+사용자 및 그룹 관리
+
+groupadd -g 1000 apache
+useradd -u 1000 -g 1000 apache
+
+groupadd -g 1000 apache
+cat /etc/group
+groupdel apache
+
+useradd -u 1000 -g 1000 apache
+cat /etc/passwd
+userdel apache
