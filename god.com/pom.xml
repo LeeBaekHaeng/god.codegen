@@ -17,6 +17,8 @@
 	<properties>
 		<spring.maven.artifact.version>5.3.20</spring.maven.artifact.version>
 		<org.egovframe.rte.version>4.1.0</org.egovframe.rte.version>
+		<!-- <net.sourceforge.pmd.version>7.0.0-rc4</net.sourceforge.pmd.version> -->
+		<net.sourceforge.pmd.version>6.55.0</net.sourceforge.pmd.version>
 	</properties>
 
 	<repositories>
@@ -713,7 +715,133 @@
 				<plugin>
 					<groupId>org.apache.maven.plugins</groupId>
 					<artifactId>maven-pmd-plugin</artifactId>
-					<version>3.17.0</version>
+					<!-- <version>3.17.0</version> -->
+					<version>3.21.2</version>
+
+					<configuration>
+
+						<!-- <excludes>
+							<exclude>**/egovframework/com/**</exclude>
+							<exclude>**/org/egovframe/**</exclude>
+						</excludes> -->
+
+						<includes>
+							<include>**/god/**</include>
+						</includes>
+
+						<!-- <minimumPriority>1</minimumPriority> -->
+						<minimumPriority>5</minimumPriority>
+
+						<rulesets>
+							<ruleset>${project.basedir}/../PMD Plugin preferences rule set.xml</ruleset>
+						</rulesets>
+
+					</configuration>
+
+					<dependencies>
+
+						<!-- https://mvnrepository.com/artifact/net.sourceforge.pmd/pmd-core -->
+						<dependency>
+							<groupId>net.sourceforge.pmd</groupId>
+							<artifactId>pmd-core</artifactId>
+							<version>${net.sourceforge.pmd.version}</version>
+						</dependency>
+
+						<!-- https://mvnrepository.com/artifact/net.sourceforge.pmd/pmd-java -->
+						<dependency>
+							<groupId>net.sourceforge.pmd</groupId>
+							<artifactId>pmd-java</artifactId>
+							<version>${net.sourceforge.pmd.version}</version>
+						</dependency>
+
+						<!-- https://mvnrepository.com/artifact/net.sourceforge.pmd/pmd-javascript -->
+						<dependency>
+							<groupId>net.sourceforge.pmd</groupId>
+							<artifactId>pmd-javascript</artifactId>
+							<version>${net.sourceforge.pmd.version}</version>
+						</dependency>
+
+						<!-- https://mvnrepository.com/artifact/net.sourceforge.pmd/pmd-jsp -->
+						<dependency>
+							<groupId>net.sourceforge.pmd</groupId>
+							<artifactId>pmd-jsp</artifactId>
+							<version>${net.sourceforge.pmd.version}</version>
+						</dependency>
+
+						<!-- https://mvnrepository.com/artifact/net.sourceforge.pmd/pmd-test -->
+						<dependency>
+							<groupId>net.sourceforge.pmd</groupId>
+							<artifactId>pmd-test</artifactId>
+							<version>${net.sourceforge.pmd.version}</version>
+							<scope>test</scope>
+						</dependency>
+
+						<!-- https://mvnrepository.com/artifact/net.sourceforge.pmd/pmd-lang-test -->
+						<dependency>
+							<groupId>net.sourceforge.pmd</groupId>
+							<artifactId>pmd-lang-test</artifactId>
+							<version>${net.sourceforge.pmd.version}</version>
+							<scope>test</scope>
+						</dependency>
+
+						<!-- https://mvnrepository.com/artifact/net.sourceforge.pmd/pmd-xml -->
+						<dependency>
+							<groupId>net.sourceforge.pmd</groupId>
+							<artifactId>pmd-xml</artifactId>
+							<version>${net.sourceforge.pmd.version}</version>
+						</dependency>
+
+						<!-- https://mvnrepository.com/artifact/net.sourceforge.pmd/pmd-plsql -->
+						<dependency>
+							<groupId>net.sourceforge.pmd</groupId>
+							<artifactId>pmd-plsql</artifactId>
+							<version>${net.sourceforge.pmd.version}</version>
+						</dependency>
+
+						<!-- https://mvnrepository.com/artifact/net.sourceforge.pmd/pmd-apex -->
+						<dependency>
+							<groupId>net.sourceforge.pmd</groupId>
+							<artifactId>pmd-apex</artifactId>
+							<version>${net.sourceforge.pmd.version}</version>
+						</dependency>
+
+						<!-- https://mvnrepository.com/artifact/net.sourceforge.pmd/pmd-modelica -->
+						<dependency>
+							<groupId>net.sourceforge.pmd</groupId>
+							<artifactId>pmd-modelica</artifactId>
+							<version>${net.sourceforge.pmd.version}</version>
+						</dependency>
+
+						<!-- https://mvnrepository.com/artifact/net.sourceforge.pmd/pmd-html -->
+						<dependency>
+							<groupId>net.sourceforge.pmd</groupId>
+							<artifactId>pmd-html</artifactId>
+							<version>${net.sourceforge.pmd.version}</version>
+						</dependency>
+
+						<!-- https://mvnrepository.com/artifact/net.sourceforge.pmd/pmd-ant
+						<dependency>
+							<groupId>net.sourceforge.pmd</groupId>
+							<artifactId>pmd-ant</artifactId>
+							<version>${net.sourceforge.pmd.version}</version>
+						</dependency> -->
+
+						<!-- https://mvnrepository.com/artifact/net.sourceforge.pmd/pmd-vm -->
+						<dependency>
+							<groupId>net.sourceforge.pmd</groupId>
+							<artifactId>pmd-vm</artifactId>
+							<version>${net.sourceforge.pmd.version}</version>
+						</dependency>
+
+						<!-- https://mvnrepository.com/artifact/net.sourceforge.pmd/pmd-visualforce -->
+						<dependency>
+							<groupId>net.sourceforge.pmd</groupId>
+							<artifactId>pmd-visualforce</artifactId>
+							<version>${net.sourceforge.pmd.version}</version>
+						</dependency>
+
+					</dependencies>
+
 				</plugin>
 			</plugins>
 		</pluginManagement>
