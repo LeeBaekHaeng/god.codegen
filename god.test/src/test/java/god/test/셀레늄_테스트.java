@@ -189,8 +189,8 @@ public class 셀레늄_테스트 {
 	 */
 	protected void 정지() {
 		try {
-//			Thread.sleep(1_000);
-			Thread.sleep(2_000);
+			Thread.sleep(1_000);
+//			Thread.sleep(2_000);
 //			Thread.sleep(3_000);
 		} catch (InterruptedException e) {
 			throw new BaseRuntimeException("InterruptedException sleep", e);
