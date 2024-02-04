@@ -76,7 +76,7 @@ public class 셀레늄_테스트 {
 	/**
 	 * JavascriptExecutor
 	 */
-	private JavascriptExecutor js;
+	protected JavascriptExecutor js;
 
 	@BeforeAll
 	static void setUpBeforeClass() {

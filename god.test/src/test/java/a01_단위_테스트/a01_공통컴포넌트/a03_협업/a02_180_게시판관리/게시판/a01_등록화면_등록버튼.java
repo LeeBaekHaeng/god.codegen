@@ -2,6 +2,7 @@ package a01_단위_테스트.a01_공통컴포넌트.a03_협업.a02_180_게시판
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
+import java.io.File;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
@@ -60,11 +61,12 @@ class a01_등록화면_등록버튼 extends 셀레늄_테스트 {
 
 		등록화면에서_제목을_입력한다();
 		등록화면에서_제목_진하게를_클릭한다();
-//		등록화면에서_내용을_입력한다();
+		등록화면에서_내용을_입력한다();
 		등록화면에서_공지등록을_클릭한다();
 		등록화면에서_비밀글을_클릭한다();
 		등록화면에서_익명등록을_클릭한다();
 		등록화면에서_게시기간을_입력한다();
+		등록화면에서_첨부파일을_추가한다();
 
 //		assert__확인();
 	}
@@ -95,8 +97,11 @@ class a01_등록화면_등록버튼 extends 셀레늄_테스트 {
 
 	private void 등록화면에서_내용을_입력한다() {
 		내용_예상_expected = 테스트_값읽기("내용");
-		final WebElement element = driver.findElement(By.id("nttCn"));
-		element.sendKeys(내용_예상_expected);
+
+//		js.executeScript("$('#nttCn').val('" + 내용_예상_expected + "');");
+//		js.executeScript("CKEDITOR.instances.nttCn.setData();");
+		js.executeScript("CKEDITOR.instances.nttCn.setData('" + 내용_예상_expected + "');");
+
 		정지();
 	}
 
@@ -109,24 +114,37 @@ class a01_등록화면_등록버튼 extends 셀레늄_테스트 {
 	private void 등록화면에서_비밀글을_클릭한다() {
 		final WebElement element = driver.findElement(By.id("secretAt1"));
 		element.click();
+		element.click();
 		정지();
 	}
 
 	private void 등록화면에서_익명등록을_클릭한다() {
 		final WebElement element = driver.findElement(By.id("anonymousAt1"));
 		element.click();
+		element.click();
 		정지();
 	}
 
 	private void 등록화면에서_게시기간을_입력한다() {
 		게시기간_게시시작일_예상_expected = LocalDateTime.now().format(DateTimeFormatter.ISO_LOCAL_DATE);
-		WebElement element = driver.findElement(By.id("ntceBgnde"));
-		element.sendKeys(게시기간_게시시작일_예상_expected);
+//		WebElement element = driver.findElement(By.id("ntceBgnde"));
+//		element.sendKeys(게시기간_게시시작일_예상_expected);
+		js.executeScript("$('#ntceBgnde').datepicker('setDate', '" + 게시기간_게시시작일_예상_expected + "');");
 		정지();
 
 		게시기간_게시종료일_예상_expected = LocalDateTime.now().plusDays(7).format(DateTimeFormatter.ISO_LOCAL_DATE);
-		element = driver.findElement(By.id("ntceEndde"));
-		element.sendKeys(게시기간_게시종료일_예상_expected);
+//		element = driver.findElement(By.id("ntceEndde"));
+//		element.sendKeys(게시기간_게시종료일_예상_expected);
+		js.executeScript("$('#ntceEndde').datepicker('setDate', '" + 게시기간_게시종료일_예상_expected + "');");
+		정지();
+	}
+
+	private void 등록화면에서_첨부파일을_추가한다() {
+		WebElement element = driver.findElement(By.name("file_1"));
+//		File uploadFile = new File("src/test/resources/test 이백행 첨부파일.txt");
+		File uploadFile = new File("src/test/resources/bg_bar01.gif");
+		element.sendKeys(uploadFile.getAbsoluteFile().toString());
+
 		정지();
 	}
 
