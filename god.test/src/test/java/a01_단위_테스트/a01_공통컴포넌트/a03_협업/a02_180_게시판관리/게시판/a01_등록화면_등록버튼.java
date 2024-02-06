@@ -1,5 +1,7 @@
 package a01_단위_테스트.a01_공통컴포넌트.a03_협업.a02_180_게시판관리.게시판;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
 import java.io.File;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
@@ -69,7 +71,7 @@ class a01_등록화면_등록버튼 extends 셀레늄_테스트 {
 
 		등록화면에서_등록버튼을_클릭한다();
 
-		assert__확인();
+		확인();
 	}
 
 	private void 목록화면으로_이동한다() {
@@ -109,6 +111,7 @@ class a01_등록화면_등록버튼 extends 셀레늄_테스트 {
 	private void 등록화면에서_공지등록을_클릭한다() {
 		final WebElement element = driver.findElement(By.id("noticeAt1"));
 		element.click();
+		element.click();
 		정지();
 	}
 
@@ -141,9 +144,9 @@ class a01_등록화면_등록버튼 extends 셀레늄_테스트 {
 	}
 
 	private void 등록화면에서_첨부파일을_추가한다() {
-		WebElement element = driver.findElement(By.name("file_1"));
+		final WebElement element = driver.findElement(By.name("file_1"));
 //		File uploadFile = new File("src/test/resources/test 이백행 첨부파일.txt");
-		File uploadFile = new File("src/test/resources/bg_bar01.gif");
+		final File uploadFile = new File("src/test/resources/bg_bar01.gif");
 		element.sendKeys(uploadFile.getAbsoluteFile().toString());
 
 		정지();
@@ -158,17 +161,28 @@ class a01_등록화면_등록버튼 extends 셀레늄_테스트 {
 		driver.switchTo().alert().accept();
 	}
 
-	private void assert__확인() {
+	private void 확인() {
 		final List<WebElement> elements = driver.findElements(By.cssSelector(".board_list tbody tr"));
 		정지();
 
-		for (WebElement element : elements) {
+		String 제목_실제_actual = null;
+		for (final WebElement element : elements) {
+			final WebElement 제목_element = element.findElement(By.cssSelector("td:nth-child(2) input[type=submit]"));
+			제목_실제_actual = 제목_element.getAttribute("value");
+
 			if (log.isDebugEnabled()) {
 				log.debug("element={}", element);
+				log.debug("getText={}", element.getText());
+
+				log.debug("제목_실제_expected={}", 제목_실제_actual);
+			}
+
+			if (제목_예상_expected.equals(제목_실제_actual)) {
+				break;
 			}
 		}
 
-//		assertEquals("게시글 목록 (test 이백행 게시판명 2024-01-18T08:04:57.204780200)", text, "타이틀");
+		assertEquals(제목_예상_expected, 제목_실제_actual, "제목");
 	}
 
 }
