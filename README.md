@@ -604,3 +604,68 @@ org.egovframe.rte.fdl.cmmn.exception.EgovBizException: 해당 데이터가 없�
 
 EgovBizException
 
+## Spring Data - JPA
+
+- 실행환경 > 데이터처리 > Spring Data - JPA
+- https://www.egovframe.go.kr/wiki/doku.php?id=egovframework:rte4.1
+
+Repository
+- CRUD 기능 제공 인터페이스
+- Paging 기능 제공 인터페이스
+- https://www.egovframe.go.kr/wiki/doku.php?id=egovframework:rte2:psl:data:jpa:repository
+
+Spring Data JPA 2.7.18
+- https://spring.io/projects/spring-data-jpa
+
+JPA > Getting Started
+- https://docs.spring.io/spring-data/jpa/reference/jpa/getting-started.html
+
+/god.com/pom.xml
+```xml
+<!-- https://mvnrepository.com/artifact/org.springframework.data/spring-data-jpa -->
+		<dependency>
+			<groupId>org.springframework.data</groupId>
+			<artifactId>spring-data-jpa</artifactId>
+			<!--version>3.2.2</version-->
+			<!--version>3.1.8</version-->
+			<!--version>3.0.12</version-->
+			<version>2.7.18</version>
+		</dependency>
+
+		<!-- https://mvnrepository.com/artifact/org.hibernate/hibernate-core -->
+		<dependency>
+			<groupId>org.hibernate</groupId>
+			<artifactId>hibernate-core</artifactId>
+			<version>5.6.14.Final</version>
+		</dependency>
+```
+
+comtnbbs
+- ComTnBbs
+
+ComTnBbs
+```java
+@Entity
+@Getter
+public class ComTnBbs {
+
+	/**
+	 * `NTT_ID` decimal(20,0) NOT NULL COMMENT '게시물ID',
+	 */
+	private long nttId;
+
+	/**
+	 * 
+	 * @param nttId
+	 */
+	@Builder
+	public ComTnBbs(final long nttId) {
+		super();
+		this.nttId = nttId;
+	}
+```
+
+EgovArticleCrudRepository
+```java
+public interface EgovArticleCrudRepository extends CrudRepository<ComTnBbs, Long> {
+```
