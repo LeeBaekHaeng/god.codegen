@@ -1,6 +1,6 @@
 package egovframework.com.repositories;
 
-import org.springframework.data.repository.CrudRepository;
+import org.springframework.data.jpa.repository.JpaRepository;
 
 import egovframework.com.entites.ComTnBbs;
 import egovframework.com.entites.ComTnBbsId;
@@ -11,6 +11,6 @@ import egovframework.com.entites.ComTnBbsId;
  * @since 2024-02-10
  *
  */
-public interface ComTnBbsCrudRepository extends CrudRepository<ComTnBbs, ComTnBbsId> {
+public interface ComTnBbsJpaRepository extends JpaRepository<ComTnBbs, ComTnBbsId> {
 
 }

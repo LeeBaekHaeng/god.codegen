@@ -31,10 +31,9 @@ public class EgovJpaConfig {
 	public LocalContainerEntityManagerFactoryBean entityManagerFactory(final DataSource dataSource) {
 		final LocalContainerEntityManagerFactoryBean entityManagerFactoryBean = new LocalContainerEntityManagerFactoryBean();
 
-		entityManagerFactoryBean
-				.setPackagesToScan(new String[] { "egovframework.com.repositories", "god.com.repositories" });
+		entityManagerFactoryBean.setPackagesToScan(new String[] { "egovframework.com.entites", "god.com.entites" });
 //		entityManagerFactoryBean.setPackagesToScan(
-//				(String[]) Arrays.asList("egovframework.com.repositories", "god.com.repositories").toArray());
+//				(String[]) Arrays.asList("egovframework.com.entites", "god.com.entites").toArray());
 //		entityManagerFactoryBean
 //				.setPackagesToScan(Arrays.asList("egovframework.com", "god.com").toArray(new String[0]));
 

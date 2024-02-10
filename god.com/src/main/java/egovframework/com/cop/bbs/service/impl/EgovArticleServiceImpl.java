@@ -19,9 +19,10 @@ import egovframework.com.cmm.service.FileVO;
 import egovframework.com.cop.bbs.service.Board;
 import egovframework.com.cop.bbs.service.BoardVO;
 import egovframework.com.cop.bbs.service.EgovArticleService;
-import egovframework.com.repositories.ComTnBbs;
+import egovframework.com.entites.ComTnBbs;
+import egovframework.com.entites.ComTnBbsId;
 import egovframework.com.repositories.ComTnBbsCrudRepository;
-import egovframework.com.repositories.ComTnBbsId;
+import egovframework.com.repositories.ComTnBbsJpaRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 
@@ -47,6 +48,8 @@ public class EgovArticleServiceImpl extends EgovAbstractServiceImpl implements E
 //	@Resource
 //	private ComTnBbsCrudRepository comTnBbsCrudRepository;
 
+	private final ComTnBbsJpaRepository comTnBbsJpaRepository;
+
 	@Override
 	public Map<String, Object> selectArticleList(BoardVO boardVO) {
 		List<?> list = egovArticleDao.selectArticleList(boardVO);
@@ -58,34 +61,54 @@ public class EgovArticleServiceImpl extends EgovAbstractServiceImpl implements E
 		map.put("resultList", list);
 		map.put("resultCnt", Integer.toString(cnt));
 
-//		Iterable<ComTnBbs> comTnBbsList = comTnBbsCrudRepository.findAllById(Arrays.asList(0l));
-		Iterable<ComTnBbs> comTnBbsList = comTnBbsCrudRepository
-				.findAllById(Arrays.asList(ComTnBbsId.builder().nttId(0L).bbsId("BBSMSTR_000000000051").build(),
-						ComTnBbsId.builder().nttId(0L).bbsId("BBSMSTR_000000000061DQZoKtiaBC").build()));
-		for (ComTnBbs comTnBbs : comTnBbsList) {
-			if (log.isDebugEnabled()) {
-				log.debug("getNttId={}", comTnBbs.getNttId());
-				log.debug("getBbsId={}", comTnBbs.getBbsId());
-				log.debug("");
-
-				log.debug("getNttNo={}", comTnBbs.getNttNo());
-				log.debug("");
-
-				log.debug("getNttSj={}", comTnBbs.getNttSj());
-				log.debug("getNttCn={}", comTnBbs.getNttCn());
-				log.debug("");
-
-				log.debug("getFrstRegistPnttm={}", comTnBbs.getFrstRegistPnttm());
-				log.debug("ISO_LOCAL_DATE={}", comTnBbs.getFrstRegistPnttm().format(DateTimeFormatter.ISO_LOCAL_DATE));
-				log.debug("ISO_LOCAL_TIME={}", comTnBbs.getFrstRegistPnttm().format(DateTimeFormatter.ISO_LOCAL_TIME));
-				log.debug("ISO_LOCAL_DATE_TIME={}",
-						comTnBbs.getFrstRegistPnttm().format(DateTimeFormatter.ISO_LOCAL_DATE_TIME));
-				log.debug("");
-				log.debug("");
-			}
-		}
+		findAllById();
+		findAllById2();
 
 		return map;
+	}
+
+	private void findAllById() {
+//		Iterable<ComTnBbs> comTnBbsList = comTnBbsCrudRepository.findAllById(Arrays.asList(0l));
+		final Iterable<ComTnBbs> comTnBbsList = comTnBbsCrudRepository
+				.findAllById(Arrays.asList(ComTnBbsId.builder().nttId(0L).bbsId("BBSMSTR_000000000051").build(),
+						ComTnBbsId.builder().nttId(0L).bbsId("BBSMSTR_000000000061DQZoKtiaBC").build()));
+		for (final ComTnBbs comTnBbs : comTnBbsList) {
+			debug(comTnBbs);
+		}
+	}
+
+	private void findAllById2() {
+//		final Iterable<ComTnBbsId> ids = Arrays.asList(ComTnBbsId.builder().nttId(611).build());
+		final Iterable<ComTnBbsId> ids = Arrays.asList(
+				ComTnBbsId.builder().nttId(611).bbsId("BBSMSTR_000000000631jtlmrVtuCh").build(),
+				ComTnBbsId.builder().nttId(612).bbsId("BBSMSTR_000000000631jtlmrVtuCh").build());
+		final List<ComTnBbs> comTnBbsList = comTnBbsJpaRepository.findAllById(ids);
+		for (final ComTnBbs comTnBbs : comTnBbsList) {
+			debug(comTnBbs);
+		}
+	}
+
+	private void debug(final ComTnBbs comTnBbs) {
+		if (log.isDebugEnabled()) {
+			log.debug("getNttId={}", comTnBbs.getNttId());
+			log.debug("getBbsId={}", comTnBbs.getBbsId());
+			log.debug("");
+
+			log.debug("getNttNo={}", comTnBbs.getNttNo());
+			log.debug("");
+
+			log.debug("getNttSj={}", comTnBbs.getNttSj());
+			log.debug("getNttCn={}", comTnBbs.getNttCn());
+			log.debug("");
+
+			log.debug("getFrstRegistPnttm={}", comTnBbs.getFrstRegistPnttm());
+			log.debug("ISO_LOCAL_DATE={}", comTnBbs.getFrstRegistPnttm().format(DateTimeFormatter.ISO_LOCAL_DATE));
+			log.debug("ISO_LOCAL_TIME={}", comTnBbs.getFrstRegistPnttm().format(DateTimeFormatter.ISO_LOCAL_TIME));
+			log.debug("ISO_LOCAL_DATE_TIME={}",
+					comTnBbs.getFrstRegistPnttm().format(DateTimeFormatter.ISO_LOCAL_DATE_TIME));
+			log.debug("");
+			log.debug("");
+		}
 	}
 
 	@Override

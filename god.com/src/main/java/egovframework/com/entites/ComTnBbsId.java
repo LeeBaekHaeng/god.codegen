@@ -1,4 +1,4 @@
-package egovframework.com.repositories;
+package egovframework.com.entites;
 
 import java.io.Serializable;
 
