@@ -16,11 +16,12 @@ import org.springframework.stereotype.Service;
 
 import egovframework.com.cmm.service.EgovFileMngService;
 import egovframework.com.cmm.service.FileVO;
-import egovframework.com.cop.bbs.repositories.ComTnBbs;
-import egovframework.com.cop.bbs.repositories.EgovArticleCrudRepository;
 import egovframework.com.cop.bbs.service.Board;
 import egovframework.com.cop.bbs.service.BoardVO;
 import egovframework.com.cop.bbs.service.EgovArticleService;
+import egovframework.com.repositories.ComTnBbs;
+import egovframework.com.repositories.ComTnBbsCrudRepository;
+import egovframework.com.repositories.ComTnBbsId;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 
@@ -41,10 +42,10 @@ public class EgovArticleServiceImpl extends EgovAbstractServiceImpl implements E
 	@Resource(name = "egovNttIdGnrService")
 	private EgovIdGnrService nttIdgenService;
 
-//	private final EgovArticleCrudRepository egovArticleCrudRepository;
+	private final ComTnBbsCrudRepository comTnBbsCrudRepository;
 //	@Autowired
-	@Resource
-	private EgovArticleCrudRepository egovArticleCrudRepository;
+//	@Resource
+//	private ComTnBbsCrudRepository comTnBbsCrudRepository;
 
 	@Override
 	public Map<String, Object> selectArticleList(BoardVO boardVO) {
@@ -57,20 +58,30 @@ public class EgovArticleServiceImpl extends EgovAbstractServiceImpl implements E
 		map.put("resultList", list);
 		map.put("resultCnt", Integer.toString(cnt));
 
-		Iterable<ComTnBbs> comTnBbsList = egovArticleCrudRepository.findAllById(Arrays.asList(0l));
+//		Iterable<ComTnBbs> comTnBbsList = comTnBbsCrudRepository.findAllById(Arrays.asList(0l));
+		Iterable<ComTnBbs> comTnBbsList = comTnBbsCrudRepository
+				.findAllById(Arrays.asList(ComTnBbsId.builder().nttId(0L).bbsId("BBSMSTR_000000000051").build(),
+						ComTnBbsId.builder().nttId(0L).bbsId("BBSMSTR_000000000061DQZoKtiaBC").build()));
 		for (ComTnBbs comTnBbs : comTnBbsList) {
 			if (log.isDebugEnabled()) {
 				log.debug("getNttId={}", comTnBbs.getNttId());
 				log.debug("getBbsId={}", comTnBbs.getBbsId());
+				log.debug("");
+
 				log.debug("getNttNo={}", comTnBbs.getNttNo());
+				log.debug("");
+
 				log.debug("getNttSj={}", comTnBbs.getNttSj());
 				log.debug("getNttCn={}", comTnBbs.getNttCn());
+				log.debug("");
 
 				log.debug("getFrstRegistPnttm={}", comTnBbs.getFrstRegistPnttm());
 				log.debug("ISO_LOCAL_DATE={}", comTnBbs.getFrstRegistPnttm().format(DateTimeFormatter.ISO_LOCAL_DATE));
 				log.debug("ISO_LOCAL_TIME={}", comTnBbs.getFrstRegistPnttm().format(DateTimeFormatter.ISO_LOCAL_TIME));
 				log.debug("ISO_LOCAL_DATE_TIME={}",
 						comTnBbs.getFrstRegistPnttm().format(DateTimeFormatter.ISO_LOCAL_DATE_TIME));
+				log.debug("");
+				log.debug("");
 			}
 		}
 

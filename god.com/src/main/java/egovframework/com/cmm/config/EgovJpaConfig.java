@@ -8,25 +8,50 @@ import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean;
 import org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter;
 
+import lombok.NoArgsConstructor;
+
+/**
+ * 
+ * @author 이백행
+ * @since 2024-02-10
+ *
+ */
 @Configuration
-@EnableJpaRepositories(basePackages = "egovframework.com.cop.bbs.repositories", transactionManagerRef = "txManager")
-//@EnableJpaRepositories(basePackageClasses = EgovArticleCrudRepository.class)
+@EnableJpaRepositories(basePackages = { "egovframework.com.repositories",
+		"god.com.repositories" }, transactionManagerRef = "txManager")
+@NoArgsConstructor
 public class EgovJpaConfig {
 
+	/**
+	 * 
+	 * @param dataSource
+	 * @return
+	 */
 	@Bean
-	public HibernateJpaVendorAdapter hibernateJpaVendorAdapter() {
-		HibernateJpaVendorAdapter hibernateJpaVendorAdapter = new HibernateJpaVendorAdapter();
-		hibernateJpaVendorAdapter.setShowSql(true);
-		return hibernateJpaVendorAdapter;
+	public LocalContainerEntityManagerFactoryBean entityManagerFactory(final DataSource dataSource) {
+		final LocalContainerEntityManagerFactoryBean entityManagerFactoryBean = new LocalContainerEntityManagerFactoryBean();
+
+		entityManagerFactoryBean
+				.setPackagesToScan(new String[] { "egovframework.com.repositories", "god.com.repositories" });
+//		entityManagerFactoryBean.setPackagesToScan(
+//				(String[]) Arrays.asList("egovframework.com.repositories", "god.com.repositories").toArray());
+//		entityManagerFactoryBean
+//				.setPackagesToScan(Arrays.asList("egovframework.com", "god.com").toArray(new String[0]));
+
+		entityManagerFactoryBean.setDataSource(dataSource);
+		entityManagerFactoryBean.setJpaVendorAdapter(hibernateJpaVendorAdapter());
+		return entityManagerFactoryBean;
 	}
 
+	/**
+	 * 
+	 * @return
+	 */
 	@Bean
-	public LocalContainerEntityManagerFactoryBean entityManagerFactory(DataSource dataSource) {
-		LocalContainerEntityManagerFactoryBean entityManagerFactoryBean = new LocalContainerEntityManagerFactoryBean();
-		entityManagerFactoryBean.setJpaVendorAdapter(hibernateJpaVendorAdapter());
-		entityManagerFactoryBean.setDataSource(dataSource);
-		entityManagerFactoryBean.setPackagesToScan(new String[] { "egovframework.com.cop.bbs.repositories" });
-		return entityManagerFactoryBean;
+	public HibernateJpaVendorAdapter hibernateJpaVendorAdapter() {
+		final HibernateJpaVendorAdapter hibernateJpaVendorAdapter = new HibernateJpaVendorAdapter();
+		hibernateJpaVendorAdapter.setShowSql(true);
+		return hibernateJpaVendorAdapter;
 	}
 
 }
