@@ -19,7 +19,7 @@ import lombok.extern.slf4j.Slf4j;
  */
 @NoArgsConstructor
 @Slf4j
-class b01_목록화면_조회버튼 extends 셀레늄_테스트 {
+class b01_목록화면_조회버튼_내용 extends 셀레늄_테스트 {
 
 	/**
 	 * 
@@ -36,6 +36,11 @@ class b01_목록화면_조회버튼 extends 셀레늄_테스트 {
 	 */
 	private String 해당_데이터가_없습니다_실제;
 
+	/**
+	 * 
+	 */
+	private String 검색조건;
+
 	@Test
 	void 테스트() {
 		테스터 = "이백행";
@@ -47,6 +52,7 @@ class b01_목록화면_조회버튼 extends 셀레늄_테스트 {
 		로그인("USER");
 
 		목록화면으로_이동한다();
+		검색조건을_선택한다();
 		검색어를_입력한다();
 		조회버튼을_클릭한다();
 
@@ -58,9 +64,16 @@ class b01_목록화면_조회버튼 extends 셀레늄_테스트 {
 		정지();
 	}
 
+	private void 검색조건을_선택한다() {
+		final WebElement element = driver.findElement(By.name("searchCnd"));
+		검색조건 = "내용";
+		element.sendKeys(검색조건);
+		정지();
+	}
+
 	private void 검색어를_입력한다() {
 		final WebElement element = driver.findElement(By.name("searchWrd"));
-		검색어 = 테스트_값읽기("제목");
+		검색어 = 테스트_값읽기("내용");
 		element.sendKeys(검색어);
 		정지();
 	}

@@ -19,7 +19,7 @@ import lombok.extern.slf4j.Slf4j;
  */
 @NoArgsConstructor
 @Slf4j
-class b01_목록화면_조회버튼 extends 셀레늄_테스트 {
+class b01_목록화면_조회버튼_등록자 extends 셀레늄_테스트 {
 
 	/**
 	 * 
@@ -29,12 +29,17 @@ class b01_목록화면_조회버튼 extends 셀레늄_테스트 {
 	/**
 	 * 
 	 */
-	private String 해당_데이터가_없습니다_예상;
+	private String 등록자_예상;
 
 	/**
 	 * 
 	 */
-	private String 해당_데이터가_없습니다_실제;
+	private String 등록자_실제;
+
+	/**
+	 * 
+	 */
+	private String 검색조건;
 
 	@Test
 	void 테스트() {
@@ -47,6 +52,7 @@ class b01_목록화면_조회버튼 extends 셀레늄_테스트 {
 		로그인("USER");
 
 		목록화면으로_이동한다();
+		검색조건을_선택한다();
 		검색어를_입력한다();
 		조회버튼을_클릭한다();
 
@@ -58,9 +64,16 @@ class b01_목록화면_조회버튼 extends 셀레늄_테스트 {
 		정지();
 	}
 
+	private void 검색조건을_선택한다() {
+		final WebElement element = driver.findElement(By.name("searchCnd"));
+		검색조건 = "등록자";
+		element.sendKeys(검색조건);
+		정지();
+	}
+
 	private void 검색어를_입력한다() {
 		final WebElement element = driver.findElement(By.name("searchWrd"));
-		검색어 = 테스트_값읽기("제목");
+		검색어 = "일반회원";
 		element.sendKeys(검색어);
 		정지();
 	}
@@ -72,12 +85,13 @@ class b01_목록화면_조회버튼 extends 셀레늄_테스트 {
 	}
 
 	private void 확인() {
-		final WebElement element = driver.findElement(By.cssSelector(".board_list tbody tr:last-child td"));
-		해당_데이터가_없습니다_예상 = "자료가 없습니다. 다른 검색조건을 선택해주세요";
-		해당_데이터가_없습니다_실제 = element.getText();
+		final WebElement element = driver
+				.findElement(By.cssSelector(".board_list tbody tr:last-child td:nth-child(3)"));
+		등록자_예상 = 검색어;
+		등록자_실제 = element.getText();
 		정지();
 
-		assertEquals(해당_데이터가_없습니다_예상, 해당_데이터가_없습니다_실제, "해당 데이터가 없습니다.");
+		assertEquals(등록자_예상, 등록자_실제, "등록자");
 	}
 
 }
