@@ -64,14 +64,16 @@ class c05_상세_화면_만족도등록_버튼 extends 셀레늄_테스트 {
 	}
 
 	private void 만족도를_클릭한다() {
-		final WebElement element = driver.findElement(By.name("stsfdg"));
-		if (log.isDebugEnabled()) {
-			log.debug("stsfdg 만족도={}", element.getAttribute("value"));
+		final List<WebElement> elements = driver.findElements(By.name("stsfdg"));
+		for (WebElement element : elements) {
+			if (log.isDebugEnabled()) {
+				log.debug("element={}", element);
+				log.debug("stsfdg 만족도={}", element.getAttribute("value"));
+			}
 		}
+		final WebElement element = elements.get(0);
 		element.click();
-		if (log.isDebugEnabled()) {
-			log.debug("stsfdg 만족도={}", element.getAttribute("value"));
-		}
+		만족도_예상 = 만족도_예상(element.getAttribute("value"));
 		정지();
 	}
 
@@ -89,7 +91,7 @@ class c05_상세_화면_만족도등록_버튼 extends 셀레늄_테스트 {
 
 	private void 확인() {
 		final WebElement element = driver.findElement(By.cssSelector(".reply li:last-child p.txt span"));
-		만족도_예상 = "★★★★★";
+//		만족도_예상 = "★★★★★";
 		만족도_실제 = element.getText();
 		정지();
 
@@ -98,6 +100,22 @@ class c05_상세_화면_만족도등록_버튼 extends 셀레늄_테스트 {
 		}
 
 		assertTrue(만족도_실제.startsWith(만족도_예상), "만족도");
+	}
+
+	private String 만족도_예상(String value) {
+		if ("5".equals(value)) {
+			return "★★★★★";
+		} else if ("4".equals(value)) {
+			return "★★★★☆";
+		} else if ("3".equals(value)) {
+			return "★★★☆☆";
+		} else if ("2".equals(value)) {
+			return "★★☆☆☆";
+		} else if ("1".equals(value)) {
+			return "★☆☆☆☆";
+		} else {
+			return null;
+		}
 	}
 
 }
