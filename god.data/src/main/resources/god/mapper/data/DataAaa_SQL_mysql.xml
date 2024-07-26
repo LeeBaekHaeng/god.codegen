@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?><!--Converted at: Wed May 11 15:49:38 
+	KST 2016 -->
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="DataAaaDAO">
+
+	<select id="selectList"
+		parameterType="god.data.a.a.a.service.DataAaaRequestVO"
+		resultType="god.data.a.a.a.service.DataAaaResponseVO">
+<![CDATA[
+SELECT /* DataAaaDAO.selectList */
+       A.CODE_ID
+     , A.CODE
+     , A.CODE_NM
+     , A.CODE_DC
+     , A.USE_AT
+     , A.FRST_REGIST_PNTTM
+     , A.FRST_REGISTER_ID
+     , A.LAST_UPDT_PNTTM
+     , A.LAST_UPDUSR_ID
+FROM COMTCCMMNDETAILCODE A
+ORDER BY A.CODE_ID, A.CODE
+LIMIT #{recordCountPerPage} OFFSET #{firstIndex}
+]]>
+	</select>
+
+</mapper>
