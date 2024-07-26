@@ -12,7 +12,7 @@ import lombok.NoArgsConstructor;
  *
  */
 @NoArgsConstructor
-public class DataAaaResponseVO extends DataAaaRequest {
+public class DataAaaResponseVO extends DataAaaResponse {
 
 	/**
 	 * 직렬 버전 UID
