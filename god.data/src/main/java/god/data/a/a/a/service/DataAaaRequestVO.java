@@ -1,6 +1,7 @@
 package god.data.a.a.a.service;
 
 import lombok.NoArgsConstructor;
+import lombok.ToString;
 
 /**
  * 공통상세코드 요청 DefaultVO
@@ -12,6 +13,7 @@ import lombok.NoArgsConstructor;
  *
  */
 @NoArgsConstructor
+@ToString
 public class DataAaaRequestVO extends DataAaaRequest {
 
 	/**
