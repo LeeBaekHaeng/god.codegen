@@ -12,7 +12,7 @@ import lombok.ToString;
  */
 @NoArgsConstructor
 @ToString
-public class DataRequestVO {
+public class DataCmmRequestVO {
 
 	/**
 	 * 공유서비스 공통 메시지헤더
