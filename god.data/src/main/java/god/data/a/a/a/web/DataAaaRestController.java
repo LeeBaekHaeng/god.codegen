@@ -37,7 +37,7 @@ public class DataAaaRestController extends EgovComAbstractController {
 	 * @param dataAaaRequestVO
 	 * @return
 	 */
-	@GetMapping("/data/api/aaa")
+	@GetMapping("/api/v1/data/aaa")
 	public ResponseEntity<List<DataAaaResponseVO>> selectList(final DataAaaRequestVO dataAaaRequestVO) {
 		if (log.isDebugEnabled()) {
 			log.debug("dataAaaRequestVO={}", dataAaaRequestVO);
