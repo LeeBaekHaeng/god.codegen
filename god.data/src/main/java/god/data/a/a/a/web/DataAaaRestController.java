@@ -1,16 +1,13 @@
 package god.data.a.a.a.web;
 
-import java.util.List;
-
 import org.egovframe.rte.ptl.mvc.tags.ui.pagination.PaginationInfo;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import egovframework.com.cmm.web.EgovComAbstractController;
 import god.data.a.a.a.service.DataAaaRequestVO;
-import god.data.a.a.a.service.DataAaaResponseVO;
 import god.data.a.a.a.service.DataAaaService;
+import god.data.cmm.service.DataResponseVO;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 
@@ -38,15 +35,25 @@ public class DataAaaRestController extends EgovComAbstractController {
 	 * @return
 	 */
 	@GetMapping("/api/v1/data/aaa")
-	public ResponseEntity<List<DataAaaResponseVO>> selectList(final DataAaaRequestVO dataAaaRequestVO) {
+	public DataResponseVO<DataAaaResponseMsgHeader, DataAaaResponseMsgBody> selectList(
+			final DataAaaRequestVO dataAaaRequestVO) {
 		if (log.isDebugEnabled()) {
 			log.debug("dataAaaRequestVO={}", dataAaaRequestVO);
 		}
+
+		DataResponseVO<DataAaaResponseMsgHeader, DataAaaResponseMsgBody> dataResponseVO = new DataResponseVO<>();
+
 		final PaginationInfo paginationInfo = builderPaginationInfo(dataAaaRequestVO);
 		if (log.isDebugEnabled()) {
 			log.debug("paginationInfo={}", paginationInfo);
 		}
-		return ResponseEntity.ok(dataAaaService.selectList(dataAaaRequestVO));
+
+		DataAaaResponseMsgBody msgBody = new DataAaaResponseMsgBody();
+		msgBody.setResults(dataAaaService.selectList(dataAaaRequestVO));
+		msgBody.setPaginationInfo(paginationInfo);
+		dataResponseVO.setMsgBody(msgBody);
+
+		return dataResponseVO;
 	}
 
 }
