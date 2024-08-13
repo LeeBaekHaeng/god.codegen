@@ -1,6 +1,7 @@
 package god.data.a.a.a.service;
 
-import java.util.List;
+import god.data.cmm.service.DataCmmRequestDTO;
+import god.data.cmm.service.DataCmmResponseDTO;
 
 /**
  * 공통상세코드 Service
@@ -12,11 +13,12 @@ import java.util.List;
 public interface DataAaaService {
 
 	/**
-	 * 공통상세코드 조회(멀티건)
+	 * 공통상세코드 조회(단건)
 	 * 
-	 * @param dataAaaRequestVO
+	 * @param requestDTO
 	 * @return
 	 */
-	List<DataAaaResponseVO> selectList(DataAaaRequestVO dataAaaRequestVO);
+	DataCmmResponseDTO<DataAaaResponseMsgHeaderDTO, DataAaaResponseMsgBodyDTO> selectDataAaa(
+			DataCmmRequestDTO<DataAaaRequestMsgHeaderDTO, DataAaaRequestMsgBodyDTO> requestDTO);
 
 }

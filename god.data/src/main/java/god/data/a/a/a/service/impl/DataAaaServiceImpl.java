@@ -1,13 +1,20 @@
 package god.data.a.a.a.service.impl;
 
-import java.util.List;
+import java.time.LocalDateTime;
+import java.util.UUID;
 
 import org.egovframe.rte.fdl.cmmn.EgovAbstractServiceImpl;
 import org.springframework.stereotype.Service;
 
-import god.data.a.a.a.service.DataAaaRequestVO;
-import god.data.a.a.a.service.DataAaaResponseVO;
+import god.data.a.a.a.service.DataAaaRequestMsgBodyDTO;
+import god.data.a.a.a.service.DataAaaRequestMsgHeaderDTO;
+import god.data.a.a.a.service.DataAaaResponseMsgBodyDTO;
+import god.data.a.a.a.service.DataAaaResponseMsgHeaderDTO;
 import god.data.a.a.a.service.DataAaaService;
+import god.data.a.a.a.service.DataAaaVO;
+import god.data.cmm.service.DataCmmRequestDTO;
+import god.data.cmm.service.DataCmmResponseDTO;
+import god.data.cmm.service.DataCmmResponseDTO.ComMsgHeader;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 
@@ -29,11 +36,27 @@ public class DataAaaServiceImpl extends EgovAbstractServiceImpl implements DataA
 	private final DataAaaDAO dataAaaDAO;
 
 	@Override
-	public List<DataAaaResponseVO> selectList(final DataAaaRequestVO dataAaaRequestVO) {
+	public DataCmmResponseDTO<DataAaaResponseMsgHeaderDTO, DataAaaResponseMsgBodyDTO> selectDataAaa(
+			final DataCmmRequestDTO<DataAaaRequestMsgHeaderDTO, DataAaaRequestMsgBodyDTO> requestDTO) {
 		if (log.isDebugEnabled()) {
-			log.debug("dataAaaRequestVO={}", dataAaaRequestVO);
+			log.debug("requestDTO={}", requestDTO);
 		}
-		return dataAaaDAO.selectList(dataAaaRequestVO);
+
+		final DataAaaVO dataAaaVO = DataAaaVO.builder().codeId(requestDTO.getMsgBody().getCodeId())
+				.code(requestDTO.getMsgBody().getCode()).build();
+
+		final DataAaaVO result = dataAaaDAO.selectDataAaa(dataAaaVO);
+
+		return DataCmmResponseDTO.<DataAaaResponseMsgHeaderDTO, DataAaaResponseMsgBodyDTO>builder()
+				.comMsgHeader(ComMsgHeader.builder().requestMsgID(requestDTO.getComMsgHeader().getRequestMsgID())
+						.responseTime(LocalDateTime.now().toString()).responseMsgID(UUID.randomUUID().toString())
+						.successYN(result != null ? "Y" : "N").returnCode("00").build())
+				.msgHeader(DataAaaResponseMsgHeaderDTO.builder().header("test 이백행 헤더").build())
+				.msgBody(DataAaaResponseMsgBodyDTO.builder().codeId(result.getCodeId()).code(result.getCode())
+						.codeNm(result.getCodeNm()).codeDc(result.getCodeDc()).useAt(result.getUseAt())
+						.frstRegistPnttm(result.getFrstRegistPnttm()).frstRegisterId(result.getFrstRegisterId())
+						.lastUpdtPnttm(result.getLastUpdtPnttm()).lastUpdusrId(result.getLastUpdusrId()).build())
+				.build();
 	}
 
 }

@@ -1,12 +1,9 @@
 package god.data.a.a.a.service.impl;
 
-import java.util.List;
-
 import org.springframework.stereotype.Repository;
 
 import egovframework.com.cmm.service.impl.EgovComAbstractDAO;
-import god.data.a.a.a.service.DataAaaRequestVO;
-import god.data.a.a.a.service.DataAaaResponseVO;
+import god.data.a.a.a.service.DataAaaVO;
 import lombok.NoArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 
@@ -23,16 +20,18 @@ import lombok.extern.slf4j.Slf4j;
 public class DataAaaDAO extends EgovComAbstractDAO {
 
 	/**
-	 * 공통상세코드 조회(멀티건)
+	 * 공통상세코드 조회(단건)
 	 * 
-	 * @param dataAaaRequestVO
+	 * @param dataAaaVO
 	 * @return
 	 */
-	public List<DataAaaResponseVO> selectList(final DataAaaRequestVO dataAaaRequestVO) {
+	public DataAaaVO selectDataAaa(final DataAaaVO dataAaaVO) {
 		if (log.isDebugEnabled()) {
-			log.debug("dataAaaRequestVO={}", dataAaaRequestVO);
+			log.debug("dataAaaVO={}", dataAaaVO);
+			log.debug("getCodeId={}", dataAaaVO.getCodeId());
+			log.debug("getCode={}", dataAaaVO.getCode());
 		}
-		return selectList("DataAaaDAO.selectList", dataAaaRequestVO);
+		return selectOne("DataAaaDAO.select", dataAaaVO);
 	}
 
 }

@@ -24,14 +24,14 @@
     	<!-- <tracking-mode>COOKIE</tracking-mode> -->
     </session-config>
 
-    <error-page>
-      <error-code>404</error-code>
-      <location>/code404.jsp</location>
-    </error-page>
+<!--     <error-page> -->
+<!--       <error-code>404</error-code> -->
+<!--       <location>/code404.jsp</location> -->
+<!--     </error-page> -->
     
-    <error-page>
-      <error-code>500</error-code>
-      <location>/code500.jsp</location>
-    </error-page>
+<!--     <error-page> -->
+<!--       <error-code>500</error-code> -->
+<!--       <location>/code500.jsp</location> -->
+<!--     </error-page> -->
 
 </web-app>

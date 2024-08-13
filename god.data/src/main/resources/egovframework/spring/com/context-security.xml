@@ -90,11 +90,11 @@
 	<egov-security:initializer id="initializer" supportMethod="true" supportPointcut="false" />
 
     <!-- URL에 세미콜론(semicolon)허용 여부(기본값/false) -->
-	<!-- 
+	<!-- -->
 	<bean id="egovStrictHttpFirewall" class="org.springframework.security.web.firewall.StrictHttpFirewall">
 		<property name="allowSemicolon" value="true"/>
 	</bean>
 	<security:http-firewall ref="egovStrictHttpFirewall"/>
-	-->
+	
 
 </beans>

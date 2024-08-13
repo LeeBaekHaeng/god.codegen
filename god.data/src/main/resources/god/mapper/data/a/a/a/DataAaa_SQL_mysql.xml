@@ -4,11 +4,11 @@
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="DataAaaDAO">
 
-	<select id="selectList"
-		parameterType="god.data.a.a.a.service.DataAaaRequestVO"
-		resultType="god.data.a.a.a.service.DataAaaResponseVO">
+	<select id="select"
+		parameterType="god.data.a.a.a.service.DataAaaVO"
+		resultType="god.data.a.a.a.service.DataAaaVO">
 <![CDATA[
-SELECT /* DataAaaDAO.selectList */
+SELECT /* DataAaaDAO.select 공통상세코드 조회(단건) */
        A.CODE_ID
      , A.CODE
      , A.CODE_NM
@@ -18,9 +18,9 @@ SELECT /* DataAaaDAO.selectList */
      , A.FRST_REGISTER_ID
 --     , A.LAST_UPDT_PNTTM
      , A.LAST_UPDUSR_ID
-FROM COMTCCMMNDETAILCODE A
-ORDER BY A.CODE_ID, A.CODE
-LIMIT #{recordCountPerPage} OFFSET #{firstIndex}
+  FROM COMTCCMMNDETAILCODE A
+ WHERE A.CODE_ID = #{codeId}
+   AND A.CODE = #{code}
 ]]>
 	</select>
 
