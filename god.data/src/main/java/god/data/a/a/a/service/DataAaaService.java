@@ -1,6 +1,5 @@
 package god.data.a.a.a.service;
 
-import god.data.cmm.service.DataCmmRequestDTO;
 import god.data.cmm.service.DataCmmResponseDTO;
 
 /**
@@ -19,6 +18,6 @@ public interface DataAaaService {
 	 * @return
 	 */
 	DataCmmResponseDTO<DataAaaResponseMsgHeaderDTO, DataAaaResponseMsgBodyDTO> selectDataAaa(
-			DataCmmRequestDTO<DataAaaRequestMsgHeaderDTO, DataAaaRequestMsgBodyDTO> requestDTO);
+			DataAaaRequestDTO requestDTO);
 
 }

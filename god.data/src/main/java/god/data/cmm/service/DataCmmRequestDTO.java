@@ -1,7 +1,10 @@
 package god.data.cmm.service;
 
+import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 import lombok.ToString;
 
 /**
@@ -11,9 +14,16 @@ import lombok.ToString;
  * @since 2024-08-02
  *
  */
-@Builder
+////@AllArgsConstructor
+//@Builder
 @Getter
 @ToString
+
+@AllArgsConstructor
+@NoArgsConstructor
+
+@Builder
+@Setter
 public class DataCmmRequestDTO<H, B> {
 
 	/**
@@ -92,9 +102,18 @@ public class DataCmmRequestDTO<H, B> {
 	 * @since 2024-08-02
 	 *
 	 */
-	@Builder
+////	@AllArgsConstructor
+//	@Builder
 	@Getter
 	@ToString
+
+	@AllArgsConstructor
+	@NoArgsConstructor
+
+	@Builder
+//	@Data
+
+	@Setter
 	public static class ComMsgHeader {
 
 		/**

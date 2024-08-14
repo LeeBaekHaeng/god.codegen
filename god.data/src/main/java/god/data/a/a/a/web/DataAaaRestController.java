@@ -6,8 +6,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import egovframework.com.cmm.web.EgovComAbstractController;
-import god.data.a.a.a.service.DataAaaRequestMsgBodyDTO;
-import god.data.a.a.a.service.DataAaaRequestMsgHeaderDTO;
+import god.data.a.a.a.service.DataAaaRequestDTO;
+import god.data.a.a.a.service.DataAaaRequestDTO.MsgBody;
+import god.data.a.a.a.service.DataAaaRequestDTO.MsgHeader;
 import god.data.a.a.a.service.DataAaaResponseMsgBodyDTO;
 import god.data.a.a.a.service.DataAaaResponseMsgHeaderDTO;
 import god.data.cmm.service.DataCmmRequestDTO;
@@ -43,8 +44,7 @@ public class DataAaaRestController extends EgovComAbstractController {
 	 */
 	@GetMapping("/{codeId}/{code}")
 	public DataCmmResponseDTO<DataAaaResponseMsgHeaderDTO, DataAaaResponseMsgBodyDTO> getDataAaaItem(
-			@PathVariable final String codeId, @PathVariable final String code,
-			final DataCmmRequestDTO<DataAaaRequestMsgHeaderDTO, DataAaaRequestMsgBodyDTO> requestDTO) {
+			@PathVariable final String codeId, @PathVariable final String code, final DataAaaRequestDTO requestDTO) {
 		log(codeId, code, requestDTO);
 		logComMsgHeader(requestDTO);
 		logMsgHeader(requestDTO);
@@ -64,7 +64,7 @@ public class DataAaaRestController extends EgovComAbstractController {
 	}
 
 	private void log(final String codeId, final String code,
-			final DataCmmRequestDTO<DataAaaRequestMsgHeaderDTO, DataAaaRequestMsgBodyDTO> requestDTO) {
+			final DataCmmRequestDTO<MsgHeader, MsgBody> requestDTO) {
 		if (log.isDebugEnabled()) {
 			log.debug("codeId={}", codeId);
 			log.debug("code={}", code);
@@ -74,7 +74,7 @@ public class DataAaaRestController extends EgovComAbstractController {
 	}
 
 	private void logComMsgHeader(
-			final DataCmmRequestDTO<DataAaaRequestMsgHeaderDTO, DataAaaRequestMsgBodyDTO> requestDTO) {
+			final DataCmmRequestDTO<MsgHeader, MsgBody> requestDTO) {
 		if (log.isDebugEnabled()) {
 			log.debug("getComMsgHeader={}", requestDTO.getComMsgHeader());
 		}
@@ -87,7 +87,7 @@ public class DataAaaRestController extends EgovComAbstractController {
 	}
 
 	private void logMsgHeader(
-			final DataCmmRequestDTO<DataAaaRequestMsgHeaderDTO, DataAaaRequestMsgBodyDTO> requestDTO) {
+			final DataCmmRequestDTO<MsgHeader, MsgBody> requestDTO) {
 		if (log.isDebugEnabled()) {
 			log.debug("getMsgHeader={}", requestDTO.getMsgHeader());
 		}
@@ -96,7 +96,7 @@ public class DataAaaRestController extends EgovComAbstractController {
 		}
 	}
 
-	private void logMsgBody(final DataCmmRequestDTO<DataAaaRequestMsgHeaderDTO, DataAaaRequestMsgBodyDTO> requestDTO) {
+	private void logMsgBody(final DataCmmRequestDTO<MsgHeader, MsgBody> requestDTO) {
 		if (log.isDebugEnabled()) {
 			log.debug("getMsgBody={}", requestDTO.getMsgBody());
 		}

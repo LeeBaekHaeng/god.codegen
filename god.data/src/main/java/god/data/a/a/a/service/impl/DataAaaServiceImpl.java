@@ -6,13 +6,11 @@ import java.util.UUID;
 import org.egovframe.rte.fdl.cmmn.EgovAbstractServiceImpl;
 import org.springframework.stereotype.Service;
 
-import god.data.a.a.a.service.DataAaaRequestMsgBodyDTO;
-import god.data.a.a.a.service.DataAaaRequestMsgHeaderDTO;
+import god.data.a.a.a.service.DataAaaRequestDTO;
 import god.data.a.a.a.service.DataAaaResponseMsgBodyDTO;
 import god.data.a.a.a.service.DataAaaResponseMsgHeaderDTO;
 import god.data.a.a.a.service.DataAaaService;
 import god.data.a.a.a.service.DataAaaVO;
-import god.data.cmm.service.DataCmmRequestDTO;
 import god.data.cmm.service.DataCmmResponseDTO;
 import god.data.cmm.service.DataCmmResponseDTO.ComMsgHeader;
 import lombok.RequiredArgsConstructor;
@@ -37,13 +35,15 @@ public class DataAaaServiceImpl extends EgovAbstractServiceImpl implements DataA
 
 	@Override
 	public DataCmmResponseDTO<DataAaaResponseMsgHeaderDTO, DataAaaResponseMsgBodyDTO> selectDataAaa(
-			final DataCmmRequestDTO<DataAaaRequestMsgHeaderDTO, DataAaaRequestMsgBodyDTO> requestDTO) {
+			final DataAaaRequestDTO requestDTO) {
 		if (log.isDebugEnabled()) {
 			log.debug("requestDTO={}", requestDTO);
 		}
 
-		final DataAaaVO dataAaaVO = DataAaaVO.builder().codeId(requestDTO.getMsgBody().getCodeId())
-				.code(requestDTO.getMsgBody().getCode()).build();
+		final DataAaaVO dataAaaVO = DataAaaVO.builder()
+//				.codeId(requestDTO.getMsgBody().getCodeId())
+//				.code(requestDTO.getMsgBody().getCode())
+				.build();
 
 		final DataAaaVO result = dataAaaDAO.selectDataAaa(dataAaaVO);
 
