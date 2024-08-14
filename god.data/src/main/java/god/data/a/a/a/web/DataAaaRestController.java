@@ -10,7 +10,6 @@ import god.data.a.a.a.service.DataAaaRequestMsgBodyDTO;
 import god.data.a.a.a.service.DataAaaRequestMsgHeaderDTO;
 import god.data.a.a.a.service.DataAaaResponseMsgBodyDTO;
 import god.data.a.a.a.service.DataAaaResponseMsgHeaderDTO;
-import god.data.a.a.a.service.DataAaaService;
 import god.data.cmm.service.DataCmmRequestDTO;
 import god.data.cmm.service.DataCmmResponseDTO;
 import lombok.RequiredArgsConstructor;
@@ -29,10 +28,10 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 public class DataAaaRestController extends EgovComAbstractController {
 
-	/**
-	 * 공통상세코드 Service
-	 */
-	private final DataAaaService dataAaaService;
+//	/**
+//	 * 공통상세코드 Service
+//	 */
+//	private final DataAaaService dataAaaService;
 
 	/**
 	 * 공통상세코드항목조회
@@ -51,15 +50,17 @@ public class DataAaaRestController extends EgovComAbstractController {
 		logMsgHeader(requestDTO);
 		logMsgBody(requestDTO);
 
-		final DataCmmResponseDTO<DataAaaResponseMsgHeaderDTO, DataAaaResponseMsgBodyDTO> responseDTO = dataAaaService
-				.selectDataAaa(requestDTO);
+//		final DataCmmResponseDTO<DataAaaResponseMsgHeaderDTO, DataAaaResponseMsgBodyDTO> responseDTO = dataAaaService
+//				.selectDataAaa(requestDTO);
+//
+//		log(responseDTO);
+//		logComMsgHeader(responseDTO);
+//		logMsgHeader(responseDTO);
+//		logMsgBody(responseDTO);
+//
+//		return responseDTO;
 
-		log(responseDTO);
-		logComMsgHeader(responseDTO);
-		logMsgHeader(responseDTO);
-		logMsgBody(responseDTO);
-
-		return responseDTO;
+		return null;
 	}
 
 	private void log(final String codeId, final String code,
@@ -105,53 +106,53 @@ public class DataAaaRestController extends EgovComAbstractController {
 		}
 	}
 
-	private void log(final DataCmmResponseDTO<DataAaaResponseMsgHeaderDTO, DataAaaResponseMsgBodyDTO> responseDTO) {
-		if (log.isDebugEnabled()) {
-			log.debug("responseDTO={}", responseDTO);
-		}
-	}
-
-	private void logComMsgHeader(
-			final DataCmmResponseDTO<DataAaaResponseMsgHeaderDTO, DataAaaResponseMsgBodyDTO> responseDTO) {
-		if (log.isDebugEnabled()) {
-			log.debug("getComMsgHeader={}", responseDTO.getComMsgHeader());
-		}
-
-		if (responseDTO.getComMsgHeader() != null && log.isDebugEnabled()) {
-			log.debug("getRequestMsgID={}", responseDTO.getComMsgHeader().getRequestMsgID());
-			log.debug("getResponseTime={}", responseDTO.getComMsgHeader().getResponseTime());
-			log.debug("getResponseMsgID={}", responseDTO.getComMsgHeader().getResponseMsgID());
-			log.debug("getSuccessYN={}", responseDTO.getComMsgHeader().getSuccessYN());
-			log.debug("getReturnCode={}", responseDTO.getComMsgHeader().getReturnCode());
-		}
-	}
-
-	private void logMsgHeader(
-			final DataCmmResponseDTO<DataAaaResponseMsgHeaderDTO, DataAaaResponseMsgBodyDTO> responseDTO) {
-		if (log.isDebugEnabled()) {
-			log.debug("getMsgHeader={}", responseDTO.getMsgHeader());
-		}
-		if (responseDTO.getMsgHeader() != null && log.isDebugEnabled()) {
-			log.debug("getHeader={}", responseDTO.getMsgHeader().getHeader());
-		}
-	}
-
-	private void logMsgBody(
-			final DataCmmResponseDTO<DataAaaResponseMsgHeaderDTO, DataAaaResponseMsgBodyDTO> responseDTO) {
-		if (log.isDebugEnabled()) {
-			log.debug("getMsgBody={}", responseDTO.getMsgBody());
-		}
-		if (responseDTO.getMsgBody() != null && log.isDebugEnabled()) {
-			log.debug("getCodeId={}", responseDTO.getMsgBody().getCodeId());
-			log.debug("getCode={}", responseDTO.getMsgBody().getCode());
-			log.debug("getCodeNm={}", responseDTO.getMsgBody().getCodeNm());
-			log.debug("getCodeDc={}", responseDTO.getMsgBody().getCodeDc());
-			log.debug("getUseAt={}", responseDTO.getMsgBody().getUseAt());
-			log.debug("getFrstRegistPnttm={}", responseDTO.getMsgBody().getFrstRegistPnttm());
-			log.debug("getFrstRegisterId={}", responseDTO.getMsgBody().getFrstRegisterId());
-			log.debug("getLastUpdtPnttm={}", responseDTO.getMsgBody().getLastUpdtPnttm());
-			log.debug("getLastUpdusrId={}", responseDTO.getMsgBody().getLastUpdusrId());
-		}
-	}
+//	private void log(final DataCmmResponseDTO<DataAaaResponseMsgHeaderDTO, DataAaaResponseMsgBodyDTO> responseDTO) {
+//		if (log.isDebugEnabled()) {
+//			log.debug("responseDTO={}", responseDTO);
+//		}
+//	}
+//
+//	private void logComMsgHeader(
+//			final DataCmmResponseDTO<DataAaaResponseMsgHeaderDTO, DataAaaResponseMsgBodyDTO> responseDTO) {
+//		if (log.isDebugEnabled()) {
+//			log.debug("getComMsgHeader={}", responseDTO.getComMsgHeader());
+//		}
+//
+//		if (responseDTO.getComMsgHeader() != null && log.isDebugEnabled()) {
+//			log.debug("getRequestMsgID={}", responseDTO.getComMsgHeader().getRequestMsgID());
+//			log.debug("getResponseTime={}", responseDTO.getComMsgHeader().getResponseTime());
+//			log.debug("getResponseMsgID={}", responseDTO.getComMsgHeader().getResponseMsgID());
+//			log.debug("getSuccessYN={}", responseDTO.getComMsgHeader().getSuccessYN());
+//			log.debug("getReturnCode={}", responseDTO.getComMsgHeader().getReturnCode());
+//		}
+//	}
+//
+//	private void logMsgHeader(
+//			final DataCmmResponseDTO<DataAaaResponseMsgHeaderDTO, DataAaaResponseMsgBodyDTO> responseDTO) {
+//		if (log.isDebugEnabled()) {
+//			log.debug("getMsgHeader={}", responseDTO.getMsgHeader());
+//		}
+//		if (responseDTO.getMsgHeader() != null && log.isDebugEnabled()) {
+//			log.debug("getHeader={}", responseDTO.getMsgHeader().getHeader());
+//		}
+//	}
+//
+//	private void logMsgBody(
+//			final DataCmmResponseDTO<DataAaaResponseMsgHeaderDTO, DataAaaResponseMsgBodyDTO> responseDTO) {
+//		if (log.isDebugEnabled()) {
+//			log.debug("getMsgBody={}", responseDTO.getMsgBody());
+//		}
+//		if (responseDTO.getMsgBody() != null && log.isDebugEnabled()) {
+//			log.debug("getCodeId={}", responseDTO.getMsgBody().getCodeId());
+//			log.debug("getCode={}", responseDTO.getMsgBody().getCode());
+//			log.debug("getCodeNm={}", responseDTO.getMsgBody().getCodeNm());
+//			log.debug("getCodeDc={}", responseDTO.getMsgBody().getCodeDc());
+//			log.debug("getUseAt={}", responseDTO.getMsgBody().getUseAt());
+//			log.debug("getFrstRegistPnttm={}", responseDTO.getMsgBody().getFrstRegistPnttm());
+//			log.debug("getFrstRegisterId={}", responseDTO.getMsgBody().getFrstRegisterId());
+//			log.debug("getLastUpdtPnttm={}", responseDTO.getMsgBody().getLastUpdtPnttm());
+//			log.debug("getLastUpdusrId={}", responseDTO.getMsgBody().getLastUpdusrId());
+//		}
+//	}
 
 }
