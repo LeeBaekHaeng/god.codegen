@@ -19,8 +19,7 @@ import lombok.ToString;
  * @since 2024-08-14
  *
  */
-//@AllArgsConstructor
-@NoArgsConstructor
+@NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class DataAaaRequestDTO extends DataCmmRequestDTO<MsgHeader, MsgBody> {
 
 	/**
@@ -33,7 +32,6 @@ public class DataAaaRequestDTO extends DataCmmRequestDTO<MsgHeader, MsgBody> {
 	@Getter
 	@Setter
 	@ToString
-
 	@NoArgsConstructor(access = AccessLevel.PROTECTED)
 	public static class MsgHeader {
 
@@ -64,7 +62,6 @@ public class DataAaaRequestDTO extends DataCmmRequestDTO<MsgHeader, MsgBody> {
 	@Getter
 	@Setter
 	@ToString
-
 	@NoArgsConstructor(access = AccessLevel.PROTECTED)
 	public static class MsgBody {
 

@@ -1,6 +1,6 @@
 package god.data.cmm.service;
 
-import lombok.AllArgsConstructor;
+import lombok.AccessLevel;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -14,16 +14,10 @@ import lombok.ToString;
  * @since 2024-08-02
  *
  */
-////@AllArgsConstructor
-//@Builder
 @Getter
-@ToString
-
-@AllArgsConstructor
-@NoArgsConstructor
-
-@Builder
 @Setter
+@ToString
+@NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class DataCmmRequestDTO<H, B> {
 
 	/**
@@ -41,59 +35,19 @@ public class DataCmmRequestDTO<H, B> {
 	 */
 	private B msgBody;
 
-//	/**
-//	 * 공유서비스 공통 메시지헤더 값읽기
-//	 * 
-//	 * @return
-//	 */
-//	public ComMsgHeader getComMsgHeader() {
-//		return comMsgHeader;
-//	}
-//
-//	/**
-//	 * 공유서비스 공통 메시지헤더 값설정
-//	 * 
-//	 * @param comMsgHeader
-//	 */
-//	public void setComMsgHeader(final ComMsgHeader comMsgHeader) {
-//		this.comMsgHeader = comMsgHeader;
-//	}
-//
-//	/**
-//	 * 제공 기관별 공통 메시지헤더 값읽기
-//	 * 
-//	 * @return
-//	 */
-//	public T1 getMsgHeader() {
-//		return msgHeader;
-//	}
-//
-//	/**
-//	 * 제공 기관별 공통 메시지헤더 값설정
-//	 * 
-//	 * @param msgHeader
-//	 */
-//	public void setMsgHeader(final T1 msgHeader) {
-//		this.msgHeader = msgHeader;
-//	}
-//
-//	/**
-//	 * 서비스별 개별 메시지바디 값읽기
-//	 * 
-//	 * @return
-//	 */
-//	public T2 getMsgBody() {
-//		return msgBody;
-//	}
-//
-//	/**
-//	 * 서비스별 개별 메시지바디 값설정
-//	 * 
-//	 * @param msgBody
-//	 */
-//	public void setMsgBody(final T2 msgBody) {
-//		this.msgBody = msgBody;
-//	}
+	/**
+	 * 
+	 * @param comMsgHeader
+	 * @param msgHeader
+	 * @param msgBody
+	 */
+	@Builder
+	public DataCmmRequestDTO(final ComMsgHeader comMsgHeader, final H msgHeader, final B msgBody) {
+		super();
+		this.comMsgHeader = comMsgHeader;
+		this.msgHeader = msgHeader;
+		this.msgBody = msgBody;
+	}
 
 	/**
 	 * 공유서비스 공통 메시지헤더
@@ -102,18 +56,10 @@ public class DataCmmRequestDTO<H, B> {
 	 * @since 2024-08-02
 	 *
 	 */
-////	@AllArgsConstructor
-//	@Builder
 	@Getter
-	@ToString
-
-	@AllArgsConstructor
-	@NoArgsConstructor
-
-	@Builder
-//	@Data
-
 	@Setter
+	@ToString
+	@NoArgsConstructor(access = AccessLevel.PROTECTED)
 	public static class ComMsgHeader {
 
 		/**
@@ -136,75 +82,22 @@ public class DataCmmRequestDTO<H, B> {
 		 */
 		private String requestMsgID;
 
-//		/**
-//		 * 서비스 사용자별 서비스통합인증키 값읽기
-//		 */
-//		public String getServiceKey() {
-//			return serviceKey;
-//		}
-//
-//		/**
-//		 * 서비스 사용자별 서비스통합인증키 값설정
-//		 * 
-//		 * @param serviceKey
-//		 */
-//		public void setServiceKey(final String serviceKey) {
-//			this.serviceKey = serviceKey;
-//		}
-//
-//		/**
-//		 * 메시지요청일시 값읽기
-//		 * 
-//		 * @return
-//		 */
-//		public String getRequestTime() {
-//			return requestTime;
-//		}
-//
-//		/**
-//		 * 메시지요청일시 값설정
-//		 * 
-//		 * @param requestTime
-//		 */
-//		public void setRequestTime(final String requestTime) {
-//			this.requestTime = requestTime;
-//		}
-//
-//		/**
-//		 * CallBack서비스URI 값읽기
-//		 * 
-//		 * @return
-//		 */
-//		public String getCallBackURI() {
-//			return callBackURI;
-//		}
-//
-//		/**
-//		 * CallBack서비스URI 값설정
-//		 * 
-//		 * @param callBackURI
-//		 */
-//		public void setCallBackURI(final String callBackURI) {
-//			this.callBackURI = callBackURI;
-//		}
-//
-//		/**
-//		 * 요청 메시지 ID 값읽기
-//		 * 
-//		 * @return
-//		 */
-//		public String getRequestMsgID() {
-//			return requestMsgID;
-//		}
-//
-//		/**
-//		 * 요청 메시지 ID 값설정
-//		 * 
-//		 * @param requestMsgID
-//		 */
-//		public void setRequestMsgID(final String requestMsgID) {
-//			this.requestMsgID = requestMsgID;
-//		}
+		/**
+		 * 
+		 * @param serviceKey
+		 * @param requestTime
+		 * @param callBackURI
+		 * @param requestMsgID
+		 */
+		@Builder
+		public ComMsgHeader(final String serviceKey, final String requestTime, final String callBackURI,
+				final String requestMsgID) {
+			super();
+			this.serviceKey = serviceKey;
+			this.requestTime = requestTime;
+			this.callBackURI = callBackURI;
+			this.requestMsgID = requestMsgID;
+		}
 
 	}
 
