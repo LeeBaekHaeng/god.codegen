@@ -2,6 +2,7 @@ package god.data.cmm.service;
 
 import lombok.Builder;
 import lombok.Getter;
+import lombok.ToString;
 
 /**
  * 요청 메시지
@@ -12,6 +13,7 @@ import lombok.Getter;
  */
 @Builder
 @Getter
+@ToString
 public class DataCmmRequestDTO<H, B> {
 
 	/**
@@ -92,6 +94,7 @@ public class DataCmmRequestDTO<H, B> {
 	 */
 	@Builder
 	@Getter
+	@ToString
 	public static class ComMsgHeader {
 
 		/**

@@ -4,6 +4,7 @@ import java.time.LocalDateTime;
 
 import lombok.Builder;
 import lombok.Getter;
+import lombok.ToString;
 
 /**
  * 공통상세코드 요청 서비스별 개별 메시지바디
@@ -14,6 +15,7 @@ import lombok.Getter;
  */
 @Builder
 @Getter
+@ToString
 public class DataAaaRequestMsgBodyDTO {
 
 	/**

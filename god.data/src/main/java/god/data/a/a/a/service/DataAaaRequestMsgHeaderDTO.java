@@ -2,6 +2,7 @@ package god.data.a.a.a.service;
 
 import lombok.Builder;
 import lombok.Getter;
+import lombok.ToString;
 
 /**
  * 공통상세코드 요청 제공 기관별 공통 메시지헤더
@@ -12,6 +13,7 @@ import lombok.Getter;
  */
 @Builder
 @Getter
+@ToString
 public class DataAaaRequestMsgHeaderDTO {
 
 	/**
