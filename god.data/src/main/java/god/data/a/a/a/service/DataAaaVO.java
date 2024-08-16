@@ -2,8 +2,8 @@ package god.data.a.a.a.service;
 
 import java.time.LocalDateTime;
 
-import lombok.Builder;
 import lombok.Getter;
+import lombok.Setter;
 
 /**
  * 공통상세코드 응답 DefaultVO
@@ -15,7 +15,7 @@ import lombok.Getter;
  *
  */
 @Getter
-//@Setter
+@Setter
 public class DataAaaVO extends DataAaaDefaultVO {
 
 	/**
@@ -100,35 +100,47 @@ public class DataAaaVO extends DataAaaDefaultVO {
 	 * 
 	 * @param codeIdNm
 	 */
-	@Builder
-	public DataAaaVO(final String codeId, final String code, final String codeNm, final String codeDc,
-			final String useAt, final LocalDateTime frstRegistPnttm, final String frstRegisterId,
-			final LocalDateTime lastUpdtPnttm, final String lastUpdusrId, final String codeIdNm) {
-		super(codeIdNm);
-		this.codeId = codeId;
-		this.code = code;
-		this.codeNm = codeNm;
-		this.codeDc = codeDc;
-		this.useAt = useAt;
-		this.frstRegistPnttm = frstRegistPnttm;
-		this.frstRegisterId = frstRegisterId;
-		this.lastUpdtPnttm = lastUpdtPnttm;
-		this.lastUpdusrId = lastUpdusrId;
-	}
+//	@Builder
+//	public DataAaaVO(final String codeId, final String code, final String codeNm, final String codeDc,
+//			final String useAt, final LocalDateTime frstRegistPnttm, final String frstRegisterId,
+//			final LocalDateTime lastUpdtPnttm, final String lastUpdusrId, final String codeIdNm) {
+////		super(codeIdNm);
+//		this.codeId = codeId;
+//		this.code = code;
+//		this.codeNm = codeNm;
+//		this.codeDc = codeDc;
+//		this.useAt = useAt;
+//		this.frstRegistPnttm = frstRegistPnttm;
+//		this.frstRegisterId = frstRegisterId;
+//		this.lastUpdtPnttm = lastUpdtPnttm;
+//		this.lastUpdusrId = lastUpdusrId;
+//	}
 
-	public DataAaaVO(final String codeId, final String code, final String codeNm, final String codeDc,
-			final String useAt, final LocalDateTime frstRegistPnttm, final String frstRegisterId,
-			final LocalDateTime lastUpdtPnttm, final String lastUpdusrId) {
-		super(null);
-		this.codeId = codeId;
-		this.code = code;
-		this.codeNm = codeNm;
-		this.codeDc = codeDc;
-		this.useAt = useAt;
-		this.frstRegistPnttm = frstRegistPnttm;
-		this.frstRegisterId = frstRegisterId;
-		this.lastUpdtPnttm = lastUpdtPnttm;
-		this.lastUpdusrId = lastUpdusrId;
-	}
+//	/**
+//	 * 
+//	 * @param codeId
+//	 * @param code
+//	 * @param codeNm
+//	 * @param codeDc
+//	 * @param useAt
+//	 * @param frstRegistPnttm
+//	 * @param frstRegisterId
+//	 * @param lastUpdtPnttm
+//	 * @param lastUpdusrId
+//	 */
+//	public DataAaaVO(final String codeId, final String code, final String codeNm, final String codeDc,
+//			final String useAt, final LocalDateTime frstRegistPnttm, final String frstRegisterId,
+//			final LocalDateTime lastUpdtPnttm, final String lastUpdusrId) {
+//		super(null);
+//		this.codeId = codeId;
+//		this.code = code;
+//		this.codeNm = codeNm;
+//		this.codeDc = codeDc;
+//		this.useAt = useAt;
+//		this.frstRegistPnttm = frstRegistPnttm;
+//		this.frstRegisterId = frstRegisterId;
+//		this.lastUpdtPnttm = lastUpdtPnttm;
+//		this.lastUpdusrId = lastUpdusrId;
+//	}
 
 }

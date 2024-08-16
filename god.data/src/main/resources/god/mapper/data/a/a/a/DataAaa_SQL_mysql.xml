@@ -18,6 +18,7 @@ SELECT /* DataAaaDAO.select 공통상세코드 조회(단건) */
      , A.FRST_REGISTER_ID
      , A.LAST_UPDT_PNTTM
      , A.LAST_UPDUSR_ID
+     , 'test' CODE_ID_NM
   FROM COMTCCMMNDETAILCODE A
  WHERE A.CODE_ID = #{codeId}
    AND A.CODE = #{code}

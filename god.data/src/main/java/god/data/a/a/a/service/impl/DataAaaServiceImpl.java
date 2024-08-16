@@ -38,13 +38,17 @@ public class DataAaaServiceImpl extends EgovAbstractServiceImpl implements DataA
 			log.debug("requestDTO={}", requestDTO);
 		}
 
-		final DataAaaVO dataAaaVO = DataAaaVO.builder()
+//		final DataAaaVO dataAaaVO = DataAaaVO.builder()
+//
+//				.codeId(msgBody(requestDTO).getCodeId())
+//
+//				.code(msgBody(requestDTO).getCode())
+//
+//				.build();
 
-				.codeId(msgBody(requestDTO).getCodeId())
-
-				.code(msgBody(requestDTO).getCode())
-
-				.build();
+		final DataAaaVO dataAaaVO = new DataAaaVO();
+		dataAaaVO.setCodeId(msgBody(requestDTO).getCodeId());
+		dataAaaVO.setCode(msgBody(requestDTO).getCode());
 
 		final DataAaaVO result = dataAaaDAO.selectDataAaa(dataAaaVO);
 
@@ -71,6 +75,8 @@ public class DataAaaServiceImpl extends EgovAbstractServiceImpl implements DataA
 						.frstRegisterId(result.getFrstRegisterId())
 
 						.lastUpdtPnttm(result.getLastUpdtPnttm()).lastUpdusrId(result.getLastUpdusrId())
+
+						.codeIdNm(result.getCodeIdNm())
 
 						.build())
 
