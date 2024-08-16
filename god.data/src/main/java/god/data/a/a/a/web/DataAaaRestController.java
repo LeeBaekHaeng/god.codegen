@@ -9,10 +9,8 @@ import egovframework.com.cmm.web.EgovComAbstractController;
 import god.data.a.a.a.service.DataAaaRequestDTO;
 import god.data.a.a.a.service.DataAaaRequestDTO.MsgBody;
 import god.data.a.a.a.service.DataAaaRequestDTO.MsgHeader;
-import god.data.a.a.a.service.DataAaaResponseMsgBodyDTO;
-import god.data.a.a.a.service.DataAaaResponseMsgHeaderDTO;
-import god.data.cmm.service.DataCmmRequestDTO;
-import god.data.cmm.service.DataCmmResponseDTO;
+import god.data.a.a.a.service.DataAaaResponseDTO;
+import god.data.cmm.service.DataCmmRequestDTO.ComMsgHeader;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 
@@ -43,12 +41,12 @@ public class DataAaaRestController extends EgovComAbstractController {
 	 * @return
 	 */
 	@GetMapping("/{codeId}/{code}")
-	public DataCmmResponseDTO<DataAaaResponseMsgHeaderDTO, DataAaaResponseMsgBodyDTO> getDataAaaItem(
-			@PathVariable final String codeId, @PathVariable final String code, final DataAaaRequestDTO requestDTO) {
+	public DataAaaResponseDTO getDataAaaItem(@PathVariable final String codeId, @PathVariable final String code,
+			final DataAaaRequestDTO requestDTO) {
 		log(codeId, code, requestDTO);
-		logComMsgHeader(requestDTO);
-		logMsgHeader(requestDTO);
-		logMsgBody(requestDTO);
+		logComMsgHeader(requestDTO.getComMsgHeader());
+		logMsgHeader(requestDTO.getMsgHeader());
+		logMsgBody(requestDTO.getMsgBody());
 
 //		final DataCmmResponseDTO<DataAaaResponseMsgHeaderDTO, DataAaaResponseMsgBodyDTO> responseDTO = dataAaaService
 //				.selectDataAaa(requestDTO);
@@ -63,8 +61,7 @@ public class DataAaaRestController extends EgovComAbstractController {
 		return null;
 	}
 
-	private void log(final String codeId, final String code,
-			final DataCmmRequestDTO<MsgHeader, MsgBody> requestDTO) {
+	private void log(final String codeId, final String code, final DataAaaRequestDTO requestDTO) {
 		if (log.isDebugEnabled()) {
 			log.debug("codeId={}", codeId);
 			log.debug("code={}", code);
@@ -73,36 +70,34 @@ public class DataAaaRestController extends EgovComAbstractController {
 		}
 	}
 
-	private void logComMsgHeader(
-			final DataCmmRequestDTO<MsgHeader, MsgBody> requestDTO) {
+	private void logComMsgHeader(final ComMsgHeader comMsgHeader) {
 		if (log.isDebugEnabled()) {
-			log.debug("getComMsgHeader={}", requestDTO.getComMsgHeader());
-		}
-		if (requestDTO.getComMsgHeader() != null && log.isDebugEnabled()) {
-			log.debug("getServiceKey={}", requestDTO.getComMsgHeader().getServiceKey());
-			log.debug("getRequestTime={}", requestDTO.getComMsgHeader().getRequestTime());
-			log.debug("getCallBackURI={}", requestDTO.getComMsgHeader().getCallBackURI());
-			log.debug("getRequestMsgID={}", requestDTO.getComMsgHeader().getRequestMsgID());
+			log.debug("comMsgHeader={}", comMsgHeader);
+			if (comMsgHeader != null && log.isDebugEnabled()) {
+				log.debug("getServiceKey={}", comMsgHeader.getServiceKey());
+				log.debug("getRequestTime={}", comMsgHeader.getRequestTime());
+				log.debug("getCallBackURI={}", comMsgHeader.getCallBackURI());
+				log.debug("getRequestMsgID={}", comMsgHeader.getRequestMsgID());
+			}
 		}
 	}
 
-	private void logMsgHeader(
-			final DataCmmRequestDTO<MsgHeader, MsgBody> requestDTO) {
+	private void logMsgHeader(final MsgHeader msgHeader) {
 		if (log.isDebugEnabled()) {
-			log.debug("getMsgHeader={}", requestDTO.getMsgHeader());
-		}
-		if (requestDTO.getMsgHeader() != null && log.isDebugEnabled()) {
-			log.debug("getHeader={}", requestDTO.getMsgHeader().getHeader());
+			log.debug("msgHeader={}", msgHeader);
+			if (msgHeader != null && log.isDebugEnabled()) {
+				log.debug("getHeader={}", msgHeader.getHeader());
+			}
 		}
 	}
 
-	private void logMsgBody(final DataCmmRequestDTO<MsgHeader, MsgBody> requestDTO) {
+	private void logMsgBody(final MsgBody msgBody) {
 		if (log.isDebugEnabled()) {
-			log.debug("getMsgBody={}", requestDTO.getMsgBody());
-		}
-		if (requestDTO.getMsgBody() != null && log.isDebugEnabled()) {
-			log.debug("getCodeId={}", requestDTO.getMsgBody().getCodeId());
-			log.debug("getCode={}", requestDTO.getMsgBody().getCode());
+			log.debug("msgBody={}", msgBody);
+			if (msgBody != null && log.isDebugEnabled()) {
+				log.debug("getCodeId={}", msgBody.getCodeId());
+				log.debug("getCode={}", msgBody.getCode());
+			}
 		}
 	}
 

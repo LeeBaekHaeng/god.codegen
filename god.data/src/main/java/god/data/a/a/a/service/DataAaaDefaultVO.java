@@ -2,6 +2,7 @@ package god.data.a.a.a.service;
 
 import egovframework.com.cmm.ComDefaultVO;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 
 /**
  * 공통상세코드 응답 DefaultVO
@@ -13,6 +14,7 @@ import lombok.Getter;
  *
  */
 @Getter
+@NoArgsConstructor
 public class DataAaaDefaultVO extends ComDefaultVO {
 
 	/**

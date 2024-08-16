@@ -17,36 +17,31 @@ import lombok.ToString;
 @Getter
 @Setter
 @ToString
-@NoArgsConstructor(access = AccessLevel.PROTECTED)
+@NoArgsConstructor
 public class DataCmmRequestDTO<H, B> {
 
 	/**
 	 * 공유서비스 공통 메시지헤더
 	 */
-	private ComMsgHeader comMsgHeader;
+	protected ComMsgHeader comMsgHeader;
 
 	/**
 	 * 제공 기관별 공통 메시지헤더
 	 */
-	private H msgHeader;
+	protected H msgHeader;
 
 	/**
 	 * 서비스별 개별 메시지바디
 	 */
-	private B msgBody;
+	protected B msgBody;
 
 	/**
+	 * 공유서비스 공통 메시지헤더.서비스 사용자별 서비스통합인증키 값읽기
 	 * 
-	 * @param comMsgHeader
-	 * @param msgHeader
-	 * @param msgBody
+	 * @return
 	 */
-	@Builder
-	public DataCmmRequestDTO(final ComMsgHeader comMsgHeader, final H msgHeader, final B msgBody) {
-		super();
-		this.comMsgHeader = comMsgHeader;
-		this.msgHeader = msgHeader;
-		this.msgBody = msgBody;
+	public String getComMsgHeaderServiceKey() {
+		return this.comMsgHeader.getServiceKey();
 	}
 
 	/**

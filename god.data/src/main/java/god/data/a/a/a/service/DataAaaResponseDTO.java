@@ -2,9 +2,9 @@ package god.data.a.a.a.service;
 
 import java.time.LocalDateTime;
 
-import god.data.a.a.a.service.DataAaaRequestDTO.MsgBody;
-import god.data.a.a.a.service.DataAaaRequestDTO.MsgHeader;
-import god.data.cmm.service.DataCmmRequestDTO;
+import god.data.a.a.a.service.DataAaaResponseDTO.MsgBody;
+import god.data.a.a.a.service.DataAaaResponseDTO.MsgHeader;
+import god.data.cmm.service.DataCmmResponseDTO;
 import lombok.AccessLevel;
 import lombok.Builder;
 import lombok.Getter;
@@ -13,13 +13,13 @@ import lombok.Setter;
 import lombok.ToString;
 
 /**
- * 공통상세코드 요청 메시지
+ * 공통상세코드 응답 메시지
  * 
  * @author 이백행
- * @since 2024-08-14
+ * @since 2024-08-16
  *
  */
-public class DataAaaRequestDTO extends DataCmmRequestDTO<MsgHeader, MsgBody> {
+public class DataAaaResponseDTO extends DataCmmResponseDTO<MsgHeader, MsgBody> {
 
 	/**
 	 * 
@@ -28,7 +28,7 @@ public class DataAaaRequestDTO extends DataCmmRequestDTO<MsgHeader, MsgBody> {
 	 * @param msgBody
 	 */
 	@Builder
-	public DataAaaRequestDTO(final ComMsgHeader comMsgHeader, final MsgHeader msgHeader, final MsgBody msgBody) {
+	public DataAaaResponseDTO(final ComMsgHeader comMsgHeader, final MsgHeader msgHeader, final MsgBody msgBody) {
 		super();
 		this.comMsgHeader = comMsgHeader;
 		this.msgHeader = msgHeader;
@@ -36,10 +36,10 @@ public class DataAaaRequestDTO extends DataCmmRequestDTO<MsgHeader, MsgBody> {
 	}
 
 	/**
-	 * 공통상세코드 요청 제공 기관별 공통 메시지헤더
+	 * 공통상세코드 응답 제공 기관별 공통 메시지헤더
 	 * 
 	 * @author 이백행
-	 * @since 2024-08-14
+	 * @since 2024-08-16
 	 *
 	 */
 	@Getter
@@ -66,10 +66,10 @@ public class DataAaaRequestDTO extends DataCmmRequestDTO<MsgHeader, MsgBody> {
 	}
 
 	/**
-	 * 공통상세코드 요청 서비스별 개별 메시지바디
+	 * 공통상세코드 응답 서비스별 개별 메시지바디
 	 * 
 	 * @author 이백행
-	 * @since 2024-08-14
+	 * @since 2024-08-16
 	 *
 	 */
 	@Getter

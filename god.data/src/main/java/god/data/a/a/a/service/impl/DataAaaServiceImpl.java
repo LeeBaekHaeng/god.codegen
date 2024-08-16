@@ -7,12 +7,10 @@ import org.egovframe.rte.fdl.cmmn.EgovAbstractServiceImpl;
 import org.springframework.stereotype.Service;
 
 import god.data.a.a.a.service.DataAaaRequestDTO;
-import god.data.a.a.a.service.DataAaaResponseMsgBodyDTO;
-import god.data.a.a.a.service.DataAaaResponseMsgHeaderDTO;
+import god.data.a.a.a.service.DataAaaResponseDTO;
 import god.data.a.a.a.service.DataAaaService;
 import god.data.a.a.a.service.DataAaaVO;
-import god.data.cmm.service.DataCmmResponseDTO;
-import god.data.cmm.service.DataCmmResponseDTO.ComMsgHeader;
+import god.data.cmm.service.DataCmmRequestDTO;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 
@@ -34,28 +32,68 @@ public class DataAaaServiceImpl extends EgovAbstractServiceImpl implements DataA
 	private final DataAaaDAO dataAaaDAO;
 
 	@Override
-	public DataCmmResponseDTO<DataAaaResponseMsgHeaderDTO, DataAaaResponseMsgBodyDTO> selectDataAaa(
-			final DataAaaRequestDTO requestDTO) {
+	public DataAaaResponseDTO selectDataAaa(final DataAaaRequestDTO requestDTO) {
 		if (log.isDebugEnabled()) {
 			log.debug("requestDTO={}", requestDTO);
 		}
 
 		final DataAaaVO dataAaaVO = DataAaaVO.builder()
-//				.codeId(requestDTO.getMsgBody().getCodeId())
-//				.code(requestDTO.getMsgBody().getCode())
+
+				.codeId(msgBody(requestDTO).getCodeId())
+
+				.code(msgBody(requestDTO).getCode())
+
 				.build();
 
 		final DataAaaVO result = dataAaaDAO.selectDataAaa(dataAaaVO);
 
-		return DataCmmResponseDTO.<DataAaaResponseMsgHeaderDTO, DataAaaResponseMsgBodyDTO>builder()
-				.comMsgHeader(ComMsgHeader.builder().requestMsgID(requestDTO.getComMsgHeader().getRequestMsgID())
-						.responseTime(LocalDateTime.now().toString()).responseMsgID(UUID.randomUUID().toString())
-						.successYN(result != null ? "Y" : "N").returnCode("00").build())
-				.msgHeader(DataAaaResponseMsgHeaderDTO.builder().header("test 이백행 헤더").build())
-				.msgBody(DataAaaResponseMsgBodyDTO.builder().codeId(result.getCodeId()).code(result.getCode())
-						.codeNm(result.getCodeNm()).codeDc(result.getCodeDc()).useAt(result.getUseAt())
-						.frstRegistPnttm(result.getFrstRegistPnttm()).frstRegisterId(result.getFrstRegisterId())
-						.lastUpdtPnttm(result.getLastUpdtPnttm()).lastUpdusrId(result.getLastUpdusrId()).build())
+		return DataAaaResponseDTO.builder()
+
+				.comMsgHeader(comMsgHeader(requestDTO.getComMsgHeader(), result))
+
+				.msgHeader(DataAaaResponseDTO.MsgHeader.builder().header("test 이백행 헤더").build())
+
+				.msgBody(DataAaaResponseDTO.MsgBody.builder()
+
+						.codeId(result.getCodeId())
+
+						.code(result.getCode())
+
+						.codeNm(result.getCodeNm())
+
+						.codeDc(result.getCodeDc())
+
+						.useAt(result.getUseAt())
+
+						.frstRegistPnttm(result.getFrstRegistPnttm())
+
+						.frstRegisterId(result.getFrstRegisterId())
+
+						.lastUpdtPnttm(result.getLastUpdtPnttm()).lastUpdusrId(result.getLastUpdusrId())
+
+						.build())
+
+				.build();
+	}
+
+	private DataAaaRequestDTO.MsgBody msgBody(final DataAaaRequestDTO requestDTO) {
+		return requestDTO.getMsgBody();
+	}
+
+	private god.data.cmm.service.DataCmmResponseDTO.ComMsgHeader comMsgHeader(
+			final DataCmmRequestDTO.ComMsgHeader comMsgHeader, final DataAaaVO result) {
+		return god.data.cmm.service.DataCmmResponseDTO.ComMsgHeader.builder()
+
+				.requestMsgID(comMsgHeader.getRequestMsgID())
+
+				.responseTime(LocalDateTime.now().toString())
+
+				.responseMsgID(UUID.randomUUID().toString())
+
+				.successYN(result != null ? "Y" : "N")
+
+				.returnCode("00")
+
 				.build();
 	}
 

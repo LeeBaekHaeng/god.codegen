@@ -1,7 +1,5 @@
 package god.data.a.a.a.service;
 
-import god.data.cmm.service.DataCmmResponseDTO;
-
 /**
  * 공통상세코드 Service
  * 
@@ -17,7 +15,6 @@ public interface DataAaaService {
 	 * @param requestDTO
 	 * @return
 	 */
-	DataCmmResponseDTO<DataAaaResponseMsgHeaderDTO, DataAaaResponseMsgBodyDTO> selectDataAaa(
-			DataAaaRequestDTO requestDTO);
+	DataAaaResponseDTO selectDataAaa(DataAaaRequestDTO requestDTO);
 
 }
