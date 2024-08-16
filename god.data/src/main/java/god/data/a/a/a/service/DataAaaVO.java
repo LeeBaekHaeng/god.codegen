@@ -14,8 +14,8 @@ import lombok.Getter;
  * @테이블 COMTCCMMNDETAILCODE 공통상세코드
  *
  */
-@Builder
 @Getter
+//@Setter
 public class DataAaaVO extends DataAaaDefaultVO {
 
 	/**
@@ -85,5 +85,50 @@ public class DataAaaVO extends DataAaaDefaultVO {
 	 * @컬럼 `LAST_UPDUSR_ID` varchar(20) DEFAULT NULL COMMENT '최종수정자ID',
 	 */
 	private String lastUpdusrId;
+
+	/**
+	 * 
+	 * @param codeId
+	 * @param code
+	 * @param codeNm
+	 * @param codeDc
+	 * @param useAt
+	 * @param frstRegistPnttm
+	 * @param frstRegisterId
+	 * @param lastUpdtPnttm
+	 * @param lastUpdusrId
+	 * 
+	 * @param codeIdNm
+	 */
+	@Builder
+	public DataAaaVO(final String codeId, final String code, final String codeNm, final String codeDc,
+			final String useAt, final LocalDateTime frstRegistPnttm, final String frstRegisterId,
+			final LocalDateTime lastUpdtPnttm, final String lastUpdusrId, final String codeIdNm) {
+		super(codeIdNm);
+		this.codeId = codeId;
+		this.code = code;
+		this.codeNm = codeNm;
+		this.codeDc = codeDc;
+		this.useAt = useAt;
+		this.frstRegistPnttm = frstRegistPnttm;
+		this.frstRegisterId = frstRegisterId;
+		this.lastUpdtPnttm = lastUpdtPnttm;
+		this.lastUpdusrId = lastUpdusrId;
+	}
+
+	public DataAaaVO(final String codeId, final String code, final String codeNm, final String codeDc,
+			final String useAt, final LocalDateTime frstRegistPnttm, final String frstRegisterId,
+			final LocalDateTime lastUpdtPnttm, final String lastUpdusrId) {
+		super(null);
+		this.codeId = codeId;
+		this.code = code;
+		this.codeNm = codeNm;
+		this.codeDc = codeDc;
+		this.useAt = useAt;
+		this.frstRegistPnttm = frstRegistPnttm;
+		this.frstRegisterId = frstRegisterId;
+		this.lastUpdtPnttm = lastUpdtPnttm;
+		this.lastUpdusrId = lastUpdusrId;
+	}
 
 }

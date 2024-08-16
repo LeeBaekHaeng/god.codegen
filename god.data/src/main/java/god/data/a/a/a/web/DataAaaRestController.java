@@ -10,6 +10,7 @@ import god.data.a.a.a.service.DataAaaRequestDTO;
 import god.data.a.a.a.service.DataAaaRequestDTO.MsgBody;
 import god.data.a.a.a.service.DataAaaRequestDTO.MsgHeader;
 import god.data.a.a.a.service.DataAaaResponseDTO;
+import god.data.a.a.a.service.DataAaaService;
 import god.data.cmm.service.DataCmmRequestDTO.ComMsgHeader;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -27,10 +28,10 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 public class DataAaaRestController extends EgovComAbstractController {
 
-//	/**
-//	 * 공통상세코드 Service
-//	 */
-//	private final DataAaaService dataAaaService;
+	/**
+	 * 공통상세코드 Service
+	 */
+	private final DataAaaService dataAaaService;
 
 	/**
 	 * 공통상세코드항목조회
@@ -48,17 +49,14 @@ public class DataAaaRestController extends EgovComAbstractController {
 		logMsgHeader(requestDTO.getMsgHeader());
 		logMsgBody(requestDTO.getMsgBody());
 
-//		final DataCmmResponseDTO<DataAaaResponseMsgHeaderDTO, DataAaaResponseMsgBodyDTO> responseDTO = dataAaaService
-//				.selectDataAaa(requestDTO);
-//
-//		log(responseDTO);
+		final DataAaaResponseDTO responseDTO = dataAaaService.selectDataAaa(requestDTO);
+
+		log(responseDTO);
 //		logComMsgHeader(responseDTO);
 //		logMsgHeader(responseDTO);
 //		logMsgBody(responseDTO);
 //
-//		return responseDTO;
-
-		return null;
+		return responseDTO;
 	}
 
 	private void log(final String codeId, final String code, final DataAaaRequestDTO requestDTO) {
@@ -101,12 +99,12 @@ public class DataAaaRestController extends EgovComAbstractController {
 		}
 	}
 
-//	private void log(final DataCmmResponseDTO<DataAaaResponseMsgHeaderDTO, DataAaaResponseMsgBodyDTO> responseDTO) {
-//		if (log.isDebugEnabled()) {
-//			log.debug("responseDTO={}", responseDTO);
-//		}
-//	}
-//
+	private void log(final DataAaaResponseDTO responseDTO) {
+		if (log.isDebugEnabled()) {
+			log.debug("responseDTO={}", responseDTO);
+		}
+	}
+
 //	private void logComMsgHeader(
 //			final DataCmmResponseDTO<DataAaaResponseMsgHeaderDTO, DataAaaResponseMsgBodyDTO> responseDTO) {
 //		if (log.isDebugEnabled()) {

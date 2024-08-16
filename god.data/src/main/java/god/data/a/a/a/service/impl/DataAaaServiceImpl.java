@@ -11,6 +11,7 @@ import god.data.a.a.a.service.DataAaaResponseDTO;
 import god.data.a.a.a.service.DataAaaService;
 import god.data.a.a.a.service.DataAaaVO;
 import god.data.cmm.service.DataCmmRequestDTO;
+import god.data.cmm.service.DataCmmResponseDTO;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 
@@ -80,9 +81,9 @@ public class DataAaaServiceImpl extends EgovAbstractServiceImpl implements DataA
 		return requestDTO.getMsgBody();
 	}
 
-	private god.data.cmm.service.DataCmmResponseDTO.ComMsgHeader comMsgHeader(
-			final DataCmmRequestDTO.ComMsgHeader comMsgHeader, final DataAaaVO result) {
-		return god.data.cmm.service.DataCmmResponseDTO.ComMsgHeader.builder()
+	private DataCmmResponseDTO.ComMsgHeader comMsgHeader(final DataCmmRequestDTO.ComMsgHeader comMsgHeader,
+			final DataAaaVO result) {
+		return DataCmmResponseDTO.ComMsgHeader.builder()
 
 				.requestMsgID(comMsgHeader.getRequestMsgID())
 

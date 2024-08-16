@@ -14,9 +14,9 @@ SELECT /* DataAaaDAO.select 공통상세코드 조회(단건) */
      , A.CODE_NM
      , A.CODE_DC
      , A.USE_AT
---     , A.FRST_REGIST_PNTTM
+     , A.FRST_REGIST_PNTTM
      , A.FRST_REGISTER_ID
---     , A.LAST_UPDT_PNTTM
+     , A.LAST_UPDT_PNTTM
      , A.LAST_UPDUSR_ID
   FROM COMTCCMMNDETAILCODE A
  WHERE A.CODE_ID = #{codeId}

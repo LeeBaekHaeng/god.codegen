@@ -2,7 +2,6 @@ package god.data.a.a.a.service;
 
 import egovframework.com.cmm.ComDefaultVO;
 import lombok.Getter;
-import lombok.NoArgsConstructor;
 
 /**
  * 공통상세코드 응답 DefaultVO
@@ -14,7 +13,6 @@ import lombok.NoArgsConstructor;
  *
  */
 @Getter
-@NoArgsConstructor
 public class DataAaaDefaultVO extends ComDefaultVO {
 
 	/**
@@ -27,6 +25,15 @@ public class DataAaaDefaultVO extends ComDefaultVO {
 	 * 
 	 * @컬럼 `CODE_ID` varchar(6) NOT NULL COMMENT '코드ID',
 	 */
-	private String codeIdNm;
+	private final String codeIdNm;
+
+	/**
+	 * 
+	 * @param codeIdNm
+	 */
+	public DataAaaDefaultVO(final String codeIdNm) {
+		super();
+		this.codeIdNm = codeIdNm;
+	}
 
 }
