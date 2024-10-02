@@ -7,6 +7,9 @@
 		</Console>
 	</Appenders>
 	<Loggers>
+		<Logger name="god2" level="DEBUG" additivity="false">
+			<AppenderRef ref="console" />
+		</Logger>
 		<Logger name="java.sql" level="DEBUG" additivity="false">
 			<AppenderRef ref="console" />
 		</Logger>
