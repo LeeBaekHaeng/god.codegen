@@ -40,3 +40,5 @@ god.test/.project
 god.data/.classpath
 god.data/.factorypath
 god.data/.project
+*.classpath
+*.factorypath
