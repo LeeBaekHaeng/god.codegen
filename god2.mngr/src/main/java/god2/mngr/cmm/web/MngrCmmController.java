@@ -16,7 +16,7 @@ public class MngrCmmController {
 
 	private final MngrCmmService mngrCmmService;
 
-	@GetMapping("/mngr/cmm/selectCmmCodeDetail.do")
+	@GetMapping(value = { "/mngr/cmm/selectCmmCodeDetail.do", "/mngr/cmm/cmm-code-detail" })
 	public String selectCmmCodeDetail(ComDefaultCodeVO vo, Model model) {
 		if (log.isDebugEnabled()) {
 			log.debug("vo={}", vo);
